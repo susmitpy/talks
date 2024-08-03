@@ -11,7 +11,7 @@ background: gradient-light-blue-white
 # Now Open for
 
 <div class="flex justify-center">
-<img src="../assets/qa.png" alt="Q&A" width="100" height="100"/>
+<img src="/qa.png" alt="Q&A" width="100" height="100"/>
 </div>
 
 

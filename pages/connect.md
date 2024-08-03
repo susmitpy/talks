@@ -6,7 +6,7 @@ layout: two-cols
 
 ### Linktree
 
-<img src="../assets/linktree.png" alt="Linktree" width="400" height="400" />
+<img src="/linktree.png" alt="Linktree" width="400" height="400" />
 
 ::right::
 
