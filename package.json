@@ -1,0 +1,17 @@
+{
+  "name": "slidev",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "export NODE_OPTIONS=--max-old-space-size=8192 && slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export",
+    "preview": "npx vite preview"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.49.22",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "vue": "^3.4.33"
+  }
+}
