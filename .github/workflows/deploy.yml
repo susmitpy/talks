@@ -31,11 +31,14 @@ jobs:
       - name: Install dependencies
         run: nci
 
+      - name: Increase Heap Size
+        run: echo "::set-env name=NODE_OPTIONS::--max_old_space_size=8192"
+
       - name: Build Template
-        run: nr build template.md --base /${{github.event.repository.name}}/template/
+        run: nr exec slidev build template.md -- --base /${{github.event.repository.name}}/template/
 
       - name: Build Presentation
-        run: nr build pres1.md --base /${{github.event.repository.name}}/pres1/
+        run: nr exec slidev build pres1.md -- --base /${{github.event.repository.name}}/pres1/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
