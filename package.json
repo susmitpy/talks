@@ -7,7 +7,7 @@
     "dev": "slidev --open",
     "export": "slidev export",
     "preview": "npx vite preview",
-    "build_template": "slidev build template.md --base /talks/template/",
+    "build_template": "slidev build template.md --base /talks/template/ --out dist/template",
     "build_pres": "slidev build pres1.md --base /talks/pres1/"
   },
   "dependencies": {
