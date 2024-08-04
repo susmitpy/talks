@@ -34,9 +34,6 @@ jobs:
       - name: Build Template
         run: nr build_template
 
-      - name: Build Presentation
-        run: nr build_pres
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
