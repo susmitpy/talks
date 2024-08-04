@@ -30,12 +30,12 @@ jobs:
 
       - name: Install dependencies
         run: nci
-        
+
       - name: Build Template
-        run: nr exec slidev build template.md -- --base /${{github.event.repository.name}}/template/
+        run: nr build_template
 
       - name: Build Presentation
-        run: nr exec slidev build pres1.md -- --base /${{github.event.repository.name}}/pres1/
+        run: nr build_pres
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

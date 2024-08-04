@@ -6,7 +6,9 @@
     "build": "export NODE_OPTIONS=--max-old-space-size=8192 && slidev build",
     "dev": "slidev --open",
     "export": "slidev export",
-    "preview": "npx vite preview"
+    "preview": "npx vite preview",
+    "build_template": "slidev build template.md -- --base /talks/template/",
+    "build_pres": "slidev build pres1.md -- --base /talks/pres1/"
   },
   "dependencies": {
     "@slidev/cli": "^0.49.23",
