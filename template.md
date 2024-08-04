@@ -16,7 +16,6 @@ background: /bg_image.png
 
 ---
 src: ./pages/about.md
-
 ---
 
 
@@ -111,7 +110,7 @@ view_model = ViewModel(**request_data)
 ---
 src: ./pages/connect.md
 ---
-r
+
 
 
 ---
