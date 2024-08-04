@@ -7,8 +7,7 @@
     "dev": "slidev --open",
     "export": "slidev export",
     "preview": "npx vite preview",
-    "build_template": "slidev build template.md --base /talks/template/ --out dist/template",
-    "build_pres": "slidev build pres1.md --base /talks/pres1/"
+    "build_pres": "slidev build ${npm_config_name}.md --base /talks/${npm_config_name}/ --out dist/${npm_config_name}"
   },
   "dependencies": {
     "@slidev/cli": "^0.49.23",
