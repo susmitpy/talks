@@ -32,10 +32,10 @@ jobs:
         run: nci
 
       - name: Build Template
-        run: nr build_pres --name=template
+        run: nr build_pres -- --name=template
 
       - name: Build Presentation
-        run: nr build_pres --name=pres1
+        run: nr build_pres -- --name=pres1
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
