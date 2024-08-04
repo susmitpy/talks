@@ -30,10 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: nci
-
-      - name: Increase Heap Size
-        run: echo "::set-env name=NODE_OPTIONS::--max_old_space_size=8192"
-
+        
       - name: Build Template
         run: nr exec slidev build template.md -- --base /${{github.event.repository.name}}/template/
 
