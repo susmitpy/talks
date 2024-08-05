@@ -1,12 +1,45 @@
 # Agenda
 
-1. Section 1
-2. Section 2
+<v-switch>
+<template #0>
 
-<style>
+1. What is Kafka?
+2. Use Cases
+3. Where does Kafka fit in?
+4. Components in Kafka 
+5. Kafka <> Confluent
+</template> 
 
-li {
-    font-size: 1.8rem;
-}
+<template #1>
 
-</style>
+1. What is Kafka?
+2. Use Cases
+3. Where does Kafka fit in?
+4. Components in Kafka
+    - Publishers 
+    - Brokers
+        - Topics
+        - Partitions
+        - Partition Replication
+    - Zookeeper / KRaft
+    - Consumers
+5. Kafka <> Confluent
+</template>
+
+<template #2>
+
+1. What is Kafka?
+2. Use Cases
+3. Where does Kafka fit in?
+4. Components in Kafka 
+    - Publishers
+    - Brokers
+        - Topics, Partitions, Partition Replication
+    - Zookeeper / KRaft
+    - Consumers
+        - Queue Behaviour
+        - Pub-Sub Behaviour
+5. Kafka <> Confluent
+
+</template>
+</v-switch>
