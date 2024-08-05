@@ -34,8 +34,8 @@ jobs:
       - name: Build Template
         run: nr --name=template build_pres 
 
-      - name: Build Presentation
-        run: nr --name=pres1 build_pres 
+      - name: Build Kafka
+        run: nr --name=kafka build_pres 
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
