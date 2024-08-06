@@ -1,7 +1,10 @@
 ---
 theme: seriph
-title: Presentation
 class: text-center
+
+title: Kafka 1o1
+info: |
+  ## Introduction to Apache Kafka
 drawings:
   persist: false
 transition: slide-left
@@ -17,9 +20,55 @@ background: /bg_image.png
 src: ./pages/about.md
 ---
 
+
 ---
-src: ./pages/agenda.md
----
+
+# Agenda
+
+<v-switch>
+<template #0>
+
+1. What is Kafka?
+2. Use Cases
+3. Where does Kafka fit in?
+4. Components in Kafka 
+5. Kafka <> Confluent
+</template> 
+
+<template #1>
+
+1. What is Kafka?
+2. Use Cases
+3. Where does Kafka fit in?
+4. Components in Kafka
+    - Publishers 
+    - Brokers
+        - Topics
+        - Partitions
+        - Partition Replication
+    - Zookeeper / KRaft
+    - Consumers
+5. Kafka <> Confluent
+</template>
+
+<template #2>
+
+1. What is Kafka?
+2. Use Cases
+3. Where does Kafka fit in?
+4. Components in Kafka 
+    - Publishers
+    - Brokers
+        - Topics, Partitions, Partition Replication
+    - Zookeeper / KRaft
+    - Consumers
+        - Queue Behaviour
+        - Pub-Sub Behaviour
+5. Kafka <> Confluent
+
+</template>
+</v-switch>
+
 
 ---
 
@@ -79,10 +128,10 @@ class: content
 
 ---
 
-# Where does Kafka fit in?
+# Where  does Kafka fit in?
 
 <div class="flex items-center justify-center">
-  <img src="/kafka/fit_in.webp" class="w-2.6/4"/>
+  <img src="/kafka/fit_in.svg" class="w-2.6/4"/>
 </div>
 
 
@@ -129,7 +178,7 @@ const run = async () => {
 # Brokers, Topics
 
 <div class="flex items-center justify-center">
-<img src="/kafka/topics.webp" class="w-3/4"/>
+<img src="/kafka/topics.svg" class="w-3/4"/>
 </div>
 
 ---
@@ -137,7 +186,7 @@ const run = async () => {
 # Partitions
 
 <div class="flex items-center justify-center">
-<img src="/kafka/partitions.webp" class="w-1/2.5"/>
+<img src="/kafka/partitions.svg" class="w-1/2.5"/>
 </div>
 
 ---
@@ -145,7 +194,7 @@ const run = async () => {
 # Partition Replication
 
 <div class="flex items-center justify-center">
-<img src="/kafka/replication.webp" class="w-5/6"/>
+<img src="/kafka/replication.svg" class="w-5/6"/>
 </div>
 
 --- 
@@ -190,6 +239,12 @@ backgroundSize: contain
 - Raft Consensus Protocol
 - Metadata stored in a distributed log 
 
+<style>
+    li {
+      font-size: 2em;
+    }
+</style>
+
 ---
 
 # Consumers
@@ -228,7 +283,7 @@ const run = async () => {
 # Consumers
 
 <div class="flex items-center justify-center">
-<img src="/kafka/single_consumer.webp" class="w-full"/>
+<img src="/kafka/single_consumer.svg" class="w-full"/>
 </div>
 
 ---
@@ -236,7 +291,7 @@ const run = async () => {
 # Consumer on Bench
 
 <div class="flex items-center justify-center">
-<img src="/kafka/no_work.webp" class="w-full"/>
+<img src="/kafka/no_work.svg" class="w-full"/>
 </div>
 
 ---
@@ -244,7 +299,7 @@ const run = async () => {
 # Multiple Consumer Groups
 
 <div class="flex items-center justify-center">
-<img src="/kafka/multi_cg.webp" class="w-2.4/4"/>
+<img src="/kafka/multi_cg.svg" class="w-2.4/4"/>
 </div>
 
 ---
@@ -252,7 +307,7 @@ const run = async () => {
 # Partition Level Queue
 
 <div class="flex items-center justify-center">
-<img src="/kafka/queue.webp" class="w-5/6"/>
+<img src="/kafka/queue.svg" class="w-5/6"/>
 </div>
 
 ---
@@ -260,14 +315,29 @@ const run = async () => {
 # Pub Sub
 
 <div class="flex items-center justify-center">
-<img src="/kafka/pub_sub.webp" class="w-2.4/4"/>
+<img src="/kafka/pub_sub.svg" class="w-2.4/4"/>
 </div>
 
 --- 
 
 # Kafka <> Confluent
 
+<v-clicks>
 
+* Founded by original creators of Apache Kafka
+* Foundational Platform for data-in-motion 
+* Confluent Control Center
+* Optimized Kafka Distribution
+* Cloud Native Apache Flink in GA (19<sup>th</sup> March, 2024)
+
+</v-clicks>
+
+<style>
+    li {
+      font-size: 2em;
+    }
+
+</style>
 
 
 ---

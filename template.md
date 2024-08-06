@@ -20,8 +20,11 @@ src: ./pages/about.md
 
 
 ---
-src: ./pages/agenda.md
----
+
+# Agenda
+
+1. Section 1
+2. Section 2
 
 ---
 
