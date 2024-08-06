@@ -95,7 +95,7 @@ class: content
 - open-source distributed event streaming platform
 - Can act like a Pub-Sub system
 - Can also act like a message queue
-- Fault Tolarent & Scalable
+- Fault Tolerant & Scalable
 
 </v-clicks>
 
