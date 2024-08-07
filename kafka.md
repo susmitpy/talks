@@ -190,6 +190,23 @@ const run = async () => {
 
 ---
 
+# Publishers send messages to Brokers
+<div class="content"  v-click>
+<img src="/kafka/broker.png" class="w-1/2"/>
+<h2> Kafka Brokers are <br/> not like this </h2>
+</div>
+
+<style>
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+  </style>
+
+---
+
 # Brokers, Topics
 
 <div class="flex items-center justify-center">
