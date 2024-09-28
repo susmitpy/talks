@@ -16,6 +16,10 @@ background: /bg_image.png
 
 ### By Susmit Vengurlekar
 
+---
+src: ./pages/disclaimer.md
+---
+
 
 ---
 src: ./pages/bug.md
@@ -25,6 +29,12 @@ src: ./pages/bug.md
 ---
 src: ./pages/about.md
 ---
+
+---
+layout: center
+---
+
+# Demo Time
 
 
 ---
