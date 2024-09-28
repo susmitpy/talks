@@ -7,7 +7,7 @@
 
 - Currently working at Xcellen as a Senior Data Scientist and Software Architect
 - Certified Neo4j Professional
-- Programming Experience of **8 years**, Corporate Experience of **3 years** 
+- Programming Experience of **8 years**, Corporate Experience of **3+ years** 
 - Mentor at FuseBytes (Nextjs, Flutter)
 
 <br>
