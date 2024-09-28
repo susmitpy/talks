@@ -26,6 +26,13 @@ src: ./pages/bug.md
 src: ./pages/about.md
 ---
 
+---
+layout: center
+---
+
+# Demo Time
+## Let's build this together
+
 
 ---
 src: ./pages/connect.md
