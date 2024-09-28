@@ -53,7 +53,6 @@ class DisclaimerValidator(Validator):
             return ValidationResult(True)
         else:
             return self.check_for_disclaimer_in_injected_slides(file_content)
-            return ValidationResult(False, "Disclaimer Slide Missing")
         
     def check_for_disclaimer_in_injected_slides(self, file_content: str) -> ValidationResult:
         """
