@@ -37,6 +37,9 @@ jobs:
       - name: Build Kafka
         run: nr --name=kafka build_pres 
 
+      - name: Build Kafka
+        run: nr --name=github_actions build_pres 
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
