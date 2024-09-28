@@ -37,7 +37,7 @@ jobs:
       - name: Build Kafka
         run: nr --name=kafka build_pres 
 
-      - name: Build Kafka
+      - name: Build Github Actions
         run: nr --name=github_actions build_pres 
 
       - name: Setup Pages
