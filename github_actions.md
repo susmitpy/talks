@@ -26,11 +26,6 @@ src: ./pages/bug.md
 src: ./pages/about.md
 ---
 
----
-layout: center
----
-
-# Demo Time
 
 ---
 src: ./pages/connect.md
