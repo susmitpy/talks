@@ -1,5 +1,4 @@
 # github actions yml file to build and deploy the site on pull request
-# include permissions, concurrency, jobs, and steps
 
 name: Preview
 
@@ -7,15 +6,6 @@ on:
   pull_request:
     branches:
       - main
-
-permissions:
-    contents: read
-    pages: write
-    id-token: write
-
-concurrency:
-    group: pages
-    cancel-in-progress: false
 
 jobs:
     build:
