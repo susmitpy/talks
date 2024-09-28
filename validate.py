@@ -3,11 +3,10 @@ import sys
 import re
 
 class ValidationResult:
-    def __init__(self, success: bool, message: str = "", file: str = "", line: int = 0):
+    def __init__(self, success: bool, message: str = "", file: str = ""):
         self.success = success
         self.message = message
         self.file = file
-        self.line = line
 
 class Validator:
     def validate(self) -> ValidationResult:
@@ -21,6 +20,7 @@ class DisclaimerValidator(Validator):
     def __init__(self, deploy_yaml_path: str):
         self.deploy_yaml_path = deploy_yaml_path
         self.name_pattern = re.compile(r"--name=([^\s]+)\s+build_pres")
+        self.src_pattern = re.compile(r"src: (.*\.md)")
 
     def validate(self) -> ValidationResult:
         if not os.path.exists(self.deploy_yaml_path):
@@ -52,20 +52,46 @@ class DisclaimerValidator(Validator):
         if "Disclaimer" in file_content:
             return ValidationResult(True)
         else:
+            return self.check_for_disclaimer_in_injected_slides(file_content)
             return ValidationResult(False, "Disclaimer Slide Missing")
+        
+    def check_for_disclaimer_in_injected_slides(self, file_content: str) -> ValidationResult:
+        """
+        Reads the file content of all injected slides and checks if any of them contain the word 'Disclaimer'.
+        
+        Args:
+            file_content (str): The content of the file to check.
 
-def emit_error(message: str, file: str = "", line: int = 0):
+        Returns:
+            ValidationResult: A ValidationResult object.
+        """
+
+        source_files = self.src_pattern.findall(file_content)
+        for src in source_files:
+            src_file = os.path.join('.', src)
+            if not os.path.exists(src_file):
+                return ValidationResult(False, f"File not found: {src_file}")
+
+            try:
+                with open(src_file, 'r') as f:
+                    src_content = f.read()
+            except Exception as e:
+                return ValidationResult(False, f"Error reading {src_file}: {e}")
+
+            if "Disclaimer" in src_content:
+                return ValidationResult(True)
+            
+        return ValidationResult(False, "Disclaimer Slide Missing")
+
+def emit_error(message: str, file: str = ""):
     """
     Emits an error annotation in GitHub Actions.
 
     Args:
         message (str): The error message.
         file (str): The file in which the error occurred.
-        line (int): The line number of the error.
     """
-    if file and line:
-        annotation = f"::error file={file},line={line}::{message}"
-    elif file:
+    if file:
         annotation = f"::error file={file}::{message}"
     else:
         annotation = f"::error::{message}"
@@ -85,8 +111,8 @@ def main():
         result = validator.validate()
         if not result.success:
             all_success = False
-            if result.file or result.line:
-                emit_error(result.message, file=result.file, line=result.line)
+            if result.file:
+                emit_error(result.message, file=result.file)
             else:
                 emit_error(result.message)
             messages.append(result.message)
