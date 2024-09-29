@@ -43,7 +43,8 @@ src: ./pages/qa.md
 1. Code Linting
 2. Commit Message Format Linting
 3. Unit Testing
-4. Integrate with AI tools to assist in code reviews
+4. Previews (Vercel, Netlify, Azure Static Web Apps, AWS Amplify, Firebase Hosting)
+5. Integrate with AI tools to assist in code reviews
 
 
 <style>
