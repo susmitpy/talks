@@ -14,7 +14,7 @@ background: /bg_image.png
 
 # Github Actions in Action
 
-### By Susmit Vengurlekar
+### By Susmit Vengurlekar (@susmitpy)
 
 
 ---
