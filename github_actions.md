@@ -16,10 +16,15 @@ background: /bg_image.png
 
 ### By Susmit Vengurlekar (@susmitpy)
 
-
 ---
 src: ./pages/bug.md
 ---
+
+---
+layout: center
+---
+
+<Tweet id="1841457540875387365" scale="1" />
 
 
 ---
@@ -59,3 +64,5 @@ layout: center
 
 # Thank You
 # I hope you learned and had fun
+
+
