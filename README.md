@@ -8,6 +8,12 @@ npm exec slidev build template.md -- --base /talks/template/ --out docs/template
 npm exec slidev build pres1.md -- --base /talks/pres1/ --out docs/pres1
 ```
 
+Using remote control
+```bash
+npm exec slidev -- --open template.md --remote
+```
+Press 'c' to get the qr code to scan and control the slides
+
 To start the slide show:
 
 - `npm install`

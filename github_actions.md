@@ -59,10 +59,5 @@ li {
 </style>
 
 ---
-layout: center
+src: ./pages/qa.md
 ---
-
-# Thank You
-# I hope you learned and had fun
-
-

@@ -6,7 +6,6 @@ background: gradient-light-blue-white
 <div class="flex justify-center">
 <h1 class="thanks">Thank You</h1>
 </div>
-<v-click>
 
 # Now Open for
 
@@ -16,7 +15,7 @@ background: gradient-light-blue-white
 
 
 ## Let's have a chat!
-</v-click>
+
 
 <style>
 .thanks {
