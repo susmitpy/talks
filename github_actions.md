@@ -21,6 +21,11 @@ src: ./pages/bug.md
 ---
 
 ---
+src: ./pages/disclaimer.md
+---
+
+
+---
 layout: center
 ---
 
@@ -30,6 +35,13 @@ layout: center
 ---
 src: ./pages/about.md
 ---
+
+
+---
+layout: center
+---
+
+# Demo Time
 
 
 ---
