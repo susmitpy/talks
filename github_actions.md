@@ -21,6 +21,11 @@ src: ./pages/bug.md
 ---
 
 ---
+src: ./pages/disclaimer.md
+---
+
+
+---
 layout: center
 ---
 
