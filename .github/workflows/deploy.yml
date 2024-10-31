@@ -37,6 +37,9 @@ jobs:
       - name: Build Github Actions
         run: nr --name=github_actions build_pres 
 
+      - name: Build MongoDB Change Stream
+        run: nr --name=mongodb_change_stream build_pres
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
