@@ -222,7 +222,7 @@ A[MongoDB] -- Change Stream --> B[Kafka Connect Worker - MongoDB Source Connecto
 <br/> 
 <v-click>
 
-## Enough of Slides, Let's see some code and configuration
+## Enough of Slides, Let's see some code, some configuration and get things working.
 <br/>
 
 <div class="flex flex-row gap-4">
