@@ -43,6 +43,12 @@ src: ./pages/about.md
 9. Live Demo
 10. Q&A 
 
+<style>
+    li {
+        font-size: 1.3em;
+    }
+</style>
+
 ---
 
 # What is a Stream
@@ -226,7 +232,7 @@ A[MongoDB] -- Change Stream --> B[Kafka Connect Worker - MongoDB Source Connecto
 <br/>
 
 <div class="flex flex-row gap-4">
-<img src="/mongo/mongo_kafka_neo4j.png" width="300" height="300" />
+<img src="/mongo/mongo_kafka_neo4j.png" width="250" height="250" />
 <div class="flex flex-col">
 <p> Scan the QR Code for the demo github repo</p>
 <p>Github Repo: susmitpy/mongodb-kafka-neo4j</p>
