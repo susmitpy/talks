@@ -74,8 +74,21 @@ graph LR
 
 # Change Data Capture (CDC)
 
-- Capturing changes in data as they occur
-- Capturing inserts, updates, and deletes
+### Ingesting changes from a source database system
+
+- Batch Oriented CDC - Periodic Updates
+
+<br/>
+
+```mermaid  
+graph LR
+
+    A[Client] --Create Order--> B[(DB)]
+    C[Listener] --Periodic Read --> B
+    C --> D(Do Something)
+```
+
+- Continuous CDC - Capturing changes in data as they occur
 
 <br/>
 
@@ -89,7 +102,7 @@ graph LR
 
 <style>
     li {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
 </style>
 
