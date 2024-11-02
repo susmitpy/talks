@@ -34,7 +34,7 @@ src: ./pages/about.md
 
 1. What is a Stream 
 2. Change Data Capture
-3. Intro to MongoDB
+3. Intro to MongoDB 
 4. Intro to MongoDB Change Stream
 5. Intro to Kafka
 6. Intro to Neo4j
@@ -112,17 +112,68 @@ graph LR
 
 # Intro to MongoDB
 
-- Does not need introduction 
-
-<v-click>
-
 - Document-oriented NoSQL database
 - Schema On Read
-</v-click>
+- Rich Querying and Indexing capabilities
+- Powerful Aggregation Framework
+
 
 <style>
     li {
         font-size: 1.5em;
+    }
+</style>
+
+---
+
+# Indexing, Querying and Aggregation in MongoDB
+
+### Indexing and Querying
+```js
+db.orders.createIndex({ customerId: 1, orderDate: -1 })
+
+db.orders.find(
+  {
+    customerId: "C12345",
+    orderDate: {
+      $gte: ISODate("2023-01-01"),
+      $lte: ISODate("2023-12-31")
+    }
+  }
+).sort({ orderDate: -1 })
+```
+
+### Aggregation
+```js
+db.orders.aggregate([
+  { $group: { _id: "$customerId", totalSpent: { $sum: "$amount" } } },
+  { $sort: { totalSpent: -1 } },
+  { $limit: 5 }
+])
+```
+
+---
+
+# Intro to MongoDB Replica Sets
+
+- What is a Replica Set?
+    - A group of MongoDB servers that maintain the same data set
+    - Provides data redundancy and high availability
+
+<v-click>
+
+- Primary and Secondary Nodes
+    - Primary handles all write operations
+    - Secondaries replicate data from the primary
+
+- Automatic Failover
+    - If primary fails, a secondary is automatically elected as the new primary
+
+</v-click>
+
+<style>
+    li {
+        font-size: 1.2em;
     }
 </style>
 
@@ -133,6 +184,7 @@ graph LR
 - Real-time data changes
 - Can be consumed by applications
 - Capture inserts, updates, and deletes
+- Works only with Replica Sets and Sharded Clusters
 
 <style>
     li {
