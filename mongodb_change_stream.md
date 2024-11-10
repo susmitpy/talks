@@ -35,17 +35,18 @@ src: ./pages/about.md
 1. What is a Stream 
 2. Change Data Capture
 3. Intro to MongoDB 
-4. Intro to MongoDB Change Stream
-5. Intro to Kafka
-6. Intro to Neo4j
-7. ⁠Intro to Kafka Connect
-8. One Use Case
-9. Live Demo
-10. Q&A 
+4. Intro to MongoDB Replica Sets
+5. Intro to MongoDB Change Stream
+6. Intro to Kafka
+7. Intro to Neo4j
+9. Intro to Kafka Connect
+10. One Use Case
+11. Live Demo
+12. Q&A 
 
 <style>
     li {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
 </style>
 
