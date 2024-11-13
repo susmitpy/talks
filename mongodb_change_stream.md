@@ -30,7 +30,13 @@ src: ./pages/about.md
 
 ---
 
-<SlidevVideo src="/ruparel.mp4" controls/>
+<div class="flex flex-col h-full">
+<h1>Something is common between the speakers today</h1>
+<v-click>
+<Youtube id="MvBV3uzbe9I" class="mx-auto my-auto w-full h-full p-4"/>
+</v-click>
+</div>
+
 
 ---
 
