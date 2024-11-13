@@ -117,7 +117,7 @@ graph LR
 <div class="flex flex-col h-full">
 <h1>Intro to MongoDB</h1>
 <h3>Terminology Mapping</h3>
-<Youtube id="GV9VBwH_h1U" class="mx-auto my-auto"/>
+<Youtube id="GV9VBwH_h1U" class="mx-auto my-auto w-full h-full p-4"/>
 </div>
 
 
