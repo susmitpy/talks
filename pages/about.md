@@ -11,11 +11,11 @@
 - Mentor at FuseBytes (Nextjs, Flutter)
 
 <br>
-<v-click>
+<!-- <v-click>
  
-### Engineering is a craft, not a degree. I have done Bsc IT from D.G. Ruparel College
+<!-- ### Engineering is a craft, not a degree. I have done Bsc IT from D.G. Ruparel College -->
 
-</v-click>
+<!-- </v-click> -->
 
 <style>
 

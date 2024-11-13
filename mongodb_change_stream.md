@@ -30,6 +30,10 @@ src: ./pages/about.md
 
 ---
 
+<SlidevVideo src="/ruparel.mp4" controls/>
+
+---
+
 # Agenda
 
 1. What is a Stream 
