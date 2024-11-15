@@ -281,7 +281,7 @@ graph LR
 <v-click>
 
 - Decouple MongoDB and Neo4j
-    - Data Buffer in case of spikes
+    - Backpressure Handling - Data Buffer in case of spikes
     - Allows for downtime of Neo4j
     - Replayability
     - Can configure Dead Letter Queue for failed messages
