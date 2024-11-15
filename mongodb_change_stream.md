@@ -217,7 +217,7 @@ db.orders.aggregate([
 # Intro to Kafka
 
 - open-source distributed event streaming platform which is Fault Tolerant & Scalable
-- Can act like a Pub-Sub system as well as a message queue
+- Can be used as a Pub-Sub system as well as a message queue
 
 <div class="flex items-center justify-center">
   <img src="/kafka/fit_in.svg" class="w-2.5/5"/>
