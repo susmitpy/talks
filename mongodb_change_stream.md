@@ -237,12 +237,13 @@ db.orders.aggregate([
 - Labels, Nodes, Relationships, and Properties
 - Native Graph Storage: Store data using pointers on disk
 - Cypher Query Language
+- Create only directed relationships, but traverse them any way.
 
 <img src="/mongo/neo_intro.png" class="w-3/4" style="background:white"/>
 
 <style>
     li {
-        font-size: 1.2em;
+        font-size: 1em;
     }
 </style>
 
