@@ -203,6 +203,7 @@ db.orders.aggregate([
 - Real-time data changes
 - Can be consumed by applications
 - Capture inserts, updates, and deletes
+- Resumable - Every change event has a resume token
 - Works only with Replica Sets and Sharded Clusters
 
 <style>
