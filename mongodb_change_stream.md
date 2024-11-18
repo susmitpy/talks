@@ -63,6 +63,33 @@ src: ./pages/about.md
 ---
 
 # What is a Stream
+<div class="flex flex-col items-center justify-center">
+  <div class="flex flex-row justify-between px-6 mx-4 w-full max-w-4xl">
+    <div class="flex flex-col items-center mt-4">
+      <h2 class="text-lg font-semibold mb-2">Nature's Stream</h2>
+      <img src="/mongo/water_stream.webp" class="w-80 h-auto pt-2" alt="Nature's Stream"/>
+    </div>
+    <v-click>
+    <div class="flex flex-col items-center mt-4">
+      <h2 class="text-lg font-semibold mb-2">Data Stream</h2>
+      <img src="/mongo/data_stream.webp" class="w-80 h-auto pt-2" alt="Data Stream"/>
+    </div>
+    </v-click>
+  </div>
+
+  <!-- Footer Text -->
+  <v-after>
+  <h4 class="mt-4 text-center text-sm font-medium">
+    Not all streams are the same
+  </h4>
+  </v-after>
+</div>
+
+
+
+---
+
+# What is a Stream
 
 - A sequence of data elements made available over time
 - Flow of data from one point to another
@@ -198,6 +225,20 @@ db.orders.aggregate([
 
 ---
 
+# Intro to MongoDB Replica Sets
+
+<div>In case Secondary fails, Primary does not have the majority and switches to Secondary</div>
+
+<div class="flex flex-row mt-2">
+<img src="/mongo/arbiter.jpg" class="w-4/6"/>
+<div class="flex flex-col justify-center mx-20">
+<h3>Failover won't even look your way without the Arbiter!</h3>
+</div>
+</div>
+
+
+---
+
 # Intro to MongoDB Change Stream
 
 - Real-time data changes
@@ -211,6 +252,12 @@ db.orders.aggregate([
         font-size: 1.5em;
     }
 </style>
+
+---
+layout: image
+image: /mongo/change_stream.jpg
+backgroundSize: contain
+---
 
 ---
 
@@ -228,6 +275,12 @@ db.orders.aggregate([
         font-size: 1.2em;
     }
 </style>
+
+---
+layout: image
+image: /mongo/kafka.jpg
+backgroundSize: contain
+---
 
 ---
 
@@ -300,6 +353,13 @@ graph LR
         font-size: 1.1em;
     }
 </style>
+
+---
+
+# Live Demo Time
+
+<img src="/live_demo.jpg" class="w-full"/>
+
 
 ---
 
