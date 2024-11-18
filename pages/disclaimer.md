@@ -1,7 +1,8 @@
 # Disclaimer
 
+* The content of this presentation is correct to the best of my knowledge.
 * Live demos are not guaranteed to work as expected.
-* The content of the demos is not guaranteed to be accurate.
+* Things may go wrong during the presentation.
 
 <style>
 
