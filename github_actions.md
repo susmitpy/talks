@@ -17,11 +17,11 @@ background: /bg_image.png
 ### By Susmit Vengurlekar (@susmitpy)
 
 ---
-src: ./pages/bug.md
+src: ./pages/disclaimer.md
 ---
 
 ---
-src: ./pages/disclaimer.md
+src: ./pages/bug.md
 ---
 
 
