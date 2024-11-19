@@ -15,6 +15,6 @@ layout: two-cols
 # Almost Everywhere
 
 <div class="flex h-full justify-center items-center">
-  <h1 v-mark.green="2"> susmitpy </h1>
+  <h1 v-mark> susmitpy </h1>
 </div>
 </v-click>
