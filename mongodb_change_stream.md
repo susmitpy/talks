@@ -203,7 +203,7 @@ db.orders.aggregate([
 # Intro to MongoDB Replica Sets
 
 - What is a Replica Set?
-    - A group of MongoDB servers that maintain the same data set
+    - A group of MongoDB servers that maintain the same data
     - Provides data redundancy and high availability
 
 <v-click>
