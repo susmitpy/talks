@@ -395,7 +395,7 @@ A[MongoDB] -- Change Stream --> B[Kafka Connect Worker - MongoDB Source Connecto
 - Get familiar with [MongoDB Manual](https://www.mongodb.com/docs/manual/)
 - Apache Kafka in Short - [Medium Blog](http://susmitpy.medium.com/apache-kafka-in-short-fa56cc197114)
 - Building a Recommendation Engine using Neo4j (Concept, Hands On) - [Medium Blog](https://medium.com/neo4j/building-a-recommender-system-using-neo4j-hands-on-part-1-e82bcd881906)
-- Access the Slides at https://susmitpy.github.io/talks/mongodb_change_stream/
+- Access the Slides at https://susmitpy.github.io/talks
 
 <style>
     li {
