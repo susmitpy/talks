@@ -23,11 +23,12 @@ src: ./pages/about.md
 # Agenda
 
 1. What is Firebase and Firebase Firestore ?
-2. Authentication vs Authorization
+2. Why Firestore Security Rules ?
 3. Basics of Firestore Security Rules
 4. Firestore Security Rules - Examples
 5. Firestore Security Rules - Some More Examples
-6. Best Practices for Access Control Lists
+6. Rules Playground for testing
+7. Best Practices for Access Control Lists
 
 
 <style>
@@ -112,6 +113,34 @@ const FIREBASE_CONFIG = {
 
 ---
 
+# Where does Firestore Security Rules fit ?
+
+```js
+const eventSnap = await getDoc(doc(db, 'events', eventId));
+```
+
+```mermaid
+graph LR
+
+A[Get Document] --> B{Firestore Security Rules}
+B --> |Allowed| C[Return Document]
+B --> |Denied| D[Error]
+```
+
+<style>
+    code {
+        font-size: 2em
+    }
+</style>
+
+---
+layout: image
+image: /firestore/easy.jpg
+backgroundSize: contain
+---
+
+---
+
 # Authentication vs Authorization
 
 - Authentication: Who are you ?
@@ -125,7 +154,7 @@ const FIREBASE_CONFIG = {
         line-height: 1.10em;
     }
     li {
-        font-size: 1.6em;
+        font-size: 2em;
     }
 </style>
 
@@ -247,7 +276,7 @@ match /events/{document=**} {
 
 ```js
 match /Patients/{patientId}{
-    allow read: if request.auth.uid in resource.data.doctorIds
+    allow read: if (request.auth.uid in resource.data.doctorIds);
 }
 ```
 </v-click>
@@ -343,6 +372,15 @@ match /events/{document=**} {
 </div>
 
 </div>
+
+---
+
+# Rules Playground for testing
+
+<div class="flex mx-auto my-auto">
+    <img src="/firestore/playground.png"/>
+</div>
+
 
 ---
 
