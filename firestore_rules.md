@@ -26,7 +26,8 @@ src: ./pages/about.md
 2. Authentication vs Authorization
 3. Basics of Firestore Security Rules
 4. Firestore Security Rules - Examples
-5. Best Practices for Access Control Lists
+5. Firestore Security Rules - Some More Examples
+6. Best Practices for Access Control Lists
 
 
 <style>
@@ -267,3 +268,109 @@ match /config/{secretId} {
 </div>
 
 </div>
+
+---
+
+# Firestore Security Rules - Some More Examples
+
+<div class="flex flex-col">
+
+<div class="flex flex-row justify-evenly">
+
+<div>
+
+<v-click>
+
+### auth custom claims and functions
+
+```js
+function isSignedIn(){
+    return request.auth != null;
+}
+
+function isDoctor(){
+    return request.auth.token.is_doctor;
+}
+
+match /Store/KVStore {
+    allow get, update: if isSignedIn() && isDoctor();
+}
+```
+
+</v-click>
+
+</div>
+
+<div class="mr-3">
+
+<v-click>
+
+### Reading a document
+
+```js
+match /Consultations/{consultationId} {
+allow read, write: if (
+    request.auth.uid in 
+        (get(/databases/$(database)/documents/Patients/$(patientId))
+            .data
+            .doctorIds)
+    )
+}
+```
+
+</v-click>
+
+</div>
+
+</div>
+
+<div>
+
+<v-click>
+
+### Restrict update to specific fields
+
+```js
+match /events/{document=**} {
+    allow update: if (
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['clicks'])
+        );
+}
+```
+
+</v-click>
+
+</div>
+
+</div>
+
+---
+
+# Best Practices for Access Control Lists
+
+- Deny by default
+- Allow only what is necessary (least privilege)
+- Approach of write exam such that the evaluator wants to fail you
+
+<style>
+    li {
+        font-size: 1.6em;
+    }
+</style>
+
+---
+src: ./pages/connect.md
+---
+
+
+---
+
+# Thank You !
+
+- Access the Slides at https://susmitpy.github.io/talks/firestore_rules
+
+<style>
+    li {
+        font-size: 1.6em;
+    }
+</style>
