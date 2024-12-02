@@ -41,13 +41,11 @@ src: ./pages/about.md
 
 # What is Firebase ?
 
-- Firebase is a backend as a service (BaaS) that provides a number of services to help you build your app without managing the infrastructure.
+- Firebase is a backend as a service (BaaS) that provides a number of services to help you build your app without managing the infrastructure
 
-- Client SDKs for Android, iOS, Web, and Unity
+- Client and Admin SDKs
 
-- Admin SDKs for Node.js, Python, Java, and Go
-
-- Realtime Database, Firestore, Cloud Storage, Authentication, Hosting, Cloud Functions, and more
+- Realtime Database, Firestore, Cloud Storage, Authentication, Hosting and more
 
 <style>
     p {
@@ -64,11 +62,17 @@ src: ./pages/about.md
 
 * Document oriented NoSQL database
 
-* Data organized in collections, documents, subcollections
+* Can be directly accessed from the client side
 
-* Wide variety of data types such as string, number, boolean, map, array, null, timestamp, geopoint, reference
-
-* Not in a VPC, but can be secured using Firestore Security Rules
+```mermaid
+graph LR
+    DB["Firestore Database"] --> CollectionA["Collection: users"]
+    DB --> CollectionB["Collection: posts"]
+    CollectionA --> DocumentA1["Document: user1"]
+    DocumentA1 --> SubcollectionA1["Subcollection: orders"]
+    SubcollectionA1 --> SubdocumentA1["Document: order1"]
+    CollectionB --> DocumentB1["Document: post1"]
+```
 
 <style>
     p {
@@ -169,7 +173,7 @@ backgroundSize: contain
       <li>get - single document</li>
     </ul>
   </li>
-  <li>write - write access (create, update, delete)
+  <li>write
     <ul>
       <li>create</li>
       <li>update</li>
@@ -191,7 +195,7 @@ backgroundSize: contain
 # Basics of Firestore Security Rules
 
 <ul>
-<li>request - incoming object</li>
+<li>request - incoming request</li>
 <li>resource - document being accessed</li>
 <li>request.resource - document being written </li>
 <li> request.auth - authentication details </li>
