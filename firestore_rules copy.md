@@ -63,7 +63,7 @@ src: ./pages/about.md
 
 * Document oriented NoSQL database
 
-* Data organized in collections, documents, subcollections
+* Organized in collections, documents, subcollections
 
 * Wide variety of data types such as string, number, boolean, map, array, null, timestamp, geopoint, reference
 
@@ -134,17 +134,17 @@ const FIREBASE_CONFIG = {
 # Basics of Firestore Security Rules
 
 <ul>
-  <li>read
+  <li>read - read access (list, get)
     <ul>
-      <li>list - documents in a collection </li>
-      <li>get - single document</li>
+      <li>list - list of documents (cannot be used as a filter! ) <code>events</code></li>
+      <li>get - single document <code>events/{eventDocId}</code></li>
     </ul>
   </li>
   <li>write - write access (create, update, delete)
     <ul>
-      <li>create</li>
-      <li>update</li>
-      <li>delete</li>
+      <li>create - create a new document <code>events/{eventDocId}</code></li>
+      <li>update - update an existing document <code>events/{eventDocId}</code></li>
+      <li>delete - delete an existing document <code>events/{eventDocId}</code></li>
     </ul>
   </li>
   <li> By default, all access is denied </li>
@@ -162,10 +162,10 @@ const FIREBASE_CONFIG = {
 # Basics of Firestore Security Rules
 
 <ul>
-<li>request - incoming object</li>
-<li>resource - document being accessed</li>
-<li>request.resource - document being written </li>
-<li> request.auth - authentication details </li>
+<li>request - contains information about the request</li>
+<li>resource - contains information about the document</li>
+<li>request.resource - contains information about the document being written</li>
+<li> request.auth - contains information about the authenticated user</li>
 </ul>
 
 
