@@ -367,7 +367,7 @@ match /leaves/{leaveId} {
 
 <style>
     code {
-        font-size: 2.7em;
+        font-size: 2.8em;
     }
 </style>
 
@@ -383,7 +383,9 @@ match /leaves/{leaveId} {
 ```js
 match /Patients/{patientId}{
     allow read: if 
-        (request.auth.uid in resource.data.doctorIds);
+        (request.auth.uid 
+            in 
+                resource.data.doctorIds);
 }
 ```
 
@@ -391,7 +393,7 @@ match /Patients/{patientId}{
 
 <style>
     code {
-        font-size: 2.4em;
+        font-size: 2.8em;
     }
 </style>
 
@@ -409,7 +411,8 @@ match /Patients/{patientId}{
 ```js
 match /payouts/{payoutId} {
     allow read, write: if (
-        request.auth.token.firebase.sign_in_provider == 'password'
+        request.auth.token.firebase.sign_in_provider
+            == 'password'
     );
 }
 ```
@@ -418,7 +421,7 @@ match /payouts/{payoutId} {
 
 <style>
     code {
-        font-size: 2em;
+        font-size: 2.3em;
     }
     li {
         font-size: 1.5em;
@@ -459,7 +462,7 @@ match /Store/KVStore {
 
 <style>
     code {
-        font-size: 1.8em;
+        font-size: 1.9em;
     }
 </style>
 
@@ -502,12 +505,12 @@ match /Patients/{patientId}{
 <div class="flex flex-col items-center justify-center">
 
 ```js
-match /events/{document=**} {
-    allow update: if (
+match /Patients/{patientId}{
+    allow update: if isDoctor() && (
         request.resource.data
             .diff(resource.data)
             .affectedKeys()
-            .hasOnly(['clicks'])
+            .hasOnly(['medicalNotes'])
         );
 }
 ```
@@ -516,7 +519,7 @@ match /events/{document=**} {
 
 <style>
     code {
-        font-size: 2.5em;
+        font-size: 2.6em;
     }
 </style>
 
@@ -546,7 +549,7 @@ match /events/{document=**} {
 
 - Deny by default
 - Allow only what is necessary (least privilege)
-- Approach of write exam such that the evaluator wants to fail you
+- Analogy: Document your work as if your manager is going to try every way to give a bad review
 
 <div class="flex items-center justify-center w-1/2 mx-auto mt-4">
     <img src="/firestore/hack.jpg"/>
@@ -555,7 +558,7 @@ match /events/{document=**} {
 
 <style>
     li {
-        font-size: 1.6em;
+        font-size: 1.4em;
     }
 </style>
 
