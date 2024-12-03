@@ -8,6 +8,9 @@ drawings:
 transition: slide-left
 mdc: true
 background: /bg_image.png
+
+themeConfig:
+    primary: "#8EE381"
 ---
 
 # Firestore Security Rules - Securing your firestore db
@@ -38,28 +41,10 @@ backgroundSize: contain
 
 <style>
     li {
-        font-size: 1.6em;
+        font-size: 2.2em;
     }
 </style>
 
----
-
-# What is Firebase ?
-
-- Firebase is a backend as a service (BaaS) that provides a number of services to help you build your app without managing the infrastructure
-
-- Client and Admin SDKs
-
-- Realtime Database, Firestore, Cloud Storage, Authentication, Hosting and more
-
-<style>
-    p {
-        line-height: 1.10em;
-    }
-    li {
-        font-size: 1.6em;
-    }
-</style>
 
 ---
 
@@ -68,6 +53,8 @@ backgroundSize: contain
 * Document oriented NoSQL database
 
 * Can be directly accessed from the client side
+
+<br/> <br/>
 
 ```mermaid
 graph LR
@@ -84,7 +71,7 @@ graph LR
         line-height: 1.10em;
     }
     li {
-        font-size: 1.6em;
+        font-size: 2.2em;
     }
 </style>
 
@@ -94,10 +81,6 @@ graph LR
 
 - In a web app, you can't hide the API key or the document you are fetching which reveals the structure of your database
 
-<div class="flex flex-row gap-6">
-
-  <div class="w-1/2">
-  
 ```js
 const FIREBASE_CONFIG = {
     apiKey: "AIzaPodk9k38Vx9e5S0Ceg4414_6Uq5GxleI",
@@ -109,29 +92,46 @@ const FIREBASE_CONFIG = {
     measurementId: "G-E51DK3PKQ7"
 }
 ```
-  
-  </div>
-  
-  <div class="w-1/2" v-click>
-    <img src="/firestore/source.png" class="w-full"/>
-  </div>
-  
-</div>
-
-<div class="flex flex-row gap-6 mt-4">
-  <div class="w-1/2" v-click>
-    <img src="/firestore/sign in.png" class="w-full"/>
-  </div>
-  <div class="w-1/2" v-click>
-    <img src="/firestore/fetch_doc.png" class="w-full"/>
-  </div>
-</div>
 
 <style>
     li {
-        font-size: 0.9em;
+        font-size: 1.6em;
+    }
+
+    code {
+        font-size: 1.9em;
     }
 </style>
+
+---
+
+# Why should you secure your Firestore DB ?
+
+<div class="flex items-center justify-center">
+
+<img src="/firestore/source.png"/>
+
+</div>
+
+---
+
+# Why should you secure your Firestore DB ?
+
+<div class="flex">
+
+<img src="/firestore/sign in.png" class="w-full"/>
+
+</div>
+
+---
+
+# Why should you secure your Firestore DB ?
+
+<div class="flex items-center justify-center">
+
+<img src="/firestore/fetch_doc.png" class="w-full"/>
+
+</div>
 
 
 ---
@@ -170,14 +170,14 @@ backgroundSize: contain
 
 - Authorization: What can you do ?
 
-- In google meet during a lecture, as a student you can join if you are authenticated, but you are not authorized to mute the teacher
+- You are authenticated to join devfest, but not authorized to just take swag and leave
 
 <style>
     p {
         line-height: 1.10em;
     }
     li {
-        font-size: 2em;
+        font-size: 2.5em;
     }
 </style>
 
@@ -204,7 +204,7 @@ backgroundSize: contain
 
 <style>
     li {
-        font-size: 1.2em;
+        font-size: 1.3em;
     }
 </style>
 
@@ -223,21 +223,19 @@ backgroundSize: contain
 
 <style>
     li {
-        font-size: 1.6em;
+        font-size: 2.5em;
     }
 </style>
+
 
 
 ---
 
 # Firestore Security Rules - Examples
 
-<div class="flex flex-row">
-<div class="flex flex-col">
+## Fully Secured
 
-<v-click>
-
-#### Fully Secured
+<div class="flex flex-col items-center justify-center">
 
 ```js
 rules_version = '2';
@@ -250,76 +248,141 @@ service cloud.firestore {
 }
 ```
 
-</v-click>
+</div>
 
-<v-click>
+<style>
+    code {
+        font-size: 2em;
+    }
+</style>
 
-#### Authentication Check
+---
+
+# Firestore Security Rules - Examples
+
+## Authentication Check
+
+<div class="flex flex-col items-center justify-center">
 
 ```js
-match /rooms/{roomId} {
+match /doctors/{doctorId} {
     allow read, write: if request.auth != null;
 }
 ```
 
-</v-click>
-
-<v-click>
-
-#### Can access own document
-
-```js
-match /users/{userId} {
-    allow read, write: if (request.auth != null
-                 && request.auth.uid == userId);
-}
-```
-</v-click>
 </div>
 
-<div class="flex flex-col">
+<style>
+    code {
+        font-size: 2.5em;
+    }
+</style>
 
-<v-click>
 
-#### Preventing Impersonation
+---
+
+# Firestore Security Rules - Examples
+
+## Can access own document
+
+<div class="flex flex-col items-center justify-center">
 
 ```js
-match /events/{document=**} {
-    allow write: if request.auth != null && (
-        request.auth.uid == request.resource.data.organizer_id
-    ); 
+match /doctors/{doctorId} {
+    allow read, write: if (request.auth != null
+                 && request.auth.uid == doctorId);
 }
 ```
-</v-click>
 
-<v-click>
-<br/><br/>
- 
-#### Is requester's uid in allowed list ?
+</div>
+
+<style>
+    code {
+        font-size: 2.5em;
+    }
+</style>
+
+
+---
+
+# Firestore Security Rules - Examples
+
+## Preventing Impersonation
+
+<div class="flex flex-col items-center justify-center">
+
+```js
+match /leaves/{leaveId} {
+    allow write: if request.auth != null && (
+        request.auth.uid == (
+             request.resource.data.doctor_id
+    )); 
+}
+```
+
+</div>
+
+<style>
+    code {
+        font-size: 2.7em;
+    }
+</style>
+
+
+---
+
+# Firestore Security Rules - Examples
+
+## Is requester's uid in allowed list ?
+
+<div class="flex flex-col items-center justify-center">
 
 ```js
 match /Patients/{patientId}{
-    allow read: if (request.auth.uid in resource.data.doctorIds);
+    allow read: if 
+        (request.auth.uid in resource.data.doctorIds);
 }
 ```
-</v-click>
 
-<v-click>
+</div>
 
-#### Restrict access to email-password users
+<style>
+    code {
+        font-size: 2.4em;
+    }
+</style>
+
+---
+
+# Firestore Security Rules - Examples
+
+## Restrict access by sign in provider
+
+- Normal users sign in via phone
+- Admins sign in via email
+
+<div class="flex flex-col items-center justify-center">
 
 ```js
-match /config/{secretId} {
+match /payouts/{payoutId} {
     allow read, write: if (
         request.auth.token.firebase.sign_in_provider == 'password'
     );
 }
 ```
-</v-click>
 
 </div>
 
-</div>
+<style>
+    code {
+        font-size: 2em;
+    }
+    li {
+        font-size: 1.5em;
+    }
+</style>
+
+
 
 ---
 layout: image
@@ -331,15 +394,9 @@ backgroundSize: contain
 
 # Firestore Security Rules - Some More Examples
 
-<div class="flex flex-col">
+## Auth Custom Claims and Functions
 
-<div class="flex flex-row justify-evenly">
-
-<div>
-
-<v-click>
-
-### Auth Custom Claims and Functions
+<div class="flex flex-col items-center justify-center">
 
 ```js
 function isSignedIn(){
@@ -355,15 +412,21 @@ match /Store/KVStore {
 }
 ```
 
-</v-click>
-
 </div>
 
-<div class="mr-3">
+<style>
+    code {
+        font-size: 1.8em;
+    }
+</style>
 
-<v-click>
+---
 
-### Nesting Rules & Reading a document
+# Firestore Security Rules - Some More Examples
+
+## Nesting Rules & Reading a document
+
+<div class="flex flex-col items-center justify-center">
 
 ```js
 match /Patients/{patientId}{
@@ -379,37 +442,46 @@ match /Patients/{patientId}{
 }
 ```
 
-</v-click>
-
 </div>
 
-</div>
+<style>
+    code {
+        font-size: 1.8em;
+    }
+</style>
 
-<div>
+---
 
-<v-click>
+# Firestore Security Rules - Some More Examples
 
-### Restrict update to specific fields
+## Restrict update to specific fields
+
+<div class="flex flex-col items-center justify-center">
 
 ```js
 match /events/{document=**} {
     allow update: if (
-        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['clicks'])
+        request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly(['clicks'])
         );
 }
 ```
 
-</v-click>
-
 </div>
 
-</div>
+<style>
+    code {
+        font-size: 2.5em;
+    }
+</style>
 
 ---
 
 # Rules Playground for testing
 
-<div class="flex mx-auto my-auto">
+<div class="flex items-center justify-center mx-auto my-auto">
     <img src="/firestore/playground.png"/>
 </div>
 
@@ -422,7 +494,7 @@ match /events/{document=**} {
 - Allow only what is necessary (least privilege)
 - Approach of write exam such that the evaluator wants to fail you
 
-<div class="flex w-1/2 mx-auto mt-4">
+<div class="flex items-center justify-center w-1/2 mx-auto mt-4">
     <img src="/firestore/hack.jpg"/>
 </div>
 
@@ -446,6 +518,6 @@ src: ./pages/connect.md
 
 <style>
     li {
-        font-size: 1.6em;
+        font-size: 2.3em;
     }
 </style>
