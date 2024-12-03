@@ -19,6 +19,12 @@ src: ./pages/about.md
 ---
 
 ---
+layout: image
+image: /firestore/ai.jpg
+backgroundSize: contain
+---
+
+---
 
 # Agenda
 
@@ -328,7 +334,7 @@ match /config/{secretId} {
 
 <v-click>
 
-### auth custom claims and functions
+### Auth Custom Claims and Functions
 
 ```js
 function isSignedIn(){
@@ -352,16 +358,19 @@ match /Store/KVStore {
 
 <v-click>
 
-### Reading a document
+### Nesting Rules & Reading a document
 
 ```js
-match /Consultations/{consultationId} {
-allow read, write: if (
-    request.auth.uid in 
-        (get(/databases/$(database)/documents/Patients/$(patientId))
-            .data
-            .doctorIds)
-    )
+match /Patients/{patientId}{
+    match /Consultations/{consultationId} {
+    allow read, write: if (
+        request.auth.uid in 
+            (
+            get(/databases/$(database)/documents/Patients/$(patientId)
+            ).data
+             .doctorIds)
+        )
+    }
 }
 ```
 
