@@ -7,7 +7,6 @@ drawings:
     persist: false
 transition: slide-left
 mdc: true
-background: /bg_image.png
 
 themeConfig:
     primary: "#8EE381"
@@ -16,6 +15,14 @@ themeConfig:
 # Firestore Security Rules - Securing your firestore db
 
 ### By Susmit Vengurlekar (@susmitpy)
+
+<img src="/firestore/devfest.png" style="position: absolute; top: 0; right: 0; width: 200px;"/>
+
+<style>
+    .slidev-layout {
+        background: #8ea9ff;
+    }
+</style>
 
 ---
 src: ./pages/about.md
@@ -113,6 +120,18 @@ const FIREBASE_CONFIG = {
 
 </div>
 
+<style>
+
+    .slidev-layout {
+        background-color: white;
+    }
+
+    h1 {
+        color: black;
+    }
+
+</style>
+
 ---
 
 # Why should you secure your Firestore DB ?
@@ -123,6 +142,18 @@ const FIREBASE_CONFIG = {
 
 </div>
 
+<style>
+
+    .slidev-layout {
+        background-color: white;
+    }
+
+    h1 {
+        color: black;
+    }
+
+</style>
+
 ---
 
 # Why should you secure your Firestore DB ?
@@ -132,6 +163,18 @@ const FIREBASE_CONFIG = {
 <img src="/firestore/fetch_doc.png" class="w-full"/>
 
 </div>
+
+<style>
+
+    .slidev-layout {
+        background-color: white;
+    }
+
+    h1 {
+        color: black;
+    }
+
+</style>
 
 
 ---
@@ -481,10 +524,21 @@ match /events/{document=**} {
 
 # Rules Playground for testing
 
-<div class="flex items-center justify-center mx-auto my-auto">
-    <img src="/firestore/playground.png"/>
+<div class="flex">
+    <img src="/firestore/playground.png" class="w-full"/>
 </div>
 
+<style>
+
+    .slidev-layout {
+        background-color: white;
+    }
+
+    h1 {
+        color: black;
+    }
+
+</style>
 
 ---
 
