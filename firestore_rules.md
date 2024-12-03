@@ -89,6 +89,10 @@ graph LR
 
 - In a web app, you can't hide the API key or the document you are fetching which reveals the structure of your database
 
+<div class="flex flex-row gap-6">
+
+  <div class="w-1/2">
+  
 ```js
 const FIREBASE_CONFIG = {
     apiKey: "AIzaPodk9k38Vx9e5S0Ceg4414_6Uq5GxleI",
@@ -100,18 +104,28 @@ const FIREBASE_CONFIG = {
     measurementId: "G-E51DK3PKQ7"
 }
 ```
+  
+  </div>
+  
+  <div class="w-1/2" v-click>
+    <img src="/firestore/source.png" class="w-full"/>
+  </div>
+  
+</div>
 
-<div class="flex flex-row gap-6">
-    <img src="/firestore/sign in.png" class="w-2/4"/>
-    <img src="/firestore/fetch_doc.png" class="w-2/4"/>
+<div class="flex flex-row gap-6 mt-4">
+  <div class="w-1/2" v-click>
+    <img src="/firestore/sign in.png" class="w-full"/>
+  </div>
+  <div class="w-1/2" v-click>
+    <img src="/firestore/fetch_doc.png" class="w-full"/>
+  </div>
 </div>
 
 <style>
-
     li {
         font-size: 0.9em;
     }
-
 </style>
 
 
