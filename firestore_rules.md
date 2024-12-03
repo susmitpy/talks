@@ -32,9 +32,8 @@ backgroundSize: contain
 2. Why Firestore Security Rules ?
 3. Basics of Firestore Security Rules
 4. Firestore Security Rules - Examples
-5. Firestore Security Rules - Some More Examples
-6. Rules Playground for testing
-7. Best Practices for Access Control Lists
+5. Rules Playground for testing
+6. Best Practices for Access Control Lists
 
 
 <style>
@@ -323,6 +322,12 @@ match /config/{secretId} {
 </div>
 
 ---
+layout: image
+image: /firestore/more.jpg
+backgroundSize: contain
+---
+
+---
 
 # Firestore Security Rules - Some More Examples
 
@@ -416,6 +421,11 @@ match /events/{document=**} {
 - Deny by default
 - Allow only what is necessary (least privilege)
 - Approach of write exam such that the evaluator wants to fail you
+
+<div class="flex w-1/2 mx-auto mt-4">
+    <img src="/firestore/hack.jpg"/>
+</div>
+
 
 <style>
     li {
