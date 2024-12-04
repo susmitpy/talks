@@ -10,6 +10,8 @@ mdc: true
 
 themeConfig:
     primary: "#8EE381"
+
+background: #ffffff
 ---
 
 # Firestore Security Rules - Securing your firestore db
@@ -20,7 +22,14 @@ themeConfig:
 
 <style>
     .slidev-layout {
-        background: #8ea9ff;
+        background-color: white;
+    }
+
+    h1 {
+        color: black !important;
+    }
+    h3 {
+        color: black;
     }
 </style>
 
@@ -86,7 +95,7 @@ graph LR
 
 # Why should you secure your Firestore DB ?
 
-- In a web app, you can't hide the API key or the document you are fetching which reveals the structure of your database
+- You need to include firebase config in your client side code
 
 ```js
 const FIREBASE_CONFIG = {
@@ -114,6 +123,8 @@ const FIREBASE_CONFIG = {
 
 # Why should you secure your Firestore DB ?
 
+- It is visible in the Sources tab in dev tools
+
 <div class="flex items-center justify-center">
 
 <img src="/firestore/source.png"/>
@@ -121,20 +132,18 @@ const FIREBASE_CONFIG = {
 </div>
 
 <style>
-
-    .slidev-layout {
-        background-color: white;
-    }
-
-    h1 {
-        color: black;
+    li {
+        font-size: 1.6em;
     }
 
 </style>
 
+
 ---
 
 # Why should you secure your Firestore DB ?
+
+- The API key is visible in payload of requests
 
 <div class="flex">
 
@@ -143,22 +152,20 @@ const FIREBASE_CONFIG = {
 </div>
 
 <style>
-
-    .slidev-layout {
-        background-color: white;
-    }
-
-    h1 {
-        color: black;
+    li {
+        font-size: 1.6em;
     }
 
 </style>
+
 
 ---
 
 # Why should you secure your Firestore DB ?
 
-<div class="flex items-center justify-center">
+- The Form Data reveals the structure of your database
+
+<div class="flex">
 
 <img src="/firestore/fetch_doc.png" class="w-full"/>
 
@@ -166,12 +173,8 @@ const FIREBASE_CONFIG = {
 
 <style>
 
-    .slidev-layout {
-        background-color: white;
-    }
-
-    h1 {
-        color: black;
+    li {
+        font-size: 1.6em;
     }
 
 </style>
@@ -527,18 +530,16 @@ match /Patients/{patientId}{
 
 # Rules Playground for testing
 
+- Easy way to simulate requests and test rules
+
 <div class="flex">
     <img src="/firestore/playground.png" class="w-full"/>
 </div>
 
 <style>
 
-    .slidev-layout {
-        background-color: white;
-    }
-
-    h1 {
-        color: black;
+    li {
+        font-size: 1.6em;
     }
 
 </style>
