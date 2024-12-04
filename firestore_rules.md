@@ -9,9 +9,14 @@ transition: slide-left
 mdc: true
 
 themeConfig:
-    primary: "#8EE381"
+    primary: "#73abdf"
 
 background: #ffffff
+
+fonts:
+    sans: Roboto
+    serif: Roboto Slab
+    mono: Fira Code
 ---
 
 # Firestore Security Rules - Securing your firestore db
@@ -167,7 +172,7 @@ const FIREBASE_CONFIG = {
 
 <div class="flex">
 
-<img src="/firestore/fetch_doc.png" class="w-full"/>
+<img src="/firestore/fetch_doc.png" class="w-3/4"/>
 
 </div>
 
@@ -175,6 +180,10 @@ const FIREBASE_CONFIG = {
 
     li {
         font-size: 1.6em;
+    }
+
+    .flex {
+        justify-content: center;
     }
 
 </style>
@@ -188,6 +197,8 @@ const FIREBASE_CONFIG = {
 const eventSnap = await getDoc(doc(db, 'events', eventId));
 ```
 
+<div class="">
+
 ```mermaid
 graph LR
 
@@ -196,9 +207,17 @@ B --> |Allowed| C[Return Document]
 B --> |Denied| D[Error]
 ```
 
+</div>
+
 <style>
     code {
         font-size: 2em
+    }
+
+    .mermaid {
+        display: flex;
+        justify-content: center;
+        margin-top: 4em;
     }
 </style>
 
@@ -281,7 +300,7 @@ backgroundSize: contain
 
 ## Fully Secured
 
-<div class="flex flex-col items-center justify-center">
+<div class="mt-4">
 
 ```js
 rules_version = '2';
@@ -308,7 +327,7 @@ service cloud.firestore {
 
 ## Authentication Check
 
-<div class="flex flex-col items-center justify-center">
+<div class="mt-4">
 
 ```js
 match /doctors/{doctorId} {
@@ -331,7 +350,7 @@ match /doctors/{doctorId} {
 
 ## Can access own document
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center mt-4">
 
 ```js
 match /doctors/{doctorId} {
@@ -355,7 +374,7 @@ match /doctors/{doctorId} {
 
 ## Preventing Impersonation
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center mt-4">
 
 ```js
 match /leaves/{leaveId} {
@@ -381,7 +400,7 @@ match /leaves/{leaveId} {
 
 ## Is requester's uid in allowed list ?
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center mt-4">
 
 ```js
 match /Patients/{patientId}{
@@ -409,7 +428,7 @@ match /Patients/{patientId}{
 - Normal users sign in via phone
 - Admins sign in via email
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center mt-4">
 
 ```js
 match /payouts/{payoutId} {
@@ -445,7 +464,7 @@ backgroundSize: contain
 
 ## Auth Custom Claims and Functions
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center mt-4">
 
 ```js
 function isSignedIn(){
@@ -475,7 +494,7 @@ match /Store/KVStore {
 
 ## Nesting Rules & Reading a document
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center mt-4">
 
 ```js
 match /Patients/{patientId}{
@@ -505,7 +524,7 @@ match /Patients/{patientId}{
 
 ## Restrict update to specific fields
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center mt-4">
 
 ```js
 match /Patients/{patientId}{
@@ -532,7 +551,7 @@ match /Patients/{patientId}{
 
 - Easy way to simulate requests and test rules
 
-<div class="flex">
+<div class="flex mt-4">
     <img src="/firestore/playground.png" class="w-full"/>
 </div>
 
