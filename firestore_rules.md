@@ -528,7 +528,8 @@ match /patients/{patientId}{
 
 ```js
 match /patients/{patientId}{
-    allow update: if isDoctor() && (
+    allow update: if isSignedIn() && 
+        isDoctor() && (
         request.resource.data
             .diff(resource.data)
             .affectedKeys()
@@ -541,7 +542,7 @@ match /patients/{patientId}{
 
 <style>
     code {
-        font-size: 2.6em;
+        font-size: 2.4em;
     }
 </style>
 
