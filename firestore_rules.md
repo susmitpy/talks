@@ -23,7 +23,7 @@ fonts:
 
 ### By Susmit Vengurlekar (@susmitpy)
 
-<img src="/firestore/devfest.png" style="position: absolute; top: 0; right: 0; width: 200px;"/>
+<img src="/firestore/devfest.png" style="position: absolute; top: 0; right: 0; width: 270px;"/>
 
 <style>
     .slidev-layout {
