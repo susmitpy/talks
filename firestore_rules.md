@@ -52,7 +52,7 @@ backgroundSize: contain
 
 # Agenda
 
-1. What is Firebase and Firebase Firestore ?
+1. What is Firebase Firestore ?
 2. Why Firestore Security Rules ?
 3. Basics of Firestore Security Rules
 4. Firestore Security Rules - Examples
@@ -79,12 +79,12 @@ backgroundSize: contain
 
 ```mermaid
 graph LR
-    DB["Firestore Database"] --> CollectionA["Collection: users"]
-    DB --> CollectionB["Collection: posts"]
-    CollectionA --> DocumentA1["Document: user1"]
-    DocumentA1 --> SubcollectionA1["Subcollection: orders"]
-    SubcollectionA1 --> SubdocumentA1["Document: order1"]
-    CollectionB --> DocumentB1["Document: post1"]
+    DB["Firestore Database"] --> CollectionA["Collection: patients"]
+    DB --> CollectionB["Collection: doctors"]
+    CollectionA --> DocumentA1["Document: patient1"]
+    DocumentA1 --> SubcollectionA1["Subcollection: consultations"]
+    SubcollectionA1 --> SubdocumentA1["Document: consultation1"]
+    CollectionB --> DocumentB1["Document: doctor1"]
 ```
 
 <style>
@@ -194,7 +194,7 @@ const FIREBASE_CONFIG = {
 # Where does Firestore Security Rules fit ?
 
 ```js
-const eventSnap = await getDoc(doc(db, 'events', eventId));
+const docSnap = await getDoc(doc(db, 'doctors', doctorId));
 ```
 
 <div class="">
@@ -403,9 +403,9 @@ match /leaves/{leaveId} {
 <div class="flex flex-col items-center justify-center mt-4">
 
 ```js
-match /Patients/{patientId}{
-    allow read: if 
-        (request.auth.uid 
+match /patients/{patientId}{
+    allow read: if request.auth != null && (
+        request.auth.uid 
             in 
                 resource.data.doctorIds);
 }
@@ -432,7 +432,7 @@ match /Patients/{patientId}{
 
 ```js
 match /payouts/{payoutId} {
-    allow read, write: if (
+    allow read, write: if request.auth != null && (
         request.auth.token.firebase.sign_in_provider
             == 'password'
     );
@@ -475,7 +475,7 @@ function isDoctor(){
     return request.auth.token.is_doctor;
 }
 
-match /Store/KVStore {
+match /store/KVStore {
     allow get, update: if isSignedIn() && isDoctor();
 }
 ```
@@ -497,9 +497,9 @@ match /Store/KVStore {
 <div class="flex flex-col items-center justify-center mt-4">
 
 ```js
-match /Patients/{patientId}{
-    match /Consultations/{consultationId} {
-    allow read, write: if (
+match /patients/{patientId}{
+    match /consultations/{consultationId} {
+    allow read, write: if request.auth != null && (
         request.auth.uid in 
             (
             get(/databases/$(database)/documents/Patients/$(patientId)
@@ -527,7 +527,7 @@ match /Patients/{patientId}{
 <div class="flex flex-col items-center justify-center mt-4">
 
 ```js
-match /Patients/{patientId}{
+match /patients/{patientId}{
     allow update: if isDoctor() && (
         request.resource.data
             .diff(resource.data)
