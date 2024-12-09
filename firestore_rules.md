@@ -502,7 +502,7 @@ match /patients/{patientId}{
     allow read, write: if request.auth != null && (
         request.auth.uid in 
             (
-            get(/databases/$(database)/documents/Patients/$(patientId)
+            get(/databases/$(database)/documents/patients/$(patientId)
             ).data
              .doctorIds)
         )
