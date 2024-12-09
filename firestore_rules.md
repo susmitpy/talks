@@ -542,7 +542,7 @@ match /patients/{patientId}{
 
 <style>
     code {
-        font-size: 2.4em;
+        font-size: 2.2em;
     }
 </style>
 
