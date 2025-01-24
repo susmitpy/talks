@@ -4,9 +4,9 @@ layout: two-cols
 
 # Let's Connect
 
-### Linktree
+### Portfolio
 
-<img src="/linktree.png" alt="Linktree" width="400" height="400" />
+<img src="/portfolio.png" alt="Linktree" width="400" height="400" />
 
 ::right::
 

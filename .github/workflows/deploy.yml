@@ -43,6 +43,9 @@ jobs:
       - name: Build Firestore Security Rules
         run: nr --name=firestore_rules build_pres
 
+      - name: Build QnA on Knowledge Graph
+        run: nr --name=qna build_pres
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
