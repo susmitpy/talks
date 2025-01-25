@@ -72,6 +72,7 @@ src: ./pages/about.md
 
 Stop when output length reaches a certain threshold or a special token is predicted
 
+
 <style>
   li {
     font-size: 1.5rem;
@@ -80,6 +81,13 @@ Stop when output length reaches a certain threshold or a special token is predic
     font-size: 1.3rem;
   }
 </style>
+
+<!-- 
+I think it  
+I think it is  
+I think it is very
+
+ -->
 
 --- 
 
@@ -152,11 +160,79 @@ graph LR
 
 ---
 
+# Intro to Neo4j - Cypher Query Language
+
+### To find all actors who acted in the movie "The Matrix"
+
+<br/>
+
+### Instead of this
+```sql
+SELECT actors.name
+FROM actors
+ 	LEFT JOIN acted_in ON acted_in.actor_id = actors.id
+	LEFT JOIN movies ON movies.id = acted_in.movie_id
+WHERE movies.title = "The Matrix"
+```
+
+### You can write this
+```cypher
+MATCH (actor:Actor)-[:ACTED_IN]->(movie:Movie {title: 'The Matrix'})
+RETURN actor.name
+```
+
+<style>
+    code {
+        font-size: 1.5em;
+    }
+</style>
+
+---
+
+# Intro to Neo4j - Cypher Query Language
+
+### Recommending users based on common interests and friends
+
+```cypher
+MATCH 
+    (curr_user: User {user_id: 1}) - [chi:HAS_INTEREST]
+       -> (i:Interest) <- [ohi:HAS_INTEREST] - (other_user: User)
+WHERE
+    ID(curr_user) <> ID(other_user) AND
+    NOT EXISTS ((curr_user) - [:HAS_AFFINITY] -> (other_user)) AND
+    NOT EXISTS ((curr_user) - [:HAS_DECLINED] - (other_user))
+OPTIONAL MATCH    
+    (curr_user) - [cha:HAS_AFFINITY] -> (u:User) <- [oha:HAS_AFFINITY] - (other_user)
+WITH
+    other_user.user_id as user_id, COUNT(distinct i) AS common_interests,
+    COUNT(distinct u) AS common_affinities
+RETURN
+    user_id
+ORDER BY
+    common_interests DESC,
+    common_affinities DESC
+LIMIT 6
+```
+
+<style>
+    code {
+        font-size: 1.2em;
+    }
+</style>
+
+---
+
 # Demo Time
 
 - Asking questions to LLM
 - Setting up RAG based pipeline
 - Asking questions to RAG + LLM
+
+<style>
+    li {
+        font-size: 1.8em;
+    }
+</style>
 
 ---
 src: ./pages/connect.md
