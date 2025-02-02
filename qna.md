@@ -228,6 +228,8 @@ LIMIT 6
 - Setting up RAG based pipeline
 - Asking questions to RAG + LLM
 
+<a href="https://github.com/susmitpy/QnA-on-Neo4j-Knowledge-Graph">https://github.com/susmitpy/QnA-on-Neo4j-Knowledge-Graph</a>
+
 <style>
     li {
         font-size: 1.8em;
