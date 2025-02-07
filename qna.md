@@ -94,7 +94,7 @@ I think it is very
 # What is RAG ?
 
 * RAG stands for Retrieval Augmented Generation
-* It is used to get more context to feed into LLM
+* It helps LLMs overcome knowledge limitations by grounding them in external sources
 
 ```mermaid
 graph LR
