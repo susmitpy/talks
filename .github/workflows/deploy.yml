@@ -46,6 +46,9 @@ jobs:
       - name: Build QnA on Knowledge Graph
         run: nr --name=qna build_pres
 
+      - name: Build AWS Lambda
+        run: nr --name=aws_lambda build_pres
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
