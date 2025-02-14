@@ -146,9 +146,12 @@ li {
 
 #### API Gateway + Lambda: Use Case
 
+<div class="text-xl mb-4">
+
+
 **Scenario:** A user requests data via an API. API Gateway routes the request to a Lambda function, which fetches the data from DynamoDB and returns it.
 
-<div class="text-xl mb-4"></div>
+</div>
 
 ```mermaid
 graph LR
@@ -180,9 +183,13 @@ li {
 
 #### Function URL: Use Case
 
+<div class="text-xl mb-4">
+
+
 **Scenario:**  A simple web application directly calls a Lambda function via its Function URL to perform a calculation or retrieve data.
 
-<div class="text-xl mb-4"></div>
+</div>
+
 
 ```mermaid
 graph LR
@@ -215,9 +222,10 @@ li {
 
 #### Direct Invocation : Use Case
 
-**Scenario:** A backend service directly calls a Lambda Function to execute specific business logic.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:** A backend service directly calls a Lambda Function to execute specific business logic.
+</div>
 
 ```mermaid
 graph LR
@@ -246,9 +254,10 @@ li {
 
 #### Scheduled Invocation: Use Case
 
-**Scenario:** A Lambda function is triggered every night at midnight to perform database backups.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:** A Lambda function is triggered every night at midnight to perform database backups.
+</div>
 
 ```mermaid
 graph LR
@@ -277,9 +286,10 @@ li {
 
 #### S3 Event Trigger: Use Case
 
-**Scenario:**  A user uploads an image to an S3 bucket.  This triggers a Lambda function to resize the image and create thumbnails.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:**  A user uploads an image to an S3 bucket.  This triggers a Lambda function to resize the image and create thumbnails.
+</div>
 
 ```mermaid
 graph LR
@@ -310,9 +320,10 @@ li {
 
 #### Step Functions: Use Case
 
-**Scenario:**  An order processing workflow.  A Lambda function processes the order, then a choice state checks the payment status.  Based on the status, either a shipping Lambda or a notification Lambda is invoked.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:**  An order processing workflow.  A Lambda function processes the order, then a choice state checks the payment status.  Based on the status, either a shipping Lambda or a notification Lambda is invoked.
+</div>
 
 ```mermaid
 graph LR
@@ -345,9 +356,10 @@ li {
 
 #### Kinesis Data Streams: Use Case
 
-**Scenario:**  IoT devices send sensor data to a Kinesis stream.  Lambda functions process the data in real-time, performing anomaly detection and storing results in a database.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:**  IoT devices send sensor data to a Kinesis stream.  Lambda functions process the data in real-time, performing anomaly detection and storing results in a database.
+</div>
 
 ```mermaid
 graph LR
@@ -371,11 +383,14 @@ li {
 }
 </style>
 
+---
+
 #### Amazon Data Firehose: Use Case
 
-**Scenario:** Kinesis Data Firehose receives streaming data, optionally transforms it using a Lambda function, and loads it into destinations like S3, Redshift, or Elasticsearch.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:** Kinesis Data Firehose receives streaming data, optionally transforms it using a Lambda function, and loads it into destinations like S3, Redshift, or Elasticsearch.
+</div>
 
 ```mermaid
 graph LR
@@ -399,7 +414,7 @@ graph LR
 
 <style>
 li {
-    font-size: 1.7rem;
+    font-size: 1.64rem;
 }
 </style>
 
@@ -407,9 +422,10 @@ li {
 
 #### EventBridge: Use Case
 
-**Scenario:**  Application A publishes a custom event to EventBridge.  An event rule triggers a Lambda function. Another pipe transforms the event, then triggers a *different* Lambda function.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:**  Application A publishes a custom event to EventBridge.  An event rule triggers a Lambda function. Another pipe transforms the event, then triggers a *different* Lambda function.
+</div>
 
 ```mermaid
 graph LR
@@ -442,9 +458,10 @@ li {
 
 #### DynamoDB Streams: Use Case
 
-**Scenario:**  An application writes data to a DynamoDB table.  A DynamoDB stream triggers a Lambda function to send a notification whenever a new item is added.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:**  An application writes data to a DynamoDB table.  A DynamoDB stream triggers a Lambda function to send a notification whenever a new item is added.
+</div>
 
 ```mermaid
 graph LR
@@ -474,9 +491,10 @@ li {
 
 #### API Gateway Authorizer: Use Case
 
-**Scenario:**  A client sends a request to an API Gateway API.  A Lambda authorizer validates the user's token before allowing access to the backend Lambda function.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:**  A client sends a request to an API Gateway API.  A Lambda authorizer validates the user's token before allowing access to the backend Lambda function.
+</div>
 
 ```mermaid
 graph LR
@@ -508,9 +526,10 @@ li {
 
 #### Lambda@Edge: Use Case
 
-**Scenario:**  A user requests a webpage.  A Lambda@Edge function at the CloudFront edge location personalizes the content based on the user's location or device.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:**  A user requests a webpage.  A Lambda@Edge function at the CloudFront edge location personalizes the content based on the user's location or device.
+</div>
 
 ```mermaid
 graph LR
@@ -543,9 +562,10 @@ li {
 
 #### SQS: Use Case
 
-**Scenario:**  An application sends messages to an SQS queue.  A Lambda function is triggered to process each message, performing tasks like sending emails or updating a database.
+<div class="text-xl mb-4">
 
-<div class="text-xl mb-4"></div>
+**Scenario:**  An application sends messages to an SQS queue.  A Lambda function is triggered to process each message, performing tasks like sending emails or updating a database.
+</div>
 
 ```mermaid
 graph LR
@@ -575,11 +595,12 @@ li {
 
 #### SNS: Use Case
 
+<div class="text-xl mb-4">
+
 **Scenario:**  An application publishes a message to an SNS topic.  This triggers multiple Lambda functions, each performing a different task (e.g., sending an email, updating a database, and logging the event).
+</div>
 
-<div class="text-xl mb-4"></div>
-
-```mermaid
+```mermaid{scale:0.7}
 graph LR
     A[Application] -- Publishes Message --> B(SNS Topic)
     B -- Triggers --> C{Lambda Function 1}
@@ -607,7 +628,7 @@ Image: /no_idea.jpg
 
 <style>
 li {
-    font-size: 1.7rem;
+    font-size: 1.65rem;
 }
 </style>
 
@@ -626,7 +647,7 @@ li {
 
 <style>
 li {
-    font-size: 1.7rem;
+    font-size: 1.25rem;
 }
 </style>
 
@@ -642,7 +663,7 @@ li {
 
 <style>
 li {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
 }
 </style>
 
@@ -659,26 +680,6 @@ li {
     *   One function to start instances.
     *   One function to stop instances.
 * **IAM Role**: Allow the required permissions to start/stop instances.
-
-<style>
-li {
-    font-size: 1.7rem;
-}
-</style>
-
----
-
-## CDK Demo 1: Interactive Code Demo
-
-### *[Switch to your code repository and walk through the CDK code for Demo 1]*
-
-**Key areas to highlight:**
-
-*   IAM Role setup (permissions).
-*   Lambda function definitions (runtime, handler, code location).
-*   EventBridge rule configuration (cron expression).
-*   Environment variables (if used).
-*   Explain the logic within the Lambda functions themselves (the `index.js` or `index.py` files).
 
 <style>
 li {
@@ -705,6 +706,27 @@ sequenceDiagram
     LF-->>EB: Completion
     deactivate LF
 ```
+
+---
+
+## CDK Demo 1: Interactive Code Demo
+
+### *[Switch to your code repository and walk through the CDK code for Demo 1]*
+
+**Key areas to highlight:**
+
+*   IAM Role setup (permissions).
+*   Lambda function definitions (runtime, handler, code location).
+*   EventBridge rule configuration (cron expression).
+*   Environment variables (if used).
+*   Explain the logic within the Lambda functions themselves (the `index.js` or `index.py` files).
+
+<style>
+li {
+    font-size: 1.7rem;
+}
+</style>
+
 ---
 
 # CDK Demo 2: GitHub Actions Deployment
@@ -721,28 +743,7 @@ sequenceDiagram
 
 <style>
 li {
-    font-size: 1.7rem;
-}
-</style>
-
----
-
-## CDK Demo 2: Interactive Code Demo
-
-### *[Switch to your code repository and walk through the CDK code for Demo 2]*
-
-**Key areas to highlight:**
-
-*   IAM Role setup (for both Lambda and EC2).
-*   Lambda function definition (including Function URL configuration with `AWS_IAM` auth).
-*   SSM Document definition (the script content).
-*   Environment variables.
-*   Explain the Lambda function's logic (how it interacts with SSM).
-*   **Briefly show (or mention) the GitHub Actions workflow YAML file** and how it uses the `aws-actions/lambda-invoke-function` action.  This is important to connect the CDK code to the GitHub Actions part.
-
-<style>
-li {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
 }
 </style>
 
@@ -770,6 +771,29 @@ sequenceDiagram
     LF-->>GHA: Response
     deactivate LF
 ```
+
+---
+
+## CDK Demo 2: Interactive Code Demo
+
+### *[Switch to your code repository and walk through the CDK code for Demo 2]*
+
+**Key areas to highlight:**
+
+*   IAM Role setup (for both Lambda and EC2).
+*   Lambda function definition (including Function URL configuration with `AWS_IAM` auth).
+*   SSM Document definition (the script content).
+*   Environment variables.
+*   Explain the Lambda function's logic (how it interacts with SSM).
+*   **Briefly show (or mention) the GitHub Actions workflow YAML file** and how it uses the `aws-actions/lambda-invoke-function` action.  This is important to connect the CDK code to the GitHub Actions part.
+
+<style>
+li {
+    font-size: 1.3rem;
+}
+</style>
+
+
 ---
 
 # Beyond the Demos:  More Use Cases to Explore
@@ -782,7 +806,7 @@ sequenceDiagram
 
 <style>
 li {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 }
 </style>
 
@@ -794,6 +818,12 @@ li {
 *   It integrates with a wide range of AWS services, enabling a vast array of use cases.
 *   CDK simplifies the creation and management of Lambda-based infrastructure.
 *   Start small, experiment, and explore the possibilities!
+
+<style>
+li {
+    font-size: 1.7rem;
+}
+</style>
 
 ---
 src: ./pages/connect.md # Same Connect Slide
