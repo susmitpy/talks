@@ -39,10 +39,9 @@ src: ./pages/about.md
 2.  When to Use It (and When *Not* To)
 3.  Lambda's Many Faces: Integrations Galore
 4.  Enter the CDK: Infrastructure as Code, Simplified
-5.  CDK Demo 1: Scheduled Environment Control
-6.  CDK Demo 2: GitHub Actions-Powered Deployments
-7.  Beyond the Demos: More Use Cases
-8.  Q&A
+5.  CDK Demo: Scheduled Environment Control
+6.  Beyond the Demos: More Use Cases
+7.  Q&A
 
 <style>
 li {
@@ -57,7 +56,7 @@ li {
 - Serverless compute service.  Run code without provisioning or managing servers.
 - Event-driven.  Responds to triggers from various AWS services.
 - Pay-per-use.  You're only charged for the compute time you consume.
-- Automatic scaling.  Lambda handles scaling up and down based on demand.
+- Direct HTTP endpoint.  Using function URLs.
 - Supports multiple languages: Node.js, Python, Java, Go, Ruby, .NET, and custom runtimes.
 
 <style>
@@ -75,8 +74,7 @@ li {
 - **Scheduled tasks:** Running cron jobs or scheduled processes.
 - **Microservices:** Implementing individual microservice functions.
 - **Real-time stream processing:**  Analyzing data streams from Kinesis or DynamoDB.
-- **Chatbots and voice assistants:**  Powering conversational interfaces.
-- **IoT backends:**  Processing data from IoT devices.
+- **Imagination is the limit!:**  Be sure to evaluate the trade-offs.
 
 <style>
 li {
@@ -101,30 +99,34 @@ li {
 </style>
 
 ---
-
-#  MEME Slide
-
-Suggest Meme: "One does not simply manage servers anymore" (Lord of the Rings meme)
-Image: /one_does_not.jpg
+layout: image
+image: /aws_lambda/manage_servers.jpg
+backgroundSize: contain
+---
 
 ---
 
 
-# Lambda's Integration Ecosystem:  A Whirlwind Tour
-
-<v-clicks>
+# Lambda's Integration Ecosystem 🚀
 
 <div class="flex items-center justify-center h-full">
-<h2>
+<h2 class="text-center mb-40">
 
-We're about to explore how Lambda integrates with a *ton* of AWS services.
-
-Fasten your seatbelts!
-
+Get ready for a Toofani tour <br><br> of <br><br> Lambda's integration capabilities!
 </h2>
 </div>
 
-</v-clicks>
+<style>
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 1.5em;
+}
+h2 {
+    font-size: 1.8em;
+    min-height: 150px;
+}
+</style>
+
 
 ---
 
@@ -144,30 +146,27 @@ li {
 
 ---
 
-#### API Gateway + Lambda: Use Case
+#### API Gateway WebSocket + Lambda: Use Case
 
 <div class="text-xl mb-4">
 
-
-**Scenario:** A user requests data via an API. API Gateway routes the request to a Lambda function, which fetches the data from DynamoDB and returns it.
+**Scenario:** A client establishes a WebSocket connection. API Gateway routes different message types (connect, message, disconnect) to Lambda functions that handle real-time communication.
 
 </div>
 
 ```mermaid
 graph LR
-    A[Client] -- HTTP Request --> B(API Gateway)
-    B -- Triggers --> C{Lambda Function}
-    C -- Reads/Writes --> D[(Database - DynamoDB)]
-    C -- Returns --> E(API Gateway)
-    E -- HTTP Response --> A
-    class B,E,C fill:#f9f,stroke:#333,stroke-width:2px
+    A[Client] -- Connect --> B(API Gateway WebSocket)
+    B -- onConnect,onMessage,onDisconnect --> D[Lambad]
+    D -- postToConnection --> B
+    B -- WebSocket Message --> A
 ```
 
 ---
 
 ## Function URL
 
-- **Dedicated HTTP(S) endpoint:**  Directly invoke a Lambda function via a URL.
+- **Dedicated HTTPS endpoint:**  Directly invoke a Lambda function via a URL.
 - **Simpler than API Gateway (for some cases):**  Good for simple, single-function APIs.
 - **Built-in CORS support:**  Easily handle cross-origin requests.
 - **IAM authentication (optional):**  Secure your function URL.
@@ -191,14 +190,10 @@ li {
 </div>
 
 
-```mermaid
+```mermaid{scale:1.4}
 graph LR
-    A[Client] -- HTTPS Request --> B(Lambda Function URL)
-    B -- Invokes --> C{Lambda Function}
-    C -- Processes --> D[Returns Data]
-     D --> B
-     B -- HTTPS Response --> A
-    class B,C fill:#f9f,stroke:#333,stroke-width:2px
+    A[Client] -- Invoke via Function URL --> B(Lambda Function)
+     B -- Response --> A
 ```
 
 ---
@@ -227,12 +222,10 @@ li {
 **Scenario:** A backend service directly calls a Lambda Function to execute specific business logic.
 </div>
 
-```mermaid
+```mermaid{scale:1.4}
 graph LR
-    A[Application] -- Invokes --> B{Lambda Function}
-     B -- Processes --> C[Returns Data]
-     C --> A
-    class B fill:#f9f,stroke:#333,stroke-width:2px
+    A[Application] -- Invokes --> B[Lambda Function]
+     B -- Returns Data --> A
 ```
 
 ---
@@ -261,9 +254,8 @@ li {
 
 ```mermaid
 graph LR
-    A[EventBridge Scheduler] -- Scheduled Event --> B{Lambda Function}
+    A[EventBridge Scheduler] -- Scheduled Event --> B[Lambda Function]
     B -- Performs --> C[Scheduled Task]
-    class A,B fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -273,7 +265,6 @@ graph LR
 - **Respond to events in S3 buckets:**  Object creation, deletion, modification.
 - **Image processing:**  Resize images when they're uploaded.
 - **Data validation:**  Check files for correctness upon upload.
-- **ETL pipelines:**  Trigger data processing workflows.
 - **Fine-grained control:**  Filter events based on prefixes, suffixes, and metadata.
 
 <style>
@@ -294,10 +285,9 @@ li {
 ```mermaid
 graph LR
     A[User] -- Uploads File --> B(S3 Bucket)
-    B -- S3 Event --> C{Lambda Function}
+    B -- S3 Event --> C[Lambda Function]
     C -- Processes --> D[Processed Data]
     D -- Stores --> E(S3 Bucket/Database)
-    class B,C fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -316,6 +306,7 @@ li {
 }
 </style>
 
+
 ---
 
 #### Step Functions: Use Case
@@ -333,7 +324,6 @@ graph LR
     C -- Declined --> E(Lambda: Send Notification)
     D --> F[End]
     E --> F
-    class B,D,E fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -364,10 +354,9 @@ li {
 ```mermaid
 graph LR
     A[IoT Devices] -- Stream Data --> B(Kinesis Data Stream)
-    B -- Triggers --> C{Lambda Function}
+    B -- Triggers --> C[Lambda Function]
     C -- Analyzes --> D[Real-time Analytics]
     D -- Stores --> E(Database/Data Warehouse)
-    class B,C fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -395,11 +384,10 @@ li {
 ```mermaid
 graph LR
     A[Data Producers] -- Stream Data --> B(Kinesis Data Firehose)
-    B -- Optional Transformation --> C{Lambda Function}
+    B -- Optional Transformation --> C[Lambda Function]
     C -- Transforms --> D[Transformed Data]
      D --> E(S3/Redshift/Elasticsearch)
      B --> E
-    class B,C fill:#f9f,stroke:#333,stroke-width:2px
 ```
 ---
 
@@ -424,18 +412,21 @@ li {
 
 <div class="text-xl mb-4">
 
-**Scenario:**  Application A publishes a custom event to EventBridge.  An event rule triggers a Lambda function. Another pipe transforms the event, then triggers a *different* Lambda function.
+**Scenario:** Application A publishes a custom event to EventBridge. An event rule triggers a Lambda function. A pipe filters the event using JSON pattern matching, enriches it via Lambda, then sends to a destination.
 </div>
 
 ```mermaid
 graph LR
     A[Application A] -- Publishes Event --> B(EventBridge)
-    B -- Rule Matches --> C{Lambda Function}
-    B -- Pipe Transforms --> D{Lambda Function}
-    C -- Processes --> E[Result]
-    D -- Processes --> F[Result]
-
-    class B,C,D fill:#f9f,stroke:#333,stroke-width:2px
+    B -- Rule Matches --> C[Lambda Function]
+    subgraph Pipe
+        D[JSON Filter]
+        E[Lambda Function]
+    end
+    B -- Event --> D
+    D -- Filtered Event --> E
+    E -- Enriched Event --> F[Destination]
+    C -- Processes --> G[Result]
 ```
 
 ---
@@ -466,9 +457,8 @@ li {
 ```mermaid
 graph LR
     A[Application] -- Writes to --> B(DynamoDB Table)
-    B -- DynamoDB Stream --> C{Lambda Function}
+    B -- DynamoDB Stream --> C[Lambda Function]
     C -- Processes --> D[Action: e.g., Notification]
-    class B,C fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -479,7 +469,6 @@ graph LR
 - **Custom authorization logic:**  Use Lambda to implement your own authorization rules.
 - **Token-based authentication:**  Validate JWTs or other tokens.
 - **Caching:**  Cache authorization results to reduce latency.
-- **Integration with Cognito or other identity providers.
 
 <style>
 li {
@@ -503,7 +492,6 @@ graph LR
     C -- Validates --> D[Token/Credentials]
     C -- Returns --> E[Allow/Deny]
     E -- Determines --> F(Access to Backend)
-    class B,C fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -539,7 +527,6 @@ graph LR
     C -- Origin Request --> E[Origin Server]
      E -- Origin Response --> C
     B -- Returns --> A[Modified Content]
-    class B,C fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -550,7 +537,6 @@ graph LR
 - **Asynchronous processing:**  Lambda functions process messages from the queue.
 - **Batch processing:**  Process multiple messages in a single Lambda invocation.
 - **Dead-letter queues:**  Handle failed messages.
-- **Standard and FIFO queues:**  Choose the right queue type for your needs.
 
 <style>
 li {
@@ -570,9 +556,8 @@ li {
 ```mermaid
 graph LR
     A[Application] -- Sends Message --> B(SQS Queue)
-    B -- Triggers --> C{Lambda Function}
+    B -- Triggers --> C[Lambda Function]
     C -- Processes --> D[Message]
-    class B,C fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -606,15 +591,13 @@ graph LR
     B -- Triggers --> C{Lambda Function 1}
     B -- Triggers --> D{Lambda Function 2}
     B -- Triggers --> E[Other Subscribers]
-    class B,C,D fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ---
-
-#  MEME Slide
-
-Suggest Meme: "I have no idea what I'm doing" (dog at computer) - Transitioning to CDK.  Humorously acknowledge the complexity.
-Image: /no_idea.jpg
+layout: image
+image: /aws_lambda/no_idea.jpg
+backgroundSize: contain
+---
 
 ---
 
@@ -659,7 +642,6 @@ li {
 - **Abstraction Overhead:** The abstractions can sometimes obscure underlying CloudFormation details.
 - **Maturity:** While mature, CDK is newer than CloudFormation, and some edge cases or new features might not be immediately available.
 - **Language Choice:** If your team is not comfortable with the supported languages, it might not be the best fit.
-- **Debugging:** Debugging CDK code can sometimes be more challenging than debugging raw CloudFormation templates.
 
 <style>
 li {
@@ -668,14 +650,94 @@ li {
 </style>
 
 ---
+layout: center
+---
 
-# CDK Demo 1: Scheduled Environment Control
+# Something to Keep in Mind...
+# When It's Taken Care Of, You Need to Be Careful! ⚠️
 
-**Scenario:** Automatically start and stop development environments (EC2 instances) during non-working hours to save costs.
+---
 
-**Components:**
+## 🎭 What You Expect vs. Reality  
 
-*   **EventBridge Rule:**  Scheduled using a cron expression (e.g., "0 18 ? * MON-FRI *" for 6 PM weekdays).
+<img src="/aws_lambda/cdk_log_one.jpg" alt="Meme: Trust Me Bro" style="height: 60vh" />
+
+
+---
+
+## 🚨 The Hidden Surprise  
+
+You write this simple code:  
+
+```typescript
+new logs.LogGroup(this, "LogGroup", {
+  retention: logs.RetentionDays.ONE_WEEK, // Should set retention, right?
+});
+```
+
+💡 **What you expect:** CDK applies the retention policy directly.  
+<br/>
+
+<v-click>
+
+❌ **What really happens:**  
+<br/>
+1️⃣ CDK **deploys a Lambda function** just to call `putRetentionPolicy`.  
+<br/>
+2️⃣ That Lambda runs **once** to configure log retention.  
+<br/>
+3️⃣ You now have an **extra Lambda function** in your stack for no good reason.
+
+</v-click>
+
+<style>
+p {
+    font-size: 1.4rem;
+}
+code {
+    font-size: 1.2rem;
+}
+</style>
+
+---
+
+## 🤯 Why Does This Happen?  
+
+- CloudFormation **doesn't support updating log retention** directly.  
+- AWS CDK **works around this** by creating a Lambda function.  
+- The Lambda **executes once** and then sits there doing nothing.  
+
+📢 **The catch?** You might never realize this unless you check your stack! 
+
+<style>
+li {
+    font-size: 2rem;
+}
+p {
+    font-size: 2rem;
+}
+</style>
+
+---
+
+## In short, this is what happens
+
+<div class="flex justify-center">
+<img src="/aws_lambda/cdk_log_two.jpg" style="height: 60vh" />
+</div>
+
+---
+layout: center
+---
+
+# With that in mind, let's see a use-case with some code
+
+
+---
+
+# CDK Demo: Scheduled Environment Control
+
+*   **EventBridge Rule:**  Scheduled using a cron expression (e.g., "30 17 ? * MON-FRI *" for 11 pm IST).
 *   **Lambda Function(s):**
     *   One function to start instances.
     *   One function to stop instances.
@@ -689,126 +751,46 @@ li {
 
 ---
 
-#### CDK Demo 1: Diagram
+#### CDK Demo: Diagram
 
-```mermaid
-sequenceDiagram
-    participant EB as EventBridge
-    participant LF as Lambda Function
-    participant EC2 as EC2 Instances
-
-    EB->>LF: Cron Schedule Trigger (Start/Stop)
-    activate LF
-    LF->>EC2: StartInstances / StopInstances API Call
-    activate EC2
-    EC2-->>LF: Confirmation
-    deactivate EC2
-    LF-->>EB: Completion
-    deactivate LF
+```mermaid{scale:1.5}
+graph TB
+    EB[EventBridge] -->|Cron Schedule Trigger| LF[Lambda Function]
+    LF -->|StartInstances / StopInstances| EC2[EC2 Instances]
 ```
 
----
-
-## CDK Demo 1: Interactive Code Demo
-
-### *[Switch to your code repository and walk through the CDK code for Demo 1]*
-
-**Key areas to highlight:**
-
-*   IAM Role setup (permissions).
-*   Lambda function definitions (runtime, handler, code location).
-*   EventBridge rule configuration (cron expression).
-*   Environment variables (if used).
-*   Explain the logic within the Lambda functions themselves (the `index.js` or `index.py` files).
 
 <style>
-li {
-    font-size: 1.7rem;
-}
+    .mermaid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 
----
+--- 
 
-# CDK Demo 2: GitHub Actions Deployment
+# Let's See Some Code!
 
-**Scenario:**  A GitHub Actions workflow triggers a Lambda function via a Function URL.  The Lambda function uses SSM Run Command to execute a script on an EC2 instance, updating the codebase from a GitHub release.
-
-**Components:**
-
-*   **Lambda Function:** With a Function URL.  IAM authentication enabled.
-*   **IAM Role (for Lambda):** Permissions to invoke SSM Run Command.
-*   **IAM Role (for EC2 Instance):**  Permissions to be managed by SSM.
-*   **SSM Document:** Defines the script to be executed on the EC2 instance.
-*   **GitHub Actions Workflow:**  Uses `aws-actions/lambda-invoke-function` to call the Function URL.
-
-<style>
-li {
-    font-size: 1.6rem;
-}
-</style>
-
----
-
-#### CDK Demo 2: Diagram
-
-```mermaid
-sequenceDiagram
-    participant GHA as GitHub Actions
-    participant LF as Lambda Function (with URL)
-    participant SSM as SSM
-    participant EC2 as EC2 Instance
-
-    GHA->>LF: Invoke Function URL (HTTPS)
-    activate LF
-    LF->>SSM: RunCommand (using SSM Document)
-    activate SSM
-    SSM->>EC2: Execute Script
-    activate EC2
-    EC2-->>SSM: Script Output
-    deactivate EC2
-    SSM-->>LF: Command Result
-    deactivate SSM
-    LF-->>GHA: Response
-    deactivate LF
-```
-
----
-
-## CDK Demo 2: Interactive Code Demo
-
-### *[Switch to your code repository and walk through the CDK code for Demo 2]*
-
-**Key areas to highlight:**
-
-*   IAM Role setup (for both Lambda and EC2).
-*   Lambda function definition (including Function URL configuration with `AWS_IAM` auth).
-*   SSM Document definition (the script content).
-*   Environment variables.
-*   Explain the Lambda function's logic (how it interacts with SSM).
-*   **Briefly show (or mention) the GitHub Actions workflow YAML file** and how it uses the `aws-actions/lambda-invoke-function` action.  This is important to connect the CDK code to the GitHub Actions part.
-
-<style>
-li {
-    font-size: 1.3rem;
-}
-</style>
+<div class="flex items-center justify-between">
+    <img src="/aws_lambda/finally_code.jpg" style="height: 55vh" />
+    <div class="text-2xl break-words w-1/3 pl-1">
+        https://github.com/susmitpy/LambdaStartStopInstances
+    </div>
+</div>
 
 
 ---
 
-# Beyond the Demos:  More Use Cases to Explore
-
-*   **Serverless Image Recognition:**  Combine S3 triggers, Lambda, and Rekognition to automatically tag images.
-*   **Real-time Log Processing:** Use Kinesis Data Streams, Lambda, and CloudWatch Logs to analyze logs in real time.
-*   **IoT Data Pipeline:** Build a pipeline for processing data from IoT devices using IoT Core, Kinesis, Lambda, and DynamoDB.
-*   **Serverless Chatbot:**  Combine API Gateway, Lambda, and Lex to create a chatbot.
-*   **Scheduled Data Exports:**  Use EventBridge Scheduler and Lambda to export data from DynamoDB to S3 on a regular basis.
-
-<style>
-li {
-    font-size: 1.4rem;
-}
-</style>
+# When it comes to AWS CDK
+<div class="grid grid-cols-2 gap-4">
+    <div class="flex items-center">
+        <h1 class="text-3xl">Console to CDK Developer Experience</h1>
+    </div>
+    <div>
+        <img src="/aws_lambda/dev_exp.webp" style="height: 60vh" />
+    </div>
+</div>
 
 ---
 
@@ -816,7 +798,7 @@ li {
 
 *   Lambda is a powerful and versatile serverless compute service.
 *   It integrates with a wide range of AWS services, enabling a vast array of use cases.
-*   CDK simplifies the creation and management of Lambda-based infrastructure.
+*   CDK simplifies lambda deployments: though it's just one tool in it's toolbox.
 *   Start small, experiment, and explore the possibilities!
 
 <style>
