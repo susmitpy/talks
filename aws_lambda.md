@@ -496,38 +496,74 @@ graph LR
 
 ---
 
-## Lambda@Edge
-
-- **Run Lambda functions at CloudFront edge locations:**  Customize content delivery.
-- **Improve performance:**  Reduce latency by processing requests closer to users.
-- **A/B testing:**  Route traffic to different versions of your application.
-- **Request/response manipulation:**  Modify headers, rewrite URLs, generate dynamic content.
-- **Security:**  Implement custom security logic at the edge.
-
-<style>
-li {
-    font-size: 1.7rem;
-}
-</style>
-
----
-
-#### Lambda@Edge: Use Case
-
-<div class="text-xl mb-4">
-
-**Scenario:**  A user requests a webpage.  A Lambda@Edge function at the CloudFront edge location personalizes the content based on the user's location or device.
-</div>
+## Lambda@Edge & CloudFront Functions - Request/Response Flow
 
 ```mermaid
 graph LR
-    A[User] -- Request --> B(CloudFront Edge Location)
-    B -- Triggers --> C{Lambda@Edge Function}
-    C -- Modifies --> D[Request/Response]
-    C -- Origin Request --> E[Origin Server]
-     E -- Origin Response --> C
-    B -- Returns --> A[Modified Content]
+    A[User] --> B[Viewer Request]
+    B --> C[Origin Request]
+    C --> D[Origin]
+    D --> E[Origin Response]
+    E --> F[Viewer Response]
+    F --> A
+    
+    subgraph "Edge Location"
+    B
+    F
+    end
+    
+    subgraph "Regional"
+    C
+    E
+    end
+
+    subgraph Functions
+    B -.- G[CloudFront Functions]
+    B -.- H[Lambda@Edge]
+    C -.- H
+    E -.- H
+    F -.- G
+    F -.- H
+    end
 ```
+
+<style>
+li { font-size: 1.4rem; }
+.grid { margin-top: 1rem; }
+</style>
+
+
+---
+
+# Lambda@Edge & CloudFront Functions
+
+- **Lambda@Edge:** Run Lambda functions at CloudFront edge or regional locations
+- **CloudFront Functions:** Lightweight JavaScript at edge locations only
+- **Request/Response Lifecycle:** Both intercept and modify requests/responses
+- **Use Cases:** A/B testing, personalization, URL rewrites, authentication
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+**CloudFront Functions**
+- Viewer Request/Response only
+- Sub-millisecond execution
+- JavaScript only
+- Edge locations
+- Simple tasks
+
+</div>
+<div>
+
+**Lambda@Edge**
+- All four event types
+- Up to 30s execution
+- Node.js/Python
+- Edge or regional
+- Complex processing
+
+</div>
+</div>
 
 ---
 
