@@ -37,11 +37,10 @@ src: ./pages/about.md
 
 1.  What is AWS Lambda?
 2.  When to Use It (and When *Not* To)
-3.  Lambda's Many Faces: Integrations Galore
+3.  Lambda's Integration Ecosystem
 4.  Enter the CDK: Infrastructure as Code, Simplified
 5.  CDK Demo: Scheduled Environment Control
-6.  Beyond the Demos: More Use Cases
-7.  Q&A
+6.  Q&A
 
 <style>
 li {
@@ -694,7 +693,7 @@ layout: center
 
 ---
 
-## 🎭 What You Expect vs. Reality  
+## CDK Log Retention: The Unexpected Lambda.
 
 <img src="/aws_lambda/cdk_log_one.jpg" alt="Meme: Trust Me Bro" style="height: 60vh" />
 
