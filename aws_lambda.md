@@ -534,7 +534,7 @@ li { font-size: 1.4rem; }
 
 ---
 
-# Lambda@Edge & CloudFront Functions
+## Lambda@Edge & CloudFront Functions
 
 - **Lambda@Edge:** Run Lambda functions at CloudFront edge or regional locations
 - **CloudFront Functions:** Lightweight JavaScript at edge locations only
@@ -684,89 +684,6 @@ li {
 }
 </style>
 
----
-layout: center
----
-
-# Something to Keep in Mind...
-# When It's Taken Care Of, You Need to Be Careful! ⚠️
-
----
-
-## CDK Log Retention: The Unexpected Lambda.
-
-<img src="/aws_lambda/cdk_log_one.jpg" alt="Meme: Trust Me Bro" style="height: 60vh" />
-
-
----
-
-## 🚨 The Hidden Surprise  
-
-You write this simple code:  
-
-```typescript
-new logs.LogGroup(this, "LogGroup", {
-  retention: logs.RetentionDays.ONE_WEEK, // Should set retention, right?
-});
-```
-
-💡 **What you expect:** CDK applies the retention policy directly.  
-<br/>
-
-<v-click>
-
-❌ **What really happens:**  
-<br/>
-1️⃣ CDK **deploys a Lambda function** just to call `putRetentionPolicy`.  
-<br/>
-2️⃣ That Lambda runs **once** to configure log retention.  
-<br/>
-3️⃣ You now have an **extra Lambda function** in your stack for no good reason.
-
-</v-click>
-
-<style>
-p {
-    font-size: 1.4rem;
-}
-code {
-    font-size: 1.2rem;
-}
-</style>
-
----
-
-## 🤯 Why Does This Happen?  
-
-- CloudFormation **doesn't support updating log retention** directly.  
-- AWS CDK **works around this** by creating a Lambda function.  
-- The Lambda **executes once** and then sits there doing nothing.  
-
-📢 **The catch?** You might never realize this unless you check your stack! 
-
-<style>
-li {
-    font-size: 2rem;
-}
-p {
-    font-size: 2rem;
-}
-</style>
-
----
-
-## In short, this is what happens
-
-<div class="flex justify-center">
-<img src="/aws_lambda/cdk_log_two.jpg" style="height: 60vh" />
-</div>
-
----
-layout: center
----
-
-# With that in mind, let's see a use-case with some code
-
 
 ---
 
@@ -777,6 +694,7 @@ layout: center
     *   One function to start instances.
     *   One function to stop instances.
 * **IAM Role**: Allow the required permissions to start/stop instances.
+* **Function URL**: For midnight urge to test something.
 
 <style>
 li {
@@ -791,6 +709,7 @@ li {
 ```mermaid{scale:1.5}
 graph TB
     EB[EventBridge] -->|Cron Schedule Trigger| LF[Lambda Function]
+    Dev[Developer] -->|Function URL| LF
     LF -->|StartInstances / StopInstances| EC2[EC2 Instances]
 ```
 
@@ -808,9 +727,9 @@ graph TB
 # Let's See Some Code!
 
 <div class="flex items-center justify-between">
-    <img src="/aws_lambda/finally_code.jpg" style="height: 55vh" />
+    <img src="/aws_lambda/finally_code.jpg" style="height: 40vh" />
     <div class="text-2xl break-words w-1/3 pl-1">
-        https://github.com/susmitpy/LambdaStartStopInstances
+        https://github.com/susmitpy/aws_cdk_example
     </div>
 </div>
 
@@ -819,11 +738,11 @@ graph TB
 
 # When it comes to AWS CDK
 <div class="grid grid-cols-2 gap-4">
-    <div class="flex items-center">
-        <h1 class="text-3xl">Console to CDK Developer Experience</h1>
+    <div class="flex items-center flex-col justify-center">
+        <h1 class="text-3xl">While Going From Console to CDK Developer Experience</h1>
     </div>
     <div>
-        <img src="/aws_lambda/dev_exp.webp" style="height: 60vh" />
+        <img src="/aws_lambda/dev_exp.webp" style="height: 45vh" />
     </div>
 </div>
 
