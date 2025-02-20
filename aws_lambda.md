@@ -475,7 +475,6 @@ graph LR
 - **Control access to your API Gateway APIs:**  Authorize requests before they reach your backend.
 - **Custom authorization logic:**  Use Lambda to implement your own authorization rules.
 - **Token-based authentication:**  Validate JWTs or other tokens.
-- **Caching:**  Cache authorization results to reduce latency.
 
 <style>
 li {
