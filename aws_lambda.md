@@ -647,7 +647,6 @@ backgroundSize: contain
 
 - **Define your cloud infrastructure in code:**  Use familiar programming languages (TypeScript, Python, Java, C#, Go, JavaScript).
 - **Higher-level abstractions:**  CDK Constructs simplify infrastructure definition.
-- **Reusable components:**  Create and share your own custom Constructs.
 - **Predictable deployments:**  CDK uses CloudFormation under the hood.
 - **Integrated with AWS services:**  Easily define Lambda functions, API Gateway, databases, and more.
 
@@ -665,9 +664,7 @@ li {
 - **Infrastructure as Code (IaC):**  Manage infrastructure with code, enabling version control, repeatability, and automation.
 - **Developer-Friendly:**  Use familiar programming languages, reducing the learning curve compared to YAML/JSON.
 - **Abstraction:**  CDK Constructs provide higher-level building blocks, simplifying complex configurations.
-- **Code Reusability:**  Create and share custom Constructs for common patterns.
 - **Type Safety:**  Benefit from compile-time checks and IDE support (with languages like TypeScript).
-- **CloudFormation Integration:**  CDK synthesizes CloudFormation templates, leveraging its robust deployment engine.
 - **Diffing and Rollbacks:**  Easily see changes before deployment and rollback if needed.
 
 <style>
@@ -682,7 +679,6 @@ li {
 
 - **Learning Curve:** While developer-friendly, there's still a learning curve to understand CDK concepts and best practices.
 - **Abstraction Overhead:** The abstractions can sometimes obscure underlying CloudFormation details.
-- **Language Choice:** If your team is not comfortable with the supported languages, it might not be the best fit.
 
 <style>
 li {
