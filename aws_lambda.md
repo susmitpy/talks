@@ -156,10 +156,20 @@ li {
 ```mermaid
 graph LR
     A[Client] -- Connect --> B(API Gateway WebSocket)
-    B -- onConnect,onMessage,onDisconnect --> D[Lambad]
-    D -- postToConnection --> B
+    B -- Route Selection: $request.body.action --> C{Message Type}
+    C -- action: chat --> D[Chat Lambda]
+    C -- action: status --> F[Status Lambda]
+    D & F -- postToConnection --> B
     B -- WebSocket Message --> A
+
+    subgraph "Message Payload"
+    H["{ action: 'chat', message: 'hello' }"]
+    end
 ```
+
+<div class="text-sm mt-2">
+API Gateway reads request.body.action to determine which Lambda to invoke based on configured routes
+</div>
 
 ---
 
@@ -377,12 +387,12 @@ li {
 
 <div class="text-xl mb-4">
 
-**Scenario:** Kinesis Data Firehose receives streaming data, optionally transforms it using a Lambda function, and loads it into destinations like S3, Redshift, or Elasticsearch.
+**Scenario:** Amazon Data Firehose receives streaming data, optionally transforms it using a Lambda function, and loads it into destinations like S3, Redshift, or Elasticsearch.
 </div>
 
 ```mermaid
 graph LR
-    A[Data Producers] -- Stream Data --> B(Kinesis Data Firehose)
+    A[Data Producers] -- Stream Data --> B(Amazon Data Firehose)
     B -- Optional Transformation --> C[Lambda Function]
     C -- Transforms --> D[Transformed Data]
      D --> E(S3/Redshift/Elasticsearch)
@@ -675,7 +685,6 @@ li {
 
 - **Learning Curve:** While developer-friendly, there's still a learning curve to understand CDK concepts and best practices.
 - **Abstraction Overhead:** The abstractions can sometimes obscure underlying CloudFormation details.
-- **Maturity:** While mature, CDK is newer than CloudFormation, and some edge cases or new features might not be immediately available.
 - **Language Choice:** If your team is not comfortable with the supported languages, it might not be the best fit.
 
 <style>
@@ -739,7 +748,7 @@ graph TB
 # When it comes to AWS CDK
 <div class="grid grid-cols-2 gap-4">
     <div class="flex items-center flex-col justify-center">
-        <h1 class="text-3xl">While Going From Console to CDK Developer Experience</h1>
+        <h1 class="text-3xl">Developer Journey</h1>
     </div>
     <div>
         <img src="/aws_lambda/dev_exp.webp" style="height: 45vh" />
