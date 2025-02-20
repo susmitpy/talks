@@ -133,8 +133,7 @@ h2 {
 - **The Classic Combo:** Build serverless APIs.
 - **RESTful APIs, HTTP APIs, WebSockets:**  Lambda can handle various API types.
 - **Request/Response Transformation:**  Customize requests and responses.
-- **Authentication & Authorization:**  Integrate with Cognito or custom authorizers.
-- **Usage Plans & Throttling:**  Control API access and prevent abuse.
+- **Usage Plans:**  Configure Rate, Burst, and Quota limits.
 
 <style>
 li {
