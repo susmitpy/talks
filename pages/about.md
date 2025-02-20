@@ -7,7 +7,7 @@
 
 - Founding Team Member at AIDAX
 - Certified Neo4j Professional
-- Programming Experience of **8 years**, Corporate Experience of **3+ years** 
+- Programming Experience of **~9 years**, Corporate Experience of **~4 years** 
 - Mentor at FuseBytes (Nextjs, Flutter)
 
 <br>
