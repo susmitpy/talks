@@ -56,7 +56,7 @@ li {
 - Event-driven.  Responds to triggers from various AWS services.
 - Pay-per-use.  You're only charged for the compute time you consume.
 - Direct HTTP endpoint.  Using function URLs.
-- Supports multiple languages: Node.js, Python, Java, Go, Ruby, .NET, and custom runtimes.
+- Supports multiple languages: Node.js, Python, Java, Ruby, .NET, and custom runtimes.
 
 <style>
 li {
