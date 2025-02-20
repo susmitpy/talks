@@ -1,14 +1,14 @@
 ---
 theme: seriph
 class: text-center
-title: AWS Lambda in Action Exploring Use Cases & a CDK Deployment
+title: AWS Lambda in Action - Exploring Use Cases & a CDK Deployment
 info: |
     ## With Live Demos
 drawings:
     persist: false
 transition: slide-left
 mdc: true
-background: /bg_image.png 
+background: /bg_image.png
 ---
 
 # AWS Lambda in Action: Exploring Use Cases & a CDK Deployment
