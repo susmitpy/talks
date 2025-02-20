@@ -87,7 +87,6 @@ li {
 
 - **Long-running processes:**  Lambda has a maximum execution time (15 minutes).
 - **Stateful applications:**  Lambda functions are stateless.  Use external services (like DynamoDB or ElastiCache) for state management.
-- **Workloads requiring specific OS or hardware:**  Lambda runs on a standard Amazon Linux environment.  For specialized needs, consider EC2 or ECS.
 - **Extremely high-frequency, low-latency tasks:** While Lambda scales well, there's a small cold start latency.  For ultra-low latency, consider dedicated servers.
 - **Cost-prohibitive workloads:** While pay-per-use is often cheaper, *very* high-volume, constant workloads *might* be cheaper on reserved EC2 instances.  Do the math!
 
