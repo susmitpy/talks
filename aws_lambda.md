@@ -645,7 +645,7 @@ backgroundSize: contain
 
 # Enter the CDK: Infrastructure as Code, Simplified
 
-- **Define your cloud infrastructure in code:**  Use familiar programming languages (TypeScript, Python, Java, .NET, Go).
+- **Define your cloud infrastructure in code:**  Use familiar programming languages (TypeScript, Python, Java, C#, Go, JavaScript).
 - **Higher-level abstractions:**  CDK Constructs simplify infrastructure definition.
 - **Reusable components:**  Create and share your own custom Constructs.
 - **Predictable deployments:**  CDK uses CloudFormation under the hood.
