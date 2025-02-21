@@ -33,9 +33,9 @@ src: ./pages/about.md
 
 ---
 
-# Before we start, there's something common between the two sessions
+# Before We Start... There are some common things between this and the next session
 
-### 1. Infrastructure as sCode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2.  ...and
+### 1. Infrastructure as Code &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2.  ...and
 <v-click>
 <SlidevVideo autoplay>
 <source src="/ruparel meme.mp4" type="video/mp4" />
