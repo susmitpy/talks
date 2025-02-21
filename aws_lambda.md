@@ -33,6 +33,18 @@ src: ./pages/about.md
 
 ---
 
+# Before we start, there's something common between the two sessions
+
+### 1. Infrastructure as sCode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2.  ...and
+<v-click>
+<SlidevVideo autoplay>
+<source src="/ruparel meme.mp4" type="video/mp4" />
+</SlidevVideo>
+</v-click>
+
+
+---
+
 # Agenda
 
 1.  What is AWS Lambda?
