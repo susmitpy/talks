@@ -33,7 +33,7 @@ src: ./pages/about.md
 
 ---
 
-# Before We Start... There are some common things between this and the next session
+# Before We Start... There are some common things between this and the previous session
 
 ### 1. Infrastructure as Code &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2.  ...and
 <v-click>
