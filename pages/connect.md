@@ -10,11 +10,6 @@ layout: two-cols
 
 ::right::
 
-<v-click>
-
-# Almost Everywhere
-
 <div class="flex h-full justify-center items-center">
-  <h1 v-mark.green="1"> susmitpy </h1>
+  <h1> Almost Everywhere as <br/><br/> <center> susmitpy </center> </h1>
 </div>
-</v-click>

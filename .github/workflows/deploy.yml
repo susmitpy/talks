@@ -49,6 +49,9 @@ jobs:
       - name: Build AWS Lambda
         run: nr --name=aws_lambda build_pres
 
+      - name: Build Kong Auth
+        run: nr --name=kong_auth build_pres
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
