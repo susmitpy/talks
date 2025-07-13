@@ -30,6 +30,8 @@ src: ./pages/about.md
 ---
 
 ---
+src: ./pages/ice_breaker.md
+---
 
 # Dissecting Kong API Gateway
 
@@ -240,8 +242,15 @@ src: ./pages/connect.md
 ---
 
 ---
-src: ./pages/qa.md
----
+
+# Something common between me and previous speaker
+
+### 1. Talked about Kong &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2.  ...and
+<v-click>
+<SlidevVideo autoplay>
+<source src="/ruparel meme.mp4" type="video/mp4" />
+</SlidevVideo>
+</v-click>
 
 
 ---
