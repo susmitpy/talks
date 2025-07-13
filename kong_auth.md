@@ -33,6 +33,8 @@ src: ./pages/about.md
 src: ./pages/ice_breaker.md
 ---
 
+---
+
 # Dissecting Kong API Gateway
 
 ```mermaid
