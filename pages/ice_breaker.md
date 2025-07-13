@@ -14,9 +14,13 @@
 </div>
 <v-click>
 
-### No prize for guessing, ofcourse it was going to be False
+<br/>
+
+### No prize for guessing, ofcourse it was going to be False, but why?
+
 </v-click>
 
 <v-click>
-<img src="/ice_breaker_two.png" alt="Ice Breaker" style="width: 100%; height: 40vh;">
+<br/>
+<img src="/ice_breaker_two.png" alt="Ice Breaker" style="width: 100%;">
 </v-click>
