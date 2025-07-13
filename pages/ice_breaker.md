@@ -14,13 +14,11 @@
 </div>
 <v-click>
 
-<br/>
-
 ### No prize for guessing, ofcourse it was going to be False, but why?
 
 </v-click>
 
 <v-click>
-<br/>
+
 <img src="/ice_breaker_two.png" alt="Ice Breaker" style="width: 100%;">
 </v-click>
