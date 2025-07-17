@@ -249,9 +249,16 @@ src: ./pages/connect.md
 
 ### 1. Talked about Kong &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2.  ...and
 <v-click>
-<SlidevVideo autoplay>
-<source src="/ruparel meme.mp4" type="video/mp4" />
-</SlidevVideo>
+<div class="flex">
+  <div class="w-7/10 pr-4">
+    <SlidevVideo autoplay>
+      <source src="/ruparel meme.mp4" type="video/mp4" />
+    </SlidevVideo>
+  </div>
+  <div class="w-3/10">
+    <img src="/ruparel_selfie.jpeg"/>
+  </div>
+</div>
 </v-click>
 
 
