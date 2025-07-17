@@ -245,10 +245,28 @@ src: ./pages/connect.md
 
 ---
 
-# Something common between me and previous speaker
+# Common between me and previous speaker (Amandeep)
 
-### 1. Talked about Kong &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2.  ...and
+* Talked about Kong
+
+* Both of us are from India
+
+* Both of us are not engineers (by degree)
+
 <v-click>
+
+## There is one more thing in common, raise your hand if you know what it is
+
+</v-click>
+
+<style>
+  li {
+    font-size: 1.8rem;
+  }
+</style>
+
+---
+
 <div class="flex">
   <div class="w-7/10 pr-4">
     <SlidevVideo autoplay>
@@ -259,8 +277,6 @@ src: ./pages/connect.md
     <img src="/ruparel_selfie.jpeg"/>
   </div>
 </div>
-</v-click>
-
 
 ---
 src: ./pages/qa.md
