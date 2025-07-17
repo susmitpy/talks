@@ -267,6 +267,8 @@ src: ./pages/connect.md
 
 ---
 
+## We both are from DG Ruparel College, Mumbai
+<br/>
 <div class="flex">
   <div class="w-7/10 pr-4">
     <SlidevVideo autoplay>
