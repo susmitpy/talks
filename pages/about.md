@@ -6,6 +6,7 @@
 <br/>
 
 <!-- - Founding Team Member at AIDAX -->
+- Data Scientist at AIDAX
 - Certified Neo4j Professional
 - Programming Experience of **8+ years**, Corporate Experience of **4+ years** 
 <!-- - Mentor at FuseBytes (Nextjs, Flutter) -->
