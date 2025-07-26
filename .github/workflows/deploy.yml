@@ -52,6 +52,9 @@ jobs:
       - name: Build Kong Auth
         run: nr --name=kong_auth build_pres
 
+      - name: Build Real-time Word Count
+        run: nr --name=real_time_word_count build_pres
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

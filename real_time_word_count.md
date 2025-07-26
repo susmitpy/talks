@@ -33,6 +33,10 @@ src: ./pages/about.md
 ---
 
 ---
+src: ./pages/ice_breaker.md
+---
+
+---
 
 # Our Story Today
 
@@ -97,26 +101,7 @@ graph TD
     U5[User 100] --> S
     
     S --> C[💥 Crash!]
-    
-    style S fill:#ff9999
-    style C fill:#ff0000
 ```
-### Problems:
-
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-- **Server crashes** under load 💥
-- **One point of failure** 🎯
-
-</div>
-<div>
-
-- **Expensive to maintain** 💰
-- **Limited capacity** 📏
-
-</div>
-</div>
 
 
 ---
@@ -191,8 +176,6 @@ graph LR
     C --> D[Return Results]
     D --> E[Function Stops]
     E --> F[💰 Pay Only for Processing Time]
-    
-    style B fill:#99ff99
 ```
 
 </div>
@@ -242,6 +225,11 @@ High-performance storage
 **For our project: Blob storage is the clear winner!** 🏆
 </div>
 
+<!-- 
+💡 MEME IDEA
+A meme showing a character trying to fit a square peg (a large file) into a round hole (a database field), with the caption "Trying to upload your 1GB movie file into a SQL database." This would resonate with anyone who has tried to misuse databases for file storage.
+-->
+
 ---
 
 # The Serverless Revolution for Mini Projects! 🚀
@@ -283,6 +271,7 @@ graph TD
 </div>
 </div>
 
+
 ---
 
 # Building Connected Systems: The Integration Story
@@ -300,8 +289,6 @@ graph TD
     F --> H[Send Real-time Notification]
     F --> I[Store Results]
     F --> J[Trigger Another Function]
-    
-    style F fill:#ff9999
 ```
 
 <div class="text-center mt-6 text-xl">
@@ -481,15 +468,10 @@ graph TD
     F2 -->|9. Send Results in Real-time| W
     W -->|10. Instant Notification| C
     C -->|11. Display Top 5 Words| U
-    
-    style F1 fill:#ff9999
-    style F2 fill:#ff9999
-    style W fill:#99ccff
-    style B fill:#99ff99
-    style U fill:#ffff99
 ```
 
 <div class="text-center mt-4 text-lg">
+
 **11 steps, fully automated, scales efficiently!** 🚀
 </div>
 
@@ -559,9 +541,7 @@ Let me take you through the journey of building this scalable solution, one piec
 ## 🤔 **Common Suggestions:**
 - Polling: "Are you done yet?"
 - Email notifications
-- Refresh the page
 - SMS alerts
-- Show a loading spinner
 
 </div>
 <div>
@@ -569,10 +549,7 @@ Let me take you through the journey of building this scalable solution, one piec
 ## 😅 **The Problems:**
 - **Polling:** Wasteful, slow
 - **Email:** Not instant (but truly async!)
-- **Refresh:** Manual, annoying
 - **SMS:** Costs money
-- **Loading:** User doesn't know if it's stuck
-
 </div>
 </div>
 
@@ -597,13 +574,9 @@ Let me take you through the journey of building this scalable solution, one piec
 <div>
 
 ### 📤 **Server-Sent Events (SSE)**
-- **One-way** server-to-client
-- Built into HTML5
-- No special libraries needed
-- Simpler to implement
-- Perfect for notifications, updates
-- **🤔 Works for simple one-way notifications, but Azure Functions can’t maintain long-lived SSE connections**
-- **❌ Requires always-on server to hold open HTTP streams**
+
+- **Who can explain this to all of us?** 🤔
+- I am not prepared to explain this today, audience needs to help!
 
 </div>
 </v-click>
@@ -651,7 +624,7 @@ Let me take you through the journey of building this scalable solution, one piec
 </div>
 </div>
 
-<div class="text-center mt-6 text-lg">
+<div class="text-center mt-4 text-lg">
 
 **Sometimes architecture choices are driven by platform limitations, not just best practices!** 🎯
 </div>
@@ -952,7 +925,6 @@ public async Task<SignalRMessageAction> Run(
 # The Side Project we just explored 
 
 <h2>Real-time Word Count</h2>
-<div class="text-sm text-gray-400 mb-4">(Demo repo still named "AsyncWordCount")</div>
 
 <div class="flex justify-between mt-6">
   <div class="w-1/2 pl-1 flex flex-col justify-top">
@@ -961,7 +933,7 @@ public async Task<SignalRMessageAction> Run(
   </div>
   <div class="w-1/2 flex flex-col ml-5 items-center justify-center">
     <p class="text-xl mb-4">Github Repo:</p>
-    <img src="/async_word_count.png" alt="QR Code">
+    <img src="/real_time_word_count.png" alt="QR Code">
   </div>
 </div>
 
