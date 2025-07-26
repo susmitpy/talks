@@ -357,7 +357,59 @@ graph LR
 
 ---
 
-# Why Azure? The Platform Choice Story
+# Think Outside the Box! 🤔
+
+<div class="text-center text-2xl mb-8">
+
+## What other ways can we deliver results to users?
+
+</div>
+
+<v-click>
+
+<div class="grid grid-cols-2 gap-8">
+<div>
+
+## 📧 **Email Notifications**
+- Use Azure SendGrid or Logic Apps
+- Send results as email attachment
+- Perfect for long-running processes
+
+## 📱 **SMS/Text Messages**
+- Integrate with Twilio API
+- Quick result summaries
+- Great for mobile-first users
+
+</div>
+<div>
+
+## 💬 **WhatsApp Business API**
+- Rich media support (charts, documents)
+- Global reach and familiarity
+- Interactive message buttons
+
+## 📞 **Voice Calls**
+- Text-to-speech for results
+- Accessibility-friendly
+- For urgent or critical results
+
+</div>
+</div>
+
+</v-click>
+
+<v-click>
+
+<div class="text-center mt-4 text-xl">
+
+**The beauty of serverless:** Each notification method is just another function trigger! 🚀
+</div>
+
+</v-click>
+
+---
+
+# In a Nutshell: Our Cloud Stack
 
 <div class="grid grid-cols-2 gap-6">
 <div>
@@ -388,9 +440,6 @@ graph LR
 </div>
 </div>
 
-<div class="text-center mt-8 text-xl">
-**Plus: Free tier perfect for student projects!** 🎓💰
-</div>
 
 ---
 
@@ -399,6 +448,7 @@ graph LR
 ## The Journey: From Idea to Implementation
 
 <div class="text-xl mb-6">
+
 **"What started as a simple word counting idea became a lesson in building scalable, real-time applications"**
 </div>
 
@@ -411,6 +461,7 @@ graph LR
 - **Student-Friendly** - Costs almost nothing to run!
 
 <div class="text-center mt-8 text-lg">
+
 **This isn't just a word counter - it's a blueprint for scalable mini projects!** 🎯
 </div>
 
@@ -450,6 +501,7 @@ graph TD
 Let me take you through the journey of building this scalable solution, one piece at a time...
 
 <div class="text-center text-xl mt-8">
+
 **"Every line of code tells a story of solving real scalability challenges"**
 </div>
 
@@ -476,12 +528,91 @@ Let me take you through the journey of building this scalable solution, one piec
 
 ---
 
-# Chapter 1: Setting Up Real-time Connection
+# Challenge 1: Real-time Communication 🤔
 
-**The Challenge:** "How do we tell the user when their file is processed?"
+<div class="text-center text-2xl mb-8">
 
-<div class="grid grid-cols-2 gap-4">
+**"How do we tell the user when their file processing is complete?"**
+</div>
+
+## The Dilemma:
+- User uploads a file
+- Processing happens in the background
+- User is waiting... and waiting... 😴
+- **How do we notify them instantly when done?**
+
+<v-click>
+
+## 🙋‍♀️ **Audience Question Time!**
+### What are some ways we could solve this?
+
+*Think about it... What solutions come to mind?*
+
+</v-click>
+
+---
+
+# Your Solutions vs Reality 💭
+
+<div class="grid grid-cols-2 gap-8">
 <div>
+
+## 🤔 **Common Suggestions:**
+- Polling: "Are you done yet?"
+- Email notifications
+- Refresh the page
+- SMS alerts
+- Show a loading spinner
+
+</div>
+<div>
+
+## 😅 **The Problems:**
+- **Polling:** Wasteful, slow
+- **Email:** Too slow for modern users  
+- **Refresh:** Manual, annoying
+- **SMS:** Costs money
+- **Loading:** User doesn't know if it's stuck
+
+</div>
+</div>
+
+
+
+
+<div class="grid grid-cols-2 gap-8 mt-6">
+<v-click>
+<div>
+
+### 📡 **WebSockets (Our Choice)**
+- **Bi-directional** communication
+- Real-time, instant updates
+- Perfect for interactive apps
+- Requires connection management
+- Great for chat, gaming, live data
+
+</div>
+</v-click>
+<v-click>
+<div>
+
+### 📤 **Server-Sent Events (SSE)**
+- **One-way** server-to-client
+- Built into HTML5
+- No special libraries needed
+- Simpler to implement
+- Perfect for notifications, updates
+
+</div>
+</v-click>
+</div>
+
+
+---
+
+# Implementation: Setting Up Real-time Connection
+
+**Step 1: Client establishes WebSocket connection**
 
 ```javascript
 // The client's first move: establish connection
@@ -504,31 +635,11 @@ const negotiateSignalR = async () => {
 };
 ```
 
-</div>
-<div>
-
-**The Story:**
-
-🎬 **Scene:** User opens our app
-
-🔹 App generates unique user ID
-
-🔹 Requests secure connection to Azure SignalR
-
-🔹 Gets back WebSocket URL and access token
-
-🔹 **Result:** Real-time pipeline established!
-
-**Scalability Win:** Supports unlimited concurrent users! 🚀
-
-</div>
-</div>
-
 ---
 
-# Chapter 2: The WebSocket Negotiation Function
+# Implementation: WebSocket Negotiation Function
 
-**The Challenge:** "How does Azure securely manage real-time connections for each user?"
+**Step 2: Azure securely manages connections**
 
 ```csharp
 [Function("negotiate")]
@@ -541,8 +652,6 @@ public async Task<HttpResponseData> Negotiate(
         .FirstOrDefault(h => h.Key == "userid")
         .Value.FirstOrDefault();
     
-    _logger.LogInformation($"Connected to {userId}");
-
     var response = req.CreateResponse(HttpStatusCode.OK);
     response.Headers.Add("Access-Control-Allow-Origin", "*");
     
@@ -555,17 +664,101 @@ public async Task<HttpResponseData> Negotiate(
 }
 ```
 
-**The Magic:** Azure handles all the complex WebSocket management for us!
-- ✅ Secure token generation
-- ✅ User-specific channels  
-- ✅ Auto-scaling connections
-- ✅ **We just focus on business logic!**
+---
+
+# Challenge 2: Secure File Uploads 🔐
+
+<div class="text-center text-2xl mb-8">
+
+**"How do we let users upload files without exposing our storage credentials?"**
+</div>
+
+## The Security Dilemma:
+- Users need to upload files to our cloud storage
+- We can't give them our storage account keys! 🔑
+- We don't want files going through our servers (expensive!)
+- But we need to control access and prevent abuse
+
+<v-click>
+
+## 🙋‍♀️ **Audience Question Time!**
+### How would you solve this security puzzle?
+
+</v-click>
 
 ---
 
-# Chapter 3: Secure File Upload Strategy
+# Your Security Ideas 🛡️
 
-**The Challenge:** "How do we let users upload files without compromising security?"
+<div class="grid grid-cols-2 gap-8">
+<div>
+
+## 🤔 **Common Approaches:**
+- Give users storage keys (⚠️ dangerous!)
+- Route uploads through our server
+- Create user accounts with permissions
+- Use API keys
+- Time-limited tokens
+
+</div>
+<div>
+
+## 🎯 **The Reality:**
+- **Storage keys:** Too much access
+- **Through server:** Expensive, slow
+- **User accounts:** Complex setup
+- **API keys:** Still too much access
+- **Time-limited tokens:** 🏆 **Getting warm!**
+
+</div>
+</div>
+
+<v-click>
+
+<div class="text-center mt-8">
+
+## ⭐ **Our Solution: SAS Tokens!**
+**Shared Access Signatures - like temporary, limited parking passes**
+
+*Time-limited, permission-specific, user-specific access*
+
+</div>
+
+</v-click>
+
+---
+
+# How SAS Tokens Work 🎟️
+<div class="grid grid-cols-2 gap-8 items-center">
+<div class="text-center">
+
+### 🎟️ **SAS Tokens = Smart Tickets**
+- Like a **temporary parking pass**
+- Specific permissions only
+- Auto-expires for security
+- User-specific access
+
+</div>
+<div class="text-center">
+
+```mermaid{scale:0.8}
+graph TD
+    A[User: 'I want to upload!'] --> B[Function: Generate SAS Token]
+    B --> C[Token Properties:<br/>• 1 hour expiry<br/>• Write-only access<br/>• Specific filename]
+    C --> D[User: Direct upload to Azure Storage]
+    D --> E[Azure: Validates token & accepts file]
+    E --> F[Token expires automatically]
+```
+
+</div>
+</div>
+
+
+---
+
+# Implementation: Secure File Upload Strategy
+
+**Step 1: Generate secure, time-limited upload permissions**
 
 ```csharp
 private string GenerateUri(string userId)
@@ -590,17 +783,11 @@ private string GenerateUri(string userId)
 }
 ```
 
-**The Solution:** **SAS (Shared Access Signature) Tokens**
-- � Time-limited (1 hour only)
-- 🎯 User-specific filenames
-- ✍️ Write-only permissions
-- � **User uploads directly to Azure, bypassing our servers!**
-
 ---
 
-# Chapter 4: The Upload URL Generator
+# Implementation: Upload URL Generator
 
-**The Challenge:** "How do we provide upload access without exposing our storage keys?"
+**Step 2: Provide secure upload endpoints**
 
 ```csharp
 [Function("GetFileUploadURL")]
@@ -620,57 +807,74 @@ public IActionResult Run(
 public record ReqData(string userId);
 ```
 
-**The Story:**
-1. 📞 **User:** "I want to upload a file!"
-2. 🎟️ **Function:** "Here's your secure, temporary upload ticket!"
-3. � **User:** Uploads directly to Azure Storage (not through our servers!)
+---
 
-**Scalability Win:** Our servers never handle file content - Azure does! 💪
+# Challenge 3: Automated Processing 🤖
+
+<div class="text-center text-2xl mb-8">
+
+**"How do we automatically process files when uploaded AND notify the right user?"**
+</div>
+
+## The Automation Challenge:
+- File gets uploaded to storage
+- System must detect the upload automatically
+- Process the file without human intervention  
+- Find the correct user to notify
+- Send results in real-time
+
+<v-click>
+
+## 🙋‍♀️ **Final Audience Question!**
+### How would you trigger processing and identify users?
+
+</v-click>
 
 ---
 
-# Chapter 5: The Core Algorithm
+# Event-Driven Solutions 🚀
 
-**The Challenge:** "How do we efficiently find the most frequent words?"
+<div class="grid grid-cols-2 gap-8">
+<div>
 
-```csharp
-public Dictionary<string, int> getTop5Words(string content)
-{
-    var words = content.Split(' ');
-    var wordCount = new Dictionary<string, int>();
-    
-    foreach (var word in words)
-    {
-        if (wordCount.ContainsKey(word))
-        {
-            wordCount[word]++;
-        }
-        else
-        {
-            wordCount[word] = 1;
-        }
-    }
-    
-    return wordCount
-        .OrderByDescending(x => x.Value)
-        .Take(5)
-        .ToDictionary(x => x.Key, x => x.Value);
-}
-```
+## 🤔 **Common Ideas:**
+- Poll storage for new files
+- Use file naming conventions
+- Database tracking
+- Scheduled jobs to check
+- Event triggers
 
-**The Algorithm Story:**
-1. 📝 Split text into words
-2. � Count each word's frequency  
-3. 🏆 Sort by count (highest first)
-4. 🎯 Take top 5 winners
+</div>
+<div>
 
-**Scalability Note:** Works efficiently even for large files! 📈
+## ⚡ **The Best Approach:**
+- **Polling:** Wasteful, slow
+- **File naming:** 🎯 Smart for user ID!
+- **Database:** Adds complexity
+- **Scheduled jobs:** Delayed processing
+- **Event triggers:** 🏆 **Perfect!**
+
+</div>
+</div>
+
+<v-click>
+
+<div class="text-center mt-8">
+
+## 🪄 **Our Solution: Blob Triggers + Smart Naming!**
+**Azure automatically triggers function on file upload**
+
+*Filename contains user ID - perfect identification!*
+
+</div>
+
+</v-click>
 
 ---
 
-# Chapter 6: The Automation Masterpiece! ✨
+# Implementation: The Automation Masterpiece!
 
-**The Challenge:** "How do we automatically process files and notify the right user?"
+**Step 3: Fully automated processing with user notification**
 
 ```csharp
 [Function(nameof(OnFileUpload))]
@@ -695,176 +899,27 @@ public async Task<SignalRMessageAction> Run(
 }
 ```
 
-**The Beautiful Automation:**
-1. � **File uploaded** → Function automatically awakens
-2. 📖 **Reads content** → Processes the words  
-3. 🎯 **Extracts user ID** from filename
-4. 📡 **Sends results** directly to that specific user
-5. � **Function sleeps** → Zero cost until next upload!
-
-**This is serverless magic at its finest!** 🪄
-
 ---
 
-# Why This Architecture is Powerful
+# The Side Project we just explored 
 
-<div class="grid grid-cols-2 gap-6">
-<div>
+<h2>Async Word Count </h2>
 
-## 🎯 **Event-Driven**
-- Each action triggers the next
-- No polling or waiting
-- Efficient resource usage
-
-## ⚡ **Serverless**
-- No server management
-- Auto-scaling
-- Pay only for execution time
-
-## 🔒 **Secure**
-- SAS tokens for file upload
-- Function-level authorization
-- User-specific results
-
-</div>
-<div>
-
-## 🚀 **Real-time**
-- WebSocket communication
-- Instant result delivery
-- Great user experience
-
-## 🔧 **Maintainable**
-- Small, focused functions
-- Clear separation of concerns
-- Easy to debug and extend
-
-## 💰 **Cost-Effective**
-- No idle server costs
-- Scales to zero when not used
-- Perfect for student projects!
-
-</div>
-</div>
-
----
-
-# Let's See It In Action! 🎬
-
-<div class="flex items-center justify-between">
-    <div class="w-2/3">
-        <h2 class="text-2xl mb-4">Demo Time!</h2>
-        <p class="text-lg mb-4">We'll watch the complete flow in action:</p>
-        <ul class="text-base space-y-2">
-            <li>✅ User selects a text file</li>
-            <li>✅ System processes it asynchronously</li>
-            <li>✅ Real-time results appear</li>
-            <li>✅ Top 5 most frequent words displayed</li>
-        </ul>
-        <p class="text-xl mt-6 font-bold">
-            YouTube Demo: https://youtu.be/1_YNMmNs1T8
-        </p>
-    </div>
-    <div class="w-1/3">
-        <img src="/live_demo.jpg" alt="Live Demo" class="rounded-lg shadow-lg">
-    </div>
-</div>
-
----
-
-# Explore the Complete Code
-
-<div class="flex items-center justify-between h-full">
-    <div class="w-3/5">
-        <h2 class="text-3xl mb-6">Want to dive deeper?</h2>
-        <div class="text-xl space-y-4">
-            <p>🔗 Complete source code available on GitHub</p>
-            <p>📚 Detailed README with setup instructions</p>
-            <p>🚀 Deploy it yourself and experiment</p>
-            <p>🔧 Modify it for your own projects</p>
-        </div>
-        <div class="mt-8 p-4 bg-blue-100 rounded-lg">
-            <p class="text-lg font-bold">GitHub Repository:</p>
-            <p class="text-base break-all">https://github.com/susmitpy/talks/tree/main/AsyncWordCount</p>
-        </div>
-    </div>
-    <div class="w-2/5 flex justify-center">
-        <img src="/portfolio.png" alt="GitHub Repository" class="max-h-96 rounded-lg shadow-lg">
-    </div>
-</div>
-
----
-
-# Key Takeaways for Your Journey
-
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-## 🎓 **For Students**
-- Start with simple serverless functions
-- Cloud platforms have generous free tiers
-- Focus on solving real problems
-- Build a portfolio of cloud projects
-
-## 🔮 **Future Opportunities**
-- Cloud skills are in high demand
-- Serverless is the future of development
-- Great for startups and side projects
-- Easy to scale from prototype to production
-
-</div>
-<div>
-
-## 🛠️ **Next Steps**
-1. Create a free Azure account
-2. Try Azure Functions tutorials
-3. Build your own file processing app
-4. Experiment with different triggers
-5. Add more Azure services
-
-## 💡 **Project Ideas**
-- Image resizer
-- PDF text extractor
-- Email notification system
-- Data backup automation
-
-</div>
-</div>
-
----
-
-# Thank You! 
-
-<div class="grid grid-cols-2 gap-8 items-center h-full">
-<div>
-
-## Questions? 🤔
-
-**Let's discuss:**
-- Cloud computing concepts
-- Azure Functions
-- Serverless architecture
-- Your project ideas
-- Career in cloud development
-
-</div>
-<div class="text-center">
-
-## Connect With Me
-
-**GitHub:** @susmitpy
-
-**Project Demo:** https://youtu.be/1_YNMmNs1T8
-
-**Source Code:** github.com/susmitpy/talks
-
-<div class="mt-8">
-<img src="/qa.png" alt="QA" class="mx-auto h-48">
-</div>
-
-</div>
+<div class="flex justify-between mt-6">
+  <div class="w-1/2 pl-1 flex flex-col justify-top">
+    <p class="text-3xl mb-4">Let's see it in action</p>
+    <a href="https://youtu.be/1_YNMmNs1T8" class="text-2xl break-words">https://youtu.be/1_YNMmNs1T8</a>
+  </div>
+  <div class="w-1/2 flex flex-col ml-5 items-center justify-center">
+    <p class="text-xl mb-4">Github Repo:</p>
+    <img src="/async_word_count.png" alt="QR Code">
+  </div>
 </div>
 
 ---
 src: ./pages/connect.md
+---
+
+---
+src: ./pages/qa.md
 ---
