@@ -1,7 +1,7 @@
 ---
 theme: seriph
 class: text-center
-title: Scalable Mini Project - Async Word Count with Azure
+title: Scalable Mini Project - Real-time Word Count with Azure
 info: |
     ## From Simple Idea to Scalable Cloud Application
 drawings:
@@ -12,7 +12,7 @@ background: /bg_image.png
 ---
 
 # Scalable Mini Project
-## Async Word Count with Azure
+## Real-time Word Count with Azure
 
 ### By Susmit Vengurlekar (@susmitpy)
 
@@ -36,12 +36,12 @@ src: ./pages/about.md
 
 # Our Story Today
 
-1. **The Problem** - A simple idea that needed to scale
-2. **The Challenge** - Why traditional solutions fall short
-3. **The Cloud Solution** - Understanding the building blocks
-4. **The Azure Advantage** - Why we chose Microsoft's platform
-5. **Building Our Solution** - From concept to code
-6. **The Magic Happens** - Live demo and results
+1. **The Problem** - A simple word count idea that must scale to 100 users
+2. **Traditional vs Cloud** - Why servers fail and serverless wins
+3. **Serverless Foundation** - Functions, storage, and real-time magic
+4. **Three Real Challenges** - Interactive problem-solving with audience
+5. **Live Implementation** - From security to automation with actual code
+6. **Demo Time** - See AsyncWordCount in action!
 
 <style>
 li {
@@ -208,7 +208,7 @@ graph LR
 ## 📁 **Blob Storage**
 Store any type of file
 - Images, videos, documents
-- Unlimited capacity
+- Massive capacity (500TB+ per account)
 - Access from anywhere
 
 ✅ **Perfect for our text files!**
@@ -434,8 +434,8 @@ graph LR
 
 ## ⚡ **Built-in Integrations**
 - Functions trigger automatically on file upload
-- No complex configuration needed
-- **Everything just works together!**
+- Some configuration needed (CORS, auth, etc.)
+- **Multiple services working together**
 
 </div>
 </div>
@@ -443,7 +443,7 @@ graph LR
 
 ---
 
-# Our Solution: AsyncWordCount Project 
+# Our Solution: Real-time WordCount Project 
 
 ## The Journey: From Idea to Implementation
 
@@ -454,11 +454,11 @@ graph LR
 
 ## Why This Project is Special
 
-- **Asynchronous Processing** - Files process in background while user waits
+- **Background Processing** - Files process in background while user waits
 - **Real-time Updates** - User gets instant notifications via WebSocket
 - **Serverless Architecture** - Scales from 1 to 1000 users automatically
 - **Event-Driven Flow** - Each step elegantly triggers the next
-- **Student-Friendly** - Costs almost nothing to run!
+- **Student-Friendly** - Low cost to run at small scale!
 
 <div class="text-center mt-8 text-lg">
 
@@ -491,7 +491,7 @@ graph TD
 ```
 
 <div class="text-center mt-4 text-lg">
-**11 steps, fully automated, scales infinitely!** 🚀
+**11 steps, fully automated, scales efficiently!** 🚀
 </div>
 
 ---
@@ -520,7 +520,7 @@ Let me take you through the journey of building this scalable solution, one piec
 ## 💡 **Why It Matters**
 - Each pattern is reusable
 - Scales to production loads
-- Costs pennies to run
+- Low cost for small projects
 - Perfect for portfolios
 
 </div>
@@ -543,7 +543,7 @@ Let me take you through the journey of building this scalable solution, one piec
 
 <v-click>
 
-## 🙋‍♀️ **Audience Question Time!**
+## 🙋‍♂️🙋‍♀️ **Audience Question Time!**
 ### What are some ways we could solve this?
 
 *Think about it... What solutions come to mind?*
@@ -569,7 +569,7 @@ Let me take you through the journey of building this scalable solution, one piec
 
 ## 😅 **The Problems:**
 - **Polling:** Wasteful, slow
-- **Email:** Too slow for modern users  
+- **Email:** Not instant (but truly async!)
 - **Refresh:** Manual, annoying
 - **SMS:** Costs money
 - **Loading:** User doesn't know if it's stuck
@@ -590,6 +590,7 @@ Let me take you through the journey of building this scalable solution, one piec
 - Perfect for interactive apps
 - Requires connection management
 - Great for chat, gaming, live data
+- **✅ Works with Azure Functions + SignalR**
 
 </div>
 </v-click>
@@ -602,11 +603,59 @@ Let me take you through the journey of building this scalable solution, one piec
 - No special libraries needed
 - Simpler to implement
 - Perfect for notifications, updates
+- **🤔 Actually better for this use case!**
+- **❌ But needs VMs/App Service (long-lived connections)**
 
 </div>
 </v-click>
 </div>
 
+
+---
+
+# Why WebSockets Over SSE? The Technical Reality 🤷‍♂️
+
+<div class="text-center text-xl mb-8">
+
+**SSE would be simpler, but Azure Functions has a fundamental limitation...**
+</div>
+
+<div class="grid grid-cols-2 gap-8">
+<div>
+
+## 📤 **Server-Sent Events Requirements**
+- Long-lived HTTP connections
+- Server keeps connection open
+- Streams data over time
+- **Needs always-running server**
+
+### Perfect for:
+- VM with Node.js/Python server
+- Azure App Service
+- Container Apps
+
+</div>
+<div>
+
+## ⚡ **Azure Functions Reality**
+- Designed for short-lived operations
+- Stateless by design
+- Auto-shutdown when idle
+- **Can't maintain long connections**
+
+### Solution:
+- Use **Azure SignalR Service**
+- Managed WebSocket infrastructure
+- Functions trigger SignalR messages
+- Best of both worlds!
+
+</div>
+</div>
+
+<div class="text-center mt-6 text-lg">
+
+**Sometimes architecture choices are driven by platform limitations, not just best practices!** 🎯
+</div>
 
 ---
 
@@ -681,7 +730,7 @@ public async Task<HttpResponseData> Negotiate(
 
 <v-click>
 
-## 🙋‍♀️ **Audience Question Time!**
+## 🙋‍♂️🙋‍♀️ **Audience Question Time!**
 ### How would you solve this security puzzle?
 
 </v-click>
@@ -744,7 +793,7 @@ public async Task<HttpResponseData> Negotiate(
 ```mermaid{scale:0.8}
 graph TD
     A[User: 'I want to upload!'] --> B[Function: Generate SAS Token]
-    B --> C[Token Properties:<br/>• 1 hour expiry<br/>• Write-only access<br/>• Specific filename]
+    B --> C[Token Properties:<br/>• 15 minute expiry<br/>• Write-only access<br/>• Specific filename]
     C --> D[User: Direct upload to Azure Storage]
     D --> E[Azure: Validates token & accepts file]
     E --> F[Token expires automatically]
@@ -775,7 +824,7 @@ private string GenerateUri(string userId)
         BlobContainerName = "text-file-uploads",
         BlobName = blobName,
         Resource = "b",
-        ExpiresOn = DateTime.UtcNow.AddHours(1)
+        ExpiresOn = DateTime.UtcNow.AddMinutes(15) // Shorter expiry for security
     };
 
     sasBuilder.SetPermissions(BlobSasPermissions.Write);
@@ -825,7 +874,7 @@ public record ReqData(string userId);
 
 <v-click>
 
-## 🙋‍♀️ **Final Audience Question!**
+## 🙋‍♂️🙋‍♀️ **Final Audience Question!**
 ### How would you trigger processing and identify users?
 
 </v-click>
@@ -903,7 +952,8 @@ public async Task<SignalRMessageAction> Run(
 
 # The Side Project we just explored 
 
-<h2>Async Word Count </h2>
+<h2>Real-time Word Count</h2>
+<div class="text-sm text-gray-400 mb-4">(Demo repo still named "AsyncWordCount")</div>
 
 <div class="flex justify-between mt-6">
   <div class="w-1/2 pl-1 flex flex-col justify-top">
