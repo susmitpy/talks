@@ -65,10 +65,10 @@ li {
 <v-click>
 
 ### But what if...
-- **100 users** upload files simultaneously?
-- **Files are 100MB** each?
-- Users expect **real-time results**?
-- You have **zero budget** for servers?
+-- **100 users** upload files simultaneously?
+-- **Files are 100MB** each?
+-- Users expect **real-time results**?
+-- You only pay for compute time — no idle server costs?
 
 </v-click>
 
@@ -170,8 +170,7 @@ Think of it like **Uber** for computing - you don't own cars, you just request r
 </div>
 <div>
 
-## ⚡ **Serverless Functions**
-- No servers to manage
+- No server provisioning or management overhead (servers still run behind the scenes)
 - Pay only when code runs
 - Auto-scaling
 - ✅ **Perfect for our word count project!**
@@ -208,7 +207,7 @@ graph LR
 ## 📁 **Blob Storage**
 Store any type of file
 - Images, videos, documents
-- Massive capacity (500TB+ per account)
+- Massive capacity
 - Access from anywhere
 
 ✅ **Perfect for our text files!**
@@ -218,11 +217,11 @@ Store any type of file
 
 ## 🗄️ **Databases**
 Structured data storage
-- SQL databases
+- SQL databases (supports BLOB fields)
 - NoSQL databases
 - Managed by cloud provider
 
-❌ **Files in DB ? Nope**
+❌ **Storing files in DB is possible but generally not recommended**
 
 </div>
 <div class="text-center">
@@ -603,8 +602,8 @@ Let me take you through the journey of building this scalable solution, one piec
 - No special libraries needed
 - Simpler to implement
 - Perfect for notifications, updates
-- **🤔 Actually better for this use case!**
-- **❌ But needs VMs/App Service (long-lived connections)**
+- **🤔 Works for simple one-way notifications, but Azure Functions can’t maintain long-lived SSE connections**
+- **❌ Requires always-on server to hold open HTTP streams**
 
 </div>
 </v-click>
