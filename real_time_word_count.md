@@ -762,7 +762,7 @@ public async Task<SignalRMessageAction> Run(
 - **Perfect for our word processing logic!**
 
 ## 📦 **Azure Blob Storage**
-- Unlimited file storage
+- Massive file storage
 - Global accessibility
 - **Where we store the uploaded text files**
 
