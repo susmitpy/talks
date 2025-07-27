@@ -9,16 +9,74 @@ drawings:
 transition: slide-left
 mdc: true
 background: /bg_image.png
+colorSchema: dark
+css: unocss
 ---
 
-# Scalable Mini Project
-## Real-time Word Count with Azure
+<style>
+:root {
+  --slidev-theme-primary: #3b82f6;
+  --slidev-theme-secondary: #1e40af;
+  --slidev-theme-accent: #60a5fa;
+  --slidev-theme-background: #1e293b;
+  --slidev-theme-foreground: #f1f5f9;
+  --slidev-code-background: #0f172a;
+  --slidev-code-foreground: #e2e8f0;
+}
 
-### By Susmit Vengurlekar (@susmitpy)
+.slidev-layout {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+  color: #f1f5f9;
+}
+
+.dark .slidev-layout {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+/* Override slide backgrounds */
+.slidev-page {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
+
+/* Style headers with blue accent */
+h1, h2, h3 {
+  color: #60a5fa;
+}
+
+/* Override headers on first slide to be white */
+.slidev-layout.text-center h1,
+.slidev-layout.text-center h2,
+.slidev-layout.text-center h3 {
+  color: white !important;
+}
+
+/* Style code blocks */
+pre {
+  background: #0f172a !important;
+  border: 1px solid #334155;
+}
+
+/* Style links */
+a {
+  color: #60a5fa;
+}
+
+a:hover {
+  color: #93c5fd;
+}
+</style>
+
+<div style="color: white !important;">  
+    <h1 style="color: white !important;">Scalable Mini Project</h1>
+    <h2 style="color: white !important;">Real-time Word Count with Azure</h2>
+    <h3 style="color: white !important;">By Susmit Vengurlekar (@susmitpy)</h3>
+
+</div>
 
 <div class="text-xs text-gray-400 absolute bottom-10 left-0 right-0 text-center">
 The Journey from Simple Idea to Production-Ready Application
 </div>
+
 
 ---
 src: ./pages/disclaimer.md
