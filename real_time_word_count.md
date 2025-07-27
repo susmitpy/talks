@@ -83,10 +83,6 @@ src: ./pages/disclaimer.md
 ---
 
 ---
-src: ./pages/bug.md
----
-
----
 src: ./pages/about.md
 ---
 
@@ -102,8 +98,8 @@ src: ./pages/ice_breaker.md
 2. **Traditional vs Cloud** - Why servers fail and serverless wins
 3. **Serverless Foundation** - Functions, storage, and real-time magic
 4. **Three Real Challenges** - Interactive problem-solving with audience
-5. **Live Implementation** - From security to automation with actual code
-6. **Demo Time** - See AsyncWordCount in action!
+5. **Implementation** - From security to automation with actual code
+6. **Demo Time** - See RealTimeWordCount in action!
 
 <style>
 li {
@@ -213,7 +209,9 @@ Think of it like **Uber** for computing - you don't own cars, you just request r
 </div>
 <div>
 
-- No server provisioning or management overhead (servers still run behind the scenes)
+## ⚡ **Serverless Functions**
+
+- No server provisioning or management overhead
 - Pay only when code runs
 - Auto-scaling
 - ✅ **Perfect for our word count project!**
@@ -283,58 +281,12 @@ High-performance storage
 **For our project: Blob storage is the clear winner!** 🏆
 </div>
 
-<!-- 
-💡 MEME IDEA
-A meme showing a character trying to fit a square peg (a large file) into a round hole (a database field), with the caption "Trying to upload your 1GB movie file into a SQL database." This would resonate with anyone who has tried to misuse databases for file storage.
--->
-
----
-
-# The Serverless Revolution for Mini Projects! 🚀
-
-## What is Serverless?
-
-<div class="text-xl mb-6">
-
-**"No servers"** doesn't mean no servers exist - it means **you don't manage them!**
-<br>Perfect for students with **mini projects and big dreams!**
-</div>
-
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-### Traditional Server (❌ For Students)
-```mermaid
-graph TD
-    A[Request] --> B[Always Running Server]
-    B --> C[Response]
-    B --> D[💰 Always Paying $$$]
-    B --> E[😰 Server Management]
-```
-
-</div>
-<div>
-
-### Serverless Function (✅ Perfect!)
-```mermaid
-graph TD
-    A[File Upload] --> B[Function Starts]
-    B --> C[Process File]
-    C --> D[Return Results]
-    D --> E[Function Stops]
-    F[💰 Pay Only for Processing]
-    G[🎯 Focus on Code, Not Servers]
-```
-
-</div>
-</div>
-
 
 ---
 
 # Building Connected Systems: The Integration Story
 
-Functions don't work alone - they need to talk to each other!
+Team members don't work alone - they need to talk to each other!
 
 ```mermaid
 graph TD
@@ -354,215 +306,19 @@ graph TD
 **Our project uses:** HTTP requests + File uploads + Real-time notifications! 🎯
 </div>
 
----
-
-# Real-time Communication: The Missing Piece
-
-For our word count project, we needed **instant results**. How do we tell the user when processing is done?
-
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-## 📬 **Polling (Traditional Way)**
-User keeps asking: "Are you done yet?"
-
-```mermaid
-graph LR
-    U[User] -->|"Done yet?"| S[Server]
-    S -->|"No..."| U
-    U -->|"Done yet?"| S
-    S -->|"No..."| U
-    U -->|"Done yet?"| S
-    S -->|"Yes!"| U
-```
-
-**Problems:** Wasteful, slow, annoying!
-
-</div>
-<div>
-
-## 📡 **WebSockets (Our Solution)**
-Server tells user: "I'm done!"
-
-```mermaid
-graph LR
-    U[User] -->|Upload File| S[Server]
-    S -->|Process...| S
-    S -->|"Results ready!"| U
-```
-
-**Benefits:**
-- Real-time updates
-- No wasted requests
-- Great user experience!
-
-</div>
-</div>
 
 ---
 
-# Think Outside the Box! 🤔
+# Implementation Walkthrough
 
-<div class="text-center text-2xl mb-8">
-
-## What other ways can we deliver results to users?
-
-</div>
-
-<v-click>
-
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-## 📧 **Email Notifications**
-- Use Azure SendGrid or Logic Apps
-- Send results as email attachment
-- Perfect for long-running processes
-
-## 📱 **SMS/Text Messages**
-- Integrate with Twilio API
-- Quick result summaries
-- Great for mobile-first users
-
-</div>
-<div>
-
-## 💬 **WhatsApp Business API**
-- Rich media support (charts, documents)
-- Global reach and familiarity
-- Interactive message buttons
-
-## 📞 **Voice Calls**
-- Text-to-speech for results
-- Accessibility-friendly
-- For urgent or critical results
-
-</div>
-</div>
-
-</v-click>
-
-<v-click>
-
-<div class="text-center mt-4 text-xl">
-
-**The beauty of serverless:** Each notification method is just another function trigger! 🚀
-</div>
-
-</v-click>
-
----
-
-# In a Nutshell: Our Cloud Stack
-
-<div class="grid grid-cols-2 gap-6">
-<div>
-
-## 🔵 **Azure Functions**
-- Serverless compute platform
-- Supports C#, Python, JavaScript, and more
-- **Perfect for our word processing logic!**
-
-## 📦 **Azure Blob Storage**
-- Unlimited file storage
-- Global accessibility
-- **Where we store the uploaded text files**
-
-</div>
-<div>
-
-## 📡 **Azure SignalR Service**
-- Managed WebSocket service
-- Real-time communication made easy
-- **How we instantly notify users of results**
-
-## ⚡ **Built-in Integrations**
-- Functions trigger automatically on file upload
-- Some configuration needed (CORS, auth, etc.)
-- **Multiple services working together**
-
-</div>
-</div>
-
-
----
-
-# Our Solution: Real-time WordCount Project 
-
-## The Journey: From Idea to Implementation
-
-<div class="text-xl mb-6">
-
-**"What started as a simple word counting idea became a lesson in building scalable, real-time applications"**
-</div>
-
-## Why This Project is Special
-
-- **Background Processing** - Files process in background while user waits
-- **Real-time Updates** - User gets instant notifications via WebSocket
-- **Serverless Architecture** - Scales from 1 to 1000 users automatically
-- **Event-Driven Flow** - Each step elegantly triggers the next
-- **Student-Friendly** - Low cost to run at small scale!
-
-<div class="text-center mt-8 text-lg">
-
-**This isn't just a word counter - it's a blueprint for scalable mini projects!** 🎯
-</div>
-
----
-
-# The Complete Flow: How Everything Connects
-
-```mermaid
-graph TD
-    U[👤 User] -->|1. Select Text File| C[💻 Client App]
-    C -->|2. Generate Unique ID| C
-    C -->|3. Setup WebSocket Connection| W[📡 SignalR Service]
-    C -->|4. Request Upload URL| F1[⚡ Azure Function: GetFileUploadUrl]
-    F1 -->|5. Return Secure Upload URL| C
-    C -->|6. Upload File to Storage| B[📦 Blob Storage]
-    B -->|7. Auto-Trigger on Upload| F2[⚡ Azure Function: OnFileUpload]
-    F2 -->|8. Process & Count Words| F2
-    F2 -->|9. Send Results in Real-time| W
-    W -->|10. Instant Notification| C
-    C -->|11. Display Top 5 Words| U
-```
-
-<div class="text-center mt-4 text-lg">
-
-**11 steps, fully automated, scales efficiently!** 🚀
-</div>
-
----
-
-# The Story Behind Each Code Block
-
-Let me take you through the journey of building this scalable solution, one piece at a time...
+## Three Real Challenges:
+1. **Real-time Communication** - How to notify users instantly?
+2. **Secure File Uploads** - How to let users upload files without exposing credentials?
+3. **Automated Processing** - How to process files automatically and notify users?
 
 <div class="text-center text-xl mt-8">
 
-**"Every line of code tells a story of solving real scalability challenges"**
-</div>
-
-<div class="grid grid-cols-2 gap-8 mt-8">
-<div>
-
-## 🎯 **What We'll See**
-- Real WebSocket setup
-- Secure file upload handling
-- Automated processing triggers
-- Instant result delivery
-
-</div>
-<div>
-
-## 💡 **Why It Matters**
-- Each pattern is reusable
-- Scales to production loads
-- Low cost for small projects
-- Perfect for portfolios
-
-</div>
+Let's Go!  🚀
 </div>
 
 ---
@@ -591,31 +347,46 @@ Let me take you through the journey of building this scalable solution, one piec
 
 ---
 
-# Your Solutions vs Reality 💭
+# Challenge 1: Real-time Communication
+
 
 <div class="grid grid-cols-2 gap-8">
 <div>
 
-## 🤔 **Common Suggestions:**
-- Polling: "Are you done yet?"
-- Email notifications
-- SMS alerts
+## 📧 **Email Notifications**
+- Use Azure Communication Services - Email or Azure SendGrid (Twilio)
+- Send results as email attachment
+- Perfect for long-running processes
+
+## 📱 **SMS/Text Messages**
+- Use Azure Communication Services - SMS or Integrate with Twilio API
+- Quick result summaries
+- Great for mobile-first users
 
 </div>
 <div>
 
-## 😅 **The Problems:**
-- **Polling:** Wasteful, slow
-- **Email:** Not instant (but truly async!)
-- **SMS:** Costs money
+## 💬 **WhatsApp Business API**
+- Rich media support (charts, documents)
+- Global reach and familiarity
+- Azure Communication Services Messaging SDK or simple API calls
+
+
+## 📞 **Voice Calls**
+- Use Azure Communication Services - Call Automation API
+- Text-to-speech using Azure Cognitive Services
+- For urgent or critical results
+
 </div>
 </div>
 
 
+---
 
+# Challenge 1: Real-time Communication
 
 <div class="grid grid-cols-2 gap-8 mt-6">
-<v-click>
+
 <div>
 
 ### 📡 **WebSockets (Our Choice)**
@@ -627,7 +398,7 @@ Let me take you through the journey of building this scalable solution, one piec
 - **✅ Works with Azure Functions + SignalR**
 
 </div>
-</v-click>
+
 <v-click>
 <div>
 
@@ -691,7 +462,7 @@ Let me take you through the journey of building this scalable solution, one piec
 
 # Implementation: Setting Up Real-time Connection
 
-**Step 1: Client establishes WebSocket connection**
+**Client establishes WebSocket connection**
 
 ```javascript
 // The client's first move: establish connection
@@ -718,7 +489,7 @@ const negotiateSignalR = async () => {
 
 # Implementation: WebSocket Negotiation Function
 
-**Step 2: Azure securely manages connections**
+**Azure securely manages connections**
 
 ```csharp
 [Function("negotiate")]
@@ -767,7 +538,7 @@ public async Task<HttpResponseData> Negotiate(
 
 ---
 
-# Your Security Ideas 🛡️
+# Some Security Ideas 🛡️
 
 <div class="grid grid-cols-2 gap-8">
 <div>
@@ -837,7 +608,7 @@ graph TD
 
 # Implementation: Secure File Upload Strategy
 
-**Step 1: Generate secure, time-limited upload permissions**
+**Generate secure, time-limited upload permissions**
 
 ```csharp
 private string GenerateUri(string userId)
@@ -866,7 +637,7 @@ private string GenerateUri(string userId)
 
 # Implementation: Upload URL Generator
 
-**Step 2: Provide secure upload endpoints**
+**Provide secure upload endpoints**
 
 ```csharp
 [Function("GetFileUploadURL")]
@@ -953,7 +724,7 @@ public record ReqData(string userId);
 
 # Implementation: The Automation Masterpiece!
 
-**Step 3: Fully automated processing with user notification**
+**Fully automated processing with user notification**
 
 ```csharp
 [Function(nameof(OnFileUpload))]
@@ -977,6 +748,64 @@ public async Task<SignalRMessageAction> Run(
     };
 }
 ```
+
+---
+
+# In a Nutshell: Our Cloud Stack
+
+<div class="grid grid-cols-2 gap-6">
+<div>
+
+## 🔵 **Azure Functions**
+- Serverless compute platform
+- Supports C#, Python, JavaScript, and more
+- **Perfect for our word processing logic!**
+
+## 📦 **Azure Blob Storage**
+- Unlimited file storage
+- Global accessibility
+- **Where we store the uploaded text files**
+
+</div>
+<div>
+
+## 📡 **Azure SignalR Service**
+- Managed WebSocket service
+- Real-time communication made easy
+- **How we instantly notify users of results**
+
+## ⚡ **Built-in Integrations**
+- Functions trigger automatically on file upload
+- Some configuration needed (CORS, auth, etc.)
+- **Multiple services working together**
+
+</div>
+</div>
+
+---
+
+# The Complete Flow: How Everything Connects
+
+```mermaid
+graph TD
+    U[👤 User] -->|1. Select Text File| C[💻 Client App]
+    C -->|2. Generate Unique ID| C
+    C -->|3. Setup WebSocket Connection| W[📡 SignalR Service]
+    C -->|4. Request Upload URL| F1[⚡ Azure Function: GetFileUploadUrl]
+    F1 -->|5. Return Secure Upload URL| C
+    C -->|6. Upload File to Storage| B[📦 Blob Storage]
+    B -->|7. Auto-Trigger on Upload| F2[⚡ Azure Function: OnFileUpload]
+    F2 -->|8. Process & Count Words| F2
+    F2 -->|9. Send Results in Real-time| W
+    W -->|10. Instant Notification| C
+    C -->|11. Display Top 5 Words| U
+```
+
+<div class="text-center mt-4 text-lg">
+
+**11 steps, fully automated, scales efficiently!** 🚀
+</div>
+
 
 ---
 
