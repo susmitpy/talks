@@ -15,7 +15,7 @@ css: unocss
 
 <style>
 :root {
-  --slidev-theme-primary: #3b82f6;
+  --slidev-theme-primary: #f1f5f9;
   --slidev-theme-secondary: #1e40af;
   --slidev-theme-accent: #60a5fa;
   --slidev-theme-background: #1e293b;
@@ -38,9 +38,9 @@ css: unocss
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
 }
 
-/* Style headers with blue accent */
+/* Style headers with white/light text for contrast */
 h1, h2, h3 {
-  color: #60a5fa;
+  color: #f1f5f9;
 }
 
 /* Override headers on first slide to be white */
@@ -316,10 +316,14 @@ graph TD
 2. **Secure File Uploads** - How to let users upload files without exposing credentials?
 3. **Automated Processing** - How to process files automatically and notify users?
 
-<div class="text-center text-xl mt-8">
+<div class="text-center text-5xl mt-8">
 
 Let's Go!  🚀
 </div>
+
+<style>
+li { font-size: 1.8rem; }
+</style>
 
 ---
 
