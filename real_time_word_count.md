@@ -43,6 +43,10 @@ h1, h2, h3 {
   color: #f1f5f9;
 }
 
+h1 {
+    font-weight: 700;
+}
+
 /* Override headers on first slide to be white */
 .slidev-layout.text-center h1,
 .slidev-layout.text-center h2,
@@ -418,7 +422,7 @@ li { font-size: 1.8rem; }
 
 ---
 
-# Why WebSockets Over SSE? The Technical Reality 🤷‍♂️
+# Why WebSockets Over SSE? The Technical Reality
 
 <div class="text-center text-xl mb-8">
 
