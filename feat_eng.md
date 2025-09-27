@@ -15,7 +15,7 @@ background: /bg_image.png
 <style>
 :root {
   /* Mumbai Python Blue & Yellow Color Theme */
-  --slidev-theme-primary: #f0f6fc; /* Primary text color */
+  --slidev-theme-primary: #3776AB; /* Primary text color */
   --slidev-theme-secondary: #3776AB; /* Python Blue */
   --slidev-theme-accent: #FFD43B; /* Python Yellow */
   --slidev-theme-background: #0d1117; /* GitHub Dark Background */
@@ -92,7 +92,7 @@ pre {
 <!-- Override style for the first slide to be prominent over the background image -->
 <div class="h-full flex flex-col justify-center items-center">
   <div style="color: white !important; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
-    <h1 style="color: white !important; font-size: 3.5rem; font-weight: 700;">Feature Engineering</h1>
+    <h1 style="color: white !important; font-size: 3.5rem; font-weight: 700;">Feature Engineering - Backbone of Data Science</h1>
     <h2 style="color: white !important; font-size: 2.2rem;">The Secret Sauce for Ultra Pro Tier Models</h2>
     <h3 style="color: white !important; margin-top: 1.5rem;">By Susmit Vengurlekar (@susmitpy)</h3>
   </div>
@@ -201,7 +201,7 @@ You're analyzing an international sales report. Your `price` column, which shoul
 
 <v-click>
   <div class="mt-8 text-3xl" style="color: var(--slidev-theme-accent);">
-    <b>Audience Question:</b> What happens if you just load this and convert to a number? What will your program probably think `1,000.00` is? What about `1.000,00`?
+    <b>Audience Question:</b> What happens if you just load this and convert to a number? What will your program probably think `1,000.00` is? What about `1,000`? - what if it's `One` ?
   </div>
 </v-click>
 
@@ -217,7 +217,7 @@ You're analyzing an international sales report. Your `price` column, which shoul
 
 Let's look at a common trap with a library we all love: `pandas`.
 
-<div class="grid grid-cols-2 gap-8 items-center mt-6">
+<div class="grid grid-cols-2 gap-8 items-center mt-1">
 
 <!-- Left side: The Python Code -->
 <div class="col-span-1">
@@ -251,7 +251,7 @@ DateTime   1998-11-17 11:00:00
 </div>
 
 <v-click>
-  <div class="mt-8 text-2xl p-4 bg-gray-900 rounded border" style="border-color: var(--slidev-theme-accent);">
+  <div class="mt-1 text-2xl p-4 bg-gray-900 rounded border" style="border-color: var(--slidev-theme-accent);">
     <b>The Disaster:</b> Because `pd.to_datetime` only had a time, it <b>used today's date as a default!</b> This is a silent data corruption bug that can poison your entire dataset.
   </div>
 </v-click>
@@ -265,27 +265,39 @@ You are asked to find the marketing channel with the best Return on Investment (
 | Marketing Channel | Marketing Expense | Sales Achieved |
 | ----------------- | ----------------- | -------------- |
 | Social Media      | 90,000            | $1,500         |
-| Google Ads        | 7,000             | $3,500         |
+| Billboards       | 7,000             | $3,500         |
 | TV Commercial     | 500,000           | $10,000        |
 
 <br/>
-<v-click>
-<div class="mt-8 text-3xl" style="color: var(--slidev-theme-accent);">
+
+<div class="text-2xl" style="color: var(--slidev-theme-accent);">
   <b>Audience Question:</b> Based on this table, which channel looks like the winner? Which looks like the loser?
 </div>
-</v-click>
 
-<v-click>
-<div class="mt-8 text-xl p-4 bg-gray-900 rounded border border-red-400">
-  <b>The Trap:</b> You weren't told the units! The `Marketing Expense` is in Indian Rupees (₹) and `Sales Achieved` is in US Dollars ($).
+---
+
+# The Currency & Unit Assumption (Contd.)
+
+You are asked to find the marketing channel with the best Return on Investment (ROI).
+
+| Marketing Channel | Marketing Expense | Sales Achieved |
+| ----------------- | ----------------- | -------------- |
+| Social Media      | 90,000            | $1,500         |
+| Billboards       | 7,000             | $3,500         |
+| TV Commercial     | 500,000           | $10,000        |
+
+<br/>
+
+<div class="text-l p-2 bg-gray-900 rounded border border-red-400">
+  <b>The Trap:</b> You weren't told the units! The `Marketing Expense` is in Indian Rupees and `Sales Achieved` is in US Dollars.
   <br/><br/>
-  With an exchange rate of ~₹83 to $1:
-  - **Google Ads:** Cost ~$84, earned $3,500. **(Massive ROI)**
-  - **TV Commercial:** Cost ~$6,000, earned $10,000. **(Good ROI)**
-  <br/><br/>
+  With an exchange rate of 83 to 1:
+  - **Google Ads:** Cost ~84, earned 3,500. **(Massive ROI)**
+  - **TV Commercial:** Cost ~6,000, earned 10,000. **(Good ROI)**
+  <br/>
   Without asking about units and currency, your analysis would be completely wrong.
 </div>
-</v-click>
+
 
 ---
 
@@ -299,17 +311,17 @@ We must clean our data before we can use it. The work of a Data Janitor is criti
 - Data Validation
 
 <v-click>
-<div class="mt-8 text-3xl" style="color: var(--slidev-theme-accent);">
+<div class="mt-2 text-3xl" style="color: var(--slidev-theme-accent);">
   <b>Audience Question:</b> We're analyzing student commute times. Most are 30-90 mins, but one student takes 3 hours (180 mins)! This is an outlier. What should we do with it?
 </div>
 </v-click>
 
 <v-click>
-<div class="mt-8 text-xl p-4 bg-gray-900 rounded border" style="border-color: var(--slidev-theme-accent);">
+<div class="mt-2 text-xl p-4 bg-gray-900 rounded border" style="border-color: var(--slidev-theme-accent);">
   <b>The Answer: Investigate!</b> Don't just delete.
   <br/>- Is it a typo for "18.0"? (Fix it)
   <br/>- Is it a genuine case of a student living very far away? (Keep it, it's valuable information!)
-  <br/><br/>
+  <br/>
   The right action depends on the story behind the data point.
 </div>
 </v-click>
@@ -345,6 +357,7 @@ You have a dataset from a food delivery app with only **three** columns:
 
 <v-clicks>
 <div class="mt-4 text-left text-xl pl-20">
+
 - **Customer Features:** `order_frequency`, `favorite_restaurant`, `time_since_last_order`...
 - **Time Features:** `is_weekend`, `is_lunchtime`, `is_late_night`...
 - **Restaurant Features:** `restaurant_popularity`...
@@ -366,7 +379,9 @@ You have `height_cm` and `weight_kg`. By themselves, they are just numbers. Toge
 `BMI = weight_kg / (height_cm / 100)**2`
 
 This is a classic example of creating a feature that contains more domain-specific information than its parts.
-<p class="text-sm text-gray-400 mt-2">*(Fun Fact: A BMI calculator was once someone's final year engineering project!)*</p>
+<p class="text-sm text-gray-400 mt-2"> 
+
+*(Fun Fact: A BMI calculator was once someone's final year engineering project!)*</p>
 </div>
 
 <div class="p-4 bg-gray-800 rounded">
@@ -385,16 +400,16 @@ This can capture patterns like "people who don't provide a middle name are less 
 
 A single `order_timestamp` column is a treasure chest. Don't just leave it as is; unpack it!
 
-**`1998-11-17 11:00:00`** can become:
+**`2022-07-22 11:00:00`** can become:
 
 <div class="grid grid-cols-3 gap-4 mt-6 text-xl">
-  <div class="p-3 bg-gray-800 rounded">Year: `1998`</div>
-  <div class="p-3 bg-gray-800 rounded">Month: `11`</div>
-  <div class="p-3 bg-gray-800 rounded">Day: `17`</div>
+  <div class="p-3 bg-gray-800 rounded">Year: `2022`</div>
+  <div class="p-3 bg-gray-800 rounded">Month: `07`</div>
+  <div class="p-3 bg-gray-800 rounded">Day: `22`</div>
   <div class="p-3 bg-gray-800 rounded">Hour: `11`</div>
-  <div class="p-3 bg-gray-800 rounded">Quarter: `4`</div>
-  <div class="p-3 bg-gray-800 rounded">Day of Week: `1` (Tue)</div>
-  <div class="p-3 bg-gray-800 rounded">Week of Year: `47`</div>
+  <div class="p-3 bg-gray-800 rounded">Quarter: `3`</div>
+  <div class="p-3 bg-gray-800 rounded">Day of Week: `0` (Mon)</div>
+  <div class="p-3 bg-gray-800 rounded">Week of Year: `29`</div>
   <div class="p-3 bg-gray-800 rounded">Is Weekend?: `False`</div>
   <div class="p-3 bg-gray-800 rounded">Time of Day: `Morning`</div>
 </div>
@@ -405,11 +420,10 @@ Each new feature allows the model to find patterns like "orders peak on weekend 
 
 ---
 
-# Generating Features: "Deep Learning" Thinking
+# Generating Features: Deep <s>Learning</s> Thinking
 
 Good feature engineering is about seeing the hidden relationships in your data. It's like doing the "thinking" for the model.
 
-Given this dataset:
 <div class="p-3 bg-gray-800 rounded mt-2">
 <pre><code>Mr. Tony Almeida 38
 Mrs. Michelle Almeida 36
@@ -419,7 +433,7 @@ Ms. Kim Jack Bauer 18
 </div>
 
 <v-click>
-<div class="mt-6 text-xl">
+<div class="mt-2 text-xl">
 A great data scientist doesn't just see names and numbers. They see patterns and create new, high-signal features:
 
 - **`Gender`**: Derived from the title (`Mr.`, `Mrs.`, `Ms.`).
@@ -556,10 +570,6 @@ What if you have 100s of categories (e.g., `cities`)? One-Hot Encoding would cre
 
 **Binary Encoding is the solution:**
 
-1.  **Assign Integers**: Each category gets a number. `Mumbai -> 1`, `Delhi -> 2`, `Bengaluru -> 3`
-2.  **Convert to Binary**: Convert those numbers to their binary form. `1 -> 01`, `2 -> 10`, `3 -> 11`
-3.  **Split into Columns**: Create new columns for each binary digit.
-
 | City      | b2 | b1 |
 | --------- | :- | :- |
 | Mumbai    | 0  | 1  |
@@ -567,7 +577,7 @@ What if you have 100s of categories (e.g., `cities`)? One-Hot Encoding would cre
 | Bengaluru | 1  | 1  |
 
 <div class="mt-4 text-xl">
-We encoded 3 categories into just 2 columns. To encode **100** categories, you would only need **7** columns (since 2^7 = 128), saving you from the "curse of dimensionality".
+We encoded 3 categories into just 2 columns. To encode <b>100</b> categories, you would only need <b>7</b> columns (since 2^7 = 128), saving you from the "curse of dimensionality".
 </div>
 
 ---
@@ -576,11 +586,11 @@ We encoded 3 categories into just 2 columns. To encode **100** categories, you w
 
 Target leakage is when your model uses information that would not be available at the time of prediction. It's cheating, and it creates models that are useless in the real world.
 
-<div class="p-6 bg-gray-900 rounded border border-red-500 mt-8 text-left">
-<h3 class="text-red-400 !border-none !p-0">Example 1: The Impossible Feature</h3>
+<div class="p-2 bg-gray-900 rounded border border-red-500 text-left">
+<h5 class="text-red-400 !border-none !p-0">Example 1: The Impossible Feature</h5>
 You build a model to predict employee churn with 99.9% accuracy. Your killer feature is `days_since_last_paycheck`. Of course, people who have churned stop getting paychecks. This feature is a direct result of the target!
 <hr class="opacity-30 my-4"/>
-<h3 class="text-red-400 !border-none !p-0">Example 2: The Pre-Split Mistake</h3>
+<h5 class="text-red-400 !border-none !p-0">Example 2: The Pre-Split Mistake</h5>
 A more subtle but common mistake is processing data before splitting it.
 
 ```python

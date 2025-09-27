@@ -54,6 +54,8 @@ jobs:
 
       - name: Build Real-time Word Count
         run: nr --name=real_time_word_count build_pres
+      # - name: Build Feature Engineering
+      #   run: nr --name=feat_eng build_pres
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
