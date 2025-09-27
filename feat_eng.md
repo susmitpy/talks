@@ -1,7 +1,7 @@
 ---
 theme: seriph
 class: text-center
-title: 'Feature Engineering: The Secret Sauce for God-Tier Models'
+title: "Feature Engineering - Backbone of Data Science"
 info: |
   ## Feature Engineering
   ### By Susmit Vengurlekar
