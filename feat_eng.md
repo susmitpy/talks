@@ -15,13 +15,13 @@ background: /bg_image.png
 <style>
 :root {
   /* Mumbai Python Blue & Yellow Color Theme */
-  --slidev-theme-primary: #3776AB; /* Primary text color */
-  --slidev-theme-secondary: #3776AB; /* Python Blue */
-  --slidev-theme-accent: #FFD43B; /* Python Yellow */
-  --slidev-theme-background: #0d1117; /* GitHub Dark Background */
-  --slidev-theme-foreground: #f0f6fc; /* Main text color */
-  --slidev-code-background: #011627; /* A darker code background */
-  --slidev-code-foreground: #d6deeb;
+  --slidev-theme-primary: #dee2e5ff; /* Primary text color */
+  --slidev-theme-secondary: #ffffffff; /* Python Blue */
+  --slidev-theme-accent: #1126acff; /* Python Yellow */
+  --slidev-theme-background: linear-gradient(135deg, #3776AB 0%, #FFD43B 100%); /* Bluish-yellow gradient background */
+  --slidev-theme-foreground: #ffffff; /* White text for visibility on gradient background */
+  --slidev-code-background: rgba(0, 0, 0, 0.7); /* Dark code background with transparency */
+  --slidev-code-foreground: #f0f6fc; /* Light code text */
 }
 
 .slidev-layout {
@@ -33,11 +33,11 @@ background: /bg_image.png
 h1, h2, h3, h4 {
   color: var(--slidev-theme-foreground);
   font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 h1 {
-  color: var(--slidev-theme-secondary); /* Blue for main titles */
-  border-bottom: 2px solid var(--slidev-theme-accent);
+  color: #ffffff; /* White for main titles instead of blue */
   padding-bottom: 0.5rem;
   display: inline-block;
 }
@@ -60,14 +60,14 @@ pre, code {
 
 pre {
   background: var(--slidev-code-background) !important;
-  border: 1px solid #30363d;
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 8px;
 }
 
 /* Mermaid diagram styling */
 .mermaid {
-    background-color: var(--slidev-theme-background);
-    color: white;
+    background: var(--slidev-theme-background);
+    color: var(--slidev-theme-foreground);
     padding: 1rem;
     border-radius: 8px;
     display: flex;
@@ -77,15 +77,12 @@ pre {
 
 /* Override slidev-layout to not use background image on all slides */
 .slidev-page {
-  background-color: var(--slidev-theme-background);
+  background: var(--slidev-theme-background);
 }
 
 /* Re-apply background image only on the first slide (intro layout) */
 .slidev-layout.text-center {
-  background-image: var(--slidev-background-image);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background: var(--slidev-theme-background);
 }
 </style>
 
@@ -159,7 +156,7 @@ This is where projects fail before they even begin.
 # The Separator Assumption
 
 <br/>
-<div class="text-3xl" style="color: var(--slidev-theme-accent);">
+<div class="mt-8 text-3xl" style="color: #1a202c; background: rgba(255,255,255,0.9); padding: 1rem; border-radius: 8px; font-weight: bold;">
   <b>Audience Question:</b> What does the "C" in "CSV" stand for?
 </div>
 
@@ -200,7 +197,7 @@ You're analyzing an international sales report. Your `price` column, which shoul
 </div>
 
 <v-click>
-  <div class="mt-8 text-3xl" style="color: var(--slidev-theme-accent);">
+  <div class="mt-8 text-3xl" style="color: #1a202c; background: rgba(255,255,255,0.9); padding: 1rem; border-radius: 8px; font-weight: bold;">
     <b>Audience Question:</b> What happens if you just load this and convert to a number? What will your program probably think `1,000.00` is? What about `1,000`? - what if it's `One` ?
   </div>
 </v-click>
@@ -270,7 +267,7 @@ You are asked to find the marketing channel with the best Return on Investment (
 
 <br/>
 
-<div class="text-2xl" style="color: var(--slidev-theme-accent);">
+<div class="text-2xl" style="color: #1a202c; background: rgba(255,255,255,0.9); padding: 1rem; border-radius: 8px; font-weight: bold;">
   <b>Audience Question:</b> Based on this table, which channel looks like the winner? Which looks like the loser?
 </div>
 
@@ -311,7 +308,7 @@ We must clean our data before we can use it. The work of a Data Janitor is criti
 - Data Validation
 
 <v-click>
-<div class="mt-2 text-3xl" style="color: var(--slidev-theme-accent);">
+<div class="mt-2 text-3xl" style="color: #1a202c; background: rgba(255,255,255,0.9); padding: 1rem; border-radius: 8px; font-weight: bold;">
   <b>Audience Question:</b> We're analyzing student commute times. Most are 30-90 mins, but one student takes 3 hours (180 mins)! This is an outlier. What should we do with it?
 </div>
 </v-click>
@@ -350,9 +347,9 @@ You have a dataset from a food delivery app with only **three** columns:
 `customer_id`, `restaurant_name`, `order_timestamp`
 
 <v-click>
-<div class="mt-8 text-3xl" style="color: var(--slidev-theme-accent);">
-  <b>Audience Brainstorm:</b> What new, killer features can you create from just this data to predict if a customer will order again? Shout them out!
-</div>
+  <div class="mt-8 text-3xl" style="color: #1a202c; background: rgba(255,255,255,0.9); padding: 1rem; border-radius: 8px; font-weight: bold;">
+    <b>Audience Brainstorm:</b> What new, killer features can you create from just this data to predict if a customer will order again? Shout them out!
+  </div>
 </v-click>
 
 <v-clicks>
@@ -628,7 +625,7 @@ Choosing your weapon and how you'll measure victory.
 Your model works. It's 95% accurate. But then your boss asks... **"WHY did it reject this loan application?"**
 
 <v-click>
-  <div class="mt-8 text-3xl" style="color: var(--slidev-theme-accent);">
+  <div class="mt-8 text-3xl" style="color: #1a202c; background: rgba(255,255,255,0.9); padding: 1rem; border-radius: 8px; font-weight: bold;">
     <b>Audience Question:</b> Imagine you built an AI agent to screen job candidates. Why is XAI an absolute necessity? What could go horribly wrong if you can't explain why someone was rejected?
   </div>
 </v-click>
