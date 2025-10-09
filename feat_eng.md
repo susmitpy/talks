@@ -185,6 +185,7 @@ graph TD
 <style>
   .mermaid {
     scale: 1;
+    text-align: center;
   }
 </style>
 
@@ -204,10 +205,10 @@ graph TD
 
 ---
 
-# The Separator Assumption
+# Trap 1
 
 <br/>
-<div class="mt-4 text-3xl" style="color: #1a202c; background: rgba(255, 212, 59, 0.95); padding: 1rem; border-radius: 8px; font-weight: bold; border: 3px solid #3776AB;">
+<div class="text-3xl" style="color: #1a202c; background: rgba(255, 212, 59, 0.95); padding: 1rem; border-radius: 8px; font-weight: bold; border: 3px solid #3776AB;">
   <b>Audience Question:</b> What does the "C" in "CSV" stand for?
 </div>
 
@@ -215,7 +216,7 @@ graph TD
   <p class="text-center text-2xl mt-4">Everyone says "Comma". But the real world is messy.</p>
   <p class="text-center text-xl">Even if a file is named `report.csv`, the separator could be anything!</p>
 
-  <div class="p-4 rounded mt-4" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
+  <div class="p-4 rounded mt-4">
   <pre class="text-lg"><code>Python,Dart,Go
 Python	Dart	Go
 Python|Dart|Go
@@ -224,14 +225,14 @@ Python;Dart;Go</code></pre>
 </v-click>
 
 <v-click>
-  <div class="mt-2 text-xl p-4 rounded border-2" style="background: rgba(13, 17, 23, 0.95); border-color: #FFD43B;">
+  <div class="text-xl p-4 rounded border-2" style="background: rgba(13, 17, 23, 0.95); border-color: #FFD43B;">
     <b style="color: #FFD43B;">The Takeaway:</b> Never assume the separator. <b>Always inspect the raw file first.</b> Hardcoding `sep=','` is a bug waiting to happen. The real meaning is "Character-Separated Values."
   </div>
 </v-click>
 
 ---
 
-# The Numeric Format Assumption
+# Trap 2
 
 <div class="text-xl" >
 You're analyzing an international sales report. Your <code>price</code> column, which should contain the number <em>One Thousand</em>, looks like this in different rows:
@@ -263,7 +264,7 @@ You're analyzing an international sales report. Your <code>price</code> column, 
 
 ---
 
-# The Time Assumption
+# Trap 3
 
 <div class="text-xl" >
 Let's look at a common trap with a library we all love: `pandas`.
@@ -303,58 +304,58 @@ DateTime   1998-11-17 11:00:00
 </div>
 
 <v-click>
-  <div class="mt-1 text-2xl p-4 rounded border-2" style="background: rgba(13, 17, 23, 0.95); border-color: #FFD43B;">
+  <div class="mt-1 text-2xl p-4 rounded border-2">
     <b style="color: #FFD43B;">The Disaster:</b> Because `pd.to_datetime` only had a time, it <b>used today's date as a default!</b> This is a silent data corruption bug that can poison your entire dataset.
   </div>
 </v-click>
 
 ---
 
-# The Currency & Unit Assumption
+# Trap 4
 
 <div class="text-xl" >
-You are asked to find the marketing channel with the best Return on Investment (ROI).
+You are asked to find the most effective warehouse robot based on its daily operational data.
 </div>
 
-<div style="color: #1a202c; background: rgba(255, 255, 255, 0.95); padding: 1rem; border-radius: 8px; border: 3px solid #3776AB;" class="mt-4">
+<div style="color: #1a202c;" class="mt-4">
 
-| Marketing Channel | Marketing Expense | Sales Achieved |
-| ----------------- | ----------------- | -------------- |
-| Social Media      | 90,000            | $1,500         |
-| Billboards       | 7,000             | $3,500         |
-| TV Commercial     | 500,000           | $10,000        |
+| Robot Model | Distance Covered |
+| ----------- | ---------------- |
+| Robot A     | 900,000          |
+| Robot B     | 7,500            |
+| Robot C     | 10                |
+
 </div>
 
 <br/>
 
 <div class="text-2xl" style="color: #1a202c; background: rgba(255, 212, 59, 0.95); padding: 1rem; border-radius: 8px; font-weight: bold; border: 3px solid #3776AB;">
-  <b>Audience Question:</b> Based on this table, which channel looks like the winner? Which looks like the loser?
+  <b>Audience Question:</b> Based on this table, which robot looks like the winner in terms of distance covered? Which looks like the loser?
 </div>
 
 ---
 
-# The Currency & Unit Assumption (Contd.)
-<div class="text-xl" style="color: #1a202c; background: rgba(255, 212, 59, 0.95); padding: 1rem; border-radius: 8px; font-weight: bold; margin-top: -1rem; border: 3px solid #3776AB;">
-  <b>Audience Question:</b> Based on this table, which channel looks like the winner? Which looks like the loser?
-</div>
+# Trap 4 (Contd.)
 
-<div style="color: #1a202c; background: rgba(255, 255, 255, 0.95); padding: 0.2rem; border-radius: 8px; border: 3px solid #3776AB;" class="mt-2">
+<div style="color: #1a202c;">
 
-| Marketing Channel | Marketing Expense | Sales Achieved |
-| ----------------- | ----------------- | -------------- |
-| Social Media      | 90,000            | $1,500         |
-| Billboards       | 7,000             | $3,500         |
-| TV Commercial     | 500,000           | $10,000        |
+| Robot Model | Distance Covered |
+| ----------- | ---------------- |
+| Robot A     | 900,000          |
+| Robot B     | 7,500            |
+| Robot C     | 10               |
 
 </div>
 
 <div class="text-l mt-2 p-2 rounded border-2" style="background: rgba(13, 17, 23, 0.95); border-color: #FFD43B;">
-<b style="color: #FFD43B;">The Trap:</b> You weren't told the units! The <code>Marketing Expense</code> is in Indian Rupees (INR) and <code>Sales Achieved</code> is in US Dollars (USD).
-With an exchange rate of roughly 83 INR to 1 USD:
+<b style="color: #FFD43B;">The Trap:</b> You weren't told the units! The <code>Distance Covered</code> is in different scales.
+Let's convert them all to metres:
 <ul>
-<li class="mt-2"><b>Social Media:</b> Cost 90,000 INR ≈ <b>$1,084 USD</b>. Earned $1,500. <b>(Profitable!)</b></li>
-<li><b>Billboards:</b> Cost 7,000 INR ≈ <b>$84 USD</b>. Earned $3,500. <b>(Massive ROI - The real winner!)</b></li>
+<li class="mt-2"><b>Robot A:</b> Traveled 900,000 <b>centimetres</b> = <b>9,000 metres</b>.</li>
+<li><b>Robot B:</b> Traveled 7,500 <b>metres</b>.</li>
+<li><b>Robot C:</b> Traveled 10 <b>kilometres</b> = <b>10,000 metres</b>.</li>
 </ul>
+So, Robot C is actually the winner, and Robot A is the loser! Not the other way around.
 </div>
 
 
@@ -496,15 +497,15 @@ A single `order_timestamp` column is a treasure chest. Don't just leave it as is
 
 
 <div class="grid grid-cols-3 gap-4 mt-6 text-xl">
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Year: `2002`</div>
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Month: `07`</div>
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Day: `22`</div>
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Hour: `11`</div>
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Quarter: `3`</div>
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Day of Week: `0` (Mon)</div>
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Week of Year: `30`</div>
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Is Weekend?: `False`</div>
-  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Time of Day: `Morning`</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Year: 2002</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Month: 07</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Day: 22</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Hour: 11</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Quarter: 3</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Day of Week: 0 (Mon)</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Week of Year: 30</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Is Weekend?: False</div>
+  <div class="p-3 rounded" style="background: rgba(55, 118, 171, 0.2); border: 2px solid #3776AB;">Time of Day: Morning</div>
 </div>
 
 <div class="mt-8 text-2xl">
@@ -518,7 +519,7 @@ Each new feature allows the model to find patterns like "orders peak on weekend 
 Good feature engineering is about seeing the hidden relationships in your data. It's like doing the "thinking" for the model.
 </div>
 
-<div class="p-3 rounded mt-2" style="border: 2px solid #3776AB;">
+<div class="p-3 rounded mt-2">
 <pre>Mr. Tony Almeida 38
 Mrs. Michelle Almeida 36
 Mr. Jack Bauer 42
