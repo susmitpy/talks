@@ -184,6 +184,7 @@ graph TD
 
 <style>
   .mermaid {
+    font-family: 'trebuchet ms', verdana, arial;
     scale: 1;
     text-align: center;
   }
