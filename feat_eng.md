@@ -795,7 +795,7 @@ A model is only as good as the yardstick you measure it with. The metric must ma
   - **Precision vs. Recall:** Crucial for imbalanced problems. Is it worse to have a false positive (spam filter blocks a good email) or a false negative (spam gets through)?
 
 - **For Regression (How much?):**
-  - **MAE vs. MSE:** Do you want to penalize big errors more? A ₹10 error and a ₹1 lakh error are treated very differently by **MSE**.
+  - **MAE vs. MSE:** Do you want to penalize big errors more? A Rs. 10 error and a Rs. 1 lakh error are treated very differently by **MSE**.
   - **RMSLE:** Are you forecasting sales? This metric punishes under-predicting more than over-predicting, because running out of stock is a bigger disaster than having a little extra.
 
 </div>
