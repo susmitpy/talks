@@ -296,7 +296,7 @@ print(df.iloc)
 </div>
 
 <!-- Right side: The Output Table -->
-<div class="col-span-1 p-4 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
+<div class="col-span-1 p-4 rounded">
   <pre class="text-lg leading-relaxed"><code>Date       1998-11-17 00:00:00
 <span class="font-bold" style="color: #FFD43B;">Time       2025-09-27 11:00:00</span>
 DateTime   1998-11-17 11:00:00
@@ -343,7 +343,7 @@ You are asked to find the most effective warehouse robot based on its daily oper
 | Robot Model | Distance Covered |
 | ----------- | ---------------- |
 | Robot A     | 900,000          |
-| Robot B     | 7,500            |
+| Robot B     | 9,500            |
 | Robot C     | 10               |
 
 </div>
@@ -353,7 +353,7 @@ You are asked to find the most effective warehouse robot based on its daily oper
 Let's convert them all to metres:
 <ul>
 <li class="mt-2"><b>Robot A:</b> Traveled 900,000 <b>centimetres</b> = <b>9,000 metres</b>.</li>
-<li><b>Robot B:</b> Traveled 7,500 <b>metres</b>.</li>
+<li><b>Robot B:</b> Traveled 9,500 <b>metres</b>.</li>
 <li><b>Robot C:</b> Traveled 10 <b>kilometres</b> = <b>10,000 metres</b>.</li>
 </ul>
 So, Robot C is actually the winner, and Robot A is the loser! Not the other way around.
@@ -596,27 +596,37 @@ Not all numerical data is ready for a model. We often need to transform it to re
 
 # Numerical Transformations in Action
 
-<div class="grid grid-cols-2 gap-6 mt-4 text-left">
+<div class="grid grid-cols-2 gap-2 text-left">
 
-<div class="p-4 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
+<div class="p-2 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
 <h3 class="!border-none !p-0" style="color: #FFD43B !important;">Binning</h3>
 <p>Grouping `Age` into bins like `(18-25)`, `(26-40)` can simplify the model's job and reduce the impact of outliers.
 </p>
 </div>
 
-<div class="p-4 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
+<div class="p-2 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
 <h3 class="!border-none !p-0" style="color: #FFD43B !important;">Log Transformation</h3>
 <p>For skewed data like `Income`, a log transform `log(income)` pulls in high-value outliers, helping the model focus on the bulk of the data.
 </p>
 </div>
 
-<div class="p-4 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
+<div class="p-2 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
 <h3 class="!border-none !p-0" style="color: #FFD43B !important;">Cyclical Transformation</h3>
-<p>To a model, `Hour 23` is far from `Hour 0`. We map time onto a circle using `sin` and `cos` so the model understands that midnight follows 11 PM.
+<p>To a model, `Hour 23` is far from `Hour 0`. We map time onto a circle to capture this cyclical nature.
+
+```markdown
+Given a cyclical feature `x` 
+with a total cycle length `X`:
+
+angle = 2π * (x / X)
+
+sin_x = sin(angle); cos_x = cos(angle)
+```
+
 </p>
 </div>
 
-<div class="p-4 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
+<div class="p-2 rounded" style="background: rgba(13, 17, 23, 0.95); border: 2px solid #3776AB;">
 <h3 class="!border-none !p-0" style="color: #FFD43B !important;">Interaction Features</h3>
 <p>Creating `feature_A * feature_B`. This gives context, like `has_pool * is_in_desert` for house prices. Also called "Feature Mixer".
 </p>
@@ -785,7 +795,7 @@ A model is only as good as the yardstick you measure it with. The metric must ma
   - **Precision vs. Recall:** Crucial for imbalanced problems. Is it worse to have a false positive (spam filter blocks a good email) or a false negative (spam gets through)?
 
 - **For Regression (How much?):**
-  - **MAE vs. MSE:** Do you want to penalize big errors more? A 10-dollar error and a 1-million-dollar error are treated very differently by **MSE**.
+  - **MAE vs. MSE:** Do you want to penalize big errors more? A ₹10 error and a ₹1 lakh error are treated very differently by **MSE**.
   - **RMSLE:** Are you forecasting sales? This metric punishes under-predicting more than over-predicting, because running out of stock is a bigger disaster than having a little extra.
 
 </div>
