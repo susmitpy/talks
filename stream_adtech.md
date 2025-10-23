@@ -112,55 +112,52 @@ td {
   </div>
 </div>
 
-<!--s-->
+<!--
 Welcome, everyone. Today we're diving into the world of real-time data to solve a critical business problem in digital advertising. We'll build a complete streaming pipeline from scratch.
-<!--s-->
+-->
 
 ---
 src: ./pages/disclaimer.md
 ---
 
 ---
-src: ./pages/bug.md
----
-
----
 src: ./pages/about.md
 ---
-
----
-src: ./pages/ice_breaker.md
----
-
+r
 ---
 
 # Agenda
+<div class="grid grid-cols-2 gap-8 mt-8 text-left">
+  <div>
+    <ol class="text-xl space-y-2">
+      <li>The Problem: Why CTR Matters</li>
+      <li>Why Real-Time? Batch vs. Streaming</li>
+      <li>Foundational Pattern: Message Queuing</li>
+      <li>Foundational Pattern: Pub-Sub</li>
+      <li>Introduction to Apache Kafka</li>
+      <li>Kafka Architecture: Built for Resilience</li>
+      <li>Understanding Streams & Windows</li>
+      <li>The Problem: Out-of-Order Events</li>
+      <li>The Solution: Watermarks</li>
+    </ol>
+  </div>
+  <div>
+    <ol class="text-xl space-y-2" start="10">
+      <li>The Refinement: Allowed Lateness</li>
+      <li>Introduction to Apache Flink</li>
+      <li>Flink Architecture: How it Works</li>
+      <li>System Architecture</li>
+      <li>Components</li>
+      <li>PyFlink Logic Walkthrough</li>
+      <li>Demo</li>
+      <li>Q&A</li>
+    </ol>
+  </div>
+</div>
 
-<v-clicks>
-
-1.  The Problem: Why CTR Matters
-2.  Why Real-Time? Batch vs. Streaming
-3.  Foundational Pattern: Message Queuing
-4.  Foundational Pattern: Pub-Sub
-5.  Introduction to Apache Kafka
-6.  Kafka Architecture: Built for Resilience
-7.  Understanding Streams & Windows
-8.  The Problem: Out-of-Order Events
-9.  The Solution: Watermarks
-10. The Refinement: Allowed Lateness
-11. Introduction to Apache Flink
-12. Flink Architecture: How it Works
-13. System Architecture
-14. Components
-15. PyFlink Logic Walkthrough
-16. Demo
-17. Q&A
-
-</v-clicks>
-
-<!--s-->
+<!--
 Today, we're going on a journey. We'll start with the 'why'—the business problem. Then, we'll cover the fundamental building blocks like Kafka and the core concepts of stream processing. Finally, we'll dive into our specific Flink architecture and see it all come together in a live demo.
-<!--s-->
+-->
 
 ---
 
@@ -177,9 +174,9 @@ Businesses need real-time CTR to:
 - 📉 Detect underperforming ads instantly
 - 💰 Allocate budget effectively
 
-<!--s-->
+<!--
 In digital advertising, everything comes down to this simple formula: Click-Through Rate. It tells us how effective our ads are. Businesses need this number *now*, not tomorrow, to make critical decisions that directly impact their revenue. Waiting for an overnight batch job is simply too slow.
-<!--s-->
+-->
 
 ---
 
@@ -202,9 +199,9 @@ In digital advertising, everything comes down to this simple formula: Click-Thro
   </div>
 </div>
 
-<!--s-->
+<!--
 This is the core difference. With batch, you're looking at a photograph of the past. You can react to what happened yesterday. With streaming, you're looking at a live video feed. You can adapt and optimize *as it happens*, creating a powerful feedback loop.
-<!--s-->
+-->
 
 ---
 
@@ -229,9 +226,9 @@ graph TD
   Decouples services. The sender doesn't need to wait for the receiver.
 </p>
 
-<!--s-->
+<!--
 Before we talk about Kafka, let's understand a basic pattern: message queuing. Think of it like a mailbox. Service A can drop off a message without waiting for Service B to be ready to pick it up. This decouples them and makes the system more resilient.
-<!--s-->
+-->
 
 ---
 
@@ -258,9 +255,9 @@ graph LR
   A single event can be consumed by many different services for different purposes.
 </p>
 
-<!--s-->
+<!--
 The other key pattern is Publish-Subscribe. This is like a radio broadcast. A publisher sends a message to a topic, and any service that has 'tuned in' to that topic receives a copy. One message, many independent listeners.
-<!--s-->
+-->
 
 ---
 
@@ -282,9 +279,9 @@ The other key pattern is Publish-Subscribe. This is like a radio broadcast. A pu
   </div>
 </div>
 
-<!--s-->
+<!--
 So where does Kafka fit in? It's a distributed streaming *platform* that gives us the best of both worlds. It acts as the reliable, scalable backbone for all real-time data moving through our system. It's not just a pipe; it's a durable storage system for streams.
-<!--s-->
+-->
 
 ---
 
@@ -309,9 +306,9 @@ graph TD
 - One replica is the **Leader** (handles reads/writes); others are **Followers**.
 - If a Leader fails, a Follower is automatically elected as the new Leader.
 
-<!--s-->
+<!--
 This is why Kafka is so resilient. A topic is broken into partitions, and each partition is copied across multiple machines. If the machine hosting the leader fails, the system automatically fails over to a replica. This ensures zero data loss and high availability.
-<!--s-->
+-->
 
 ---
 
@@ -329,9 +326,9 @@ This is why Kafka is so resilient. A topic is broken into partitions, and each p
   </v-click>
 </div>
 
-<!--s-->
+<!--
 A stream is, by definition, infinite. You can't just aggregate 'all' the events. So how do we analyze it? We apply a 'window'—a finite boundary, usually based on time. We're essentially creating micro-batches from the stream to perform calculations.
-<!--s-->
+-->
 
 ---
 
@@ -354,9 +351,9 @@ Events don't always arrive in the order they occurred due to network latency, de
 <h3 class="mt-8">Question: How does our system know when a time window (e.g., 10:00-10:05) is "complete"?</h3>
 </v-click>
 
-<!--s-->
+<!--
 In a perfect world, events arrive perfectly ordered. In the real world, they don't. This creates a huge problem: how does our system know it has received all the data for a specific time window before calculating the result?
-<!--s-->
+-->
 
 ---
 
@@ -373,9 +370,9 @@ A **Watermark** is a special message in the stream that acts as a progress indic
 
 This allows Flink to safely close windows and emit results.
 
-<!--s-->
+<!--
 Flink solves this with watermarks. A watermark is a timestamp that essentially says, 'Okay, I've waited long enough for late data, it's safe to close the window for 10:00 to 10:05 and emit the result.' This allows Flink to make progress without waiting forever.
-<!--s-->
+-->
 
 ---
 
@@ -399,9 +396,9 @@ graph TD
 
 **Allowed Lateness:** A grace period that lets Flink accept late events and **update** the previously emitted result for that window.
 
-<!--s-->
+<!--
 But what if an event is exceptionally late? We can configure an 'allowed lateness' period. This tells Flink to keep the state for a window around for a bit longer. If a straggler arrives within this period, Flink will re-calculate and emit an updated result.
-<!--s-->
+-->
 
 ---
 
@@ -420,9 +417,9 @@ But what if an event is exceptionally late? We can configure an 'allowed latenes
   </ul>
 </div>
 
-<!--s-->
+<!--
 If Kafka is the nervous system, Flink is the brain. It's where the stateful computation happens. Its ability to maintain state reliably and guarantee exactly-once processing makes it ideal for our analytics workload.
-<!--s-->
+-->
 
 ---
 
@@ -446,9 +443,9 @@ graph TD
 - **JobManager (The Brain):** Coordinates the entire job execution.
 - **TaskManagers (The Muscle):** Worker processes that execute the actual data processing tasks in parallel **Slots**.
 
-<!--s-->
+<!--
 A Flink cluster consists of a coordinating JobManager and one or more TaskManagers that do the actual work. The JobManager takes our Python script, compiles it into a job graph, and distributes the parallel tasks to the available slots on the TaskManagers.
-<!--s-->
+-->
 
 ---
 
@@ -476,9 +473,9 @@ graph TD
 ```
 <p class="mt-4 text-center">Fully containerized with Docker Compose for easy deployment.</p>
 
-<!--s-->
+<!--
 Now let's put it all together for our project. This is the complete data flow, from generation to storage, orchestrated by our key technologies. The entire system runs inside Docker containers, making it portable and easy to run.
-<!--s-->
+-->
 
 ---
 
@@ -505,9 +502,9 @@ Now let's put it all together for our project. This is the complete data flow, f
   </div>
 </div>
 
-<!--s-->
+<!--
 Let's zoom in on each part. The producer is our data simulator. Kafka is our highly-available message bus. The Flink job is where the magic happens. And the File Sink is our destination, ensuring results are saved reliably.
-<!--s-->
+-->
 
 ---
 
@@ -523,9 +520,9 @@ Let's zoom in on each part. The producer is our data simulator. Kafka is our hig
   </ol>
 </div>
 
-<!--s-->
+<!--
 Inside the Flink job, we follow these logical steps. We source the data, then perform an interval join—this is crucial for correctly attributing a click to an impression. After that, we window the data, run our aggregations, and sink the final result.
-<!--s-->
+-->
 
 ---
 
@@ -561,9 +558,13 @@ Inside the Flink job, we follow these logical steps. We source the data, then pe
   </div>
 </div>
 
-<!--s-->
+<!--
 Now for the fun part. You can run this entire pipeline on your own machine with a single command. I'm going to kick it off now. We'll see the producer start sending data, and then we'll switch to the Flink UI to watch the job graph process it in real-time. You can follow along by scanning this QR code.
-<!--s-->
+-->
+
+---
+src: ./pages/connect.md
+---
 
 ---
 src: ./pages/qa.md
