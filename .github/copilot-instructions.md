@@ -122,3 +122,8 @@ You leverage Slidev's rich feature set to create a dynamic experience.
     background: /bg_image.png
     ---
     ```
+
+Speaker notes should be at end of each slide and wrapped in html comment syntax
+<!-- Speaker notes go here -->
+
+Slides should be separated by `---`

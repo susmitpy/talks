@@ -16,7 +16,7 @@ background: /bg_image.png
 :root {
   /* IIT Bombay Inspired Theme */
   --iitb-blue: #004A99;
-  --iitb-accent: #007bff;
+  --iitb-accent: #00e1ffff;
   --iitb-light: #f8f9fa;
   --iitb-dark: #001f3f;
 
@@ -165,14 +165,26 @@ Today, we're going on a journey. We'll start with the 'why'—the business probl
 
 ## Why Every Second Counts
 
-<div class="text-5xl font-bold p-6 my-8 bg-slate-800 rounded-lg border-2 border-cyan-400">
+<div class="text-3xl font-bold p-6 my-8 bg-slate-800 rounded-lg border-2 border-cyan-400">
   CTR = (Clicks / Impressions) * 100%
 </div>
 
-Businesses need real-time CTR to:
+<div class="text-3xl font-bold p-6 my-8">
+  Businesses need real-time CTR to:
+
 - 🚀 Optimize live campaigns
 - 📉 Detect underperforming ads instantly
 - 💰 Allocate budget effectively
+
+</div>
+
+<style>
+  li, li * {
+    font-size: 1.8rem;
+  }
+</style>
+
+
 
 <!--
 In digital advertising, everything comes down to this simple formula: Click-Through Rate. It tells us how effective our ads are. Businesses need this number *now*, not tomorrow, to make critical decisions that directly impact their revenue. Waiting for an overnight batch job is simply too slow.
@@ -182,20 +194,20 @@ In digital advertising, everything comes down to this simple formula: Click-Thro
 
 # Why Real-Time? Batch vs. Streaming
 
-<div class="grid grid-cols-2 gap-8 mt-12 text-center text-2xl">
+<div class="grid grid-cols-2 gap-8 mt-12 text-center text-4xl">
   <div>
     <p class="text-6xl">🕒</p>
-    <h3 class="mt-4">Batch Processing</h3>
-    <p>The Past</p>
-    <p class="text-xl opacity-80">Delayed Insights (Hours)</p>
-    <p class="text-xl font-mono">"What happened?"</p>
+    <span class="mt-10 text-4xl">Batch Processing</span>
+    <p class="text-2xl">The Past</p>
+    <p class="text-2xl opacity-80">Delayed Insights (Hours)</p>
+    <p class="text-2xl font-mono">"What happened?"</p>
   </div>
   <div>
     <p class="text-6xl">⚡</p>
-    <h3 class="mt-4">Streaming Processing</h3>
-    <p>The Present</p>
-    <p class="text-xl opacity-80">Live Feedback Loop (Seconds)</p>
-    <p class="text-xl font-mono">"What is happening now?"</p>
+    <span class="mt-10 text-4xl">Streaming Processing</span>
+    <p class="text-2xl">The Present</p>
+    <p class="text-2xl opacity-80">Live Feedback Loop (Seconds)</p>
+    <p class="text-2xl font-mono">"What is happening now?"</p>
   </div>
 </div>
 
@@ -203,57 +215,90 @@ In digital advertising, everything comes down to this simple formula: Click-Thro
 This is the core difference. With batch, you're looking at a photograph of the past. You can react to what happened yesterday. With streaming, you're looking at a live video feed. You can adapt and optimize *as it happens*, creating a powerful feedback loop.
 -->
 
+
+---
+layout: two-cols-header
 ---
 
 # Foundational Pattern: Message Queuing
 
 ## One-to-One Communication
 
-<div class="mt-8">
+::left::
+
+<div class="mt-8 text-center">
 
 ```mermaid
 graph TD
-    Producer[Service A] --sends--> Queue[(Message Queue)];
-    Queue --delivers--> Consumer[Service B];
+  Producer[Service A] --sends--> Queue[(Message Queue)];
+  Queue --delivers--> Consumer[Service B];
 ```
 
 </div>
 
-<p class="mt-8 text-2xl">
-  <b>Analogy:</b> A Post Office Mailbox 📬
+::right::
+
+<div class="mt-4 flex flex-col justify-center h-full">
+
+<p class="text-3xl" style="line-height: 1.4;">
+  <b>Analogy:</b> A Post Office Mailbox 
 </p>
-<p class="text-xl">
+<p class="text-3xl" style="line-height: 1.4;">
   Decouples services. The sender doesn't need to wait for the receiver.
 </p>
+
+</div>
+
+<style>
+.two-cols-header {
+  column-gap: 20px;
+}
+</style>
 
 <!--
 Before we talk about Kafka, let's understand a basic pattern: message queuing. Think of it like a mailbox. Service A can drop off a message without waiting for Service B to be ready to pick it up. This decouples them and makes the system more resilient.
 -->
 
 ---
+layout: two-cols-header
+---
 
 # Foundational Pattern: Pub-Sub
 
 ## One-to-Many Broadcast
 
-<div class="mt-8">
+::left::
+
+<div class="mb-16 mt-12 text-center">
 
 ```mermaid
 graph LR
-    Publisher --> Topic((Topic));
-    Topic --> Subscriber1[Analytics Service];
-    Topic --> Subscriber2[Archiving Service];
-    Topic --> SubscriberN[Monitoring Service];
+  Publisher --> Topic((Topic));
+  Topic --> Subscriber1[Analytics Service];
+  Topic --> Subscriber2[Archiving Service];
+  Topic --> SubscriberN[Monitoring Service];
 ```
 
 </div>
 
-<p class="mt-8 text-2xl">
+::right::
+
+<div class="mb-30 flex flex-col justify-center h-full">
+
+<p class="text-3xl" style="line-height: 1.4;">
   <b>Analogy:</b> A Radio Broadcast 📻
 </p>
-<p class="text-xl">
+<p class="text-3xl" style="line-height: 1.4;">
   A single event can be consumed by many different services for different purposes.
 </p>
+
+</div>
+
+<style>
+.two-cols-header {
+  column-gap: 20px;
+}
+</style>
 
 <!--
 The other key pattern is Publish-Subscribe. This is like a radio broadcast. A publisher sends a message to a topic, and any service that has 'tuned in' to that topic receives a copy. One message, many independent listeners.
@@ -263,21 +308,27 @@ The other key pattern is Publish-Subscribe. This is like a radio broadcast. A pu
 
 # Introduction to Apache Kafka
 
-## The Central Nervous System for Data
+## The Holding Area for Data
 
 <div class="grid grid-cols-2 gap-8 items-center mt-8">
   <div class="text-left">
-    <h3>Key Features:</h3>
-    <ul class="list-disc pl-8 mt-4 text-2xl">
+    <span class="text-3xl">Key Features:</span>
+    <ul class="list-disc pl-8 mt-4">
       <li>Combines Queuing & Pub-Sub</li>
       <li>Distributed & Fault-Tolerant</li>
       <li>Immutable, Replayable Log</li>
     </ul>
   </div>
   <div>
-    <img src="/kafka/fit_in.svg" class="w-full bg-white rounded-lg p-2" />
+    <img src="/kafka/fit_in.svg" class="w-full p-2" />
   </div>
 </div>
+
+<style>
+  li, li * {
+    font-size: 1.5rem;
+  }
+</style>
 
 <!--
 So where does Kafka fit in? It's a distributed streaming *platform* that gives us the best of both worlds. It acts as the reliable, scalable backbone for all real-time data moving through our system. It's not just a pipe; it's a durable storage system for streams.
@@ -285,26 +336,57 @@ So where does Kafka fit in? It's a distributed streaming *platform* that gives u
 
 ---
 
+# Partition Replication
+
+<div class="flex items-center justify-center">
+<img src="/kafka/replication.svg" class="w-5/6"/>
+</div>
+
+
+---
+layout: two-cols-header
+---
+
 # Kafka Architecture: Built for Resilience
+
+::left::
+
+<div class="mt-0 text-center">
 
 ```mermaid
 graph TD
-    subgraph Topic: "Campaign Ads"
-        direction LR
-        P1["Partition 0 (Leader)<br/>Broker 1"]
-        P1_R1["Partition 0 (Follower)<br/>Broker 2"]
-        P1_R2["Partition 0 (Follower)<br/>Broker 3"]
-        P1 -- "replicates to" --> P1_R1
-        P1 -- "replicates to" --> P1_R2
-    end
-    Producer --> P1
-    Consumer --> P1
+  subgraph Topic: Campaign Ads
+    direction LR
+    P1["Partition 0 (Leader)<br/>Broker 1"]
+    P1_R1["Partition 0 (Follower)<br/>Broker 2"]
+    P1_R2["Partition 0 (Follower)<br/>Broker 3"]
+    P1 -- "replicates to" --> P1_R1
+    P1 -- "replicates to" --> P1_R2
+  end
+  Producer -- Writes to --> P1
+  Consumer -- Pulls From --> P1
 ```
 
-- A topic is split into **Partitions** for parallelism.
-- Each partition is replicated across multiple **Brokers** (servers).
-- One replica is the **Leader** (handles reads/writes); others are **Followers**.
-- If a Leader fails, a Follower is automatically elected as the new Leader.
+</div>
+
+::right::
+
+<div class="mt-0 flex flex-col justify-center h-full">
+
+<ul class="text-2xl space-y-4">
+  <li>A topic is split into <b>Partitions</b> for parallelism.</li>
+  <li>Each partition is replicated across multiple <b>Brokers</b> (servers).</li>
+  <li>One replica is the <b>Leader</b> (handles reads/writes); others are <b>Followers</b>.</li>
+  <li>If a Leader fails, a Follower is automatically elected as the new Leader.</li>
+</ul>
+
+</div>
+
+<style>
+.two-cols-header {
+  column-gap: 20px;
+}
+</style>
 
 <!--
 This is why Kafka is so resilient. A topic is broken into partitions, and each partition is copied across multiple machines. If the machine hosting the leader fails, the system automatically fails over to a replica. This ensures zero data loss and high availability.
@@ -312,17 +394,29 @@ This is why Kafka is so resilient. A topic is broken into partitions, and each p
 
 ---
 
+# Consumer Groups
+
+## A partition can only be read by one consumer in a group
+
+<div class="flex items-center justify-center">
+<img src="/kafka/multi_cg.svg" class="w-2.2/4"/>
+</div>
+
+---
+
 # Understanding Streams & Windows
 
 ## Taming an Infinite Flow
 
-<div class="mt-12 text-2xl">
-  <p>An unbounded stream of events:</p>
-  <p class="font-mono mt-2 tracking-widest">... ● ● ● ● ● ● ● ● ● ● ● ● ...</p>
+<div class="mt-12">
+  <p class="text-3xl">An unbounded stream of events:</p>
+  <p class="font-mono mt-2 tracking-widest text-3xl">... ● ● ● ● ● ● ● ● ● ● ● ● ...</p>
+
+  <br/>
   
   <v-click>
-    <p class="mt-12">Windows create finite slices for aggregation:</p>
-    <p class="font-mono mt-2 tracking-widest text-cyan-400">... [● ● ● ●] [● ● ● ●] [● ● ● ●] ...</p>
+    <p class="mt-12 text-3xl">Windows create finite slices for aggregation:</p>
+    <p class="font-mono mt-2 tracking-widest text-cyan-400 text-3xl">... [● ● ● ●] [● ● ● ●] [● ● ● ●] ...</p>
   </v-click>
 </div>
 
@@ -336,10 +430,10 @@ A stream is, by definition, infinite. You can't just aggregate 'all' the events.
 
 ## The Messiness of Reality
 
-Events don't always arrive in the order they occurred due to network latency, device issues, etc.
+Events don't always arrive in the order they occurred due to network latency, device issues, etc
 
-<div class="p-4 mt-8 bg-slate-800 rounded font-mono text-lg text-center">
-  <p>Actual Event Order: (10:02:59), (10:03:01)</p>
+<div class="p-4 mt-8 bg-slate-800 rounded font-mono text-lg text-left">
+  <p>Actual Event Order (10:00:00 - 10:05:00 window): (10:02:59), (10:03:01)</p>
   <v-click>
     <p class="mt-4">Arrival Order at Processor:</p>
     <p class="text-yellow-400">Event @ 10:03:01 arrives</p>
@@ -363,16 +457,46 @@ In a perfect world, events arrive perfectly ordered. In the real world, they don
 
 A **Watermark** is a special message in the stream that acts as a progress indicator.
 
-<div class="p-6 mt-8 bg-slate-800 rounded text-2xl border-l-4 border-cyan-400">
+<div class="p-6 mt-3 bg-slate-800 rounded text-xl border-l-4 border-cyan-400">
   It is a declaration: <br/>
   <em class="text-cyan-400">"I am now confident all events before timestamp `T` have arrived."</em>
 </div>
 
 This allows Flink to safely close windows and emit results.
 
+<v-click>
+
+Watermark is defined to be 10 seconds behind the latest event time
+<div class="mt-3 p-6 m-3 rounded font-mono text-lg bg-slate-800 border-l-4 border-cyan-400">
+
+  WATERMARK FOR event_time AS event_time - INTERVAL '10' SECOND
+</div>
+</v-click>
+
 <!--
-Flink solves this with watermarks. A watermark is a timestamp that essentially says, 'Okay, I've waited long enough for late data, it's safe to close the window for 10:00 to 10:05 and emit the result.' This allows Flink to make progress without waiting forever.
+Flink solves this with watermarks. A watermark is a timestamp that essentially says, 'Okay, I've waited long enough for late data, it's safe to close the window for 10:00 to 10:05 and emit the result.' This allows Flink to make progress without waiting forever. For example, in our code, we can define a watermark that lags 10 seconds behind the maximum event time we've seen.
 -->
+
+---
+
+Here’s your **corrected and polished slide markdown** — fully accurate for Flink’s event-time + watermark mechanics, and visually consistent with your existing format:
+
+---
+
+# Watermarks in Action: The Flow of Time
+
+## Let’s trace a few events with a 10-second watermark delay and a 30-second tumbling window (`10:00:00 – 10:00:30`)
+
+<div>
+
+| Event  | Event Time | Processing Time | Max Event Time | Current Watermark (= maxET − 10 s) | System Action                                        |
+| :----- | :--------- | :-------------- | :------------- | :--------------------------------- | :--------------------------------------------------- |
+| **E1** | 10:00:15   | 10:00:16        | 10:00:15       | **10:00:05**                       | Buffer E1 (assign to window 00-30)                   |
+| **E2** | 10:00:25   | 10:00:26        | 10:00:25       | **10:00:15**                       | Buffer E2; watermark advances                        |
+| **E3** | 10:00:18   | 10:00:27        | 10:00:25       | **10:00:15**                       | Buffer E3 (on-time); watermark holds                 |
+| **E4** | 10:00:42   | 10:00:43        | 10:00:42       | **10:00:32**                       | ✅ **Trigger window 00-30**; Buffer E4 in next window |
+
+</div>
 
 ---
 
@@ -385,7 +509,7 @@ Flink solves this with watermarks. A watermark is a timestamp that essentially s
 <div class="mt-8">
 
 ```mermaid
-graph TD
+graph LR
     A[Late Event Arrives] --> B{Is its window closed?};
     B -- Yes --> C{Is it within the 'lateness' period?};
     C -- Yes --> D[✅ Update the Window Result];
@@ -394,7 +518,7 @@ graph TD
 
 </div>
 
-**Allowed Lateness:** A grace period that lets Flink accept late events and **update** the previously emitted result for that window.
+**Allowed Lateness:** A grace period that lets Flink accept late events and **update** the previously emitted result for that window. Works only for retractable sinks.
 
 <!--
 But what if an event is exceptionally late? We can configure an 'allowed lateness' period. This tells Flink to keep the state for a window around for a bit longer. If a straggler arrives within this period, Flink will re-calculate and emit an updated result.
@@ -446,6 +570,32 @@ graph TD
 <!--
 A Flink cluster consists of a coordinating JobManager and one or more TaskManagers that do the actual work. The JobManager takes our Python script, compiles it into a job graph, and distributes the parallel tasks to the available slots on the TaskManagers.
 -->
+
+---
+
+# Recap of Kafka Example
+
+<div class="flex items-center justify-center">
+<img src="/kafka/multi_cg.svg" class="w-2.4/4"/>
+</div>
+
+---
+
+# How Flink reads from Kafka
+
+```mermaid
+flowchart LR
+  KA[(Kafka Partition A–M)] --> S1[Source Subtask #1]
+  KB[(Kafka Partition N–Z)] --> S2[Source Subtask #2]
+
+  S1 -->|map/filter| S1a[Parallel stream]
+  S2 -->|map/filter| S2a[Parallel stream]
+
+  S1a -->|keyBy(userId)| KX[Keyed Operator\n(window/agg/join) p=2]
+  S2a -->|keyBy(userId)| KX
+
+  KX --> OUT[(Sink / Dashboard / DB)]
+```
 
 ---
 
