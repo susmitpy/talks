@@ -404,6 +404,34 @@ This is why Kafka is so resilient. A topic is broken into partitions, and each p
 
 ---
 
+# What is a Stream
+<div class="flex flex-col items-center justify-center">
+  <div class="flex flex-row justify-between px-6 mx-4 w-full max-w-4xl">
+  <v-click>
+    <div class="flex flex-col items-center mt-4">
+      <h2 class="text-lg font-semibold mb-2">Nature's Stream</h2>
+      <img src="/mongo/water_stream.webp" class="w-80 h-auto pt-2" alt="Nature's Stream"/>
+    </div>
+    </v-click>
+    <v-click>
+    <div class="flex flex-col items-center mt-4">
+      <h2 class="text-lg font-semibold mb-2">Data Stream</h2>
+      <img src="/mongo/data_stream.webp" class="w-80 h-auto pt-2" alt="Data Stream"/>
+    </div>
+    </v-click>
+  </div>
+
+  <!-- Footer Text -->
+  <v-after>
+  <h4 class="mt-4 text-center text-sm font-medium">
+    Not all streams are the same
+  </h4>
+  </v-after>
+</div>
+
+
+---
+
 # Understanding Streams & Windows
 
 ## Taming an Infinite Flow
@@ -422,6 +450,80 @@ This is why Kafka is so resilient. A topic is broken into partitions, and each p
 
 <!--
 A stream is, by definition, infinite. You can't just aggregate 'all' the events. So how do we analyze it? We apply a 'window'—a finite boundary, usually based on time. We're essentially creating micro-batches from the stream to perform calculations.
+-->
+
+---
+
+# Types of Windows
+
+## Slicing by Fixed Time vs. User Activity
+
+<div class="grid grid-cols-2 gap-8 mt-8 text-center">
+
+  <!-- Tumbling Window -->
+  <div class="p-4 bg-slate-800 rounded-lg">
+    <h3>Tumbling</h3>
+    <pre class="text-2xl text-cyan-400 mt-4"><code>[● ● ●] [● ● ●]</code></pre>
+    <p class="mt-4 text-lg">Fixed-size, non-overlapping chunks of time.</p>
+    <hr class="opacity-20 my-3" />
+    <p class="text-base text-gray-400"><b>Use Case:</b> A report of total clicks every 30 seconds.</p>
+  </div>
+
+  <!-- Session Window -->
+  <div class="p-4 bg-slate-800 rounded-lg">
+    <h3>Session</h3>
+    <pre class="text-2xl text-cyan-400 mt-4"><code>[● ●]   [● ● ● ●]</code></pre>
+    <p class="mt-4 text-lg">Groups events by activity, closes after an inactivity gap.</p>
+    <hr class="opacity-20 my-3" />
+    <p class="text-base text-gray-400"><b>Use Case:</b> Analyzing a user's entire visit to a website until they go idle.</p>
+  </div>
+
+</div>
+
+<!--
+
+Let's look at two fundamentally different ways to slice a stream.
+
+On the left, we have **Tumbling Windows**, which is what we'll use in our demo. Think of these as perfectly even, separate chunks. Each event belongs to exactly one window. They're perfect for simple, periodic reports, like counting clicks every 30 seconds.
+
+On the right, we have **Session Windows**, which are completely different. They aren't based on clock time at all. Instead, they group events together based on user activity. The window stays open as long as events keep coming and only closes after a defined period of inactivity. This is perfect for understanding user behavior within a single visit.
+
+-->
+
+---
+
+# Types of Windows
+
+## Analyzing Rolling Time Frames
+
+<div class="grid grid-cols-2 gap-8 mt-8 text-center">
+
+  <!-- Hopping Window -->
+  <div class="p-4 bg-slate-800 rounded-lg">
+    <h3>Hopping 🕰️</h3>
+    <pre class="text-2xl text-cyan-400 mt-4"><code>[● ● ● ●]<br>  [● ● ● ●]</code></pre>
+    <p class="mt-4 text-lg">Triggered by a fixed **TIME** interval (the 'hop').</p>
+    <hr class="opacity-20 my-3" />
+    <p class="text-base text-gray-400"><b>Use Case:</b> A dashboard showing sales in the last 10 minutes, updated every 5 minutes.</p>
+  </div>
+
+  <!-- Sliding Window -->
+  <div class="p-4 bg-slate-800 rounded-lg">
+    <h3>Sliding ⚡</h3>
+    <pre class="text-xl text-cyan-400 mt-4"><code>[● ● ● ● ○] -> ●<br>[○ ● ● ● ●]</code></pre>
+    <p class="mt-4 text-lg">Triggered by a new **EVENT** arriving.</p>
+    <hr class="opacity-20 my-3" />
+    <p class="text-base text-gray-400"><b>Use Case:</b> A real-time alert if a user makes 5 purchases in the last 1 minute.</p>
+  </div>
+
+</div>
+
+<!--
+Now let's look at windows that overlap. The key difference is what *triggers* the update.
+
+A **Hopping Window** is driven by **time**. Think of a clock on the wall. Every 5 minutes, it tells the system: "Okay, time's up! Calculate a result for the last 10 minutes." The computation happens at a fixed, predictable rhythm, making it great for periodic dashboard updates.
+
+A **Sliding Window**, on the other hand, is driven by **events**. The window moves forward *every time a new event arrives*. When a new event comes in, the oldest event in the window is pushed out. This provides a truly continuous, always-up-to-date view, which is perfect for systems that need to react instantly, like fraud detection or real-time alerting.
 -->
 
 ---
@@ -479,10 +581,6 @@ Flink solves this with watermarks. A watermark is a timestamp that essentially s
 
 ---
 
-Here’s your **corrected and polished slide markdown** — fully accurate for Flink’s event-time + watermark mechanics, and visually consistent with your existing format:
-
----
-
 # Watermarks in Action: The Flow of Time
 
 ## Let’s trace a few events with a 10-second watermark delay and a 30-second tumbling window (`10:00:00 – 10:00:30`)
@@ -493,7 +591,7 @@ Here’s your **corrected and polished slide markdown** — fully accurate for F
 | :----- | :--------- | :-------------- | :------------- | :--------------------------------- | :--------------------------------------------------- |
 | **E1** | 10:00:15   | 10:00:16        | 10:00:15       | **10:00:05**                       | Buffer E1 (assign to window 00-30)                   |
 | **E2** | 10:00:25   | 10:00:26        | 10:00:25       | **10:00:15**                       | Buffer E2; watermark advances                        |
-| **E3** | 10:00:18   | 10:00:27        | 10:00:25       | **10:00:15**                       | Buffer E3 (on-time); watermark holds                 |
+| **E3** | 10:00:18   | 10:00:27        | 10:00:25       | **10:00:15**                       | Buffer E3; watermark holds                 |
 | **E4** | 10:00:42   | 10:00:43        | 10:00:42       | **10:00:32**                       | ✅ **Trigger window 00-30**; Buffer E4 in next window |
 
 </div>
@@ -533,13 +631,19 @@ But what if an event is exceptionally late? We can configure an 'allowed latenes
 **What is it?** A stateful stream processing framework.
 
 <div class="mt-8 text-left pl-20">
-  <h3>Superpowers:</h3>
-  <ul class="list-disc pl-8 mt-4 text-2xl">
+  <span class="text-3xl">Superpowers:</span>
+  <ul class="list-disc pl-8 mt-4">
     <li><b>Stateful:</b> Remembers information across events (e.g., running counts).</li>
     <li><b>Exactly-Once Guarantees:</b> Ensures correctness, even with failures.</li>
     <li><b>PyFlink:</b> The powerful Python API we're using today.</li>
   </ul>
 </div>
+
+<style>
+  li, li * {
+    font-size: 1.6rem;
+  }
+</style>
 
 <!--
 If Kafka is the nervous system, Flink is the brain. It's where the stateful computation happens. Its ability to maintain state reliably and guarantee exactly-once processing makes it ideal for our analytics workload.
@@ -555,11 +659,11 @@ graph TD
     JM -- "Deploys Tasks" --> TM1(TaskManager 1);
     JM -- "Deploys Tasks" --> TM2(TaskManager 2);
 
-    subgraph TaskManager 1
+    subgraph TaskManager 2
         Slot1[Task Slot]
         Slot2[Task Slot]
     end
-    subgraph TaskManager 2
+    subgraph TaskManager 1
         Slot3[Task Slot]
         Slot4[Task Slot]
     end
@@ -591,8 +695,8 @@ flowchart LR
   S1 -->|map/filter| S1a[Parallel stream]
   S2 -->|map/filter| S2a[Parallel stream]
 
-  S1a -->|keyBy(userId)| KX[Keyed Operator\n(window/agg/join) p=2]
-  S2a -->|keyBy(userId)| KX
+  S1a -->|keyBy userId| KX[Keyed Operator\n window/agg/join p=2]
+  S2a -->|keyBy userId| KX
 
   KX --> OUT[(Sink / Dashboard / DB)]
 ```
@@ -603,8 +707,10 @@ flowchart LR
 
 ## The End-to-End Pipeline
 
+<br/>
+
 ```mermaid
-graph TD
+graph LR
     subgraph Data Generation
         A[Go Producer]
     end
@@ -612,16 +718,16 @@ graph TD
         B((Apache Kafka))
     end
     subgraph Real-Time Processing
-        C[Apache Flink <br/> (PyFlink Job)]
+        C[Apache Flink <br/> PyFlink Job]
     end
     subgraph Storage
-        D[/File Sink (Results)/]
+        D[/File Sink Results/]
     end
     A -- "impressions, clicks" --> B;
     B -- "reads streams" --> C;
     C -- "writes CTR" --> D;
 ```
-<p class="mt-4 text-center">Fully containerized with Docker Compose for easy deployment.</p>
+<p class="mt-4 text-center text-2xl">Fully containerized with Docker Compose for easy deployment.</p>
 
 <!--
 Now let's put it all together for our project. This is the complete data flow, from generation to storage, orchestrated by our key technologies. The entire system runs inside Docker containers, making it portable and easy to run.
@@ -662,11 +768,11 @@ Let's zoom in on each part. The producer is our data simulator. Kafka is our hig
 
 <div class="text-left mt-8 pl-12">
   <ol class="text-2xl space-y-4">
-    <li><span class="text-cyan-400">1. Source:</span> Read from Kafka `impressions` and `clicks` topics.</li>
-    <li><span class="text-cyan-400">2. Interval Join:</span> Match clicks to impressions if `impr_id` matches AND the click occurs within 15 seconds.</li>
-    <li><span class="text-cyan-400">3. Window:</span> Group matched pairs into 30-second Tumbling Windows by `campaign_id`.</li>
-    <li><span class="text-cyan-400">4. Aggregate:</span> For each window, count impressions, count clicks, and calculate `CTR`.</li>
-    <li><span class="text-cyan-400">5. Sink:</span> Write the results to a CSV file.</li>
+    <li><span class="text-cyan-400">Source:</span> Read from Kafka `impressions` and `clicks` topics.</li>
+    <li><span class="text-cyan-400">Interval Join:</span> Match clicks to impressions if `impr_id` matches AND the click occurs within 15 seconds.</li>
+    <li><span class="text-cyan-400">Window:</span> Group matched pairs into 30-second Tumbling Windows by `campaign_id`.</li>
+    <li><span class="text-cyan-400">Aggregate:</span> For each window, count impressions, count clicks, and calculate `CTR`.</li>
+    <li><span class="text-cyan-400">Sink:</span> Write the results to a partitioned CSV file.</li>
   </ol>
 </div>
 
@@ -686,20 +792,20 @@ Inside the Flink job, we follow these logical steps. We source the data, then pe
     <ol class="list-decimal pl-6 mt-4 text-xl space-y-3">
       <li>
         <b>Start Pipeline:</b>
-        <pre><code class="text-sm">bash run_demo.sh</code></pre>
+        <pre><code class="text-sm">sh run_demo.sh</code></pre>
       </li>
       <li>
         <b>Monitor Flink UI:</b>
-        <a href="http://localhost:8081" target="_blank">http://localhost:8081</a>
+        <a href="http://localhost:8081" target="_blank"> http://localhost:8081</a>
       </li>
       <li>
-        <b>View Live Results:</b>
+        <b>View Results:</b>
         <pre><code class="text-sm">python read_results.py</code></pre>
       </li>
     </ol>
   </div>
   <div class="text-center">
-    <img src="https://raw.githubusercontent.com/susmitpy/stream_analytics_adtech_ctr/main/qr-code.png" class="w-2/3 mx-auto bg-white p-2 rounded-lg" />
+    <img src="/mongo/mongo_kafka_neo4j.png" class="w-2/3 mx-auto bg-white p-2 rounded-lg" />
     <p class="mt-4">
       <a href="https://github.com/susmitpy/stream_analytics_adtech_ctr" target="_blank">
         github.com/susmitpy/stream_analytics_adtech_ctr
