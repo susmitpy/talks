@@ -500,7 +500,7 @@ On the right, we have **Session Windows**, which are completely different. They 
 
   <!-- Hopping Window -->
   <div class="p-4 bg-slate-800 rounded-lg">
-    <h3>Hopping 🕰️</h3>
+    <h3>Hopping</h3>
     <pre class="text-2xl text-cyan-400 mt-4"><code>[● ● ● ●]<br>  [● ● ● ●]</code></pre>
     <p class="mt-4 text-lg">Triggered by a fixed **TIME** interval (the 'hop').</p>
     <hr class="opacity-20 my-3" />
@@ -509,8 +509,8 @@ On the right, we have **Session Windows**, which are completely different. They 
 
   <!-- Sliding Window -->
   <div class="p-4 bg-slate-800 rounded-lg">
-    <h3>Sliding ⚡</h3>
-    <pre class="text-xl text-cyan-400 mt-4"><code>[● ● ● ● ○] -> ●<br>[○ ● ● ● ●]</code></pre>
+    <h3>Sliding</h3>
+    <pre class="text-xl text-cyan-400 mt-4"><code>[● ● ● ●]  <br>[○ ● ● ● <span style="color:white">●</span>]</code></pre>
     <p class="mt-4 text-lg">Triggered by a new **EVENT** arriving.</p>
     <hr class="opacity-20 my-3" />
     <p class="text-base text-gray-400"><b>Use Case:</b> A real-time alert if a user makes 5 purchases in the last 1 minute.</p>
@@ -524,152 +524,6 @@ Now let's look at windows that overlap. The key difference is what *triggers* th
 A **Hopping Window** is driven by **time**. Think of a clock on the wall. Every 5 minutes, it tells the system: "Okay, time's up! Calculate a result for the last 10 minutes." The computation happens at a fixed, predictable rhythm, making it great for periodic dashboard updates.
 
 A **Sliding Window**, on the other hand, is driven by **events**. The window moves forward *every time a new event arrives*. When a new event comes in, the oldest event in the window is pushed out. This provides a truly continuous, always-up-to-date view, which is perfect for systems that need to react instantly, like fraud detection or real-time alerting.
--->
-
----
-
-# The Problem: Out-of-Order Events
-
-## The Messiness of Reality
-
-Events don't always arrive in the order they occurred due to network latency, device issues, etc
-
-<div class="p-4 mt-8 bg-slate-800 rounded font-mono text-lg text-left">
-  <p>Actual Event Order (10:00:00 - 10:05:00 window): (10:02:59), (10:03:01)</p>
-  <v-click>
-    <p class="mt-4">Arrival Order at Processor:</p>
-    <p class="text-yellow-400">Event @ 10:03:01 arrives</p>
-    <p class="text-red-500">Event @ 10:02:59 arrives LATE!</p>
-  </v-click>
-</div>
-
-<v-click>
-<h3 class="mt-8">Question: How does our system know when a time window (e.g., 10:00-10:05) is "complete"?</h3>
-</v-click>
-
-<!--
-In a perfect world, events arrive perfectly ordered. In the real world, they don't. This creates a huge problem: how does our system know it has received all the data for a specific time window before calculating the result?
--->
-
----
-
-# The Solution: Watermarks
-
-## Flink's Event-Time Clock
-
-A **Watermark** is a special message in the stream that acts as a progress indicator.
-
-<div class="p-6 mt-3 bg-slate-800 rounded text-xl border-l-4 border-cyan-400">
-  It is a declaration: <br/>
-  <em class="text-cyan-400">"I am now confident all events before timestamp `T` have arrived."</em>
-</div>
-
-This allows Flink to safely close windows and emit results.
-
-<v-click>
-
-Watermark is defined to be 10 seconds behind the latest event time
-<div class="mt-3 p-6 m-3 rounded font-mono text-lg bg-slate-800 border-l-4 border-cyan-400">
-
-  WATERMARK FOR event_time AS event_time - INTERVAL '10' SECOND
-</div>
-</v-click>
-
-<!--
-Flink solves this with watermarks. A watermark is a timestamp that essentially says, 'Okay, I've waited long enough for late data, it's safe to close the window for 10:00 to 10:05 and emit the result.' This allows Flink to make progress without waiting forever. For example, in our code, we can define a watermark that lags 10 seconds behind the maximum event time we've seen.
--->
-
----
-
-# Watermarks in Action: The Flow of Time
-
-## Let’s trace a few events with a 10-second watermark delay and a 30-second tumbling window (`10:00:00 – 10:00:30`)
-
-<div>
-
-| Event  | Event Time | Processing Time | Max Event Time | Current Watermark (= maxET − 10 s) | System Action                                        |
-| :----- | :--------- | :-------------- | :------------- | :--------------------------------- | :--------------------------------------------------- |
-| **E1** | 10:00:15   | 10:00:16        | 10:00:15       | **10:00:05**                       | Buffer E1 (assign to window 00-30)                   |
-| **E2** | 10:00:25   | 10:00:26        | 10:00:25       | **10:00:15**                       | Buffer E2; watermark advances                        |
-| **E3** | 10:00:18   | 10:00:27        | 10:00:25       | **10:00:15**                       | Buffer E3; watermark holds                 |
-| **E4** | 10:00:42   | 10:00:43        | 10:00:42       | **10:00:32**                       | ✅ **Trigger window 00-30**; Buffer E4 in next window |
-
-</div>
-
----
-
-# What if the Stream Stops? The Idle Source Problem
-
-## No new events ➞ No new watermarks ➞ Stuck windows & no results!
-
-<div class="grid grid-cols-2 gap-8 mt-8 text-left">
-
-  <!-- Solution A: The Flink Way -->
-  <div class="p-4 bg-slate-800 rounded-lg">
-    <h3>Solution A: Configure Idleness in Flink</h3>
-    <p class="mt-2">Flink can detect when a source partition is idle and automatically advance its watermark.</p>
-    <div class="mt-4 p-2 bg-slate-900 rounded font-mono text-sm">
-      <pre><code>WatermarkStrategy
-  .forBoundedOutOfOrderness(...)
-  .withIdleness(Duration.ofMinutes(1));</code></pre>
-    </div>
-    <hr class="opacity-20 my-4" />
-    <p><b>Best for:</b> Simplicity. The logic is self-contained within the Flink job, requiring no changes to the data producer.</p>
-  </div>
-
-  <!-- Solution B: The Producer Way -->
-  <div class="p-4 bg-slate-800 rounded-lg">
-    <h3>Solution B: Send Heartbeat Messages</h3>
-    <p class="mt-2">The data producer sends periodic dummy messages with a current timestamp to keep watermarks flowing.</p>
-    <div class="mt-4">
-      ```mermaid
-      graph TD
-        A[Producer] -- "Event" --> K((Kafka));
-        A -- "<br/>Heartbeat<br/>(every 30s)" --> K;
-        K --> F[Flink];
-      ```
-    </div>
-    <hr class="opacity-20 my-4" />
-    <p><b>Best for:</b> Portability. This pattern works with any stream processing engine, not just Flink.</p>
-  </div>
-</div>
-
-<!--
-So, watermarks are great, but they have a critical dependency: they only advance when new events arrive. What happens if our ad campaign goes quiet for a few minutes and there are no new impressions or clicks? Our windows will get stuck and we'll never see a result for that period.
-
-There are two excellent ways to solve this.
-
-First, the easiest way is directly in Flink. We can configure our source to detect 'idleness'. If it doesn't see a new message on a partition for, say, one minute, it will automatically advance the watermark for us. It's a simple, powerful configuration.
-
-Another very robust approach is to solve this at the source. We can modify our Go producer to send a 'heartbeat' message every 30 seconds, even if there are no real events. This dummy message contains a current timestamp, and its only job is to keep the watermarks flowing through the system.
-
-The choice between these depends on your architecture. The Flink solution is quick and self-contained. The heartbeat solution is more portable if you ever switch processing engines.
--->
-
----
-
-# The Refinement: Allowed Lateness
-
-## Handling Stragglers
-
-**What if an event is *very* late and arrives after its window is closed?**
-
-<div class="mt-8">
-
-```mermaid
-graph LR
-    A[Late Event Arrives] --> B{Is its window closed?};
-    B -- Yes --> C{Is it within the 'lateness' period?};
-    C -- Yes --> D[✅ Update the Window Result];
-    C -- No --> E[❌ Discard Event];
-```
-
-</div>
-
-**Allowed Lateness:** A grace period that lets Flink accept late events and **update** the previously emitted result for that window. Works only for retractable sinks.
-
-<!--
-But what if an event is exceptionally late? We can configure an 'allowed lateness' period. This tells Flink to keep the state for a window around for a bit longer. If a straggler arrives within this period, Flink will re-calculate and emit an updated result.
 -->
 
 ---
@@ -753,6 +607,153 @@ flowchart LR
 
 ---
 
+# The Problem: Out-of-Order Events
+
+## The Messiness of Reality
+
+Events don't always arrive in the order they occurred due to network latency, device issues, etc
+
+<div class="p-4 mt-8 bg-slate-800 rounded font-mono text-lg text-left">
+  <p>Actual Event Order (10:00:00 - 10:05:00 window): (10:02:59), (10:03:01)</p>
+  <v-click>
+    <p class="mt-4">Arrival Order at Processor:</p>
+    <p class="text-yellow-400">Event @ 10:03:01 arrives</p>
+    <p class="text-red-500">Event @ 10:02:59 arrives LATE!</p>
+  </v-click>
+</div>
+
+<v-click>
+<h3 class="mt-8">Question: How does our system know when a time window (e.g., 10:00-10:05) is "complete"?</h3>
+</v-click>
+
+<!--
+In a perfect world, events arrive perfectly ordered. In the real world, they don't. This creates a huge problem: how does our system know it has received all the data for a specific time window before calculating the result?
+-->
+
+---
+
+# The Solution: Watermarks
+
+## Flink's Event-Time Clock
+
+A **Watermark** is a special message in the stream that acts as a progress indicator.
+
+<div class="p-6 mt-3 bg-slate-800 rounded text-xl border-l-4 border-cyan-400">
+  It is a declaration: <br/>
+  <em class="text-cyan-400">"I am now confident all events before timestamp `T` have arrived."</em>
+</div>
+
+This allows Flink to safely close windows and emit results.
+
+<v-click>
+
+Watermark is defined to be 10 seconds behind the latest event time
+<div class="mt-3 p-6 m-3 rounded font-mono text-lg bg-slate-800 border-l-4 border-cyan-400">
+
+  WATERMARK FOR event_time AS event_time - INTERVAL '10' SECOND
+</div>
+</v-click>
+
+<!--
+Flink solves this with watermarks. A watermark is a timestamp that essentially says, 'Okay, I've waited long enough for late data, it's safe to close the window for 10:00 to 10:05 and emit the result.' This allows Flink to make progress without waiting forever. For example, in our code, we can define a watermark that lags 10 seconds behind the maximum event time we've seen.
+-->
+
+---
+
+# Watermarks in Action: The Flow of Time
+
+## Let’s trace a few events with a 10-second watermark delay and a 30-second tumbling window (`10:00:00 – 10:00:30`)
+
+<div>
+
+| Event  | Event Time | Processing Time | Max Event Time | Current Watermark (= maxET − 10 s) | System Action                                        |
+| :----- | :--------- | :-------------- | :------------- | :--------------------------------- | :--------------------------------------------------- |
+| **E1** | 10:00:15   | 10:00:16        | 10:00:15       | **10:00:05**                       | Buffer E1 (assign to window 00-30)                   |
+| **E2** | 10:00:25   | 10:00:26        | 10:00:25       | **10:00:15**                       | Buffer E2; watermark advances                        |
+| **E3** | 10:00:18   | 10:00:27        | 10:00:25       | **10:00:15**                       | Buffer E3; watermark holds                 |
+| **E4** | 10:00:42   | 10:00:43        | 10:00:42       | **10:00:32**                       | ✅ **Trigger window 00-30**; Buffer E4 in next window |
+
+</div>
+
+---
+
+# What if the Stream Stops? Idle Source Problem
+
+No new events ➞ No new watermarks ➞ Stuck windows & no results!
+
+<div class="grid grid-cols-2 gap-8 mt-8 text-left">
+
+  <!-- Solution A: The Flink Way -->
+  <div class="p-4 bg-slate-800 rounded-lg">
+    <span>Solution A: Configure Idleness in Flink</span>
+    <p class="mt-2">Flink can detect when a source partition is idle and automatically advance its watermark.</p>
+    <div class="mt-4 p-2 bg-slate-900 rounded font-mono text-sm">
+      <pre><code>WatermarkStrategy
+  .forBoundedOutOfOrderness(...)
+  .withIdleness(Duration.ofMinutes(1));</code></pre>
+    </div>
+    <hr class="opacity-20 my-4" />
+    <p><b>Best for:</b> Simplicity. The logic is self-contained within the Flink job, requiring no changes to the data producer.</p>
+  </div>
+
+  <!-- Solution B: The Producer Way -->
+  <div class="p-4 bg-slate-800 rounded-lg">
+    <span>Solution B: Send Heartbeat Messages</span>
+    <p class="mt-2">The data producer sends periodic dummy messages with a current timestamp to keep watermarks flowing.</p>
+```mermaid
+graph LR
+  A[Producer] -- "Event" --> K((Kafka));
+  B[Heartbeat Generator];
+  B -- "<br/>Heartbeat<br/>(every 30s)" --> K;
+  K --> F[Flink];
+```
+    <hr class="opacity-20 my-4" />
+    <p><b>Best for:</b> Portability. This pattern works with any stream processing engine, not just Flink.</p>
+  </div>
+</div>
+
+<!--
+So, watermarks are great, but they have a critical dependency: they only advance when new events arrive. What happens if our ad campaign goes quiet for a few minutes and there are no new impressions or clicks? Our windows will get stuck and we'll never see a result for that period.
+
+There are two excellent ways to solve this.
+
+First, the easiest way is directly in Flink. We can configure our source to detect 'idleness'. If it doesn't see a new message on a partition for, say, one minute, it will automatically advance the watermark for us. It's a simple, powerful configuration.
+
+Another very robust approach is to solve this at the source. We can modify our Go producer to send a 'heartbeat' message every 30 seconds, even if there are no real events. This dummy message contains a current timestamp, and its only job is to keep the watermarks flowing through the system.
+
+The choice between these depends on your architecture. The Flink solution is quick and self-contained. The heartbeat solution is more portable if you ever switch processing engines.
+-->
+
+---
+
+# Allowed Lateness
+
+## Handling Stragglers
+
+**What if an event is *very* late and arrives after its window is closed?**
+
+<div class="mt-8">
+
+```mermaid
+graph LR
+    A[Late Event Arrives] --> B{Is its window closed?};
+    B -- Yes --> C{Is it within the 'lateness' period?};
+    C -- Yes --> D[✅ Update the Window Result];
+    C -- No --> E[❌ Discard Event];
+```
+
+</div>
+
+**Allowed Lateness:** A grace period that lets Flink accept late events and **update** the previously emitted result for that window. Works only for retractable sinks.
+
+<!--
+But what if an event is exceptionally late? We can configure an 'allowed lateness' period. This tells Flink to keep the state for a window around for a bit longer. If a straggler arrives within this period, Flink will re-calculate and emit an updated result.
+-->
+
+
+
+---
+
 # System Architecture
 
 ## The End-to-End Pipeline
@@ -777,7 +778,6 @@ graph LR
     B -- "reads streams" --> C;
     C -- "writes CTR" --> D;
 ```
-<p class="mt-4 text-center text-2xl">Fully containerized with Docker Compose for easy deployment.</p>
 
 <!--
 Now let's put it all together for our project. This is the complete data flow, from generation to storage, orchestrated by our key technologies. The entire system runs inside Docker containers, making it portable and easy to run.
@@ -855,7 +855,7 @@ Inside the Flink job, we follow these logical steps. We source the data, then pe
     </ol>
   </div>
   <div class="text-center">
-    <img src="/mongo/mongo_kafka_neo4j.png" class="w-2/3 mx-auto bg-white p-2 rounded-lg" />
+    <img src="/stream_adtech/stream_adtech_qr.png" class="w-2/3 mx-auto bg-white p-2 rounded-lg" />
     <p class="mt-4">
       <a href="https://github.com/susmitpy/stream_analytics_adtech_ctr" target="_blank">
         github.com/susmitpy/stream_analytics_adtech_ctr
