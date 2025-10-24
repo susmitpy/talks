@@ -598,6 +598,56 @@ Flink solves this with watermarks. A watermark is a timestamp that essentially s
 
 ---
 
+# What if the Stream Stops? The Idle Source Problem
+
+## No new events ➞ No new watermarks ➞ Stuck windows & no results!
+
+<div class="grid grid-cols-2 gap-8 mt-8 text-left">
+
+  <!-- Solution A: The Flink Way -->
+  <div class="p-4 bg-slate-800 rounded-lg">
+    <h3>Solution A: Configure Idleness in Flink</h3>
+    <p class="mt-2">Flink can detect when a source partition is idle and automatically advance its watermark.</p>
+    <div class="mt-4 p-2 bg-slate-900 rounded font-mono text-sm">
+      <pre><code>WatermarkStrategy
+  .forBoundedOutOfOrderness(...)
+  .withIdleness(Duration.ofMinutes(1));</code></pre>
+    </div>
+    <hr class="opacity-20 my-4" />
+    <p><b>Best for:</b> Simplicity. The logic is self-contained within the Flink job, requiring no changes to the data producer.</p>
+  </div>
+
+  <!-- Solution B: The Producer Way -->
+  <div class="p-4 bg-slate-800 rounded-lg">
+    <h3>Solution B: Send Heartbeat Messages</h3>
+    <p class="mt-2">The data producer sends periodic dummy messages with a current timestamp to keep watermarks flowing.</p>
+    <div class="mt-4">
+      ```mermaid
+      graph TD
+        A[Producer] -- "Event" --> K((Kafka));
+        A -- "<br/>Heartbeat<br/>(every 30s)" --> K;
+        K --> F[Flink];
+      ```
+    </div>
+    <hr class="opacity-20 my-4" />
+    <p><b>Best for:</b> Portability. This pattern works with any stream processing engine, not just Flink.</p>
+  </div>
+</div>
+
+<!--
+So, watermarks are great, but they have a critical dependency: they only advance when new events arrive. What happens if our ad campaign goes quiet for a few minutes and there are no new impressions or clicks? Our windows will get stuck and we'll never see a result for that period.
+
+There are two excellent ways to solve this.
+
+First, the easiest way is directly in Flink. We can configure our source to detect 'idleness'. If it doesn't see a new message on a partition for, say, one minute, it will automatically advance the watermark for us. It's a simple, powerful configuration.
+
+Another very robust approach is to solve this at the source. We can modify our Go producer to send a 'heartbeat' message every 30 seconds, even if there are no real events. This dummy message contains a current timestamp, and its only job is to keep the watermarks flowing through the system.
+
+The choice between these depends on your architecture. The Flink solution is quick and self-contained. The heartbeat solution is more portable if you ever switch processing engines.
+-->
+
+---
+
 # The Refinement: Allowed Lateness
 
 ## Handling Stragglers
