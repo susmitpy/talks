@@ -112,12 +112,6 @@ td {
   </div>
 </div>
 
-<!---
-1. "Hello everyone, and welcome. My name is Susmit Vengurlekar."
-2. "Today, we're going to dive into a fascinating and highly practical topic: building a system for real-time Click-Through Rate analysis using some of the most powerful tools in the data streaming world: Apache Flink and Apache Kafka."
-3. "We'll see how we can go from a continuous stream of user impressions and clicks to live, actionable business insights."
--->
-
 
 ---
 src: ./pages/disclaimer.md
@@ -158,12 +152,7 @@ src: ./pages/about.md
     </ol>
   </div>
 </div>
-<!---
-1. "Here's our roadmap for today. We'll start with the 'why' – understanding the business problem of CTR."
-2. "Then, we'll build up our technical foundation, starting with core patterns like message queues and pub-sub, which will lead us directly into Apache Kafka."
-3. "Next, we'll get into the heart of stream processing, talking about streams, windows, and how to handle the complexities of real-world data with Flink's watermarking system."
-4. "Finally, we'll put it all together, look at the system architecture, walk through the code logic, and see a live demo. We'll wrap up with a Q&A."
--->
+
 
 ---
 
@@ -190,11 +179,7 @@ src: ./pages/about.md
   }
 </style>
 
-<!---
-1. "So, what problem are we trying to solve? At the core of online advertising is a simple but vital metric: the Click-Through Rate, or CTR."
-2. "It's the percentage of people who saw an ad (an impression) and actually clicked on it. The formula is simple: Clicks divided by Impressions."
-3. "But the *timing* of this metric is critical. Businesses can't wait hours or days for this data. They need to know *right now* if a campaign is working to optimize ad spend, pull underperforming ads, and react to market changes instantly."
--->
+
 
 
 ---
@@ -218,11 +203,6 @@ src: ./pages/about.md
   </div>
 </div>
 
-<!---
-1. "This need for immediacy highlights a fundamental shift in data processing."
-2. "Historically, we used Batch Processing. We'd collect data over a period—like a day—and then run a big job overnight. This answers the question, 'What happened yesterday?' It's historical analysis."
-3. "Streaming Processing, on the other hand, analyzes data as it arrives, moment by moment. It gives us a live feedback loop, answering the question, 'What is happening *right now*?' This allows us to be proactive instead of reactive."
--->
 
 
 ---
@@ -264,11 +244,7 @@ graph TD
 }
 </style>
 
-<!---
-1. "To build a streaming system, we need a way for different services to communicate reliably. The first foundational pattern is the Message Queue."
-2. "Think of it like a post office mailbox. A producer service sends a message to the queue and can immediately move on. It doesn't need to know if the consumer is ready or even online."
-3. "Later, a consumer service comes and picks up the message. This decouples the services, making the whole system more resilient. It’s a one-to-one communication channel."
--->
+
 
 ---
 layout: two-cols-header
@@ -311,11 +287,7 @@ graph LR
 }
 </style>
 
-<!---
-1. "The second key pattern is Publish-Subscribe, or Pub-Sub. This is a one-to-many broadcast model."
-2. "The analogy here is a radio station. A publisher broadcasts a message to a central 'topic', not to any specific receiver."
-3. "Multiple subscribers can then tune into that topic to receive a copy of the message. This is incredibly powerful because the same event—like a user click—can be used by an analytics service, an archiving service, and a monitoring service simultaneously, without them knowing about each other."
--->
+
 
 ---
 
@@ -343,11 +315,7 @@ graph LR
   }
 </style>
 
-<!---
-1. "So, where does Apache Kafka fit in? Kafka is a distributed streaming platform that brilliantly combines both of these patterns."
-2. "It allows for both point-to-point delivery like a queue and broadcast capabilities like pub-sub. But its real power comes from being a distributed, fault-tolerant, and replayable log."
-3. "This means data is stored safely across multiple machines, and if something goes wrong, you can 'replay' the data stream. It’s the perfect backbone for a reliable real-time pipeline."
--->
+
 
 ---
 
@@ -357,11 +325,6 @@ graph LR
 <img src="/kafka/replication.svg" class="w-5/6"/>
 </div>
 
-<!---
-1. "Let's quickly visualize how Kafka achieves its fault tolerance. This slide shows a core concept: replication."
-2. "Kafka doesn't just store data in one place; it makes copies of it across different servers, which it calls brokers."
-3. "We'll see on the next slide how this leader-and-follower model prevents data loss."
--->
 
 ---
 layout: two-cols-header
@@ -408,11 +371,7 @@ graph TD
 }
 </style>
 
-<!---
-1. "Let's break that down. A single data feed in Kafka is called a Topic. For performance, a topic is split into multiple Partitions."
-2. "Each partition is then replicated across several servers, or Brokers. One of these replicas is elected the 'Leader'—it handles all the new data."
-3. "The other replicas are 'Followers' that just copy the leader. The magic is, if the leader's server fails, Kafka automatically elects one of the followers to become the new leader. This makes the system incredibly resilient to hardware failure."
--->
+
 
 ---
 
@@ -424,11 +383,6 @@ graph TD
 <img src="/kafka/multi_cg.svg" class="w-2.2/4"/>
 </div>
 
-<!---
-1. "Kafka also gives us massive scalability on the reading side using a concept called Consumer Groups."
-2. "You can have multiple instances of your application running, all belonging to the same group. Kafka ensures that each partition is consumed by exactly ONE consumer within that group."
-3. "This means if you have a topic with 4 partitions, you can run up to 4 instances of your service to process the data in parallel. If you need to re-process the data for a different purpose, you just create a *new* consumer group, as shown here with the 'Archiving' group."
--->
 
 ---
 
@@ -457,12 +411,6 @@ graph TD
   </v-after>
 </div>
 
-<!---
-1. "So we've talked about the pipes—Kafka—now let's talk about what flows through them: streams."
-2. "On the left, we have a stream in nature: a continuous, unbounded flow of water. On the right, a data stream: a continuous, unbounded flow of events."
-3. "The key takeaway is that, unlike a file or a database table, a stream has no end. And we need special techniques to handle this infinite nature."
--->
-
 
 ---
 
@@ -482,11 +430,6 @@ graph TD
   </v-click>
 </div>
 
-<!---
-1. "So, how do you perform calculations like 'count' or 'average' on an infinite stream? You can't. The number would just go up forever."
-2. "The solution is to impose boundaries. We create finite, manageable slices of the stream called 'windows'."
-3. "By doing this, we can change the question from 'How many clicks have happened ever?' to 'How many clicks happened in the last 30 seconds?' This is the fundamental concept behind nearly all stream processing."
--->
 
 ---
 
@@ -516,11 +459,6 @@ graph TD
 
 </div>
 
-<!---
-1. "There are several ways to create these windows. Let's look at two common types."
-2. "On the left are **Tumbling Windows**, which are what we'll use in our demo. They are fixed-size, non-overlapping chunks. Think of them as a perfect grid slicing up time. An event belongs to exactly one window."
-3. "On the right are **Session Windows**, which are defined by user activity. A window opens when a user does something and closes only after a period of inactivity. This is great for analyzing a user's entire visit as a single unit."
--->
 
 ---
 
@@ -550,11 +488,6 @@ graph TD
 
 </div>
 
-<!---
-1. "We can also have windows that overlap. The key difference between these two is what *triggers* the calculation."
-2. "A **Hopping Window** is time-triggered. It has a size (e.g., 10 minutes) and a 'hop' (e.g., 5 minutes). Every 5 minutes, a new window is created covering the last 10 minutes of data. This is perfect for dashboards."
-3. "A **Sliding Window**, however, is event-triggered. A window of a fixed size moves with each new event. This is ideal for things that require an immediate reaction, like detecting if a user made 5 purchases in the last 1 minute."
--->
 
 ---
 
@@ -579,11 +512,6 @@ graph TD
   }
 </style>
 
-<!---
-1. "If Kafka is the circulatory system of our pipeline, Apache Flink is the brain. It's the engine that will actually perform our windowed calculations."
-2. "Flink is a true stream processing framework, and its superpowers are threefold."
-3. "First, it's **Stateful**. It can remember things, like the running count of clicks in a window. Second, it provides **Exactly-Once Guarantees**, which is a fancy way of saying it's extremely accurate and won't miscount data even if machines fail. And finally, it has a fantastic Python API called **PyFlink**, which is what we'll be using."
--->
 
 ---
 
@@ -607,11 +535,6 @@ graph TD
 - **JobManager (The Brain):** Coordinates the entire job execution.
 - **TaskManagers (The Muscle):** Worker processes that execute the actual data processing tasks in parallel **Slots**.
 
-<!---
-1. "At a high level, a Flink cluster has two types of components."
-2. "The **JobManager** is the brain. It receives your code, figures out how to execute it, and coordinates the whole process."
-3. "The **TaskManagers** are the muscle. They are the worker nodes that actually run your code on the data. Each TaskManager has multiple 'Slots', allowing it to perform several tasks in parallel."
--->
 
 ---
 
@@ -621,11 +544,6 @@ graph TD
 <img src="/kafka/multi_cg.svg" class="w-2.4/4"/>
 </div>
 
-<!---
-1. "Just to quickly remind you of the Kafka consumer group model we saw earlier..."
-2. "We have multiple consumers in a group processing data in parallel from different partitions."
-3. "Now let's see how Flink's architecture maps directly onto this."
--->
 
 ---
 
@@ -644,12 +562,6 @@ flowchart LR
 
   KX --> OUT[(Sink / Dashboard / DB)]
 ```
-
-<!---
-1. "This is how Flink achieves parallelism. When you tell Flink to read from a Kafka topic, it will spin up a parallel 'source' task for each Kafka partition."
-2. "Simple operations like mapping or filtering can happen in parallel, with no communication needed."
-3. "But when you do a grouping operation, like our `keyBy('campaign_id')`, Flink performs a network shuffle to ensure all events for the same key end up on the same machine. This is what makes stateful operations like windowing possible."
--->
 
 ---
 
@@ -672,11 +584,6 @@ Events don't always arrive in the order they occurred due to network latency, de
 <h3 class="mt-8">Question: How does our system know when a time window (e.g., 10:00-10:05) is "complete"?</h3>
 </v-click>
 
-<!---
-1. "Now we get to one of the hardest problems in stream processing: reality is messy."
-2. "Just because an event happened at 10:02, doesn't mean it will arrive at our processor at 10:02. Due to network lag or mobile device issues, events often arrive out of order."
-3. "As you can see, the event from 10:02 arrived *after* the event from 10:03. This creates a huge problem: How does our system ever know that it has received all the data for the 10:00 to 10:05 window and that it's safe to calculate the result?"
--->
 
 ---
 
@@ -702,12 +609,6 @@ Watermark is defined to be 10 seconds behind the latest event time
 </div>
 </v-click>
 
-<!---
-1. "Flink's elegant solution to this problem is called Watermarks."
-2. "A Watermark is a special message that flows through the data stream. It's Flink's internal clock, but it's based on the timestamps of the data itself, not the wall clock on the server."
-3. "A watermark with a timestamp 'T' is a declaration from Flink saying, 'I am now confident that we will not see any more events with a timestamp earlier than T.' This signal gives Flink the confidence it needs to close a window and finalize the result."
--->
-
 ---
 
 # Watermarks in Action: The Flow of Time
@@ -724,14 +625,6 @@ Watermark is defined to be 10 seconds behind the latest event time
 | **E4** | 10:00:42   | 10:00:43        | 10:00:42       | **10:00:32**                       | ✅ **Trigger window 00-30**; Buffer E4 in next window |
 
 </div>
-
-<!---
-1. "Let's walk through this. We have a 10-second watermark delay and a 30-second window."
-2. "Event E1 arrives with a time of 10:00:15. This is the latest event we've seen, so Flink sets the watermark to 10 seconds before that: 10:00:05."
-3. "E2 arrives at 10:00:25. This is our new max time, so the watermark advances to 10:00:15."
-4. "E3 arrives. It's an out-of-order event at 10:00:18, but that's okay. It's not later than our max time of 25, so the watermark doesn't move. The event is correctly placed in the 0-30 second window."
-5. "Finally, E4 arrives at 10:00:42. The new max time advances the watermark to 10:00:32. As soon as the watermark passes the end of our window (10:00:30), Flink says 'Aha! This window is complete,' and it triggers the calculation for that window."
--->
 
 ---
 
@@ -770,12 +663,6 @@ graph LR
   </div>
 </div>
 
-<!---
-1. "This leads to a critical edge case. Watermarks only advance when new events arrive. What happens if there's no activity for a few minutes? Our windows will get stuck and never trigger!"
-2. "There are two great solutions. Solution A is the Flink way: you can simply configure your source to detect idleness. If no message comes for a minute, Flink will automatically advance the watermark for you. It's clean and self-contained."
-3. "Solution B is to solve it at the source. You can have your data producer send a periodic 'heartbeat' message. This dummy event's only job is to carry a fresh timestamp to keep the watermarks flowing. This pattern is more portable across different stream processors."
--->
-
 ---
 
 # Allowed Lateness
@@ -797,13 +684,6 @@ graph LR
 </div>
 
 **Allowed Lateness:** A grace period that lets Flink accept late events and **update** the previously emitted result for that window. Works only for retractable sinks.
-
-
-<!---
-1. "But what if an event is *extremely* late? What if it arrives after the watermark has already closed its window?"
-2. "By default, Flink would just drop this event. But we can configure a grace period called 'Allowed Lateness'."
-3. "If a late event arrives and its window is closed, Flink checks if it's still within this grace period. If it is, Flink will actually process the event and emit an *updated result* for the window. This is a powerful feature for improving accuracy, but it requires your downstream system, like a database, to be able to handle updates."
--->
 
 
 ---
@@ -833,14 +713,6 @@ graph LR
     C -- "writes CTR" --> D;
 ```
 
-<!---
-1. "Okay, let's put all those concepts together and look at our final system architecture."
-2. "It's a clean, linear pipeline. We start with a Go Producer generating our impression and click data."
-3. "That data is sent to Apache Kafka, which acts as our durable, high-throughput transport layer."
-4. "Our PyFlink job reads from Kafka, performs the real-time join and windowed CTR calculation."
-5. "And finally, the results are written out to a file sink on the filesystem."
--->
-
 ---
 
 # Components
@@ -866,13 +738,6 @@ graph LR
   </div>
 </div>
 
-<!---
-1. "Here's a closer look at each component's role."
-2. "The **Go Producer** is a simple application designed to mimic real-world ad traffic, even introducing random delays to simulate out-of-order events."
-3. "**Kafka** acts as the central nervous system and buffer for our data."
-4. "The **PyFlink Job** is the core logic engine where all the stateful computation happens."
-5. "And the **File Sink** is our destination. Flink ensures that even when writing to something as simple as a file, it does so with exactly-once guarantees, meaning no duplicate or missing results."
--->
 
 ---
 
@@ -888,14 +753,6 @@ graph LR
   </ol>
 </div>
 
-<!---
-1. "Let's walk through the five logical steps inside the Flink job itself."
-2. "First, we define our **Sources**: we connect to the 'impressions' and 'clicks' topics in Kafka."
-3. "Second, we perform an **Interval Join**. This is key. We match a click to an impression if they share the same ID *and* the click happened within 15 seconds of the impression. This prevents us from associating a click with an ad someone saw yesterday."
-4. "Third, we apply a 30-second Tumbling **Window** to the stream of matched pairs, grouping them by campaign."
-5. "Fourth, we **Aggregate**. Within each window, we simply count the unique impressions and clicks to calculate the CTR."
-6. "Finally, our **Sink** writes these final results to a CSV file."
--->
 
 ---
 
@@ -931,13 +788,6 @@ graph LR
   </div>
 </div>
 
-<!---
-1. "Now for the fun part. Let's see this all in action."
-2. "The entire pipeline is containerized with Docker, so it's very easy to run. The `run_demo.sh` script will start Kafka, Zookeeper, Flink, and submit our job."
-3. "You can monitor the job's progress and see the data flowing through the Flink UI at localhost:8081."
-4. "And the `read_results.py` script will continuously tail the output files, so we can see our real-time CTR results as they are computed."
-5. "You can find all the code at the GitHub link on the screen."
--->
 
 ---
 src: ./pages/connect.md
