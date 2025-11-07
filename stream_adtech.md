@@ -572,16 +572,16 @@ flowchart LR
 Events don't always arrive in the order they occurred due to network latency, device issues, etc
 
 <div class="p-4 mt-8 bg-slate-800 rounded font-mono text-lg text-left">
-  <p>Actual Event Order (10:00:00 - 10:05:00 window): (10:02:59), (10:03:01)</p>
+  <p>Window Bounds - (10:00:00 - 10:03:00)</p>
   <v-click>
     <p class="mt-4">Arrival Order at Processor:</p>
-    <p class="text-yellow-400">Event @ 10:03:01 arrives</p>
-    <p class="text-red-500">Event @ 10:02:59 arrives LATE!</p>
+    <p class="text-yellow-400">Event @ 10:03:00 arrives, let's close window ?</p>
+    <p v-click class="text-red-500">Event @ 10:02:58 arrives LATE!</p>
   </v-click>
 </div>
 
 <v-click>
-<h3 class="mt-8">Question: How does our system know when a time window (e.g., 10:00-10:05) is "complete"?</h3>
+<h3 class="mt-8">Question: How does our system know when a time window (e.g., 10:00-10:03) is "complete"?</h3>
 </v-click>
 
 
