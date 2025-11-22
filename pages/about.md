@@ -2,7 +2,7 @@
 
 # About
 
-## Data Scientist, Backend Developer, AWS Solutions Architect, Neo4j 
+## Data Scientist, Backend Developer, AWS Solutions Architect, Neo4j Professional
 <br/>
 
 - Data Scientist at AIDAX
