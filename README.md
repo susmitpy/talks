@@ -8,6 +8,16 @@ npm exec slidev build template.md -- --base /talks/template/ --out docs/template
 npm exec slidev build pres1.md -- --base /talks/pres1/ --out docs/pres1
 ```
 
+Local development
+```bash
+npm run dev template.md
+```
+
+Preview html file
+```bash
+npm run preview
+```
+
 Using remote control
 ```bash
 npm exec slidev -- --open template.md --remote
