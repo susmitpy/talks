@@ -5,7 +5,7 @@ duration: 30
 
 title: "Abstracting Cross-Cutting Concerns: AuthN/Z and Observability at the Edge"
 info: |
-  ## Live Demo
+  ## Concepts and Demo
 drawings:
   persist: false
 transition: slide-left
