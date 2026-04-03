@@ -2,9 +2,6 @@
 
 # About
 
-## Data Scientist, Backend Developer, AWS Solutions Architect, Neo4j Professional
-<br/>
-
 - Data Scientist & Solution Architect at SkillRev - building AIDEN
 - Building ForQuiz - Ultimate Engagement Platform for events, hiring and branding
 - Certified Neo4j Professional

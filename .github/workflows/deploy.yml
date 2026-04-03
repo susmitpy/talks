@@ -61,6 +61,8 @@ jobs:
         run: nr --name=stream_adtech build_pres
       - name: Build Neo4j Recommender
         run: nr --name=neo4j_recommender build_pres
+      - name: Build Auth NZ and Observability
+        run: nr --name=authnz_obs build_pres
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
