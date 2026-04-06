@@ -1,36 +1,77 @@
 ---
-theme: seriph
+theme: default
 class: text-center
 duration: 30
-
-title: "Abstracting Cross-Cutting Concerns: AuthN/Z and Observability at the Edge"
+title: "Abstracting Cross-Cutting Concerns: AuthN/Z and Observability for GenAI"
 info: |
   ## Concepts and Demo
 drawings:
   persist: false
-transition: slide-left
+transition: fade-out
 mdc: true
-background: /bg_image.png
+fonts:
+  sans: "Inter"
+  serif: "Space Grotesk"
+  mono: "Fira Code"
 ---
 
-# Abstracting Cross-Cutting Concerns 
+<style>
+:root {
+  /* Vibrant Cyber/GenAI Theme Colors */
+  --slidev-theme-primary: #FFFFFF;
+  --slidev-theme-secondary: #00e5ff; /* Neon Cyan */
+  --slidev-theme-accent: #ff007f;   /* Neon Pink */
+  --slidev-theme-background: #0f0a17; /* Solid Dark Theme Background */
+  --slidev-theme-foreground: #E0E0E0;
+  --slidev-code-background: rgba(10, 10, 15, 0.95);
+}
 
-<hr/>
+.slidev-layout {
+  background: var(--slidev-theme-background) !important;
+  color: var(--slidev-theme-foreground) !important;
+}
 
-<br/>
+h1 {
+  color: var(--slidev-theme-secondary);
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+}
 
-<span class="text-4xl"> AuthN/Z and Observability at the GenAI Edge </span>
+h2 {
+  color: var(--slidev-theme-secondary) !important;
+  font-weight: 600 !important;
+}
 
-<br/>
+a {
+  color: var(--slidev-theme-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--slidev-theme-accent);
+}
 
-### By Susmit Vengurlekar (@susmitpy)
+.glow-box {
+  background: rgba(20, 20, 30, 0.6);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+  border-radius: 16px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+}
+</style>
+
+<div class="h-full flex flex-col justify-center items-center">
+  <div class="glow-box text-center transform hover:scale-105 transition-transform duration-500">
+    <h1 style="font-size: 3.8rem; line-height: 1.2; margin-bottom: 0.5em;">Abstracting Cross-Cutting Concerns</h1>
+    <h2 style="color: white !important; font-size: 2.2rem; margin-top: 0; border: none;">
+      AuthN/Z and Observability for <span style="color: #00e5ff; font-weight: 700;">GenAI</span>
+    </h2>
+    <div class="mt-8 text-xl font-mono text-gray-400">
+      By Susmit Vengurlekar (@susmitpy)
+    </div>
+  </div>
+</div>
 
 ---
 src: ./pages/disclaimer.md
----
-
----
-src: ./pages/bug.md
 ---
 
 ---
@@ -43,50 +84,57 @@ src: ./pages/ice_breaker.md
 
 ---
 
-# Agenda
+# 🗺️ Agenda
 
-<div class="text-3xl mt-12 mb-6">
-How we'll spend our ~ 30 minutes together:
+<div class="text-2xl mt-8 mb-6 font-light text-gray-300">
+Here is our roadmap for the next ~ 30 minutes:
 </div>
 
 <v-clicks>
 
-* **[20 min] Core Concepts & GenAI:** API / AI Gateways, AuthN/Z, and LLM Observability
-* **[5 min] Demo:** Seeing it in action (Kong, FastAPI, OpenObserve)
-* **[5 min] Q & A:** Your questions
+* 🚀 **[20 min] Core Concepts & GenAI:** API / AI Gateways, AuthN/Z, and LLM Observability
+* 💻 **[5 min] Demo:** Seeing it in action (Kong, FastAPI, OpenObserve)
+* 🎤 **[5 min] Q & A:** Your questions
 
 </v-clicks>
 
 <style>
   li {
-    font-size: 2rem;
-    line-height: 1.8;
+    font-size: 1.8rem;
+    line-height: 2;
     margin-bottom: 0.8em;
     text-align: left;
+    padding-left: 1rem;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+  }
+  li:hover {
+    border-left: 3px solid var(--slidev-theme-secondary);
+    background: rgba(0, 229, 255, 0.05);
   }
 </style>
 
 ---
 
-# The Problem: Microservice & GenAI Sprawl
+# 💥 The Problem: Microservice & GenAI Sprawl
 
-<div class="text-xl mt-4">
+<div class="text-xl mt-2 mb-6 text-gray-300">
 Building a single-tenant GenAI app is easy. Scaling it to production is hard.
 </div>
 
 <v-clicks>
 
-* **The Single-Tenant Trap:** GenAI without AuthN/Z (multi-tenancy) leads to untracked costs and "bill shock". You cannot rate-limit or bill what you cannot attribute.
-* **The Black Box:** Without observability, an LLM agent stuck in a loop or hallucinating is impossible to debug.
-* **Duplication of Effort:** Implementing Auth, JWT validation, and Token Tracking in every single service or AI script.
-* **Tight Coupling:** Hardcoding LLM providers (OpenAI, Anthropic) vs. self-hosted GPU inferences directly into business logic.
+* 💸 **The Single-Tenant Trap:** GenAI without AuthN/Z leads to untracked costs and "bill shock". You cannot rate-limit what you cannot attribute!
+* 🕵️ **The Black Box:** Without observability, an LLM agent stuck in a loop or hallucinating is impossible to debug.
+* 🔁 **Duplication of Effort:** Implementing Auth, JWT validation, and Token Tracking in *every single service*.
+* 🔗 **Tight Coupling:** Hardcoding LLM providers (OpenAI, Anthropic) directly into business logic.
 
 </v-clicks>
 
 <style>
   li {
-    font-size: 1.6rem;
-    line-height: 1.5;
+    font-size: 1.5rem;
+    line-height: 1.6;
     margin-bottom: 0.8em;
     text-align: left;
   }
@@ -97,9 +145,17 @@ Building a single-tenant GenAI app is easy. Scaling it to production is hard.
 
 ---
 
-# Anatomy of a Gateway (API & AI)
+<div class="mt-6" style="background: rgba(128, 114, 191, 0.15); padding: 1.2rem; border-left: 4px solid #ff007f; border-radius: 6px;">
+  <b class="text-xl text-pink-400">🙋‍♂️ Audience Question:</b> How many of you have deployed an LLM app and accidentally left it open to unlimited API calls? Be honest! 😅
+</div>
 
-<div class="text-3xl mt-4 text-center">
+
+
+---
+
+# 🌉 Anatomy of a Gateway (API & AI)
+
+<div class="text-2xl mt-4 mb-6 text-center text-cyan-300">
 A single entry point, abstracting backend architecture and AI models.
 </div>
 
@@ -134,11 +190,11 @@ U -->|Prompt Ingress| LLM
 
 ---
 
-# Anatomy of a Gateway
+# 🌉 Anatomy of a Gateway
 
-## Ingress Routes
+## 1. Ingress Routes
 
-<div class="text-3xl mt-2 mb-8 text-center">
+<div class="text-2xl mt-2 mb-8 text-center text-cyan-300">
 Mapping external requests to internal boundaries (Traditional & AI).
 </div>
 
@@ -161,11 +217,11 @@ U --> |POST| UOR(/api<u>/v1/chat</u>) --> |Mapped to| CR[Chat/LLM Route]
 
 ---
 
-# Anatomy of a Gateway
+# 🌉 Anatomy of a Gateway
 
-## Logical Services
+## 2. Logical Services
 
-<div class="text-3xl mt-2 mb-8 text-center">
+<div class="text-2xl mt-2 mb-8 text-center text-cyan-300">
 Abstracting the compute. Is it a database CRUD app, or an AI Model?
 </div>
 
@@ -191,11 +247,11 @@ CR --> |Mapped to| IS[Inference Service]
 
 ---
 
-# Anatomy of a Gateway
+# 🌉 Anatomy of a Gateway
 
-## Upstream Load Balancing (The GenAI Split)
+## 3. Upstream Load Balancing
 
-<div class="text-3xl mt-2 mb-6 text-center">
+<div class="text-2xl mt-2 mb-6 text-center text-cyan-300">
 Separating CPU workloads from GPU workloads and external providers.
 </div>
 
@@ -225,20 +281,20 @@ IU --> |Fallback| SLF[Self-Hosted: Local GPU/vLLM]
 
 ---
 
-# Authentication vs Authorization in GenAI
+# 🔐 Authentication vs Authorization in GenAI
 
-<div class="text-3xl mt-4 mb-6">
+<div class="text-2xl mt-4 mb-6 text-pink-400">
 Identity, Access, and Cost Allocation.
 </div>
 
 <v-clicks>
 
-* **Authentication (AuthN):** Verifying identity.
+* 🛡️ **Authentication (AuthN):** Verifying identity.
     * *Example:* Checking a password, validating a JWT signature.
     * *Gateway Role:* Ideal. Validate tokens centrally.
 
-* **Authorization (AuthZ):** Determining permissions.
-    * *Example:* Can user X view record Y? Can POST to /payments to create payment ?
+* 🔑 **Authorization (AuthZ):** Determining permissions.
+    * *Example:* Can user X view record Y? Can POST to `/payments` to create payment ?
     * *Gateway Role:* Basic RBAC (Role-Based Access Control) is possible. Fine-grained, business-logic-heavy AuthZ usually stays in the backend.
 
 </v-clicks>
@@ -259,13 +315,20 @@ Identity, Access, and Cost Allocation.
 
 ---
 
-# The JWT Lifecycle
-Gateway Role: Validate JWT centrally. If token is invalid, drop the request before hitting expensive GPU instances.
+# 🎟️ The JWT Lifecycle
 
-* **Authorization (AuthZ) & Multi-Tenancy:**
+<div class="text-xl mt-4 mb-6 p-4 border-l-4 border-cyan-400 rounded bg-cyan-900 bg-opacity-20 text-cyan-200">
+<b>Gateway Role:</b> Validate JWT centrally. If token is invalid, drop the request before hitting expensive GPU instances.
+</div>
+
+<v-clicks>
+
+* 🧠 **Authorization (AuthZ) & Multi-Tenancy in GenAI:**
     * *Standard:* Can user X view record Y?
     * *GenAI:* Is this tenant allowed to use the `GPT-4` route, or only `Llama-3-8B`? Are they within their **token rate-limit** quota? 
     * *Security:* AuthZ prevents one compromised tenant from exhausting your entire organization's LLM API budget.
+
+</v-clicks>
 
 <style>
   li {
@@ -283,7 +346,7 @@ Gateway Role: Validate JWT centrally. If token is invalid, drop the request befo
 
 ---
 
-# The Middleware/Plugin Pattern for Microservices
+# 🔌 The Middleware/Plugin Pattern for Microservices
 
 <br/>
 
@@ -326,7 +389,7 @@ U --> B
 
 ---
 
-# Claim-to-Header Injection (Tenant Allocation)
+# 💉 Claim-to-Header Injection (Tenant Allocation)
 
 ```mermaid
 sequenceDiagram
@@ -352,20 +415,20 @@ sequenceDiagram
 
 ---
 
-# Observability (LLMOps)
+# 📊 Observability (LLMOps)
 
-<div class="text-3xl mt-4 mb-6">
+<div class="text-3xl mt-4 mb-6 text-cyan-300">
 Gaining visibility into the GenAI black box.
 </div>
 
 <v-clicks>
 
-* **Logs:** Not just errors. Tracking prompts, responses, and tool outputs (with PII masking at the gateway).
-* **Metrics (The GenAI Additions):** 
+* 📝 **Logs:** Not just errors. Tracking prompts, responses, and tool outputs (with PII masking at the gateway).
+* 📈 **Metrics (The GenAI Additions):** 
     * *Latency:* **TTFT** (Time to First Token) vs Total Generation Time.
     * *Usage:* Input Tokens, Output Tokens, Cost per Tenant.
-* **Traces:** Journey of a request across distributed systems. Crucial for debugging slow RAG pipelines or erratic Agents.
-* **Gateway Advantage:** The Gateway initiates the distributed trace (OpenTelemetry) and standardizes token metrics regardless of whether the backend is OpenAI or a self-hosted GPU.
+* 🕸️ **Traces:** Journey of a request across distributed systems. Crucial for debugging slow RAG pipelines or erratic Agents.
+* 🛡️ **Gateway Advantage:** The Gateway initiates the distributed trace (OpenTelemetry) and standardizes token metrics regardless of whether the backend is OpenAI or a self-hosted GPU.
 
 </v-clicks>
 
@@ -380,9 +443,9 @@ Gaining visibility into the GenAI black box.
 
 ---
 
-# Tracing Agents & Sandboxes
+# 🕵️‍♂️ Tracing Agents & Sandboxes
 
-<div class="text-xl mt-2 mb-4 text-center">
+<div class="text-xl mt-2 mb-4 text-center text-cyan-300">
 Distributed tracing (OpenTelemetry) makes complex Agent loops observable.
 </div>
 
@@ -408,8 +471,8 @@ gantt
     Execute Python Tool          :a5, 5, 8s
 ```
 
-<div class="mt-4 text-xl opacity-80 text-center">
-<b>Span Attributes attached:</b> Agent ID, Tool Name, Container ID, Host Instance, Token Count, Latency.
+<div class="mt-8 p-4 bg-gray-800 bg-opacity-60 rounded-lg text-xl text-center shadow-[0_0_20px_rgba(255,0,127,0.15)] border border-gray-700">
+<span class="text-pink-400 font-bold">Span Attributes attached:</span> Agent ID, Tool Name, Container ID, Host Instance, Token Count, Latency.
 </div>
 
 <style>
@@ -423,15 +486,15 @@ gantt
 
 ---
 
-# Containerization & Isolation
+# 📦 Containerization & Isolation
 
-* **Docker Containers:** Package the application code, ensuring consistent execution.
+* 🐳 **Docker Containers:** Package the application code, ensuring consistent execution.
 
 <v-clicks>
 
-* **GenAI Sandboxing:** 
+* 🏖️ **GenAI Sandboxing:** 
     * Agents that write and execute code *must* do so in isolated, ephemeral sandbox containers (without network access to your DB!).
-* **Gateway Networking Strategy:**
+* 🚦 **Gateway Networking Strategy:**
     * Gateway sits on the "external" edge.
     * CPU Orchestration / Backends sit on internal networks.
     * Self-hosted GPU instances and Agent Sandboxes are highly restricted, isolated nodes. The Gateway ensures strict AuthZ before any traffic reaches them.
@@ -454,23 +517,23 @@ gantt
 
 ---
 
-# The Open-Source Landscape
+# 🌍 The Open-Source Landscape
 
-<div class="text-2xl mt-2 mb-4 text-center">
+<div class="text-2xl mt-2 mb-8 text-center font-light text-gray-300">
 Abstracting these concerns is a community-wide effort.
 </div>
 
 <div class="grid grid-cols-2 gap-8 mt-4">
-  <div>
-    <h2>Gateways & Orchestration</h2>
+  <div class="bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-cyan-500 hover:border-pink-500 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.1)]">
+    <h2 class="text-cyan-400 mb-4 border-b border-gray-700 pb-2">🚦 Gateways & Orchestration</h2>
     <ul>
       <li><b>Kong API Gateway / LiteLLM</b></li>
       <li><b>Envoy Proxy</b> (Istio, Gloo)</li>
       <li><b>vLLM / Ollama</b> (Self-hosted Inference)</li>
     </ul>
   </div>
-  <div>
-    <h2>Observability (LLMOps)</h2>
+  <div class="bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-pink-500 hover:border-cyan-500 transition-colors shadow-[0_0_20px_rgba(255,0,127,0.1)]">
+    <h2 class="text-pink-400 mb-4 border-b border-gray-700 pb-2">📊 Observability (LLMOps)</h2>
     <ul>
       <li><b>OpenTelemetry</b> (Traces & Tokens)</li>
       <li><b>OpenObserve</b> (Logs/Traces/Metrics)</li>
@@ -490,19 +553,30 @@ Abstracting these concerns is a community-wide effort.
   </style>
 
 ---
+layout: center
+class: text-center
+---
 
-# Github Repo with Demo Code
+# 💻 Time for a Demo!
 
- <div class="w-full flex items-center">
-    <img src="/kong_auth/kong_auth.png" alt="QR Code">
-    <a href="https://github.com/susmitpy/docker-kong-fastapi-otel-openobserve" class="ml-4 text-xl">Docker Kong FastAPI OTEL OpenObserve</a>
+<div class="text-2xl mt-4 text-gray-300">Let's see the Gateway in action</div>
+
+<div class="mt-8 p-6 bg-gray-900 rounded-2xl border border-cyan-500 inline-block shadow-[0_0_30px_rgba(0,229,255,0.2)] transform hover:scale-105 transition-transform duration-300">
+  <img src="/kong_auth/kong_auth.png" alt="QR Code" class="w-48 h-48 mx-auto rounded-lg">
+  <div class="mt-6">
+    <a href="https://github.com/susmitpy/docker-kong-fastapi-otel-openobserve" class="text-xl font-mono text-cyan-400 hover:text-pink-400 transition-colors">
+      Scan for GitHub Repo
+    </a>
   </div>
+</div>
 
 ---
 
-<div class="flex flex-col h-full">
-<h1>Demo</h1>
-<Youtube id="KHkabnbNmHQ" class="mx-auto my-auto w-full h-full p-4"/>
+<div class="flex flex-col h-full items-center justify-center">
+  <h1 class="mb-8" style="font-size: 3rem;">🎥 Demo Video</h1>
+  <div class="w-full max-w-4xl rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(255,0,127,0.3)] border border-pink-500 bg-black">
+    <Youtube id="KHkabnbNmHQ" class="w-full aspect-video"/>
+  </div>
 </div>
 
 ---

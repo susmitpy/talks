@@ -6,10 +6,11 @@ These guidelines are synthesized from the recurring patterns and effective techn
 
 Your most polished presentations establish a strong visual identity right from the start.
 
-**Guideline:** Use a global `<style>` block on the first or second slide to define a consistent theme.
+**Guideline:** Use a global `<style>` block on the first or second slide to define a consistent theme. Always inject good vibes and excitement into the presentation!
 
 **Best Practices:**
 
+*   **Vibrant Vibe & No Gradients:** Keep the design exciting and high-energy using solid colors. **Do not use gradients** (e.g., for backgrounds or text) as they can make the presentation harder to read. If you need dynamic styling, use a blend of different solid colors for different words in the same sentence.
 *   **Use CSS Variables (`:root`)**: Define a color palette in `:root` for primary, secondary, accent, background, and code colors. This makes theme changes trivial.
     ```css
     :root {
@@ -17,7 +18,7 @@ Your most polished presentations establish a strong visual identity right from t
       --slidev-theme-primary: #FFFFFF;
       --slidev-theme-secondary: #FFD43B; /* Python Yellow */
       --slidev-theme-accent: #3776AB;   /* Python Blue */
-      --slidev-theme-background: linear-gradient(135deg, #2b2b2b 0%, #1a1a1a 100%);
+      --slidev-theme-background: #1a1a1a; /* Solid colors only, no gradients */
       --slidev-theme-foreground: #E8E8E8;
       --slidev-code-background: rgba(13, 17, 23, 0.95);
     }
