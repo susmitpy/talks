@@ -74,10 +74,14 @@ How we'll spend our ~ 30 minutes together:
 Building a single-tenant GenAI app is easy. Scaling it to production is hard.
 </div>
 
+<v-clicks>
+
 * **The Single-Tenant Trap:** GenAI without AuthN/Z (multi-tenancy) leads to untracked costs and "bill shock". You cannot rate-limit or bill what you cannot attribute.
 * **The Black Box:** Without observability, an LLM agent stuck in a loop or hallucinating is impossible to debug.
 * **Duplication of Effort:** Implementing Auth, JWT validation, and Token Tracking in every single service or AI script.
 * **Tight Coupling:** Hardcoding LLM providers (OpenAI, Anthropic) vs. self-hosted GPU inferences directly into business logic.
+
+</v-clicks>
 
 <style>
   li {
@@ -181,7 +185,7 @@ CR --> |Mapped to| IS[Inference Service]
         display: flex;
         justify-content: center;
         margin-top: 5em;
-        scale: 1.8;
+        scale: 1.7;
     }
 </style>
 
@@ -215,7 +219,7 @@ IU --> |Fallback| SLF[Self-Hosted: Local GPU/vLLM]
         display: flex;
         justify-content: center;
         margin-top: 2em;
-        scale: 1.3;
+        scale: 1.1;
     }
 </style>
 
@@ -256,24 +260,22 @@ Identity, Access, and Cost Allocation.
 ---
 
 # The JWT Lifecycle
-Gateway Role:* Validate JWT centrally. If token is invalid, drop the request before hitting expensive GPU instances.
+Gateway Role: Validate JWT centrally. If token is invalid, drop the request before hitting expensive GPU instances.
 
 * **Authorization (AuthZ) & Multi-Tenancy:**
     * *Standard:* Can user X view record Y?
     * *GenAI:* Is this tenant allowed to use the `GPT-4` route, or only `Llama-3-8B`? Are they within their **token rate-limit** quota? 
     * *Security:* AuthZ prevents one compromised tenant from exhausting your entire organization's LLM API budget.
 
-</v-clicks>
-
 <style>
   li {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     line-height: 1.4;
     margin-bottom: 0.6em;
     text-align: left;
   }
   ul ul li {
-      font-size: 1.35rem;
+      font-size: 1.80rem;
       color: var(--slidev-theme-foreground);
       opacity: 0.9;
   }
@@ -281,7 +283,7 @@ Gateway Role:* Validate JWT centrally. If token is invalid, drop the request bef
 
 ---
 
-# The Middleware/Plugin Pattern
+# The Middleware/Plugin Pattern for Microservices
 
 <br/>
 
@@ -369,8 +371,8 @@ Gaining visibility into the GenAI black box.
 
 <style>
   li {
-    font-size: 1.55rem;
-    line-height: 1.5;
+    font-size: 1.45rem;
+    line-height: 1.2;
     margin-bottom: 0.8em;
     text-align: left;
   }
@@ -395,17 +397,18 @@ gantt
     
     section Orchestrator
     Agent Planning               :a2, 1, 2s
-    
+
     section LLM / GPU Node
-    LLM: Reason & Select Tool    :a3, 2, 4s
-    LLM: Synthesize Output       :a6, 8, 10s
+    Reason & Select Tool    :a3, 2, 4s
+    Agentic RAG Loop           :a4, 6, 8s
+    Synthesize Output       :a6, 8, 10s
     
     section Code Sandbox
     Spin up Container            :a4, 4, 5s
     Execute Python Tool          :a5, 5, 8s
 ```
 
-<div class="mt-4 text-sm opacity-80 text-center">
+<div class="mt-4 text-xl opacity-80 text-center">
 <b>Span Attributes attached:</b> Agent ID, Tool Name, Container ID, Host Instance, Token Count, Latency.
 </div>
 
@@ -414,7 +417,7 @@ gantt
         display: flex;
         justify-content: center;
         margin-top: 1em;
-        scale: 1;
+        scale: 1.1;
     }
 </style>
 
@@ -472,12 +475,28 @@ Abstracting these concerns is a community-wide effort.
       <li><b>OpenTelemetry</b> (Traces & Tokens)</li>
       <li><b>OpenObserve</b> (Logs/Traces/Metrics)</li>
       <li><b>Langfuse / Arize</b> (GenAI specific)</li>
-      <li><b>Prometheus & Grafana</b>/docker-kong-fastapi-otel-openobserve">https://github.com/susmitpy/docker-kong-fastapi-otel-openobserve</a>
-  </div>
-  <div class="w-1/2 flex ml-5 items-center">
-    <img src="/kong_auth/kong_auth.png" alt="QR Code">
+      <li><b>Prometheus & Grafana</b></li>
+    </ul>
   </div>
 </div>
+
+<style>
+  li {
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin-bottom: 0.8em;
+    text-align: left;
+  }
+  </style>
+
+---
+
+# Github Repo with Demo Code
+
+ <div class="w-full flex items-center">
+    <img src="/kong_auth/kong_auth.png" alt="QR Code">
+    <a href="https://github.com/susmitpy/docker-kong-fastapi-otel-openobserve" class="ml-4 text-xl">Docker Kong FastAPI OTEL OpenObserve</a>
+  </div>
 
 ---
 
