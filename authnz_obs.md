@@ -519,11 +519,11 @@ gantt
 
 # 🌍 The Open-Source Landscape
 
-<div class="text-2xl mt-2 mb-8 text-center font-light text-gray-300">
+<div class="text-2xl mt-2 mb-2 text-center font-light text-gray-300">
 Abstracting these concerns is a community-wide effort.
 </div>
 
-<div class="grid grid-cols-2 gap-8 mt-4">
+<div class="grid grid-cols-2 gap-8 mt-1">
   <div class="bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-cyan-500 hover:border-pink-500 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.1)]">
     <h2 class="text-cyan-400 mb-4 border-b border-gray-700 pb-2">🚦 Gateways & Orchestration</h2>
     <ul>
@@ -576,7 +576,76 @@ class: text-center
   <h1 class="mb-8" style="font-size: 3rem;">🎥 Demo Video</h1>
   <div class="w-full max-w-4xl rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(255,0,127,0.3)] border border-pink-500 bg-black">
     <Youtube id="KHkabnbNmHQ" class="w-full aspect-video"/>
+</div>
+</div>
+
+---
+
+# 🔑 Key Takeaway #1
+
+
+<v-click>
+
+<div class="mt-12 flex flex-col gap-10 px-8">
+
+<div class="bg-gray-800 bg-opacity-40 p-8 rounded-xl border-l-4 border-cyan-500 shadow-[0_0_20px_rgba(0,229,255,0.1)]">
+  <div class="text-4xl mb-4 font-bold">
+    <span class="text-cyan-400">Fundamentals</span> <span class="text-white">&gt;</span> <span class="text-pink-400">Syntax</span>
   </div>
+  <div class="text-2xl mt-4 text-gray-400 font-mono">
+    for vs while ≠ fundamental
+  </div>
+  <div class="text-3xl mt-4">
+    <span class="text-white">Understanding</span> <span class="text-cyan-400">iteration</span> <span class="text-white">+</span> <span class="text-pink-400">mutation</span> <span class="text-white">=</span> <span class="text-cyan-400 font-bold">fundamental</span>
+  </div>
+</div>
+
+</div>
+
+</v-click>
+
+
+
+---
+
+# 🔑 Key Takeaway #2
+
+<div class="mt-12 flex flex-col gap-10 px-8">
+
+<v-click>
+
+
+<div class="bg-gray-800 bg-opacity-40 p-8 rounded-xl border-l-4 border-pink-500 shadow-[0_0_20px_rgba(255,0,127,0.1)]">
+  <div class="text-4xl mb-4 font-bold">
+    <span class="text-pink-400">HI</span> <span class="text-white">&gt;&gt;</span> <span class="text-cyan-400">AI</span>
+  </div>
+  <div class="text-2xl mt-4 text-gray-400 font-mono">
+    "Is my architecture solid?" ≠ valid prompt
+  </div>
+  <div class="text-3xl mt-4">
+    <span class="text-white">There is no "solid". Architecture is about</span> <span class="text-pink-400 font-bold">trade-offs</span> <span class="text-white">requiring</span> <span class="text-cyan-400 font-bold">conceptual knowledge</span> <span class="text-white">&</span> <span class="text-yellow-400 font-bold">practicality</span><span class="text-white">.</span>
+  </div>
+</div>
+
+</v-click>
+
+</div>
+
+---
+
+# 🔑 Key Takeaway #3
+
+<div class="mt-12 flex flex-col gap-10 px-8">
+
+<v-click>
+
+<div class="text-center text-5xl font-extrabold mt-8 p-8">
+  <span class="text-pink-400">AI is learning,</span><br/>
+  <span class="text-cyan-400 mt-4 inline-block">Are you ?</span>
+</div>
+
+</v-click>
+
 </div>
 
 ---
