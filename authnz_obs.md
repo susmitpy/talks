@@ -44,7 +44,6 @@ h2 {
 
 a {
   color: var(--slidev-theme-secondary);
-  text-decoration: underline;
   text-decoration-color: var(--slidev-theme-accent);
 }
 
@@ -87,20 +86,21 @@ src: ./pages/ice_breaker.md
 # 🗺️ Agenda
 
 <div class="text-2xl mt-8 mb-6 font-light text-gray-300">
-Here is our roadmap for the next ~ 30 minutes:
+Here is our roadmap for the next ~ 33 minutes:
 </div>
 
 <v-clicks>
 
-* 🚀 **[20 min] Core Concepts & GenAI:** API / AI Gateways, AuthN/Z, and LLM Observability
-* 💻 **[5 min] Demo:** Seeing it in action (Kong, FastAPI, OpenObserve)
-* 🎤 **[5 min] Q & A:** Your questions
+* 🚀 **[25 min] Core Concepts & GenAI:** API / AI Gateways, AuthN/Z, and LLM Observability
+* ❓ **[1 min] Promotion:** Mandatory ForQuiz plug 
+* 🔑 **[2 min] Key Takeaways:** Spoiler, Nothing related to the talk
+* 🎤 **[5 min] Q & A:** You ask, someone from audience answers
 
 </v-clicks>
 
 <style>
   li {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     line-height: 2;
     margin-bottom: 0.8em;
     text-align: left;
@@ -455,24 +455,22 @@ gantt
     axisFormat  %S
     title OpenTelemetry Trace: Agent execution
     
-    section Gateway
-    Inbound Request (API)        :a1, 0, 10s
-    
     section Orchestrator
-    Agent Planning               :a2, 1, 2s
+    Agent Planning               :a1, 1, 2s
 
     section LLM / GPU Node
-    Reason & Select Tool    :a3, 2, 4s
-    Agentic RAG Loop           :a4, 6, 8s
-    Synthesize Output       :a6, 8, 10s
+    Reason & Select Tools    :a2, 2, 3s
+    Agentic RAG Loop           :a3, 5, 5s
+    Write Code in Sandbox           :a4, 10, 4s
+    Synthesize Output       :a5, 17, 3s
     
     section Code Sandbox
-    Spin up Container            :a4, 4, 5s
-    Execute Python Tool          :a5, 5, 8s
+    Spin up Container            :a6, 3, 10s
+    Execute Python Tool          :a7, 14, 3s
 ```
 
 <div class="mt-8 p-4 bg-gray-800 bg-opacity-60 rounded-lg text-xl text-center shadow-[0_0_20px_rgba(255,0,127,0.15)] border border-gray-700">
-<span class="text-pink-400 font-bold">Span Attributes attached:</span> Agent ID, Tool Name, Container ID, Host Instance, Token Count, Latency.
+<span class="text-pink-400 font-bold">Span Attributes attached:</span> Agent ID, Tool Name, Container ID, Container Resources, Host Instance, Token Count, Latency.
 </div>
 
 <style>
@@ -557,9 +555,13 @@ layout: center
 class: text-center
 ---
 
-# 💻 Time for a Demo!
+# 💻 Output
 
-<div class="text-2xl mt-4 text-gray-300">Let's see the Gateway in action</div>
+<div class="text-2xl mt-4 text-gray-300">Let's see the end result</div>
+<div class="text-xl mt-2 mb-4 text-center text-cyan-300">
+And not 'Kyu, kaha, kaise'
+</div>
+
 
 <div class="mt-8 p-6 bg-gray-900 rounded-2xl border border-cyan-500 inline-block shadow-[0_0_30px_rgba(0,229,255,0.2)] transform hover:scale-105 transition-transform duration-300">
   <img src="/kong_auth/kong_auth.png" alt="QR Code" class="w-48 h-48 mx-auto rounded-lg">
@@ -571,13 +573,8 @@ class: text-center
 </div>
 
 ---
-
-<div class="flex flex-col h-full items-center justify-center">
-  <h1 class="mb-8" style="font-size: 3rem;">🎥 Demo Video</h1>
-  <div class="w-full max-w-4xl rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(255,0,127,0.3)] border border-pink-500 bg-black">
-    <Youtube id="KHkabnbNmHQ" class="w-full aspect-video"/>
-</div>
-</div>
+src: ./pages/forquiz.md
+---
 
 ---
 
@@ -634,6 +631,33 @@ class: text-center
 ---
 
 # 🔑 Key Takeaway #3
+
+<v-click>
+
+<div class="grid grid-cols-2 gap-8 px-4 items-center">
+
+  <div class="relative transform hover:scale-105 transition-transform duration-500">
+    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-pink-500 rounded-xl blur opacity-30"></div>
+    <img src="/steve_components.jpeg" alt="Steve Jobs Component Art" class="relative rounded-xl border border-gray-600 shadow-[0_0_20px_rgba(0,229,255,0.2)] object-cover h-[400px] w-full" />
+  </div>
+
+  <div class="bg-gray-800 bg-opacity-40 p-8 rounded-xl border-r-4 border-cyan-500 shadow-[0_0_20px_rgba(0,229,255,0.1)] flex flex-col justify-center">
+    <div class="text-3xl mt-2 text-gray-300 font-serif italic mb-6">
+      "AI connects existing dots. Humans create new ones."
+    </div>
+    <div class="text-2xl mb--10 leading-snug">
+      <span class="text-white">An LLM sees hardware as compute power. It takes </span> <span class="text-cyan-400 font-bold">human curiosity</span> <span class="text-white"> and out-of-the-box </span> <span class="text-yellow-400 font-bold">Jugaad</span> <span class="text-white"> to look at e-waste and create a </span> <span class="text-pink-400 font-bold italic">Jakaas</span> <span class="text-white"> masterpiece.</span>
+    </div>
+
+  </div>
+
+</div>
+
+</v-click>
+
+---
+
+# 🔑 Key Takeaway #4
 
 <div class="mt-12 flex flex-col gap-10 px-8">
 
