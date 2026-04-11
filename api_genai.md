@@ -59,10 +59,7 @@ a {
 
 <div class="h-full flex flex-col justify-center items-center">
   <div class="glow-box text-center transform hover:scale-105 transition-transform duration-500">
-    <h1 style="font-size: 3.8rem; line-height: 1.2; margin-bottom: 0.5em;">Abstracting Cross-Cutting Concerns</h1>
-    <h2 style="color: white !important; font-size: 2.2rem; margin-top: 0; border: none;">
-      AuthN/Z and Observability for <span style="color: #00e5ff; font-weight: 700;">GenAI</span>
-    </h2>
+    <h1 style="font-size: 3.8rem; line-height: 1.2; margin-bottom: 0.5em;">Gateways, Guardrails & the Reality of GenAI Systems</h1>
     <div class="mt-8 text-xl font-mono text-gray-400">
       By Susmit Vengurlekar (@susmitpy)
     </div>
