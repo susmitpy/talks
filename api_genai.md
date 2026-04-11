@@ -2,9 +2,9 @@
 theme: default
 class: text-center
 duration: 30
-title: "Abstracting Cross-Cutting Concerns: AuthN/Z and Observability for GenAI"
+title: "Gateways, Guardrails & the Reality of GenAI Systems"
 info: |
-  ## Concepts and Demo
+  ## Concepts
 drawings:
   persist: false
 transition: fade-out
