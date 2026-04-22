@@ -88,12 +88,25 @@ Visuals are used to clarify, not just decorate.
 
 **Best Practices:**
 
-*   **Mermaid for Diagrams**: Use Mermaid.js for flowcharts, architecture diagrams, and sequence diagrams. It's clean, code-based, and easy to maintain.
+*   **Mermaid for Diagrams**: Use Mermaid.js for flowcharts, architecture diagrams, and sequence diagrams. It's clean, code-based, and easy to maintain. **Always style Mermaid diagrams** using `classDef` or `style` directives to match the presentation's theme colors and enhance visual appeal - avoid plain, unstyled diagrams.
     ```mermaid
     graph TD
         A[Data Gathering] --> B[Data Cleaning];
         B --> C[✨ Feature Engineering ✨];
         C --> D[Modelling];
+        
+        classDef process fill:#FFD43B,stroke:#3776AB,stroke-width:2px,color:#1a1a1a;
+        class A,B,C,D process;
+    ```
+    Alternatively, use style directives for individual nodes:
+    ```mermaid
+    graph TD
+        A[Success] --> B[Error];
+        B --> C[Retry];
+
+        style A fill:#5a5,color:#fff
+        style B fill:#f55,color:#fff
+        style C fill:#ffa500,color:#000
     ```
 *   **Focused Code Snippets**: Code blocks are short, syntax-highlighted, and illustrate a single concept. Avoid walls of code. Highlight the most important line if possible.
 *   **Memes and Humor**: Use `layout: image` with a relevant meme to break the monotony, add humor, and make a point memorable.
