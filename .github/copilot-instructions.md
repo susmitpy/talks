@@ -88,7 +88,18 @@ Visuals are used to clarify, not just decorate.
 
 **Best Practices:**
 
-*   **Mermaid for Diagrams**: Use Mermaid.js for flowcharts, architecture diagrams, and sequence diagrams. It's clean, code-based, and easy to maintain. **Always style Mermaid diagrams** using `classDef` or `style` directives to match the presentation's theme colors and enhance visual appeal - avoid plain, unstyled diagrams.
+*   **Mermaid for Diagrams**: Use Mermaid.js for flowcharts, architecture diagrams, and sequence diagrams. It's clean, code-based, and easy to maintain. **Always style Mermaid diagrams** using `classDef` or `style` directives to match the presentation's theme colors and enhance visual appeal - avoid plain, unstyled diagrams. **Whenever a Mermaid diagram is used on a slide, always include a `<style>` block** with a `.mermaid` class selector to control scaling and centering, so it can be easily modified later:
+    ```html
+    <style>
+    .mermaid {
+        transform: scale(1);
+        transform-origin: top center;
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+    ```
+
     ```mermaid
     graph TD
         A[Data Gathering] --> B[Data Cleaning];
@@ -107,6 +118,21 @@ Visuals are used to clarify, not just decorate.
         style A fill:#5a5,color:#fff
         style B fill:#f55,color:#fff
         style C fill:#ffa500,color:#000
+    ```
+*   **Handling Large Diagrams (Multi-column Layouts)**: When a flowchart has too many nodes in a single line (causing it to shrink excessively or get cut off), use subgraphs with orthogonal directions to create a grid or column layout. For example, use an outer `LR` flowchart with inner `TD` subgraphs to create side-by-side columns:
+    ```mermaid
+    flowchart LR
+        subgraph Col1 [Left Column]
+            direction TD
+            A[Node 1] --> B[Node 2]
+        end
+        
+        subgraph Col2 [Right Column]
+            direction TD
+            C[Node 3] --> D[Node 4]
+        end
+        
+        Col1 --> Col2
     ```
 *   **Focused Code Snippets**: Code blocks are short, syntax-highlighted, and illustrate a single concept. Avoid walls of code. Highlight the most important line if possible.
 *   **Memes and Humor**: Use `layout: image` with a relevant meme to break the monotony, add humor, and make a point memorable.
