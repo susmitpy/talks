@@ -2,18 +2,18 @@
 theme: seriph
 title: Backend, Data Science and AI
 info: |
-  A 1 hour 30 minute online talk plus 30 minute Q&A.
-  Topic: industry reality, XBoost project lessons, and student roadmap.
+    A 1 hour 30 minute online talk plus 30 minute Q&A.
+    Topic: industry reality, XBoost project lessons, and student roadmap.
 transition: slide-left
 mdc: true
 highlighter: shiki
 lineNumbers: false
 canvasWidth: 1100
 fonts:
-  sans: Inter
-  serif: Roboto Slab
-  mono: Fira Code
-background: '#101012'
+    sans: Inter
+    serif: Roboto Slab
+    mono: Fira Code
+background: "#101012"
 ---
 
 <style>
@@ -21,7 +21,7 @@ background: '#101012'
   --slidev-theme-primary: #FFFFFF;
   --slidev-theme-secondary: #FFD43B;
   --slidev-theme-accent: #38BDF8;
-  --slidev-theme-highlight: #F97316;
+  --slidev-theme-highlight: #C2410C;
   --slidev-theme-danger: #EF4444;
   --slidev-theme-success: #22C55E;
   --slidev-theme-background: #101012;
@@ -111,8 +111,8 @@ a {
 }
 
 .card-orange {
-  background: #F97316;
-  color: #FFFFFF;
+  background: #C2410C;
+  color: #1F2937;
   border-radius: 18px;
   padding: 1rem 1.15rem;
   font-weight: 800;
@@ -199,15 +199,45 @@ a {
 .small-list li {
   margin: 0.2rem 0;
 }
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}   
+
+.slidev-layout li {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.grid .card,
+.grid .card-yellow,
+.grid .card-blue,
+.grid .card-orange,
+.grid .meme-card,
+.grid .card p,
+.grid .card-yellow p,
+.grid .card-blue p,
+.grid .card-orange p,
+.grid .meme-card p {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.bottom-note {
+    position: absolute; bottom: 2rem; left: 3.2rem; right: 3.2rem;
+}
+
+ 
 </style>
 
 <div class="h-full flex flex-col justify-center items-center text-center">
-  <div class="kicker mb-5">Online Talk + Q&A</div>
   <h1 style="font-size: 4.2rem; color: white !important; text-shadow: 3px 3px 0 #0EA5E9;">Backend, Data Science and AI</h1>
   <h2 class="mt-4" style="font-size: 2rem; background: transparent !important;">From college projects to industry systems</h2>
   <div class="mt-10 card" style="width: 720px;">
     <div class="text-2xl font-bold text-white">Susmit Vengurlekar</div>
-    <div class="mt-2 text-lg">Data Scientist & Solution Architect</div>
+    <div class="mt-2 text-lg">Data Scientist & Solutions Architect</div>
     <div class="mt-4">
       <span class="tag">Backend</span>
       <span class="tag">Data Science</span>
@@ -217,10 +247,10 @@ a {
   </div>
 </div>
 
-<!-- Speaker notes: Open with energy. Set the promise clearly: this is not a hype talk; it is about how backend, data, ML, and Gen AI come together in real systems. -->
+<!--how backend, data, ML, and Gen AI come together in real systems. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # What this session is really about
@@ -230,54 +260,59 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>Today we will unpack</h3>
-    <v-clicks>
+    <ul>
 
-- How real data + AI systems are built
-- Why fundamentals still matter
-- What I built in XBoost
-- What students should learn next
-- How to use LLMs without becoming careless
+<li>How real data + AI systems are built</li>
+<li>Why fundamentals still matter</li>
+<li>What I built in XBoost</li>
+<li>What students should learn next</li>
+<li>How to use LLMs without becoming careless</li>
 
-    </v-clicks>
+</ul>
+
   </div>
-  <div class="meme-card text-center text-2xl">
+  <div class="meme-card text-center text-4xl" v-click>
     <div class="top">"AI will do everything"</div>
     <div>Production bug at 2 AM:</div>
-    <div class="mt-4 text-5xl">404</div>
-    <div class="text-base mt-2">fundamentals not found</div>
+    <div class="mt-8 text-6xl">404</div>
+    <div class="text-2xl mt-2">fundamentals not found</div>
   </div>
 </div>
 
-<!-- Speaker notes: Establish that the talk is practical and grounded. The joke is there to make the audience comfortable, but the core message is serious: tools are useful only when the underlying engineering is solid. -->
+<!-- tools are useful only when the underlying engineering is solid. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # The main message
 
 ## Tools change. Fundamentals compound.
 
-<div class="mt-8 grid grid-cols-5 gap-3 text-center">
-  <v-clicks>
+<div class="flex flex-row ml-20 mr-20">
+
+<div class="mt-8 grid grid-cols-1 gap-3 text-center">
+  <ul>
     <div class="card-yellow">Python</div>
     <div class="card-blue">Data</div>
     <div class="card-orange">Backend</div>
     <div class="card-yellow">ML</div>
     <div class="card-blue">Gen AI</div>
-  </v-clicks>
+  </ul>
 </div>
 
 <v-click>
-<div class="mt-10 card text-2xl text-center">
+<div class="mt-10 card text-2xl text-left w-50% ml-auto">
   Projects matter more than certificates when they prove you can think, build, debug, and explain.
 </div>
 </v-click>
 
-<!-- Speaker notes: Make the compounding idea memorable. Emphasize that students do not need to chase every new framework; they need reusable fundamentals and finished projects. -->
+</div>
+
+<!--reusable fundamentals and finished projects. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Who am I?
@@ -288,7 +323,7 @@ layout: center
   <div class="card">
     <div class="big-number">01</div>
     <h3>Foundation</h3>
-    <p>B.Sc. IT, Mumbai University<br/>CGPA: 9.73</p>
+    <p>B.Sc. IT, DG Ruparel College<br/>CGPA: 9.73 (Without ratta)</p>
   </div>
   <div class="card">
     <div class="big-number">02</div>
@@ -307,13 +342,13 @@ layout: center
   <span class="tag">AIDAX</span>
   <span class="tag">Xcellen</span>
   <span class="tag">Zeza Technologies</span>
-  <span class="tag">Flyer Lively</span>
+  <span class="tag">Flyer Lively (Part of failed startup while in college)</span>
 </div>
 
-<!-- Speaker notes: Keep this slide brief. The goal is credibility, not a resume reading. Highlight that the path moved from backend and databases into data science, ML platforms, and applied AI. -->
+<!--path moved from backend and databases into data science, ML platforms, and applied AI. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # What I have worked on
@@ -331,10 +366,10 @@ layout: center
   </v-clicks>
 </div>
 
-<!-- Speaker notes: This slide connects the speaker profile to the talk. Emphasize that the examples are from systems where data, backend, and AI had to work together. -->
+<!--systems where data, backend, and AI had to work together. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Agenda
@@ -351,21 +386,20 @@ layout: center
   </v-clicks>
 </div>
 
-<!-- Speaker notes: Give the audience a map. Mention that the talk moves from broad concepts to a real platform, then back to career and learning decisions. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Icebreaker
 
 ## Audience question
 
-<div class="card-yellow mt-8 text-3xl text-center">
+<div class="card-yellow mt-8 text-4xl text-center">
   What is the difference between AI and Gen AI?
 </div>
 
-<div class="grid grid-cols-4 gap-3 mt-7 text-center">
+<div class="grid grid-cols-2 gap-3 mt-7 text-center text-2xl">
   <v-clicks>
     <div class="card">Is ChatGPT the whole of AI?</div>
     <div class="card">Is every ML model Gen AI?</div>
@@ -374,37 +408,39 @@ layout: center
   </v-clicks>
 </div>
 
-<!-- Speaker notes: Ask the audience to answer in chat or verbally. Do not correct immediately. Use their answers to lead into the next slide. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # AI is bigger than Gen AI
 
-```text
-Artificial Intelligence
-|-- Machine Learning
-|-- Deep Learning
-|-- Computer Vision
-|-- NLP
-|-- Forecasting
-|-- Optimization
-|-- Wave / Signal Analysis
-`-- Generative AI
-```
+<ul>
+<li>Artificial Intelligence
+<ul>
+<li> Machine Learning </li>
+<li> Deep Learning </li>
+<li> Computer Vision </li>
+<li> NLP </li>
+<li> Forecasting </li>
+<li> Optimization </li>
+<li> Wave / Signal Analysis </li>
+<li> Reinforcement Learning </li>
+<li> Generative AI </li>
+</ul></li>
 
-<div class="mt-6 card text-2xl text-center">
+</ul>
+
+<div class="bottom-note mt-6 card text-2xl text-center">
   Gen AI is a powerful part of AI, not the whole field.
 </div>
 
-<!-- Speaker notes: Make this distinction early because many students equate AI with chatbots. Use simple examples: spam detection, recommendation systems, OCR, forecasting, and route optimization. -->
 
 ---
-layout: center
+layout: full
 ---
 
-# Industry reality in 2026
+# Industry reality (As per November 2025 McKinsey report)
 
 ## AI is everywhere, but value is uneven
 
@@ -420,17 +456,15 @@ layout: center
 </div>
 
 <v-click>
-<div class="mt-7 card-orange text-2xl text-center">
+<div class="bottom-note mt-7 card-orange text-2xl text-center">
   Adoption is broad. Deep value still requires workflow redesign.
 </div>
 </v-click>
 
 <div class="source">Source: [McKinsey, The State of AI in 2025](https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-2025-agents-innovation_cmyk-v1.pdf)</div>
 
-<!-- Speaker notes: Explain that companies are experimenting aggressively, but scaling is harder. The opportunity is not just using tools; it is knowing how to design systems around the tools. -->
-
 ---
-layout: center
+layout: full
 ---
 
 # Why students should care
@@ -440,15 +474,15 @@ layout: center
 <div class="grid grid-cols-2 gap-5 mt-8">
   <div class="card">
     <h3>Fast-growing role areas</h3>
-    <v-clicks>
+   
 
-- Big data specialists
-- AI / ML specialists
-- Software and application developers
-- Data warehousing specialists
-- Cybersecurity and networks
+<li>Big data specialists</li>
+<li>AI / ML specialists</li>
+<li>Software and application developers</li>
+<li>Data warehousing specialists</li>
+<li>Cybersecurity and networks</li>
 
-    </v-clicks>
+
   </div>
   <div class="card-blue text-3xl flex items-center justify-center text-center">
     Your edge is not one tool.<br/>Your edge is a stack of skills.
@@ -457,10 +491,9 @@ layout: center
 
 <div class="source">Source: [World Economic Forum, Future of Jobs Report 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025/digest/)</div>
 
-<!-- Speaker notes: Connect this to student decisions: Python, SQL, backend, data engineering, ML, and communication are all compounding skills in the same direction. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # But the hype has a catch
@@ -474,28 +507,28 @@ layout: center
   </div>
   <div class="card">
     <h3>An AI engineer should understand</h3>
-    <v-clicks>
 
-- Data pipelines
-- Retrieval systems
-- Evaluation
-- Guardrails
-- Backend APIs
-- Observability
-- Failure modes
+<ul>
+<li>Data pipelines</li>
+<li>Retrieval systems</li>
+<li>Evaluation</li>
+<li>Guardrails</li>
+<li>Backend APIs</li>
+<li>Observability</li>
+<li>Failure modes</li>
+</ul>
 
-    </v-clicks>
   </div>
 </div>
 
-<div class="mt-7 card-yellow text-center text-2xl">
+<div class="bottom-note mt-2 card-yellow text-center text-2xl">
   Vibe coding can make a demo. Engineering makes it survive users.
 </div>
 
-<!-- Speaker notes: Avoid sounding anti-AI. The point is that LLMs are powerful assistants, but production systems still need contracts, testing, deployment, monitoring, and ownership. -->
+<!--LLMs are powerful assistants, but production systems still need contracts, testing, deployment, monitoring, and ownership. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # My domain
@@ -503,35 +536,24 @@ layout: center
 ## Backend + Data Science + Applied AI
 
 <style>
-.mermaid {
-  transform: scale(0.95);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
+li {
+    font-size: 3rem;
 }
 </style>
 
-```mermaid
-flowchart LR
-    A[Business problem] --> B[Data ingestion]
-    B --> C[Data transformation]
-    C --> D[ML / AI workflow]
-    D --> E[Backend system]
-    E --> F[User-facing output]
-    F --> G[Business decision]
+<li> Business problem </li>
+<li> Data ingestion </li>
+<li> Data transformation </li>
+<li> ML / AI workflow </li>
+<li> Backend system </li>
+<li> User-facing output </li>
+<li> Business decision </li>
 
-    classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class A,G yellow;
-    class B,C,D orange;
-    class E,F blue;
-```
 
-<!-- Speaker notes: Introduce the idea that this is a full product pipeline. A model is only one piece. The system starts at a business problem and ends at a decision. -->
+<!--a full product pipeline. A model is only one piece. The system starts at a business problem and ends at a decision. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # What does backend mean here?
@@ -549,10 +571,10 @@ layout: center
   </v-clicks>
 </div>
 
-<!-- Speaker notes: Explain that backend is the control tower. In AI products, backend work includes orchestration, storage, job status, failure states, and traceability. -->
+<!-- backend is the control tower. In AI products, backend work includes orchestration, storage, job status, failure states, and traceability. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # What does data science mean here?
@@ -562,45 +584,41 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>The visible part</h3>
-    <v-clicks>
-
-- Train models
-- Compare metrics
-- Show charts
-- Present predictions
-
-    </v-clicks>
+    <ul>
+      <li>Train models</li>
+      <li>Compare metrics</li>
+      <li>Show charts</li>
+      <li>Present predictions</li>
+</ul>
   </div>
-  <div class="card">
+  <div class="card" v-click>
     <h3>The real work</h3>
-    <v-clicks>
-
-- Understand the problem
-- Inspect messy data
-- Clean and validate
-- Engineer features
-- Explain results
-- Communicate insights
-
-    </v-clicks>
+    <ul>
+      <li>Understand the problem</li>
+      <li>Inspect messy data</li>
+      <li>Clean and validate</li>
+      <li>Engineer features</li>
+      <li>Explain results</li>
+      <li>Communicate insights</li>
+</ul>
   </div>
 </div>
 
-<div class="mt-8 meme-card text-center text-2xl">
+<div class="bottom-note mt-8 meme-card text-center text-2xl" v-click>
   90% cleaning data, 10% pretending the model was the hard part
 </div>
 
-<!-- Speaker notes: Make the point funny but accurate. Data science requires curiosity, domain understanding, validation, metrics, and communication. -->
+<!--Data science requires curiosity, domain understanding, validation, metrics, and communication. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # What does Gen AI mean here?
 
 ## Gen AI is useful when language meets workflow
 
-<div class="grid grid-cols-3 gap-4 mt-8">
+<div class="grid grid-cols-3 gap-4 mt-8 text-3xl">
   <v-clicks>
   <div class="card">Generate insights from tables</div>
   <div class="card">Extract text patterns from examples</div>
@@ -611,14 +629,14 @@ layout: center
   </v-clicks>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note card-yellow text-center text-2xl" v-click>
   Gen AI becomes powerful when connected to data, tools, and workflows.
 </div>
 
-<!-- Speaker notes: Emphasize that Gen AI is not magic dust. It shines when it is grounded in data, product context, deterministic tools, and user workflows. -->
+<!--Gen AI is not magic dust. shines when it is grounded in data, product context, deterministic tools, and user workflows. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # One mental model
@@ -627,7 +645,8 @@ layout: center
 
 <style>
 .mermaid {
-  transform: scale(1);
+margin-top: 2rem;
+  transform: scale(1.5);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -635,7 +654,7 @@ layout: center
 </style>
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[Product layer<br/>What user wants]
     B[Engineering layer<br/>APIs, jobs, storage, UI]
     C[Intelligence layer<br/>ML, AI, Gen AI, rules]
@@ -643,47 +662,63 @@ flowchart TD
 
     classDef product fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
     classDef engineering fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef intelligence fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef intelligence fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     class A product;
     class B engineering;
     class C intelligence;
 ```
 
-<div class="mt-5 card text-center text-2xl">
+<div class="bottom-note card text-center text-2xl" v-click>
   If one layer is weak, the product breaks.
 </div>
 
-<!-- Speaker notes: Give examples of failure: great model but bad UI; great UI but bad data; powerful AI but no workflow. This model will help students evaluate projects. -->
+<!-- Examples of failure: great model but bad UI; great UI but bad data; powerful AI but no workflow. This model will help students evaluate projects. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # The unbreakable law
 
 ## Garbage In, Garbage Out
 
-```text
-Good Input -> Analysis / ML / Gen AI -> Useful Output
+<style>
+    .mermaid {
+        margin-top: 2rem;
+        transform: scale(2);
+        transform-origin: top center;
+        display: flex;
+        justify-content: center;
+    }
+</style>
 
-Bad Input  -> Analysis / ML / Gen AI -> Confident Garbage
+```mermaid
+flowchart LR
+    A[Input data] --> B[Analysis / ML / Gen AI]
+    B --> C[Output]
+
+    classDef good fill:#22C55E,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef bad fill:#EF4444,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    class A good;
+    class B good;
+    class C good;
 ```
 
-<div class="mt-8 card-orange text-center text-2xl">
+<div class="bottom-note card-orange text-center text-2xl">
   AI can make bad input sound professional. That is dangerous.
 </div>
 
-<!-- Speaker notes: Use this as a strong warning. With Gen AI, poor inputs may not look obviously poor because the output can be fluent, polished, and confident. -->
+<!-- With Gen AI, poor inputs may not look obviously poor because the output can be fluent, polished, and confident. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Attention to detail starts here
 
 ## Data traps are everywhere
 
-<div class="grid grid-cols-3 gap-4 mt-8">
+<div class="grid grid-cols-3 gap-4 mt-8 text-3xl">
   <v-clicks>
   <div class="card">CSV may not be comma-separated</div>
   <div class="card">Dates may silently parse wrong</div>
@@ -694,38 +729,38 @@ layout: center
   </v-clicks>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl">
   Before modeling, investigate.
 </div>
 
-<!-- Speaker notes: Give a quick real example: a date parsed as month/day instead of day/month, or a zero that means unavailable rather than actual zero. -->
+<!--a date parsed as month/day instead of day/month, or a zero that means unavailable rather than actual zero. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Showcase project
 
-## XBoost / Xpower-Boost
+## XBoost (Not XGBoost)
 
-<div class="card-blue mt-8 text-3xl text-center">
+<div class="card-blue mt-8 text-4xl text-center">
   A data engineering + ML platform
 </div>
 
-<div class="mt-7 card text-xl text-center">
+<div class="mt-7 card text-2xl text-left ">
   Built for business analysts working on tabular data in the pharmaceutical commercial excellence domain.
 </div>
 
 <v-click>
-<div class="mt-6 card-yellow text-2xl text-center">
+<div class="bottom-note mt-6 card-yellow text-2xl text-center">
   Core idea: enrich data, analyze it, train models, understand results, and reuse workflows.
 </div>
 </v-click>
 
-<!-- Speaker notes: Transition into the main project section. Explain that XBoost is useful because it forces us to talk about real product requirements, not isolated algorithms. -->
+<!-- XBoost is useful because it forces us to talk about real product requirements, not isolated algorithms. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # XBoost problem statement
@@ -735,26 +770,24 @@ layout: center
 <div class="grid grid-cols-2 gap-5 mt-8">
   <div class="card">
     <h3>Analysts needed to</h3>
-    <v-clicks>
-
-- Upload CSV / Excel data
-- Clean and transform datasets
-- Perform EDA
-- Train ML models
-- Understand model output
-- Reuse monthly workflows
-
-    </v-clicks>
+    <ul>
+      <li>Upload CSV / Excel data</li>
+      <li>Clean and transform datasets</li>
+      <li>Perform EDA</li>
+      <li>Train ML models</li>
+      <li>Understand model output</li>
+      <li>Reuse monthly workflows</li>
+</ul>
   </div>
   <div class="card-orange text-3xl flex items-center justify-center text-center">
     Users had different levels of data science knowledge.
   </div>
 </div>
 
-<!-- Speaker notes: Show empathy for users. The problem is not just technical scale; the system also needs to guide users who may not be data scientists. -->
+<!--problem is not just technical scale; the system also needs to guide users who may not be data scientists. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # XBoost scale
@@ -773,57 +806,41 @@ layout: center
 </div>
 
 <div class="mt-7 grid grid-cols-3 gap-3 text-center">
-  <v-clicks>
   <div class="card">Unknown schemas</div>
   <div class="card">Many user flows</div>
   <div class="card">Interactive operations</div>
-  </v-clicks>
 </div>
 
-<div class="mt-7 card-yellow text-center text-2xl">
+<div class="bottom-note mt-7 card-yellow text-center text-2xl">
   No fixed schema. No fixed journey. Many entry and exit points.
 </div>
 
-<!-- Speaker notes: Explain 70L as 70 lakh rows, about 7 million rows. Make the architecture problem visible: user freedom creates backend complexity. -->
+<!--Explain 70L as 70 lakh rows, about 7 million rows. Make the architecture problem visible: user freedom creates backend complexity. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # XBoost in one sentence
 
-## A platform to enrich data
+## A platform to play with data
 
 <style>
-.mermaid {
-  transform: scale(0.9);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
+li {
+    font-size: 2.5rem;
 }
 </style>
 
-```mermaid
-flowchart LR
-    A[Raw data] --> B[Cleaned data]
-    B --> C[Enriched data]
-    C --> D[ML-ready data]
-    D --> E[Model output]
-    E --> F[Explainable insights]
-    F --> G[Business decision]
-
-    classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class A,B yellow;
-    class C,D orange;
-    class E,F,G blue;
-```
-
-<!-- Speaker notes: Keep this slide simple. This is the mental model for the next 20 slides: every architecture decision supports this lifecycle. -->
+<li>Raw data</li>
+<li>Cleaned data</li>
+<li>Enriched data</li>
+<li>ML-ready data</li>
+<li>Model output</li>
+<li>Explainable insights</li>
+<li>Business decision</li>
 
 ---
-layout: center
+layout: full
 ---
 
 # High-level architecture
@@ -832,7 +849,7 @@ layout: center
 
 <style>
 .mermaid {
-  transform: scale(0.85);
+  transform: scale(1.1);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -855,16 +872,16 @@ flowchart LR
 
     classDef user fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
     classDef app fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef data fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef data fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     class U user;
     class F,A,OD,L app;
     class S3,DB,Q,ML,RQ data;
 ```
 
-<!-- Speaker notes: Avoid going too deep yet. This is the map. Mention that each component exists because of a real constraint: scale, cost, async jobs, metadata, or user experience. -->
+<!--each component exists because of a real constraint: scale, cost, async jobs, metadata, or user experience. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Frontend choices
@@ -872,7 +889,6 @@ layout: center
 ## UI for a data platform
 
 <div class="grid grid-cols-4 gap-3 mt-8 text-center">
-  <v-clicks>
   <div class="card-yellow">Next.js</div>
   <div class="card-blue">TypeScript</div>
   <div class="card-orange">AG Grid</div>
@@ -881,17 +897,15 @@ layout: center
   <div class="card-orange">Yup</div>
   <div class="card-yellow">SWR</div>
   <div class="card-blue">SCSS Modules</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card text-center text-2xl">
+<div class="bottom-note mt-8 card text-center text-2xl">
   Data-heavy UI needs structure, not random components.
 </div>
 
-<!-- Speaker notes: Explain why frontend matters in data platforms. Analysts need grids, previews, validation, charts, loading states, and clear feedback. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Backend choices
@@ -901,65 +915,60 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>Why Python?</h3>
-    <v-clicks>
-
-- Data science ecosystem
-- Fast development
-- Strong library support
-- Good for APIs + processing
-
-    </v-clicks>
+    <ul>
+      <li>Data science ecosystem</li>
+      <li>Fast development</li>
+      <li>Strong library support</li>
+      <li>Good for APIs + processing</li>
+</ul>
   </div>
   <div class="card">
     <h3>Backend principles</h3>
-    <v-clicks>
-
-- Typed request objects
-- Service layer
-- Utilities
-- Feature-based folders
-- Tests
-
-    </v-clicks>
+    <ul>
+      <li>Typed request objects</li>
+      <li>Service layer</li>
+      <li>Utilities</li>
+      <li>Feature-based folders</li>
+      <li>Tests</li>
+</ul>
   </div>
 </div>
 
-<!-- Speaker notes: Use this slide to show that language choice is contextual. Python worked because the product sat close to data science workflows. -->
-
 ---
-layout: center
+layout: full
 ---
 
 # Why feature-based folders?
 
 ## Code should match product growth
 
-```text
-feature/
-|-- views
-|-- view_models
-|-- services
-`-- utils
-```
+<ul>
+<li>feature folder
+<ul>
+<li>views - api routes</li>
+<li>view_models - adapter between views and services</li>
+<li>services - business logic</li>
+<li>utils - helper functions</li>
+</ul></li>
+</ul>
+
 
 <div class="grid grid-cols-5 gap-3 mt-7 text-center">
-  <v-clicks>
   <div class="card">Onboarding</div>
   <div class="card">Testing</div>
   <div class="card">Reuse</div>
   <div class="card">Less searching</div>
   <div class="card">Clear boundaries</div>
-  </v-clicks>
 </div>
 
-<div class="mt-7 card-yellow text-center text-2xl">
+<div class="bottom-note mt-7 card-yellow text-center text-2xl">
   Folder structure is also system design.
 </div>
 
-<!-- Speaker notes: Students often think architecture is only diagrams. Show that architecture also lives in naming, folder structure, boundaries, and where logic is allowed to exist. -->
+<!--Students often think architecture is only diagrams. Show that architecture also lives in naming, folder structure, boundaries, and where logic is allowed to exist. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Data storage design
@@ -967,23 +976,21 @@ layout: center
 ## Dataset file is not dataset metadata
 
 <div class="grid grid-cols-5 gap-3 mt-8 text-center">
-  <v-clicks>
   <div class="card-yellow">Parquet on S3</div>
   <div class="card-blue">Postgres metadata</div>
   <div class="card-orange">Sample rows</div>
   <div class="card-yellow">Schema JSON</div>
   <div class="card-blue">EFS cache</div>
-  </v-clicks>
 </div>
 
-<div class="mt-9 card text-center text-2xl">
+<div class="bottom-note mt-9 card text-center text-2xl">
   Large datasets should not be treated like ordinary database rows.
 </div>
 
-<!-- Speaker notes: Explain the distinction between storing data and storing information about the data. Metadata enables fast UI, status tracking, schema display, and workflow replay. -->
+<!--there is distinction between storing data and storing information about the data. Metadata enables fast UI, status tracking, schema display, and workflow replay. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Why Parquet?
@@ -992,7 +999,7 @@ layout: center
 
 <style>
 .mermaid {
-  transform: scale(0.95);
+  transform: scale(1.4);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -1009,16 +1016,16 @@ flowchart LR
 
     classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
     classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     class CSV yellow;
     class P orange;
     class C,T,R,IO blue;
 ```
 
-<!-- Speaker notes: Give a simple example: if the user only needs three columns from 60, columnar reads can avoid scanning everything like plain text CSV workflows. -->
+<!--if the user only needs three columns from 60, columnar reads can avoid scanning everything like plain text CSV workflows. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Dynamic schema
@@ -1028,32 +1035,32 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>Problem</h3>
-    <v-clicks>
+    <ul>
 
-- Unknown column names
-- Unknown number of columns
-- Multiple data types
-- Business meaning may be unclear
+<li>Unknown column names</li>
+<li>Unknown number of columns</li>
+<li>Multiple data types</li>
+<li>Business meaning may be unclear</li>
 
-    </v-clicks>
+</ul>
   </div>
   <div class="card">
     <h3>Solution</h3>
-    <v-clicks>
+    <ul>
 
-- Store schema as JSON
-- Use typed field objects
-- Track display name
-- Track type, alias, format
+<li>Store schema as JSON</li>
+<li>Use typed field objects</li>
+<li>Track display name</li>
+<li>Track type, alias, format</li>
 
-    </v-clicks>
+</ul>
   </div>
 </div>
 
-<!-- Speaker notes: Emphasize that no fixed schema means the platform cannot depend on hardcoded columns. The schema itself becomes part of the product state. -->
+<!--no fixed schema means the platform cannot depend on hardcoded columns. The schema itself becomes part of the product state. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Data upload design
@@ -1082,14 +1089,8 @@ sequenceDiagram
     F->>B: Confirm metadata
 ```
 
-<div class="mt-5 card-yellow text-center text-2xl">
-  Avoid blocking backend with huge file uploads.
-</div>
-
-<!-- Speaker notes: Explain pre-signed URLs with a simple analogy: the backend gives the browser a temporary permission slip to upload directly to storage. -->
-
 ---
-layout: center
+layout: full
 ---
 
 # Multi-file upload
@@ -1099,57 +1100,30 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>Reality</h3>
-    <v-clicks>
+    <ul>
 
-- Monthly files
-- Regional files
-- CSV + Excel splits
-- Different columns
+<li>Monthly files</li>
+<li>Regional files</li>
+<li>CSV + Excel splits</li>
+<li>Different columns</li>
 
-    </v-clicks>
+</ul>
   </div>
   <div class="card">
     <h3>Design</h3>
-    <v-clicks>
+    <ul>
 
-- Zip files on frontend
-- Upload once
-- Backend reads and concatenates
-- Missing uncommon columns become null
+<li>Zip files on frontend</li>
+<li>Upload once</li>
+<li>Backend reads and concatenates</li>
+<li>Missing uncommon columns become null</li>
 
-    </v-clicks>
+</ul>
   </div>
 </div>
 
-<style>
-.mermaid {
-  transform: scale(0.82);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-```mermaid
-flowchart LR
-    A[Jan CSV] --> Z[Zip]
-    B[Feb Excel] --> Z
-    C[Region CSV] --> Z
-    Z --> S3[S3]
-    S3 --> D[Combined dataframe]
-
-    classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class A,B,C yellow;
-    class Z,S3 orange;
-    class D blue;
-```
-
-<!-- Speaker notes: Mention that product design must match how business teams actually work. Real data arrives in messy sets, not textbook files. -->
-
 ---
-layout: center
+layout: full
 ---
 
 # Recipe concept
@@ -1159,37 +1133,37 @@ layout: center
 <div class="grid grid-cols-2 gap-5 mt-8">
   <div class="card">
     <h3>A recipe records</h3>
-    <v-clicks>
+    <ul>
 
-- Uploaded datasets
-- Enrich steps
-- Step configuration
-- Execution order
+<li>Uploaded datasets</li>
+<li>Enrich steps</li>
+<li>Step configuration</li>
+<li>Execution order</li>
 
-    </v-clicks>
+</ul>
   </div>
-  <div class="card">
+  <div class="card" v-click>
     <h3>Example steps</h3>
-    <v-clicks>
+    <ul>
 
-- Fill missing values
-- Treat outliers
-- Bin numbers
-- Calculate columns
-- Drop columns
+<li>Fill missing values</li>
+<li>Treat outliers</li>
+<li>Bin numbers</li>
+<li>Calculate columns</li>
+<li>Drop columns</li>
 
-    </v-clicks>
+</ul>
   </div>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl" v-click>
   A transformation should not disappear after execution.
 </div>
 
-<!-- Speaker notes: Introduce recipe as workflow memory. This is where a one-time manual action becomes reusable platform knowledge. -->
+<!--Recipe as workflow memory. This is where a one-time manual action becomes reusable platform knowledge. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Recipe run
@@ -1198,7 +1172,7 @@ layout: center
 
 <style>
 .mermaid {
-  transform: scale(0.95);
+  transform: scale(1.4);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -1215,25 +1189,23 @@ flowchart LR
 
     classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
     classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     class J,F yellow;
     class R,M,RR orange;
     class O blue;
 ```
 
-<div class="mt-5 grid grid-cols-4 gap-3 text-center">
-  <v-clicks>
+<div class="grid grid-cols-4 gap-3 text-center text-2xl" style="margin-top: 10rem;" v-click>
   <div class="card">Saves time</div>
   <div class="card">Reduces manual work</div>
   <div class="card">Supports monthly workflows</div>
   <div class="card">Improves reproducibility</div>
-  </v-clicks>
 </div>
 
-<!-- Speaker notes: Use the monthly data example. Analysts often repeat similar work every month; recipe run converts that repetition into a reliable workflow. -->
+<!--Analysts often repeat similar work every month; recipe run converts that repetition into a reliable workflow. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Selective recipe steps
@@ -1242,7 +1214,7 @@ layout: center
 
 <style>
 .mermaid {
-  transform: scale(0.9);
+  transform: scale(1.4);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -1262,19 +1234,17 @@ flowchart LR
     class X danger;
 ```
 
-<div class="mt-6 grid grid-cols-4 gap-3 text-center">
-  <v-clicks>
-  <div class="card">Dependency tracking</div>
-  <div class="card">UI feedback</div>
-  <div class="card">Safe deselection</div>
-  <div class="card">Valid execution path</div>
-  </v-clicks>
+<div class="grid grid-cols-4 gap-3 text-center text-2xl" style="margin-top: 10rem;" v-click>
+  <li>Dependency tracking</li>
+  <li>UI feedback</li>
+  <li>Safe deselection</li>
+  <li>Valid execution path</li>
 </div>
 
-<!-- Speaker notes: This is a great engineering lesson. A checkbox in the UI can require dependency graphs, validation logic, and explainable error messages. -->
+<!--A checkbox in the UI can require dependency graphs, validation logic, and explainable error messages. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Auto-generated features
@@ -1284,16 +1254,16 @@ layout: center
 <div class="two-col mt-7">
   <div class="card">
     <h3>Used</h3>
-    <v-clicks>
+    <ul>
 
-- Column aliases
-- Standard feature templates
-- Formation steps
-- Default configs
+<li>Column aliases</li>
+<li>Standard feature templates</li>
+<li>Formation steps</li>
+<li>Default configs</li>
 
-    </v-clicks>
+</ul>
   </div>
-  <div class="card">
+  <div class="card" v-click>
     <h3>Example</h3>
 
 ```text
@@ -1307,10 +1277,16 @@ Email Sent Date
   </div>
 </div>
 
-<!-- Speaker notes: Explain aliases as semantic hints. If the system knows a column represents a sent date or open date, it can suggest useful derived features. -->
+<style>
+    code {
+        font-size: 1.5rem;
+    }
+    </style>
+
+<!--aliases as semantic hints. If the system knows a column represents a sent date or open date, it can suggest useful derived features. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Undo
@@ -1328,36 +1304,36 @@ layout: center
   </div>
 </div>
 
-<div class="mt-8 card text-center text-2xl">
+<div class="bottom-note mt-8 card text-center text-2xl">
   Not every data operation is reversible.
 </div>
 
-<!-- Speaker notes: Use this to teach state management. Undo requires knowing whether an operation is reversible, destructive, or needs snapshot/restore support. -->
+<!--little bit about state management. Undo requires knowing whether an operation is reversible, destructive, or needs snapshot/restore support. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Preview step
 
 ## Users need explainability before ML too
 
-<div class="grid grid-cols-3 gap-4 mt-9 text-center">
-  <v-clicks>
+<div class="grid grid-cols-3 gap-4 mt-2 text-center">
+  <ul>
   <div class="card-yellow"><h3 style="color:#101012">Input</h3><p style="color:#101012">What data is being used?</p></div>
   <div class="card-blue"><h3 style="color:#FFFFFF">Parameters</h3><p style="color:#FFFFFF">What choices were made?</p></div>
   <div class="card-orange"><h3 style="color:#FFFFFF">Output</h3><p style="color:#FFFFFF">What changed?</p></div>
-  </v-clicks>
+  </ul>
 </div>
 
-<div class="mt-8 card text-center text-2xl">
+<div class="bottom-note mt-8 card text-center text-2xl">
   If users cannot understand the transformation, they cannot trust the result.
 </div>
 
-<!-- Speaker notes: Connect preview to trust. Explainability is not only for models; it is also for data transformations and user actions. -->
+<!--Connect preview to trust. Explainability is not only for models; it is also for data transformations and user actions. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # ML worker design
@@ -1366,7 +1342,7 @@ layout: center
 
 <style>
 .mermaid {
-  transform: scale(0.9);
+  transform: scale(1.5);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -1383,39 +1359,38 @@ flowchart LR
     L --> B
 
     classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
     class B,L blue;
     class Q,R orange;
     class W,A yellow;
 ```
 
-<div class="mt-6 card-yellow text-center text-2xl">
+<div class="bottom-note mt-6 card-yellow text-center text-2xl">
   Training and analysis can be slow, so execution must be async.
 </div>
 
-<!-- Speaker notes: Explain why APIs should not wait for long model jobs. Async design improves reliability, retry handling, scaling, and user experience. -->
+<!--Async design improves reliability, retry handling, scaling, and user experience. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # On-demand ML compute
 
 ## Pay for compute only when needed
 
-<div class="grid grid-cols-4 gap-3 mt-8 text-center">
-  <v-clicks>
+<div class="grid grid-cols-4 gap-3 mt-8 text-center text-3xl">
   <div class="card">Launch EC2 for training</div>
   <div class="card">Attach to ECS cluster</div>
   <div class="card">Run Dockerized worker</div>
   <div class="card">Self-terminate after completion</div>
-  </v-clicks>
 </div>
 
 <style>
 .mermaid {
-  transform: scale(0.8);
+    margin-top: 4rem;
+  transform: scale(1.2);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -1432,16 +1407,16 @@ flowchart LR
 
     classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
     classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     class Need,Done yellow;
     class EC2,ECS,Worker orange;
     class Stop blue;
 ```
 
-<!-- Speaker notes: Tie this to cost. Dedicated compute is useful, but always-on compute can waste money. Architecture can be a cost-control tool. -->
+<!--Dedicated compute is useful, but always-on compute can waste money. Architecture can be a cost-control tool. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # On-demand backend server
@@ -1450,7 +1425,8 @@ layout: center
 
 <style>
 .mermaid {
-  transform: scale(0.85);
+    margin-top: 4rem;
+  transform: scale(1.2);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -1463,52 +1439,48 @@ flowchart LR
     API --> Launch[Launch dedicated EC2 backend]
     F --> Proxy[Nginx / proxy]
     Proxy --> OD[On-demand server]
-    OD --> API
+    Launch --> OD
 
     classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
     classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     class F yellow;
     class API,Proxy blue;
     class Launch,OD orange;
 ```
 
-<div class="mt-5 grid grid-cols-3 gap-3 text-center">
-  <v-clicks>
+<div class="mt-5 grid grid-cols-3 gap-3 text-center text-2xl" style="position: absolute; bottom: 5rem; left: 3.2rem; right: 3.2rem;">
   <div class="card">Compute-heavy operations</div>
   <div class="card">Multiple users</div>
   <div class="card">Avoid backend slowdown</div>
-  </v-clicks>
 </div>
 
-<!-- Speaker notes: Explain that some operations are too heavy for the normal API path. Dedicated compute isolates risk and protects the main app experience. -->
+<!--some operations are too heavy for the normal API path. Dedicated compute isolates risk and gives separate resources for intensive tasks. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Explainable AI in XBoost
 
 ## Model output must be understandable
 
-<div class="grid grid-cols-5 gap-3 mt-8 text-center">
-  <v-clicks>
+<div class="grid grid-cols-5 gap-3 mt-8 text-center text-3xl">
   <div class="card">Likely segments</div>
   <div class="card">Unlikely segments</div>
   <div class="card">Feature insights</div>
   <div class="card">Cohort analysis</div>
   <div class="card">SHAP explanations</div>
-  </v-clicks>
 </div>
 
-<div class="mt-10 card-yellow text-center text-3xl">
+<div class="bottom-note mt-10 card-yellow text-center text-3xl">
   Prediction is not enough. Users ask: "Why?"
 </div>
 
-<!-- Speaker notes: Give a simple example: a prediction score is less useful if the user cannot understand which drivers influenced the outcome and what action to take. -->
+<!--simple example: a prediction score is less useful if the user cannot understand which drivers influenced the outcome and what action to take. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Gen AI feature in XBoost
@@ -1517,38 +1489,40 @@ layout: center
 
 <div class="two-col mt-8">
   <div class="card">
-    <h3>Problem</h3>
-    <p>Users needed custom text extraction, but regex was difficult for novice users.</p>
+    <h>Problem</h>
+    <p class="text-xl">Users needed custom text extraction, but regex was difficult for novice users.</p>
+    <p>Example: from "Product A - Region B - 2024", extract "Region B".</p>
+    <p> Or "2024-01-15: Event X", extract "Event X".</p>
+    <p> Or more complex - "2024-01-15: Event X (Region B)", extract "Event X" and "Region B".</p>
   </div>
   <div class="card">
     <h3>Solution</h3>
-    <v-clicks>
+    <ul>
 
-- User gives examples
-- GPT generates Python code
-- Code applies extraction
-- Generated logic is stored for recipe run
+<li>User gives examples</li>
+<li>GPT generates Python code</li>
+<li>Code applies extraction</li>
+<li>Generated logic is stored for recipe run</li>
 
-    </v-clicks>
+</ul>
   </div>
 </div>
 
-<div class="mt-8 card-orange text-center text-2xl">
+<div class="bottom-note mt-8 card-orange text-center text-2xl">
   Gen AI was used as a workflow enabler, not as magic dust.
 </div>
 
-<!-- Speaker notes: Explain the pivot from regex generation to Python code generation. The key learning is to let Gen AI help users express intent while the system handles execution and reuse. -->
+<!-- regex generation to Python code generation. The key learning is to let Gen AI help users express intent while the system handles execution and reuse. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # XBoost engineering patterns
 
 ## Patterns used for real reasons
 
-<div class="grid grid-cols-4 gap-3 mt-8 text-center">
-  <v-clicks>
+<div class="grid grid-cols-4 gap-3 mt-8 text-center text-2xl">
   <div class="card">Visitor</div>
   <div class="card">Adapter</div>
   <div class="card">Factory</div>
@@ -1557,17 +1531,16 @@ layout: center
   <div class="card">Registry</div>
   <div class="card">Decorator</div>
   <div class="card">Layered architecture</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl">
   Patterns are useful when they remove real pain.
 </div>
 
-<!-- Speaker notes: Warn students not to memorize patterns for interviews only. Patterns matter when they reduce duplication, isolate change, or make workflows extensible. -->
+<!--Warn students not to memorize patterns for interviews only. Patterns matter when they reduce duplication, isolate change, or make workflows extensible. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Key XBoost insight
@@ -1594,41 +1567,15 @@ Data contracts + storage + queues
   </div>
 </div>
 
-<div class="mt-8 card-blue text-center text-2xl">
+<div class="bottom-note mt-8 card-blue text-center text-2xl">
   Successful AI systems need both modeling and software design.
 </div>
 
-<!-- Speaker notes: This is one of the most important slides. Model training is a small part of making an AI product useful, reliable, and understandable. -->
+<!--This is one of the most important slides. Model training is a small part of making an AI product useful, reliable, and understandable. -->
+
 
 ---
-layout: center
----
-
-# Tradeoffs students should notice
-
-## Production is not textbook-perfect
-
-<div class="grid grid-cols-4 gap-3 mt-8 text-center">
-  <v-clicks>
-  <div class="card">Cost tradeoffs</div>
-  <div class="card">Time constraints</div>
-  <div class="card">Partial abstractions</div>
-  <div class="card">Framework coupling</div>
-  <div class="card">Performance bottlenecks</div>
-  <div class="card">Evolving requirements</div>
-  <div class="card">Good enough decisions</div>
-  <div class="card">Extensibility</div>
-  </v-clicks>
-</div>
-
-<div class="mt-8 card-yellow text-center text-2xl">
-  Engineering is choosing the right compromise consciously.
-</div>
-
-<!-- Speaker notes: Normalize tradeoffs. The goal is not perfect architecture; it is clear reasoning, explicit constraints, and decisions that can evolve. -->
-
----
-layout: center
+layout: full
 ---
 
 # Side Project Showcase
@@ -1641,14 +1588,15 @@ layout: center
   <b>Core idea:</b> Turn any topic into a live quiz, follow-up practice, and weak-topic insight.
 </div>
 
-<v-clicks>
+<br/>
+<ul>
 
-- Run live quiz rooms for classes, clubs, committees, and college events
-- Create quizzes manually or with AI from notes, chapters, decks, or briefs
-- Launch follow-up campaigns for homework, revision, or readiness checks
-- Review results by question, player, topic, batch, segment, and timing
+<li>Run live quiz rooms for classes, clubs, committees, and college events</li>
+<li>Create quizzes manually or with AI from notes, chapters, decks, or briefs</li>
+<li>Launch follow-up campaigns for homework, revision, or readiness checks</li>
+<li>Review results by question, player, topic, batch, segment, and timing</li>
 
-</v-clicks>
+</ul>
 
 <!--
 Speaker notes:
@@ -1682,20 +1630,20 @@ flowchart LR
 
 <style>
 .mermaid {
-    transform: scale(0.82);
+    transform: scale(1.1);
     transform-origin: top center;
     display: flex;
     justify-content: center;
 }
 </style>
 
-<v-clicks>
+<ul class="mt-8 text-2xl">
 
-- **For students:** quiz battles, committee events, workshops, fests, revision rounds
-- **For faculty:** one chapter becomes class play + homework + weak-topic clarity
-- **For organizers:** results can become export-ready proof, not just participation
+<li><b>For students:</b> quiz battles, committee events, workshops, fests, revision rounds</li>
+<li><b>For faculty:</b> one chapter becomes class play + homework + weak-topic clarity</li>
+<li><b>For organizers:</b> results can become export-ready proof, not just participation</li>
 
-</v-clicks>
+</ul>
 
 <!--
 Speaker notes:
@@ -1703,7 +1651,7 @@ This is the main ForQuiz story. One source can become a live moment and then a f
 -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Try It In Your College
@@ -1715,35 +1663,35 @@ layout: center
 <div style="background: rgba(255, 212, 59, 0.95); color: #1a1a1a; padding: 1.2rem; border-radius: 12px;">
 <h3 style="color:#1a1a1a;">Use it for events</h3>
 
-<v-clicks>
+<ul style="color:#1a1a1a;">
 
-- Committee quiz battle
-- Department activity
-- Workshop recap
-- Fest or club round
-- Placement practice
+<li style="color:#1a1a1a;">Committee quiz battle</li>
+<li style="color:#1a1a1a;">Department activity</li>
+<li style="color:#1a1a1a;">Workshop recap</li>
+<li style="color:#1a1a1a;">Fest or club round</li>
+<li style="color:#1a1a1a;">Placement practice</li>
 
-</v-clicks>
+</ul>
 </div>
 
 <div style="background: rgba(55, 118, 171, 0.95); color: white; padding: 1.2rem; border-radius: 12px;">
 <h3 style="color:white;">Share it with faculty</h3>
 
-<v-clicks>
+<ul>
 
-- One chapter pilot
-- Live class quiz
-- Homework campaign
-- Weak-topic report
-- Batch comparison
+<li>One chapter pilot</li>
+<li>Live class quiz</li>
+<li>Homework campaign</li>
+<li>Weak-topic report</li>
+<li>Batch comparison</li>
 
-</v-clicks>
+</ul>
 </div>
 
 </div>
 
-<div class="mt-8 text-2xl text-center" style="background: rgba(255, 255, 255, 0.95); color: #1a1a1a; padding: 1rem; border-radius: 10px;">
-  <b>Challenge:</b> Try ForQuiz once in a real event, then introduce it to one faculty member.
+<div class="bottom-note mt-8 text-2xl text-center" style="background: rgba(255, 255, 255, 0.95); color: #1a1a1a; padding: 1rem; border-radius: 10px;">
+ Try ForQuiz once in a real event, then introduce it to one faculty member.
 </div>
 
 <!-- Optional QR:
@@ -1758,88 +1706,9 @@ Speaker notes:
 I want students to try ForQuiz in committee events, clubs, fests, or workshops. I also want them to share it with faculty because faculty can use it for chapter revision, homework, and weak-topic tracking.
 -->
 
----
-layout: center
----
-
-# Mini showcase
-
-## Multi-Engine Data Profiler
-
-<div class="card-blue mt-7 text-2xl text-center">
-  A Python tool to profile tables across multiple engines
-</div>
-
-<div class="grid grid-cols-4 gap-3 mt-7 text-center">
-  <v-clicks>
-  <div class="card-yellow">Snowflake</div>
-  <div class="card-blue">Databricks</div>
-  <div class="card-orange">DuckDB</div>
-  <div class="card-yellow">SQLite</div>
-  </v-clicks>
-</div>
-
-<div class="grid grid-cols-6 gap-2 mt-7 text-center text-sm">
-  <v-clicks>
-  <div class="card">Row counts</div>
-  <div class="card">Schema</div>
-  <div class="card">Min / max</div>
-  <div class="card">Null count</div>
-  <div class="card">Distinct count</div>
-  <div class="card">Harmonized types</div>
-  </v-clicks>
-</div>
-
-<!-- Speaker notes: This smaller example shows the same principles in a different project: adapters, contracts, metadata, consistency, and testability. -->
 
 ---
-layout: center
----
-
-# Data Profiler architecture
-
-## Adapter-based thinking
-
-<style>
-.mermaid {
-  transform: scale(0.82);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-```mermaid
-flowchart LR
-    subgraph Engines
-      SF[Snowflake]
-      DB[Databricks]
-      DD[DuckDB]
-      SQ[SQLite]
-    end
-    SF --> A[Engine adapters]
-    DB --> A
-    DD --> A
-    SQ --> A
-    A --> C[Core profiler]
-    C --> J[Deterministic JSON artifact]
-
-    classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class SF,DB,DD,SQ yellow;
-    class A,C orange;
-    class J blue;
-```
-
-<div class="mt-5 card text-center text-2xl">
-  Once you learn clean architecture, it transfers to new projects.
-</div>
-
-<!-- Speaker notes: Explain adapter-based thinking. Different engines have different SQL dialects and metadata behavior, but the core output can stay consistent. -->
-
----
-layout: center
+layout: full
 ---
 
 # Transfer learning for technologies
@@ -1847,24 +1716,22 @@ layout: center
 ## Deep learning has transfer learning. So does your brain.
 
 <div class="grid grid-cols-2 gap-4 mt-8 text-xl">
-  <v-clicks>
   <div class="card">Django -> FastAPI</div>
   <div class="card">Postgres -> Snowflake</div>
   <div class="card">Pandas -> Polars</div>
   <div class="card">REST API -> Tool API</div>
   <div class="card">Queues -> Agent workflows</div>
   <div class="card">Unit tests -> Evaluation tests</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl">
   You are not starting from zero every time.
 </div>
 
-<!-- Speaker notes: This is an encouraging slide. Tell students that learning deeply once makes every future tool easier to understand. -->
+<!--This is an encouraging slide. Tell students that learning deeply once makes every future tool easier to understand. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Industry scope
@@ -1872,7 +1739,6 @@ layout: center
 ## Data Science roles actually do
 
 <div class="grid grid-cols-3 gap-4 mt-8">
-  <v-clicks>
   <div class="card">Problem framing</div>
   <div class="card">Data cleaning</div>
   <div class="card">EDA</div>
@@ -1882,17 +1748,16 @@ layout: center
   <div class="card">Evaluation</div>
   <div class="card">Business storytelling</div>
   <div class="card">Deployment collaboration</div>
-  </v-clicks>
 </div>
 
-<div class="mt-7 card-blue text-center text-2xl">
+<div class="bottom-note mt-7 card-blue text-center text-2xl">
   Data science is part statistics, part engineering, part communication.
 </div>
 
-<!-- Speaker notes: Explain that data science roles vary by company. Some are research-heavy, some are analytics-heavy, and some are engineering-heavy. -->
+<!--Explain that data science roles vary by company. Some are research-heavy, some are analytics-heavy, and some are engineering-heavy. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Industry scope
@@ -1900,7 +1765,6 @@ layout: center
 ## AI / ML work beyond dashboards
 
 <div class="grid grid-cols-3 gap-4 mt-8">
-  <v-clicks>
   <div class="card">Classification</div>
   <div class="card">Regression</div>
   <div class="card">Forecasting</div>
@@ -1910,17 +1774,16 @@ layout: center
   <div class="card">NLP</div>
   <div class="card">Anomaly detection</div>
   <div class="card">Signal / wave analysis</div>
-  </v-clicks>
 </div>
 
-<div class="mt-7 card-yellow text-center text-2xl">
+<div class="bottom-note mt-7 card-yellow text-center text-2xl">
   AI is much larger than chatbots.
 </div>
 
-<!-- Speaker notes: Give examples from daily life: fraud detection, personalized feeds, traffic prediction, OCR, inventory forecasting, and quality inspection. -->
+<!--Give examples from daily life: fraud detection, personalized feeds, traffic prediction, OCR, inventory forecasting, and quality inspection. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Industry scope
@@ -1928,7 +1791,6 @@ layout: center
 ## Gen AI work in companies
 
 <div class="grid grid-cols-3 gap-4 mt-8">
-  <v-clicks>
   <div class="card">Knowledge assistants</div>
   <div class="card">Document Q&A</div>
   <div class="card">Report generation</div>
@@ -1938,15 +1800,14 @@ layout: center
   <div class="card">Data extraction</div>
   <div class="card">Workflow automation</div>
   <div class="card">Agents with tools</div>
-  </v-clicks>
 </div>
 
 <div class="source">Source: [McKinsey, The State of AI in 2025](https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-2025-agents-innovation_cmyk-v1.pdf)</div>
 
-<!-- Speaker notes: Emphasize that the strongest Gen AI use cases often sit inside existing workflows, not outside them. -->
+<!--Emphasize that the strongest Gen AI use cases often sit inside existing workflows, not outside them. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # What is hot now?
@@ -1954,26 +1815,24 @@ layout: center
 ## Agents are becoming important
 
 <div class="grid grid-cols-3 gap-4 mt-8">
-  <v-clicks>
   <div class="card">Plan steps</div>
   <div class="card">Call tools</div>
   <div class="card">Use memory / state</div>
   <div class="card">Coordinate specialists</div>
   <div class="card">Ask for approval</div>
   <div class="card">Complete multi-step workflows</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl">
   Agents are workflow systems around LLMs.
 </div>
 
 <div class="source">Source: [OpenAI Agents SDK documentation](https://developers.openai.com/api/docs/guides/agents)</div>
 
-<!-- Speaker notes: Clarify that agents are not just prompts. They need tools, state, orchestration, approvals, and observability. -->
+<!--Clarify that agents are not just prompts. They need tools, state, orchestration, approvals, and observability. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # MCP
@@ -1983,16 +1842,16 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>MCP helps connect AI assistants to</h3>
-    <v-clicks>
+    <ul>
 
-- Databases
-- Repositories
-- Business tools
-- File systems
-- Developer tools
-- Custom APIs
+<li>Databases</li>
+<li>Repositories</li>
+<li>Business tools</li>
+<li>File systems</li>
+<li>Developer tools</li>
+<li>Custom APIs</li>
 
-    </v-clicks>
+</ul>
   </div>
   <div class="card-yellow text-3xl flex items-center justify-center text-center">
     A standardized bridge between AI and tools.
@@ -2001,10 +1860,10 @@ layout: center
 
 <div class="source">Source: [Anthropic, Introducing the Model Context Protocol](https://www.anthropic.com/news/model-context-protocol)</div>
 
-<!-- Speaker notes: Use the USB-C analogy carefully: MCP aims to reduce custom connector work by standardizing how AI applications connect to external systems. -->
+<!--Use the USB-C analogy carefully: MCP aims to reduce custom connector work by standardizing how AI applications connect to external systems. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Skills / reusable workflows
@@ -2012,25 +1871,23 @@ layout: center
 ## Prompt once is not enough
 
 <div class="grid grid-cols-5 gap-3 mt-8 text-center">
-  <v-clicks>
   <div class="card">Instructions</div>
   <div class="card">Examples</div>
   <div class="card">Files</div>
   <div class="card">Code</div>
   <div class="card">Repeatable steps</div>
-  </v-clicks>
 </div>
 
-<div class="mt-10 card-blue text-center text-3xl">
+<div class="bottom-note mt-10 card-blue text-center text-3xl">
   The future is not only prompting. It is packaging repeatable workflows.
 </div>
 
 <div class="source">Source: [OpenAI Help Center, Skills in ChatGPT](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)</div>
 
-<!-- Speaker notes: Explain skills as a way to package repeated work. This ties directly to recipes in XBoost: workflow memory is valuable. -->
+<!--Explain skills as a way to package repeated work. This ties directly to recipes in XBoost: workflow memory is valuable. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # RAG is not just "add vector DB"
@@ -2038,7 +1895,6 @@ layout: center
 ## Robust RAG requires engineering
 
 <div class="grid grid-cols-5 gap-3 mt-7 text-center text-sm">
-  <v-clicks>
   <div class="card">Chunking</div>
   <div class="card">Embeddings</div>
   <div class="card">Vector search</div>
@@ -2049,19 +1905,18 @@ layout: center
   <div class="card">Context compression</div>
   <div class="card">Evaluation</div>
   <div class="card">Guardrails</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-orange text-center text-2xl">
+<div class="bottom-note mt-8 card-orange text-center text-2xl">
   A weak RAG pipeline gives confident wrong answers.
 </div>
 
 <div class="source">Source: [NirDiamant, RAG Techniques repository](https://github.com/NirDiamant/RAG_TECHNIQUES)</div>
 
-<!-- Speaker notes: Use this to lower hype around vector databases. Retrieval quality, evaluation, metadata, and ranking matter as much as the LLM. -->
+<!--Use this to lower hype around vector databases. Retrieval quality, evaluation, metadata, and ranking matter as much as the LLM. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Context engineering
@@ -2070,7 +1925,7 @@ layout: center
 
 <style>
 .mermaid {
-  transform: scale(0.88);
+  transform: scale(1.1);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -2080,7 +1935,6 @@ layout: center
 ```mermaid
 flowchart LR
     subgraph ContextSystem [Context Engineering]
-      direction TD
       S[System instruction<br/>behavior]
       T[Tools<br/>actions]
       R[RAG<br/>knowledge]
@@ -2091,20 +1945,20 @@ flowchart LR
 
     classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
     classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#F97316,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
+    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     class S,M yellow;
     class T,C blue;
     class R,E orange;
 ```
 
-<div class="mt-5 card-yellow text-center text-2xl">
+<div class="bottom-note mt-5 card-yellow text-center text-2xl">
   Do not force the LLM to do every job.
 </div>
 
-<!-- Speaker notes: Explain separation of concerns. Some knowledge belongs in RAG, some behavior in instructions, some actions in tools, and deterministic work in code. -->
+<!--Explain separation of concerns. Some knowledge belongs in RAG, some behavior in instructions, some actions in tools, and deterministic work in code. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Responsible AI
@@ -2112,7 +1966,6 @@ layout: center
 ## Production Gen AI needs guardrails
 
 <div class="grid grid-cols-4 gap-3 mt-8 text-center">
-  <v-clicks>
   <div class="card">Hallucination</div>
   <div class="card">Data leakage</div>
   <div class="card">Prompt injection</div>
@@ -2121,15 +1974,14 @@ layout: center
   <div class="card">Biased outputs</div>
   <div class="card">Over-trust</div>
   <div class="card">Weak monitoring</div>
-  </v-clicks>
 </div>
 
 <div class="source">Source: [NIST AI RMF Generative AI Profile](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)</div>
 
-<!-- Speaker notes: Keep this practical, not scary. Responsible AI is about designing systems that acknowledge failure modes and reduce harm. -->
+<!--Keep this practical, not scary. Responsible AI is about designing systems that acknowledge failure modes and reduce harm. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Skills required
@@ -2137,7 +1989,6 @@ layout: center
 ## Learn Python properly
 
 <div class="grid grid-cols-5 gap-3 mt-8 text-center text-sm">
-  <v-clicks>
   <div class="card">Syntax deeply</div>
   <div class="card">Comprehensions</div>
   <div class="card">Iterators</div>
@@ -2148,17 +1999,16 @@ layout: center
   <div class="card">OOP</div>
   <div class="card">Dataclasses</div>
   <div class="card">Type hints</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl">
   Python is not just a scripting language. It is your engineering tool.
 </div>
 
-<!-- Speaker notes: Encourage students to go beyond syntax tutorials. Python fluency shows up in clean code, debugging, reusable utilities, and readable data workflows. -->
+<!--Encourage students to go beyond syntax tutorials. Python fluency shows up in clean code, debugging, reusable utilities, and readable data workflows. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Skills required
@@ -2166,7 +2016,6 @@ layout: center
 ## Data skills are non-negotiable
 
 <div class="grid grid-cols-5 gap-3 mt-8 text-center text-sm">
-  <v-clicks>
   <div class="card">SQL</div>
   <div class="card">Joins</div>
   <div class="card">Aggregations</div>
@@ -2177,17 +2026,16 @@ layout: center
   <div class="card">Validation</div>
   <div class="card">File formats</div>
   <div class="card">Warehouses / lakes</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-orange text-center text-2xl">
+<div class="bottom-note mt-8 card-orange text-center text-2xl">
   Most AI systems fail before the model because the data layer is weak.
 </div>
 
-<!-- Speaker notes: Explain that SQL and data modeling are still extremely relevant in the Gen AI era. Retrieval, evaluation, metrics, and pipelines all depend on data literacy. -->
+<!--Explain that SQL and data modeling are still extremely relevant in the Gen AI era. Retrieval, evaluation, metrics, and pipelines all depend on data literacy. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Skills required
@@ -2195,7 +2043,6 @@ layout: center
 ## Learn the "why", not just APIs
 
 <div class="grid grid-cols-5 gap-3 mt-8 text-center text-sm">
-  <v-clicks>
   <div class="card">Train/test split</div>
   <div class="card">Cross-validation</div>
   <div class="card">Metrics</div>
@@ -2206,17 +2053,16 @@ layout: center
   <div class="card">Interpretation</div>
   <div class="card">Error analysis</div>
   <div class="card">Experiment design</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl">
   Do not just call .fit() and .predict().
 </div>
 
-<!-- Speaker notes: Use a simple example of target leakage if time permits. A model can look impressive in notebooks and fail completely in the real world. -->
+<!--Use a simple example of target leakage if time permits. A model can look impressive in notebooks and fail completely in the real world. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Skills required
@@ -2224,7 +2070,6 @@ layout: center
 ## AI engineers need backend sense
 
 <div class="grid grid-cols-5 gap-3 mt-8 text-center text-sm">
-  <v-clicks>
   <div class="card">REST APIs</div>
   <div class="card">Auth basics</div>
   <div class="card">Databases</div>
@@ -2235,17 +2080,16 @@ layout: center
   <div class="card">Logging</div>
   <div class="card">Docker</div>
   <div class="card">CI/CD + cloud</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-blue text-center text-2xl">
+<div class="bottom-note mt-8 card-blue text-center text-2xl">
   Your model is useless if users cannot reliably use it.
 </div>
 
-<!-- Speaker notes: Link this back to XBoost: uploads, queues, workers, metadata, and callbacks are backend problems that make AI usable. -->
+<!--Link this back to XBoost: uploads, queues, workers, metadata, and callbacks are backend problems that make AI usable. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Skills required
@@ -2253,7 +2097,6 @@ layout: center
 ## Go beyond chat prompts
 
 <div class="grid grid-cols-5 gap-3 mt-7 text-center text-sm">
-  <v-clicks>
   <div class="card">Prompt design</div>
   <div class="card">Tool calling</div>
   <div class="card">Agents</div>
@@ -2264,17 +2107,16 @@ layout: center
   <div class="card">Vector DBs</div>
   <div class="card">Evaluation data</div>
   <div class="card">Cost / latency</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl">
   Gen AI engineering is software engineering with probabilistic components.
 </div>
 
-<!-- Speaker notes: Make clear that Gen AI engineering still needs architecture: state, tools, logs, evaluation, safety, and cost control. -->
+<!--Make clear that Gen AI engineering still needs architecture: state, tools, logs, evaluation, safety, and cost control. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Roadmap: Month 0-3
@@ -2284,38 +2126,38 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>Goal</h3>
-    <v-clicks>
+    <ul>
 
-- Python fluency
-- SQL fluency
-- Git / GitHub
-- Basic statistics
-- Pandas
-- Small clean projects
+<li>Python fluency</li>
+<li>SQL fluency</li>
+<li>Git / GitHub</li>
+<li>Basic statistics</li>
+<li>Pandas</li>
+<li>Small clean projects</li>
 
-    </v-clicks>
+</ul>
   </div>
   <div class="card">
     <h3>Projects</h3>
-    <v-clicks>
+    <ul>
 
-- CSV data cleaner
-- Student performance analysis
-- Expense tracker API
-- Mini EDA report generator
+<li>CSV data cleaner</li>
+<li>Student performance analysis</li>
+<li>Expense tracker API</li>
+<li>Mini EDA report generator</li>
 
-    </v-clicks>
+</ul>
   </div>
 </div>
 
-<div class="mt-7 card-yellow text-center text-2xl">
+<div class="bottom-note mt-7 card-yellow text-center text-2xl">
   Output: 3 small, finished GitHub projects.
 </div>
 
-<!-- Speaker notes: Emphasize finished over fancy. A small complete project with README and screenshots beats ten half-done notebooks. -->
+<!--Emphasize finished over fancy. A small complete project with README and screenshots beats ten half-done notebooks. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Roadmap: Month 3-6
@@ -2325,37 +2167,37 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>Goal</h3>
-    <v-clicks>
+    <ul>
 
-- APIs
-- Databases
-- Data pipelines
-- Testing
-- Deployment basics
+<li>APIs</li>
+<li>Databases</li>
+<li>Data pipelines</li>
+<li>Testing</li>
+<li>Deployment basics</li>
 
-    </v-clicks>
+</ul>
   </div>
   <div class="card">
     <h3>Projects</h3>
-    <v-clicks>
+    <ul>
 
-- Data profiler for SQLite / CSV
-- FastAPI + Postgres backend
-- Background job queue
-- Dashboard from processed data
+<li>Data profiler for SQLite / CSV</li>
+<li>FastAPI + Postgres backend</li>
+<li>Background job queue</li>
+<li>Dashboard from processed data</li>
 
-    </v-clicks>
+</ul>
   </div>
 </div>
 
-<div class="mt-7 card-blue text-center text-2xl">
+<div class="bottom-note mt-7 card-blue text-center text-2xl">
   Output: 1 solid project with README, tests, and demo.
 </div>
 
-<!-- Speaker notes: Encourage project depth. Add testing, input validation, Docker, and deployment to convert a college project into a portfolio project. -->
+<!--Encourage project depth. Add testing, input validation, Docker, and deployment to convert a college project into a portfolio project. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Roadmap: Month 6-12
@@ -2365,38 +2207,36 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>Goal</h3>
-    <v-clicks>
 
-- ML pipeline
-- RAG system
-- Agent workflow
-- Evaluation
-- Deployment
+<li>ML pipeline</li>
+<li>RAG system</li>
+<li>Agent workflow</li>
+<li>Evaluation</li>
+<li>Deployment</li>
 
-    </v-clicks>
   </div>
   <div class="card">
     <h3>Projects</h3>
-    <v-clicks>
+    <ul>
 
-- RAG over college notes
-- Resume analyzer with citations
-- Agent that queries a database
-- Explainability dashboard
-- Multi-source data profiler
+<li>RAG over college notes</li>
+<li>Resume analyzer with citations</li>
+<li>Agent that queries a database</li>
+<li>Explainability dashboard</li>
+<li>Multi-source data profiler</li>
 
-    </v-clicks>
+</ul>
   </div>
 </div>
 
-<div class="mt-7 card-yellow text-center text-2xl">
+<div class="bottom-note mt-7 card-yellow text-center text-2xl">
   Output: 1 big project that would have been difficult before LLM help.
 </div>
 
-<!-- Speaker notes: Make the roadmap aspirational but practical. The final project should show architecture, evaluation, data handling, and user-facing output. -->
+<!--Make the roadmap aspirational but practical. The final project should show architecture, evaluation, data handling, and user-facing output. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # How to use LLMs for projects
@@ -2406,39 +2246,37 @@ layout: center
 <div class="two-col mt-8">
   <div class="card">
     <h3>Good use</h3>
-    <v-clicks>
 
-- Ask for explanations
-- Ask for alternatives
-- Generate test cases
-- Review architecture
-- Debug with reasoning
-- Refactor after understanding
+<li>Ask for explanations</li>
+<li>Ask for alternatives</li>
+<li>Generate test cases</li>
+<li>Review architecture</li>
+<li>Debug with reasoning</li>
+<li>Refactor after understanding</li>
 
-    </v-clicks>
+
   </div>
   <div class="card">
     <h3>Bad use</h3>
-    <v-clicks>
 
-- Copy-paste blindly
-- Skip reading code
-- Ignore errors
-- Fake understanding
-- Push secrets to GitHub
+<li>Copy-paste blindly</li>
+<li>Skip reading code</li>
+<li>Ignore errors</li>
+<li>Fake understanding</li>
+<li>Push secrets to GitHub</li>
 
-    </v-clicks>
+
   </div>
 </div>
 
-<div class="mt-7 card-orange text-center text-2xl">
+<div class="bottom-note mt-7 card-orange text-center text-2xl">
   Use AI like a senior assistant, not like a brain replacement.
 </div>
 
-<!-- Speaker notes: Make this practical. Ask students to explain every line they ship and to use LLMs to strengthen understanding, not bypass it. -->
+<!--Make this practical. Ask students to explain every line they ship and to use LLMs to strengthen understanding, not bypass it. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Professional habit 1
@@ -2452,27 +2290,27 @@ layout: center
   </div>
   <div class="card">
     <h3>Actually check</h3>
-    <v-clicks>
 
-- Spelling
-- Company name
-- Person name
-- Date and time
-- Attachments
-- Tone
 
-    </v-clicks>
+<li>Spelling</li>
+<li>Company name</li>
+<li>Person name</li>
+<li>Date and time</li>
+<li>Attachments</li>
+<li>Tone</li>
+
+
   </div>
 </div>
 
-<div class="mt-7 card-yellow text-center text-2xl">
+<div class="bottom-note mt-7 card-yellow text-center text-2xl">
   A typo in a company name can undo a good first impression.
 </div>
 
-<!-- Speaker notes: This slide is intentionally memorable. Use it to show that professionalism is not separate from engineering; both require carefulness. -->
+<!--This slide is intentionally memorable. Use it to show that professionalism is not separate from engineering; both require carefulness. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Professional habit 2
@@ -2489,31 +2327,31 @@ Daily standup: 12
 </div>
 
 <div class="grid grid-cols-3 gap-4 mt-7 text-center">
-  <v-clicks>
   <div class="card-yellow">Calendar OOO: 11:30-3</div>
   <div class="card-blue">Slack group message on Friday</div>
   <div class="card-orange">Standup update sent in advance</div>
-  </v-clicks>
 </div>
 
-<div class="mt-8 card text-center text-2xl">
+<div class="bottom-note mt-8 card text-center text-2xl">
   Do not leave ambiguity for others to solve.
 </div>
 
-<!-- Speaker notes: This is a concrete professional example. Show that proactive communication builds trust and reduces coordination friction. -->
+<!--This is a concrete professional example. Show that proactive communication builds trust and reduces coordination friction. -->
 
 ---
-layout: center
+layout: full
 ---
 
 # Finding this presentation
 
-- I have used Slidev for this presentation. Using slidev you can write markdown and generate slides with a lot of flexibility.
-- This presentation is available at https://susmitpy.github.io/talks/backend_data_science_ai
+<ul>
+<li>I have used Slidev for this presentation. Using slidev you can write markdown and generate slides with a lot of flexibility.</li>
+<li>This presentation is available at https://susmitpy.github.io/talks/backend_data_science_ai</li>
+</ul>
 
 
 ---
-layout: center
+layout: full
 ---
 
 # Closing
@@ -2521,24 +2359,22 @@ layout: center
 ## What I hope you remember
 
 <div class="grid grid-cols-3 gap-4 mt-8">
-  <v-clicks>
-  <div class="card">Fundamentals compound</div>
-  <div class="card">AI is bigger than Gen AI</div>
-  <div class="card">Vibe coding is not engineering</div>
-  <div class="card">Projects create real learning</div>
-  <div class="card">Backend + data + AI is powerful</div>
-  <div class="card">Communication is professionalism</div>
-  </v-clicks>
+  <li>Fundamentals compound</li>
+  <li>AI is bigger than Gen AI</li>
+  <li>Vibe coding is not engineering</li>
+  <li>Projects create real learning</li>
+  <li>Backend + data + AI is powerful</li>
+  <li>Communication is professionalism</li>
 </div>
 
-<div class="mt-10 card-yellow text-center text-3xl">
+<div class="bottom-note mt-10 card-yellow text-center text-3xl">
   Build things. Understand them. Then build bigger things.
 </div>
 
-<!-- Speaker notes: End with encouragement. The final sentence should feel like a call to action, especially for students at the beginning of their journey. -->
+<!--End with encouragement. The final sentence should feel like a call to action, especially for students at the beginning of their journey. -->
 
 ---
-layout: center
+layout: full
 class: text-center
 ---
 
@@ -2547,7 +2383,6 @@ class: text-center
 ## Ask me anything
 
 <div class="mt-8 grid grid-cols-4 gap-3 text-center">
-  <v-clicks>
   <div class="card">Backend</div>
   <div class="card">Data Science</div>
   <div class="card">AI / Gen AI</div>
@@ -2556,11 +2391,10 @@ class: text-center
   <div class="card">Careers</div>
   <div class="card">Skills</div>
   <div class="card">Mistakes to avoid</div>
-  </v-clicks>
 </div>
 
 <div class="mt-10 card-blue text-3xl text-center">
   Thank you!
 </div>
 
-<!-- Speaker notes: Invite questions. If there is silence, seed the room with options: ask about XBoost architecture, roadmaps, Gen AI project ideas, or mistakes to avoid. -->
+<!--Invite questions. If there is silence, seed the room with options: ask about XBoost architecture, roadmaps, Gen AI project ideas, or mistakes to avoid. -->

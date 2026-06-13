@@ -63,6 +63,9 @@ jobs:
         run: nr --name=neo4j_recommender build_pres
       - name: Build API GenAI
         run: nr --name=api_genai build_pres
+
+      - name: Build Backend Data Science AI
+        run: nr --name=backend_data_science_ai build_pres
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
