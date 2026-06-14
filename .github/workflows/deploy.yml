@@ -67,7 +67,7 @@ jobs:
       - name: Merge artifacts
         run: |
           mkdir -p dist
-          find artifacts -type f -exec cp {} dist/ \;
+          rsync -av artifacts/*/ dist/
 
       - uses: actions/upload-pages-artifact@v3
         with:
