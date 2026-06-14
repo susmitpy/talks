@@ -3,85 +3,81 @@ name: Deploy pages
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   pages: write
   id-token: write
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        pres:
+          - kafka
+          - github_actions
+          - mongodb_change_stream
+          - firestore_rules
+          - qna
+          - aws_lambda
+          - kong_auth
+          - real_time_word_count
+          - feat_eng
+          - stream_adtech
+          - neo4j_recommender
+          - api_genai
+          - backend_data_science_ai
 
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
-
-      - name: Setup @antfu/ni
-        run: npm i -g @antfu/ni
+          node-version: lts/*
+          cache: npm
 
       - name: Install dependencies
-        run: nci
+        run: npm ci
 
-        
-      - name: Build Template
-        run: nr --name=template build_pres 
+      - name: Build
+        run: npm run build_pres -- --name=${{ matrix.pres }}
 
-      - name: Build Kafka
-        run: nr --name=kafka build_pres 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: presentation-${{ matrix.pres }}
+          path: dist/
 
-      - name: Build Github Actions
-        run: nr --name=github_actions build_pres 
+  merge:
+    needs: build
+    runs-on: ubuntu-latest
 
-      - name: Build MongoDB Change Stream
-        run: nr --name=mongodb_change_stream build_pres
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
 
-      - name: Build Firestore Security Rules
-        run: nr --name=firestore_rules build_pres
-
-      - name: Build QnA on Knowledge Graph
-        run: nr --name=qna build_pres
-
-      - name: Build AWS Lambda
-        run: nr --name=aws_lambda build_pres
-
-      - name: Build Kong Auth
-        run: nr --name=kong_auth build_pres
-
-      - name: Build Real-time Word Count
-        run: nr --name=real_time_word_count build_pres
-      - name: Build Feature Engineering
-        run: nr --name=feat_eng build_pres
-      
-      - name: Build Stream Adtech
-        run: nr --name=stream_adtech build_pres
-      - name: Build Neo4j Recommender
-        run: nr --name=neo4j_recommender build_pres
-      - name: Build API GenAI
-        run: nr --name=api_genai build_pres
-
-      - name: Build Backend Data Science AI
-        run: nr --name=backend_data_science_ai build_pres
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Merge artifacts
+        run: |
+          mkdir -p dist
+          find artifacts -type f -exec cp {} dist/ \;
 
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
+    needs: merge
+    runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-    name: Deploy
+
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4

@@ -5,3 +5,4 @@ node_modules
 .remote-assets
 components.d.ts
 .vscode
+dist/
