@@ -538,6 +538,7 @@ layout: full
 <style>
 li {
     font-size: 3rem;
+    line-height: 3.5rem;
 }
 </style>
 
@@ -827,7 +828,8 @@ layout: full
 
 <style>
 li {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    line-height: 3.5rem;
 }
 </style>
 
@@ -1318,16 +1320,18 @@ layout: full
 
 ## Users need explainability before ML too
 
-<div class="grid grid-cols-3 gap-4 mt-2 text-center">
-  <ul>
+<div class="flex flex-row">
+
+<div class="grid grid-cols-3 gap-4 mt-8 text-center">
   <div class="card-yellow"><h3 style="color:#101012">Input</h3><p style="color:#101012">What data is being used?</p></div>
   <div class="card-blue"><h3 style="color:#FFFFFF">Parameters</h3><p style="color:#FFFFFF">What choices were made?</p></div>
   <div class="card-orange"><h3 style="color:#FFFFFF">Output</h3><p style="color:#FFFFFF">What changed?</p></div>
-  </ul>
 </div>
 
 <div class="bottom-note mt-8 card text-center text-2xl">
   If users cannot understand the transformation, they cannot trust the result.
+</div>
+
 </div>
 
 <!--Connect preview to trust. Explainability is not only for models; it is also for data transformations and user actions. -->
@@ -1492,7 +1496,6 @@ layout: full
     <h>Problem</h>
     <p class="text-xl">Users needed custom text extraction, but regex was difficult for novice users.</p>
     <p>Example: from "Product A - Region B - 2024", extract "Region B".</p>
-    <p> Or "2024-01-15: Event X", extract "Event X".</p>
     <p> Or more complex - "2024-01-15: Event X (Region B)", extract "Event X" and "Region B".</p>
   </div>
   <div class="card">
@@ -1547,31 +1550,28 @@ layout: full
 
 ## ML systems are mostly systems
 
-<div class="two-col mt-8">
-  <div class="card">
-    <h3>Not just this</h3>
+<br/>
 
-```python
-import model
-model.fit(X, y)
-```
-  </div>
-  <div class="card">
-    <h3>Actually this</h3>
+### Not just `import model` followed by `model.fit()`. The real work is in the system design.
 
-```text
-Data contracts + storage + queues
-+ workers + transformations + UI
-+ monitoring + errors + explanations
-```
-  </div>
+<div class="grid grid-cols-3 gap-4 mt-8">
+  <div class="card">Data Contracts</div>
+  <div class="card">Storage</div>
+  <div class="card">Queues</div>
+  <div class="card">Workers</div>
+  <div class="card">Transformations</div>
+  <div class="card">UI (For users, power users, super users)</div>
+  <div class="card">Monitoring</div>
+  <div class="card">Errors</div>
+  <div class="card">Explanations</div>
 </div>
 
-<div class="bottom-note mt-8 card-blue text-center text-2xl">
+
+<div class="bottom-note card-blue text-center text-2xl">
   Successful AI systems need both modeling and software design.
 </div>
 
-<!--This is one of the most important slides. Model training is a small part of making an AI product useful, reliable, and understandable. -->
+<!--Model training is a small part of making an AI product useful, reliable, and understandable. -->
 
 
 ---
@@ -1582,10 +1582,10 @@ layout: full
 
 ## ForQuiz
 
-### Quiz-led learning, events, and readiness — with measurable outcomes
+### Quiz-led learning, events, and readiness - with measurable outcomes
 
 <div class="mt-8 text-2xl" style="background: rgba(255, 212, 59, 0.95); color: #1a1a1a; padding: 1rem; border-radius: 10px;">
-  <b>Core idea:</b> Turn any topic into a live quiz, follow-up practice, and weak-topic insight.
+  Turn any topic into a live quiz, follow-up practice, and weak-topic insight.
 </div>
 
 <br/>
@@ -1600,7 +1600,7 @@ layout: full
 
 <!--
 Speaker notes:
-Keep this short. This is not a full product pitch. I am showing ForQuiz as a side project that combines backend systems, realtime flows, AI generation, analytics, and product thinking.
+I am showing ForQuiz as a side project that combines backend systems, realtime flows, AI generation, analytics, and product thinking.
 -->
 
 ---
@@ -1630,6 +1630,7 @@ flowchart LR
 
 <style>
 .mermaid {
+  margin-top: 2rem;
     transform: scale(1.1);
     transform-origin: top center;
     display: flex;
@@ -1655,8 +1656,6 @@ layout: full
 ---
 
 # Try It In Your College
-
-## One ask before you leave
 
 <div class="grid grid-cols-2 gap-6 mt-8">
 
@@ -1690,21 +1689,30 @@ layout: full
 
 </div>
 
-<div class="bottom-note mt-8 text-2xl text-center" style="background: rgba(255, 255, 255, 0.95); color: #1a1a1a; padding: 1rem; border-radius: 10px;">
+<div class = "flex flex-row">
+
+<div class="mt-8 text-2xl text-center w-50% self-center" style="background: rgba(255, 255, 255, 0.95); color: #1a1a1a; padding: 1rem; border-radius: 10px;">
  Try ForQuiz once in a real event, then introduce it to one faculty member.
 </div>
 
-<!-- Optional QR:
-<div class="mt-6 flex flex-col items-center">
-  <QRCode value="https://your-forquiz-url-here" :size="160" />
-  <p class="mt-2 text-lg">Try ForQuiz</p>
+
+<div class="mt-6 flex w-1/2 justify-center self-center">
+  <img src="/forquiz_qr.png" alt="ForQuiz QR code" style="width: 200px; height: 200px; border-radius: 10px;"/>
 </div>
--->
+
+</div>
+
 
 <!--
 Speaker notes:
 I want students to try ForQuiz in committee events, clubs, fests, or workshops. I also want them to share it with faculty because faculty can use it for chapter revision, homework, and weak-topic tracking.
 -->
+
+---
+layout: center
+---
+
+# What is the work ?
 
 
 ---
@@ -1720,7 +1728,7 @@ layout: full
   <div class="card">Postgres -> Snowflake</div>
   <div class="card">Pandas -> Polars</div>
   <div class="card">REST API -> Tool API</div>
-  <div class="card">Queues -> Agent workflows</div>
+  <div class="card">Orchestrating Services -> Agent workflows</div>
   <div class="card">Unit tests -> Evaluation tests</div>
 </div>
 
@@ -1728,7 +1736,7 @@ layout: full
   You are not starting from zero every time.
 </div>
 
-<!--This is an encouraging slide. Tell students that learning deeply once makes every future tool easier to understand. -->
+<!-- learning deeply once makes every future tool easier to understand. -->
 
 ---
 layout: full
@@ -1754,7 +1762,7 @@ layout: full
   Data science is part statistics, part engineering, part communication.
 </div>
 
-<!--Explain that data science roles vary by company. Some are research-heavy, some are analytics-heavy, and some are engineering-heavy. -->
+<!-- data science roles vary by company. Some are research-heavy, some are analytics-heavy, and some are engineering-heavy. -->
 
 ---
 layout: full
@@ -1780,7 +1788,7 @@ layout: full
   AI is much larger than chatbots.
 </div>
 
-<!--Give examples from daily life: fraud detection, personalized feeds, traffic prediction, OCR, inventory forecasting, and quality inspection. -->
+<!--fraud detection, personalized feeds, traffic prediction, OCR, inventory forecasting, and quality inspection. -->
 
 ---
 layout: full
@@ -1802,9 +1810,10 @@ layout: full
   <div class="card">Agents with tools</div>
 </div>
 
-<div class="source">Source: [McKinsey, The State of AI in 2025](https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-2025-agents-innovation_cmyk-v1.pdf)</div>
+<div class="bottom-note mt-7 card-yellow text-center text-2xl">
+  Often a part of existing workflows, not a separate product.
+</div>
 
-<!--Emphasize that the strongest Gen AI use cases often sit inside existing workflows, not outside them. -->
 
 ---
 layout: full
@@ -1827,9 +1836,7 @@ layout: full
   Agents are workflow systems around LLMs.
 </div>
 
-<div class="source">Source: [OpenAI Agents SDK documentation](https://developers.openai.com/api/docs/guides/agents)</div>
-
-<!--Clarify that agents are not just prompts. They need tools, state, orchestration, approvals, and observability. -->
+<!--Agents are not just prompts. They need tools, state, orchestration, approvals, and observability. -->
 
 ---
 layout: full
@@ -1858,9 +1865,7 @@ layout: full
   </div>
 </div>
 
-<div class="source">Source: [Anthropic, Introducing the Model Context Protocol](https://www.anthropic.com/news/model-context-protocol)</div>
-
-<!--Use the USB-C analogy carefully: MCP aims to reduce custom connector work by standardizing how AI applications connect to external systems. -->
+<!--USB-C analogy: MCP aims to reduce custom connector work by standardizing how AI applications connect to external systems. -->
 
 ---
 layout: full
@@ -1881,10 +1886,6 @@ layout: full
 <div class="bottom-note mt-10 card-blue text-center text-3xl">
   The future is not only prompting. It is packaging repeatable workflows.
 </div>
-
-<div class="source">Source: [OpenAI Help Center, Skills in ChatGPT](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)</div>
-
-<!--Explain skills as a way to package repeated work. This ties directly to recipes in XBoost: workflow memory is valuable. -->
 
 ---
 layout: full
@@ -1911,10 +1912,6 @@ layout: full
   A weak RAG pipeline gives confident wrong answers.
 </div>
 
-<div class="source">Source: [NirDiamant, RAG Techniques repository](https://github.com/NirDiamant/RAG_TECHNIQUES)</div>
-
-<!--Use this to lower hype around vector databases. Retrieval quality, evaluation, metadata, and ranking matter as much as the LLM. -->
-
 ---
 layout: full
 ---
@@ -1923,39 +1920,25 @@ layout: full
 
 ## LLMs can specialize only so much
 
-<style>
-.mermaid {
-  transform: scale(1.1);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-}
-</style>
+<div class="mt-4 text-2xl" style="background: rgba(255, 212, 59, 0.95); color: #1a1a1a; padding: 1rem; border-radius: 10px;">
+Context Engineering - system to make LLM reliable, explainable, and safe.
+</div>
 
-```mermaid
-flowchart LR
-    subgraph ContextSystem [Context Engineering]
-      S[System instruction<br/>behavior]
-      T[Tools<br/>actions]
-      R[RAG<br/>knowledge]
-      M[Memory<br/>user/session facts]
-      C[Code<br/>deterministic logic]
-      E[Evaluation<br/>quality checks]
-    end
+<div class="grid grid-cols-3 gap-4 mt-8">
+  <div class="card">System instruction - <br/>behavior</div>
+  <div class="card">Tools - <br/>actions</div>
+  <div class="card">RAG - <br/>knowledge</div>
+  <div class="card">Memory - <br/>user/session facts</div>
+  <div class="card">Code - <br/>deterministic logic</div>
+  <div class="card">Evaluation - <br/>quality checks</div>
+</div>
 
-    classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class S,M yellow;
-    class T,C blue;
-    class R,E orange;
-```
 
 <div class="bottom-note mt-5 card-yellow text-center text-2xl">
   Do not force the LLM to do every job.
 </div>
 
-<!--Explain separation of concerns. Some knowledge belongs in RAG, some behavior in instructions, some actions in tools, and deterministic work in code. -->
+<!--Some knowledge belongs in RAG, some behavior in instructions, some actions in tools, and deterministic work in code. -->
 
 ---
 layout: full
@@ -1976,9 +1959,7 @@ layout: full
   <div class="card">Weak monitoring</div>
 </div>
 
-<div class="source">Source: [NIST AI RMF Generative AI Profile](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)</div>
-
-<!--Keep this practical, not scary. Responsible AI is about designing systems that acknowledge failure modes and reduce harm. -->
+<!-- Responsible AI is about designing systems that acknowledge failure modes and reduce harm. -->
 
 ---
 layout: full
@@ -1988,13 +1969,11 @@ layout: full
 
 ## Learn Python properly
 
-<div class="grid grid-cols-5 gap-3 mt-8 text-center text-sm">
+<div class="grid grid-cols-3 gap-3 mt-8 text-center text-sm">
   <div class="card">Syntax deeply</div>
   <div class="card">Comprehensions</div>
   <div class="card">Iterators</div>
   <div class="card">Generators</div>
-  <div class="card">itertools</div>
-  <div class="card">functools</div>
   <div class="card">Decorators</div>
   <div class="card">OOP</div>
   <div class="card">Dataclasses</div>
@@ -2005,7 +1984,7 @@ layout: full
   Python is not just a scripting language. It is your engineering tool.
 </div>
 
-<!--Encourage students to go beyond syntax tutorials. Python fluency shows up in clean code, debugging, reusable utilities, and readable data workflows. -->
+<!--go beyond syntax tutorials. Python fluency shows up in clean code, debugging, reusable utilities, and readable data workflows. -->
 
 ---
 layout: full
@@ -2032,7 +2011,7 @@ layout: full
   Most AI systems fail before the model because the data layer is weak.
 </div>
 
-<!--Explain that SQL and data modeling are still extremely relevant in the Gen AI era. Retrieval, evaluation, metrics, and pipelines all depend on data literacy. -->
+<!-- SQL and data modeling are still extremely relevant in the Gen AI era. Retrieval, evaluation, metrics, and pipelines all depend on data literacy. -->
 
 ---
 layout: full
@@ -2059,7 +2038,7 @@ layout: full
   Do not just call .fit() and .predict().
 </div>
 
-<!--Use a simple example of target leakage if time permits. A model can look impressive in notebooks and fail completely in the real world. -->
+<!-- example of target leakage if time permits. A model can look impressive in notebooks and fail completely in the real world. -->
 
 ---
 layout: full
@@ -2086,7 +2065,6 @@ layout: full
   Your model is useless if users cannot reliably use it.
 </div>
 
-<!--Link this back to XBoost: uploads, queues, workers, metadata, and callbacks are backend problems that make AI usable. -->
 
 ---
 layout: full
@@ -2113,7 +2091,7 @@ layout: full
   Gen AI engineering is software engineering with probabilistic components.
 </div>
 
-<!--Make clear that Gen AI engineering still needs architecture: state, tools, logs, evaluation, safety, and cost control. -->
+<!-- Gen AI engineering still needs architecture: state, tools, logs, evaluation, safety, and cost control. -->
 
 ---
 layout: full
@@ -2141,7 +2119,7 @@ layout: full
     <h3>Projects</h3>
     <ul>
 
-<li>CSV data cleaner</li>
+<li>CSV / TXT data cleaner</li>
 <li>Student performance analysis</li>
 <li>Expense tracker API</li>
 <li>Mini EDA report generator</li>
@@ -2151,10 +2129,10 @@ layout: full
 </div>
 
 <div class="bottom-note mt-7 card-yellow text-center text-2xl">
-  Output: 3 small, finished GitHub projects.
+  Output: 4 small, finished GitHub projects.
 </div>
 
-<!--Emphasize finished over fancy. A small complete project with README and screenshots beats ten half-done notebooks. -->
+<!-- finished over fancy. A small complete project with README and screenshots beats ten half-done notebooks. -->
 
 ---
 layout: full
@@ -2194,7 +2172,7 @@ layout: full
   Output: 1 solid project with README, tests, and demo.
 </div>
 
-<!--Encourage project depth. Add testing, input validation, Docker, and deployment to convert a college project into a portfolio project. -->
+<!-- project depth. Add testing, input validation, Docker, and deployment to convert a college project into a portfolio project. -->
 
 ---
 layout: full
@@ -2233,7 +2211,7 @@ layout: full
   Output: 1 big project that would have been difficult before LLM help.
 </div>
 
-<!--Make the roadmap aspirational but practical. The final project should show architecture, evaluation, data handling, and user-facing output. -->
+<!--The final project should show architecture, evaluation, data handling, and user-facing output. -->
 
 ---
 layout: full
@@ -2245,6 +2223,18 @@ layout: full
 
 <div class="two-col mt-8">
   <div class="card">
+    <h3>Bad use</h3>
+
+<li>Copy-paste blindly</li>
+<li>Skip reading code</li>
+<li>Ignore errors</li>
+<li>Fake understanding</li>
+<li>Push secrets to GitHub</li>
+
+
+  </div>
+
+  <div class="card" v-click>
     <h3>Good use</h3>
 
 <li>Ask for explanations</li>
@@ -2256,24 +2246,12 @@ layout: full
 
 
   </div>
-  <div class="card">
-    <h3>Bad use</h3>
 
-<li>Copy-paste blindly</li>
-<li>Skip reading code</li>
-<li>Ignore errors</li>
-<li>Fake understanding</li>
-<li>Push secrets to GitHub</li>
-
-
-  </div>
 </div>
 
 <div class="bottom-note mt-7 card-orange text-center text-2xl">
   Use AI like a senior assistant, not like a brain replacement.
 </div>
-
-<!--Make this practical. Ask students to explain every line they ship and to use LLMs to strengthen understanding, not bypass it. -->
 
 ---
 layout: full
@@ -2285,7 +2263,7 @@ layout: full
 
 <div class="two-col mt-8">
   <div class="meme-card text-center text-2xl">
-    <div class="top">Dear Hiring Manger</div>
+    <div class="top">Hi Sumit</div>
     <div>Resume attached: final_final_REAL.pdf</div>
   </div>
   <div class="card">
@@ -2307,8 +2285,6 @@ layout: full
   A typo in a company name can undo a good first impression.
 </div>
 
-<!--This slide is intentionally memorable. Use it to show that professionalism is not separate from engineering; both require carefulness. -->
-
 ---
 layout: full
 ---
@@ -2317,14 +2293,9 @@ layout: full
 
 ## Be proactive in communication
 
-<div class="card mt-8 text-xl">
+<br/>
 
-```text
-Talk scheduled: Monday 12-2
-Daily standup: 12
-```
-
-</div>
+### I have daily standup at 12, but talk scheduled on Monday 12-2.
 
 <div class="grid grid-cols-3 gap-4 mt-7 text-center">
   <div class="card-yellow">Calendar OOO: 11:30-3</div>
@@ -2336,7 +2307,6 @@ Daily standup: 12
   Do not leave ambiguity for others to solve.
 </div>
 
-<!--This is a concrete professional example. Show that proactive communication builds trust and reduces coordination friction. -->
 
 ---
 layout: full
@@ -2349,6 +2319,7 @@ layout: full
 <li>This presentation is available at https://susmitpy.github.io/talks/backend_data_science_ai</li>
 </ul>
 
+<img src="/qr-backend-data-science-ai.png" alt="QR code to presentation" style="width: 350px; height: 350px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto; margin-top: 10px;"/>
 
 ---
 layout: full
@@ -2371,7 +2342,12 @@ layout: full
   Build things. Understand them. Then build bigger things.
 </div>
 
-<!--End with encouragement. The final sentence should feel like a call to action, especially for students at the beginning of their journey. -->
+
+---
+src: ./pages/connect.md
+---
+
+
 
 ---
 layout: full
