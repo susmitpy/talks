@@ -455,41 +455,11 @@ layout: full
   </div>
 </div>
 
-<v-click>
 <div class="bottom-note mt-7 card-orange text-2xl text-center">
   Adoption is broad. Deep value still requires workflow redesign.
 </div>
-</v-click>
 
 <div class="source">Source: [McKinsey, The State of AI in 2025](https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-2025-agents-innovation_cmyk-v1.pdf)</div>
-
----
-layout: full
----
-
-# Why students should care
-
-## The market is moving toward data + AI roles
-
-<div class="grid grid-cols-2 gap-5 mt-8">
-  <div class="card">
-    <h3>Fast-growing role areas</h3>
-   
-
-<li>Big data specialists</li>
-<li>AI / ML specialists</li>
-<li>Software and application developers</li>
-<li>Data warehousing specialists</li>
-<li>Cybersecurity and networks</li>
-
-
-  </div>
-  <div class="card-blue text-3xl flex items-center justify-center text-center">
-    Your edge is not one tool.<br/>Your edge is a stack of skills.
-  </div>
-</div>
-
-<div class="source">Source: [World Economic Forum, Future of Jobs Report 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025/digest/)</div>
 
 
 ---
@@ -605,7 +575,7 @@ layout: full
   </div>
 </div>
 
-<div class="bottom-note mt-8 meme-card text-center text-2xl" v-click>
+<div class="bottom-note mt-8 meme-card text-center text-2xl" v-after>
   90% cleaning data, 10% pretending the model was the hard part
 </div>
 
@@ -630,7 +600,7 @@ layout: full
   </v-clicks>
 </div>
 
-<div class="bottom-note card-yellow text-center text-2xl" v-click>
+<div class="bottom-note card-yellow text-center text-2xl" v-after>
   Gen AI becomes powerful when connected to data, tools, and workflows.
 </div>
 
@@ -669,7 +639,7 @@ flowchart LR
     class C intelligence;
 ```
 
-<div class="bottom-note card text-center text-2xl" v-click>
+<div class="bottom-note card text-center text-2xl">
   If one layer is weak, the product breaks.
 </div>
 
@@ -715,7 +685,7 @@ flowchart LR
 layout: full
 ---
 
-# Attention to detail starts here
+# Be very cautious with Data
 
 ## Data traps are everywhere
 
@@ -730,7 +700,7 @@ layout: full
   </v-clicks>
 </div>
 
-<div class="bottom-note mt-8 card-yellow text-center text-2xl">
+<div class="bottom-note mt-8 card-yellow text-center text-2xl" v-after>
   Before modeling, investigate.
 </div>
 
@@ -787,100 +757,6 @@ layout: full
 
 <!--problem is not just technical scale; the system also needs to guide users who may not be data scientists. -->
 
----
-layout: full
----
-
-# XBoost scale
-
-## Not a toy dataset problem
-
-<div class="grid grid-cols-2 gap-5 mt-8">
-  <div class="card text-center">
-    <div class="big-number">12 x 3</div>
-    <p>Small datasets still matter</p>
-  </div>
-  <div class="card text-center">
-    <div class="big-number">70L x 60</div>
-    <p>Large datasets need architecture</p>
-  </div>
-</div>
-
-<div class="mt-7 grid grid-cols-3 gap-3 text-center">
-  <div class="card">Unknown schemas</div>
-  <div class="card">Many user flows</div>
-  <div class="card">Interactive operations</div>
-</div>
-
-<div class="bottom-note mt-7 card-yellow text-center text-2xl">
-  No fixed schema. No fixed journey. Many entry and exit points.
-</div>
-
-<!--Explain 70L as 70 lakh rows, about 7 million rows. Make the architecture problem visible: user freedom creates backend complexity. -->
-
----
-layout: full
----
-
-# XBoost in one sentence
-
-## A platform to play with data
-
-<style>
-li {
-    font-size: 3rem;
-    line-height: 3.5rem;
-}
-</style>
-
-<li>Raw data</li>
-<li>Cleaned data</li>
-<li>Enriched data</li>
-<li>ML-ready data</li>
-<li>Model output</li>
-<li>Explainable insights</li>
-<li>Business decision</li>
-
----
-layout: full
----
-
-# High-level architecture
-
-## Main components
-
-<style>
-.mermaid {
-  transform: scale(1.1);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-```mermaid
-flowchart LR
-    U[User] --> F[Frontend]
-    F --> A[Backend API]
-    F --> OD[On-demand backend]
-    A --> S3[S3 storage]
-    A --> DB[(Postgres metadata)]
-    A --> Q[SQS queue]
-    Q --> ML[ML worker]
-    ML --> S3
-    ML --> RQ[Result queue]
-    RQ --> L[Lambda callback]
-    L --> A
-
-    classDef user fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef app fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef data fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class U user;
-    class F,A,OD,L app;
-    class S3,DB,Q,ML,RQ data;
-```
-
-<!--each component exists because of a real constraint: scale, cost, async jobs, metadata, or user experience. -->
 
 ---
 layout: full
@@ -940,7 +816,7 @@ layout: full
 layout: full
 ---
 
-# Why feature-based folders?
+# Code Design
 
 ## Code should match product growth
 
@@ -985,46 +861,19 @@ layout: full
   <div class="card-blue">EFS cache</div>
 </div>
 
-<div class="bottom-note mt-9 card text-center text-2xl">
+<div class="grid grid-cols-5 gap-3 mt-15 text-center" v-click>
+  <div class="card-yellow">Columnar storage</div>
+  <div class="card-blue">Computed Statistics</div>
+  <div class="card-orange">Why fetch all for sample ?</div>
+  <div class="card-yellow">Name, Display Name, DType</div>
+  <div class="card-blue">Shared disk storage across servers</div>
+</div>
+
+<div class="bottom-note mt-9 card text-center text-2xl" v-after>
   Large datasets should not be treated like ordinary database rows.
 </div>
 
 <!--there is distinction between storing data and storing information about the data. Metadata enables fast UI, status tracking, schema display, and workflow replay. -->
-
----
-layout: full
----
-
-# Why Parquet?
-
-## Better format for analytics
-
-<style>
-.mermaid {
-  transform: scale(1.4);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-```mermaid
-flowchart LR
-    CSV[CSV<br/>row-oriented text] --> P[Parquet<br/>columnar binary]
-    P --> C[Compression]
-    P --> T[Preserves types]
-    P --> R[Efficient column reads]
-    P --> IO[Lower I/O]
-
-    classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class CSV yellow;
-    class P orange;
-    class C,T,R,IO blue;
-```
-
-<!--if the user only needs three columns from 60, columnar reads can avoid scanning everything like plain text CSV workflows. -->
 
 ---
 layout: full
@@ -1095,39 +944,6 @@ sequenceDiagram
 layout: full
 ---
 
-# Multi-file upload
-
-## Real users do not always have one clean file
-
-<div class="two-col mt-8">
-  <div class="card">
-    <h3>Reality</h3>
-    <ul>
-
-<li>Monthly files</li>
-<li>Regional files</li>
-<li>CSV + Excel splits</li>
-<li>Different columns</li>
-
-</ul>
-  </div>
-  <div class="card">
-    <h3>Design</h3>
-    <ul>
-
-<li>Zip files on frontend</li>
-<li>Upload once</li>
-<li>Backend reads and concatenates</li>
-<li>Missing uncommon columns become null</li>
-
-</ul>
-  </div>
-</div>
-
----
-layout: full
----
-
 # Recipe concept
 
 ## Transformations as reusable knowledge
@@ -1158,8 +974,8 @@ layout: full
   </div>
 </div>
 
-<div class="bottom-note mt-8 card-yellow text-center text-2xl" v-click>
-  A transformation should not disappear after execution.
+<div class="bottom-note mt-8 card-yellow text-center text-2xl" v-after>
+  Repeatable transformations should be captured as recipes, not inefficiency.
 </div>
 
 <!--Recipe as workflow memory. This is where a one-time manual action becomes reusable platform knowledge. -->
@@ -1210,45 +1026,6 @@ flowchart LR
 layout: full
 ---
 
-# Selective recipe steps
-
-## Looks easy. Is not easy.
-
-<style>
-.mermaid {
-  transform: scale(1.4);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-```mermaid
-flowchart LR
-    S1[Step 1<br/>creates column A] --> S2[Step 2<br/>uses column A]
-    S2 --> S3[Step 3<br/>final output]
-    X[User deselects Step 1] -. breaks .-> S2
-
-    classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef danger fill:#EF4444,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class S1,S2,S3 blue;
-    class X danger;
-```
-
-<div class="grid grid-cols-4 gap-3 text-center text-2xl" style="margin-top: 10rem;" v-click>
-  <li>Dependency tracking</li>
-  <li>UI feedback</li>
-  <li>Safe deselection</li>
-  <li>Valid execution path</li>
-</div>
-
-<!--A checkbox in the UI can require dependency graphs, validation logic, and explainable error messages. -->
-
----
-layout: full
----
-
 # Auto-generated features
 
 ## Feature engineering using metadata
@@ -1291,62 +1068,13 @@ Email Sent Date
 layout: full
 ---
 
-# Undo
-
-## Undo is simple until data is deleted
-
-<div class="grid grid-cols-2 gap-5 mt-8">
-  <div class="card">
-    <h3>If step adds columns</h3>
-    <div class="mt-5 card-yellow text-center">Delete generated columns</div>
-  </div>
-  <div class="card">
-    <h3>If step deletes data</h3>
-    <div class="mt-5 card-orange text-center">Restore from backup</div>
-  </div>
-</div>
-
-<div class="bottom-note mt-8 card text-center text-2xl">
-  Not every data operation is reversible.
-</div>
-
-<!--little bit about state management. Undo requires knowing whether an operation is reversible, destructive, or needs snapshot/restore support. -->
-
----
-layout: full
----
-
-# Preview step
-
-## Users need explainability before ML too
-
-<div class="flex flex-row">
-
-<div class="grid grid-cols-3 gap-4 mt-8 text-center">
-  <div class="card-yellow"><h3 style="color:#101012">Input</h3><p style="color:#101012">What data is being used?</p></div>
-  <div class="card-blue"><h3 style="color:#FFFFFF">Parameters</h3><p style="color:#FFFFFF">What choices were made?</p></div>
-  <div class="card-orange"><h3 style="color:#FFFFFF">Output</h3><p style="color:#FFFFFF">What changed?</p></div>
-</div>
-
-<div class="bottom-note mt-8 card text-center text-2xl">
-  If users cannot understand the transformation, they cannot trust the result.
-</div>
-
-</div>
-
-<!--Connect preview to trust. Explainability is not only for models; it is also for data transformations and user actions. -->
-
----
-layout: full
----
-
 # ML worker design
 
-## Heavy jobs should not block API
+## Heavy jobs should not block API or cost money when idle
 
 <style>
 .mermaid {
-  transform: scale(1.5);
+  transform: scale(1.2);
   transform-origin: top center;
   display: flex;
   justify-content: center;
@@ -1355,12 +1083,13 @@ layout: full
 
 ```mermaid
 flowchart LR
-    B[Backend] --> Q[SQS FIFO queue]
+    B[Backend] --2. Add Job --> Q[SQS FIFO queue]
     Q --> W[ML worker]
+    B --1. Launch--> W
     W --> A[S3 artifacts]
-    W --> R[Result queue]
-    R --> L[Lambda]
-    L --> B
+    W --Status Update--> R[Result queue]
+    R --Trigger --> L[Lambda]
+    L --Call with retries --> B
 
     classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
     classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
@@ -1375,49 +1104,6 @@ flowchart LR
 </div>
 
 <!--Async design improves reliability, retry handling, scaling, and user experience. -->
-
----
-layout: full
----
-
-# On-demand ML compute
-
-## Pay for compute only when needed
-
-<div class="grid grid-cols-4 gap-3 mt-8 text-center text-3xl">
-  <div class="card">Launch EC2 for training</div>
-  <div class="card">Attach to ECS cluster</div>
-  <div class="card">Run Dockerized worker</div>
-  <div class="card">Self-terminate after completion</div>
-</div>
-
-<style>
-.mermaid {
-    margin-top: 4rem;
-  transform: scale(1.2);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-```mermaid
-flowchart LR
-    Need[Training needed] --> EC2[Launch EC2]
-    EC2 --> ECS[Join ECS cluster]
-    ECS --> Worker[Run ML worker]
-    Worker --> Done[Job done]
-    Done --> Stop[Terminate]
-
-    classDef yellow fill:#FFD43B,stroke:#101012,stroke-width:2px,color:#101012;
-    classDef blue fill:#0EA5E9,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    classDef orange fill:#C2410C,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF;
-    class Need,Done yellow;
-    class EC2,ECS,Worker orange;
-    class Stop blue;
-```
-
-<!--Dedicated compute is useful, but always-on compute can waste money. Architecture can be a cost-control tool. -->
 
 ---
 layout: full
@@ -1465,28 +1151,6 @@ flowchart LR
 layout: full
 ---
 
-# Explainable AI in XBoost
-
-## Model output must be understandable
-
-<div class="grid grid-cols-5 gap-3 mt-8 text-center text-3xl">
-  <div class="card">Likely segments</div>
-  <div class="card">Unlikely segments</div>
-  <div class="card">Feature insights</div>
-  <div class="card">Cohort analysis</div>
-  <div class="card">SHAP explanations</div>
-</div>
-
-<div class="bottom-note mt-10 card-yellow text-center text-3xl">
-  Prediction is not enough. Users ask: "Why?"
-</div>
-
-<!--simple example: a prediction score is less useful if the user cannot understand which drivers influenced the outcome and what action to take. -->
-
----
-layout: full
----
-
 # Gen AI feature in XBoost
 
 ## Extract sub-text using examples
@@ -1496,7 +1160,7 @@ layout: full
     <h>Problem</h>
     <p class="text-xl">Users needed custom text extraction, but regex was difficult for novice users.</p>
     <p>Example: from "Product A - Region B - 2024", extract "Region B".</p>
-    <p> Or more complex - "2024-01-15: Event X (Region B)", extract "Event X" and "Region B".</p>
+    <p> Or more complex - "2024-01-15: Event X (Region B)", as "Event X in Region B".</p>
   </div>
   <div class="card">
     <h3>Solution</h3>
@@ -1517,30 +1181,6 @@ layout: full
 
 <!-- regex generation to Python code generation. The key learning is to let Gen AI help users express intent while the system handles execution and reuse. -->
 
----
-layout: full
----
-
-# XBoost engineering patterns
-
-## Patterns used for real reasons
-
-<div class="grid grid-cols-4 gap-3 mt-8 text-center text-2xl">
-  <div class="card">Visitor</div>
-  <div class="card">Adapter</div>
-  <div class="card">Factory</div>
-  <div class="card">Bridge</div>
-  <div class="card">DTOs</div>
-  <div class="card">Registry</div>
-  <div class="card">Decorator</div>
-  <div class="card">Layered architecture</div>
-</div>
-
-<div class="bottom-note mt-8 card-yellow text-center text-2xl">
-  Patterns are useful when they remove real pain.
-</div>
-
-<!--Warn students not to memorize patterns for interviews only. Patterns matter when they reduce duplication, isolate change, or make workflows extensible. -->
 
 ---
 layout: full
@@ -1920,9 +1560,6 @@ layout: full
 
 ## LLMs can specialize only so much
 
-<div class="mt-4 text-2xl" style="background: rgba(255, 212, 59, 0.95); color: #1a1a1a; padding: 1rem; border-radius: 10px;">
-Context Engineering - system to make LLM reliable, explainable, and safe.
-</div>
 
 <div class="grid grid-cols-3 gap-4 mt-8">
   <div class="card">System instruction - <br/>behavior</div>
@@ -1935,7 +1572,7 @@ Context Engineering - system to make LLM reliable, explainable, and safe.
 
 
 <div class="bottom-note mt-5 card-yellow text-center text-2xl">
-  Do not force the LLM to do every job.
+ A system to make LLM reliable, explainable, and safe.
 </div>
 
 <!--Some knowledge belongs in RAG, some behavior in instructions, some actions in tools, and deterministic work in code. -->
