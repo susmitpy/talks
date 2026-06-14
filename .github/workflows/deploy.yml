@@ -47,7 +47,7 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Build
-        run: npm run build_pres -- --name=${{ matrix.pres }}
+        run: npm run build_pres --name=${{ matrix.pres }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
