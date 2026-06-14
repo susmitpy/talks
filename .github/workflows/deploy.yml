@@ -18,18 +18,18 @@ jobs:
       fail-fast: false
       matrix:
         pres:
-          - kafka
-          - github_actions
-          - mongodb_change_stream
-          - firestore_rules
-          - qna
-          - aws_lambda
-          - kong_auth
-          - real_time_word_count
-          - feat_eng
-          - stream_adtech
-          - neo4j_recommender
-          - api_genai
+          # - kafka
+          # - github_actions
+          # - mongodb_change_stream
+          # - firestore_rules
+          # - qna
+          # - aws_lambda
+          # - kong_auth
+          # - real_time_word_count
+          # - feat_eng
+          # - stream_adtech
+          # - neo4j_recommender
+          # - api_genai
           - backend_data_science_ai
 
     steps:
@@ -41,7 +41,10 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci --omit=dev
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          npm_config_loglevel: verbose
+        run: npm ci --ignore-scripts
 
       - name: Build
         run: npm run build_pres -- --name=${{ matrix.pres }}
