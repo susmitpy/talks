@@ -377,13 +377,11 @@ layout: full
 ## 5 things we will cover
 
 <div class="mt-8 grid grid-cols-5 gap-3 text-center">
-  <v-clicks>
     <div class="card"><div class="big-number">1</div><h3>Domain overview</h3></div>
     <div class="card"><div class="big-number">2</div><h3>XBoost showcase</h3></div>
     <div class="card"><div class="big-number">3</div><h3>Industry scope</h3></div>
     <div class="card"><div class="big-number">4</div><h3>Skills required</h3></div>
     <div class="card"><div class="big-number">5</div><h3>Student roadmap</h3></div>
-  </v-clicks>
 </div>
 
 
@@ -400,12 +398,10 @@ layout: full
 </div>
 
 <div class="grid grid-cols-2 gap-3 mt-7 text-center text-2xl">
-  <v-clicks>
     <div class="card">Is ChatGPT the whole of AI?</div>
     <div class="card">Is every ML model Gen AI?</div>
     <div class="card">Is computer vision AI?</div>
     <div class="card">Is recommendation AI?</div>
-  </v-clicks>
 </div>
 
 
