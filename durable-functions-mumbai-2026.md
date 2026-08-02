@@ -236,7 +236,6 @@ def handler(event, context: DurableContext):
   <span><code>sorted()</code> — stable replay order</span>
 </div>
 
-<p class="tiny muted mt-2">Illustrative pseudocode and API names: verify current durable-execution semantics, limits, and SDK before you build.</p>
 
 <!-- Eighteen lines. The data-dependent loop is ugly in a workflow DSL and just a for-loop in code. Recipe is an input, not hidden environment state. -->
 
@@ -536,11 +535,6 @@ def publish_once(run_id, batch_id, attempt, questions):
 </div>
 
 <div class="flex items-center gap-5 mt-8">
-  <img src="/durable-quiz-qr.png" alt="Repository QR" class="w-28 h-28 rounded-lg" />
-  <div>
-    <p><b>github.com/susmitpy/durable-quiz</b></p>
-    <p class="muted">susmitpy.github.io/talks</p>
-  </div>
 </div>
 
 <p class="text-xl mt-6"><b class="teal">Every batch is still the batch a human approved.</b> Nothing was bought twice.</p>
@@ -558,10 +552,6 @@ layout: center
     <div>
       <img src="/portfolio.png" alt="Portfolio QR" class="w-40 h-40 rounded-lg" />
       <p class="muted mt-2">Portfolio</p>
-    </div>
-    <div>
-      <img src="/forquiz_qr.png" alt="ForQuiz QR" class="w-40 h-40 rounded-lg" />
-      <p class="muted mt-2">forquiz.fusebytes.in</p>
     </div>
   </div>
 </div>
