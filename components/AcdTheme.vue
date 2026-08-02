@@ -255,4 +255,70 @@
   font-size: 1rem;
 }
 .acd .track .flex-line { flex: 1; height: 2px; background: var(--acd-line); }
+
+/* ---------- architecture ---------- */
+.acd .arch { display: grid; gap: 0.6rem; }
+.acd .arch-sources { display: flex; gap: 0.45rem; align-items: center; flex-wrap: wrap; font-size: 0.8rem; color: var(--acd-muted); }
+.acd .arch-sources span {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed var(--acd-line);
+  border-radius: 999px;
+  padding: 0.18rem 0.7rem;
+}
+.acd .arch-box {
+  position: relative;
+  border: 1px solid rgba(255, 153, 0, 0.45);
+  border-radius: 12px;
+  padding: 1rem 0.85rem 0.85rem;
+  background: rgba(255, 153, 0, 0.04);
+}
+.acd .arch-box > .tag {
+  position: absolute;
+  top: -0.6rem;
+  left: 0.9rem;
+  background: var(--acd-bg);
+  padding: 0 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acd-orange);
+}
+.acd .arch-band {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid var(--acd-line);
+  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  background: var(--acd-panel);
+}
+.acd .arch-band b { min-width: 10.5rem; }
+.acd .arch-band.managed { background: none; border-style: dashed; color: var(--acd-muted); }
+
+/* property tags (slide 4) */
+.acd .frame .tagline {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--acd-muted);
+  margin-bottom: 0.3rem;
+}
+
+/* ---------- back-edge ---------- */
+.acd .loopback {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.55rem;
+  padding: 0.55rem 0.95rem;
+  border: 1px solid rgba(255, 153, 0, 0.55);
+  border-radius: 10px;
+  background: rgba(255, 153, 0, 0.07);
+  font-size: 0.92rem;
+}
+.acd .loopback .curve { color: var(--acd-orange); font-size: 1.35rem; line-height: 1; }
+
 </style>
