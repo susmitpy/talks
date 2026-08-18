@@ -216,21 +216,15 @@ graph LR
   </v-click>
 </div>
 
-<v-click>
-<div class="beat text-xl mt-8 dim">
-  Three places to run it. The same gateway in front of all three.
-</div>
-</v-click>
-
-
 ---
-layout: center
 class: text-center
 ---
 
 <div class="text-7xl font-bold">Policy</div>
 
 <div class="text-3xl dim mt-8">Everything from here is about the cage.</div>
+
+<img v-click src="/agentcore_policy/open_vault.png" class="mx-auto mt-6 rounded-lg" style="max-width: 60%;" />
 
 ---
 
@@ -278,7 +272,7 @@ class: text-center
 
 <v-click>
 <div class="panel-yellow text-center text-2xl mt-8 mx-auto" style="max-width: 46rem;">
-  <code>sub</code> → principal
+  <span>sub</span> → principal
   <span class="mx-3">·</span>
   every other claim → principal tag
 </div>
@@ -330,9 +324,15 @@ permit (
   No policy → denied
 </div>
 
-<div class="text-center text-xl dim mt-12" v-after>
+<div class="text-center text-3xl dim mt-12" v-after>
   Cedar · open source · now a CNCF project
 </div>
+
+<style>
+  code {
+    font-size: 1.25rem;
+  }
+</style>
 
 ---
 
@@ -422,16 +422,16 @@ layout: center
   every Cedar policy is a Dogwood policy
 </div>
 
-<div class="relative mt-8" style="height: 16rem;">
+<div class="h-32">
   <img v-click.hide src="/agentcore_policy/dogwood-dog.png"
        class="absolute right-0 top-0 h-64 rounded-lg" />
   <img v-after src="/agentcore_policy/dogwood-tree.png"
        class="absolute right-0 top-0 h-64 rounded-lg" />
-
-  <div v-after class="absolute left-0 top-4 text-3xl" style="max-width: 26rem;">
-    Stateless policies ask:<br/><em>is this call allowed?</em>
-  </div>
 </div>
+
+  <div v-after class="text-3xl">
+    Stateless policies ask: <em>is this call allowed?</em>
+  </div>
 
 <v-after>
 <div class="panel-yellow text-center text-3xl mt-6 mx-auto" style="max-width: 42rem;">
@@ -533,15 +533,16 @@ layout: center
 </div>
 </v-after>
 
+
 ---
 
-# The Old Way
+# Before August 2026
 
-<div class="grid grid-cols-2 gap-8 mt-6">
+<div class="gap-8 mt-6">
 
   <div>
     <div class="dim text-lg mb-3">What you had to build yourself</div>
-    <div class="space-y-3 text-lg">
+    <div class="space-y-3 text-xl">
       <v-clicks>
         <div class="panel" style="padding: 0.9rem 1rem;">
           A <code>seek_human_approval</code> tool, a notification path, a decision store
@@ -556,11 +557,20 @@ layout: center
     </div>
   </div>
 
-  <div>
-    <v-click>
-    <div class="dim text-lg mb-3">Now</div>
+</div>
 
-```js {all|9,10}
+<style>
+  code {
+    font-size: 0.85rem;
+  }
+</style>
+
+---
+
+# Now
+
+
+```js{all|9,10}
 permit (
   principal,
   action == AgentCore::Action::"SellShares",
@@ -576,20 +586,16 @@ permit (
 };
 ```
 
-<div/>
-    </v-click>
-  </div>
-
-</div>
+<style>
+  code {
+    font-size: 1.25rem;
+  }
+</style>
 
 
 ---
 
 # One Approval, One Action
-
-<div class="text-center text-3xl mb-6">
-  An approval is <span style="color: var(--slidev-theme-secondary);">spent</span> the moment it is used.
-</div>
 
 ```js
 permit (principal, action == AgentCore::Action::"execute_trade", resource)
@@ -599,12 +605,10 @@ when {
     since within 24h (
       AgentCore::Action::"approve_trade"::response{
         input.status: "approved", eventResource: resource }
-    )
-  }
-};
+    )}};
 ```
 
-<div class="mt-2 text-base" v-click>
+<div class="text-base mt--4" v-click>
 
 | Amount | Approval | Executed since it | Decision |
 |---|---|---|---|
@@ -615,13 +619,10 @@ when {
 
 </div>
 
-<div class="thesis text-2xl mt-3" v-click>
-  An approval is an event, not a credential.
-</div>
 
 <style>
   code {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 </style>
 
@@ -656,6 +657,13 @@ layout: center
 </div>
 </v-click>
 
+---
+
+# So, Set Policy, And Chill
+
+<img v-click src="/agentcore_policy/not_policy.png" class="mx-auto mt-6 rounded-lg" style="max-width: 90%;" />
+
+
 
 ---
 layout: center
@@ -664,8 +672,9 @@ layout: center
 # What Policy Will Not Do
 
 <div class="space-y-5 mt-2 text-2xl">
+  
+  <div class="panel">It will not stop a tool that is dangerous by design.</div>
   <v-clicks>
-    <div class="panel">It will not stop a tool that is dangerous by design.</div>
     <div class="panel">It will not judge intent — only principal, action, resource, values.</div>
     <div class="panel">It will not fix a bad schema. Approve <code>amount</code> in paise, deny in rupees.</div>
     <div class="panel">It will not make an unreviewed policy correct.</div>
