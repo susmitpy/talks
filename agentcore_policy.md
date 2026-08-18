@@ -53,13 +53,6 @@ table.clean td { padding: 0.75rem 1rem; border-bottom: 1px solid #3f3f3f; text-a
   </h2>
 </div>
 
-<!--
-Speaker note:
-The moment an agent can take actions, it stops being an AI problem
-and becomes a security and governance problem.
-"Cage" is deliberate: a boundary the thing inside cannot argue with.
--->
-
 ---
 
 # The Dream
@@ -75,12 +68,6 @@ and becomes a security and governance problem.
     <span>💳</span>
 </div>
 
-<!--
-Speaker note:
-Tickets. Email. Database. Payments.
-Name them out loud — the slide doesn't need the words.
-"Let the agent handle it."
--->
 
 ---
 layout: center
@@ -126,11 +113,6 @@ layout: center
   A rule written only in prose is a wish.
 </div>
 
-<!--
-Speaker note:
-Prompts guide behaviour. They do not enforce it.
-Ignored, forgotten, truncated out of context, jailbroken.
--->
 
 ---
 layout: center
@@ -148,11 +130,6 @@ layout: center
   Branch protection · enforced by the platform, not the developer
 </div>
 
-<!--
-Speaker note:
-Nobody writes "please don't push to main" in the README and calls it governance.
-We don't rely on good intentions. We enforce rules.
--->
 
 ---
 
@@ -184,12 +161,6 @@ graph LR
 }
 </style>
 
-<!--
-Speaker note:
-AgentCore Gateway turns APIs, Lambda functions and MCP servers into
-MCP-compatible tools behind one endpoint.
-That "one endpoint" is the whole reason this talk is possible.
--->
 
 ---
 
@@ -255,7 +226,7 @@ class: text-center
   </div>
   <div class="panel" style="border-color: #FFD43B;">
     <div class="text-sm uppercase tracking-widest mb-2" style="color: var(--slidev-theme-secondary);">context</div>
-    <div class="text-2xl">The actual arguments</div>
+    <div class="text-2xl">arguments the model chose</div>
   </div>
 </div>
 
@@ -264,58 +235,66 @@ class: text-center
   Policy decides <span style="color: var(--slidev-theme-secondary);">what</span>.
 </div>
 
-
 ---
 
-# Where Each Part Comes From
+# Two Ways to Authenticate
 
-<div class="grid grid-cols-2 gap-6 mt-8 text-sm">
-  <div>
-    <div class="dim mb-2">JWT — inbound auth</div>
-
-```json
-{
-  "sub": "1234-5678",
-  "username": "refund-agent",
-  "scope": "refund:write",
-  "department": "finance"
-}
-```
-
+<div class="grid grid-cols-2 gap-6 mt-6 text-xl">
+  <div class="panel text-center" style="padding: 1rem;">
+    <span style="color: var(--slidev-theme-secondary);" class="font-bold">JWT</span>
+    <span class="dim"> · CUSTOM_JWT · your IdP</span>
   </div>
-  <div>
-    <div class="dim mb-2">MCP tools/call</div>
-
-```json
-{
-  "name": "RefundTool__process_refund",
-  "arguments": {
-    "orderId": "12345",
-    "amount": 450
-  }
-}
-```
-
+  <div class="panel text-center" style="padding: 1rem;">
+    <span style="color: var(--slidev-theme-secondary);" class="font-bold">IAM</span>
+    <span class="dim"> · SigV4 · no IdP</span>
   </div>
 </div>
 
 <v-click>
-<div class="panel-yellow text-center text-2xl mt-8">
-  The Gateway extracts both and builds the authorization request.
-</div>
-
-
-<div class="text-center text-xl dim mt-6">
-  Policy never parses a token. It reads principal tags and <code>context.input</code>.
+<div class="panel mt-6" style="padding: 1rem 1.25rem;">
+  <div class="text-sm uppercase tracking-widest mb-4" style="color: var(--slidev-theme-secondary);">
+    JWT — identity
+  </div>
+  <div class="grid grid-cols-3 gap-4 text-base">
+    <div class="subpanel">
+      <div class="text-xl mb-2">Agent</div>
+      <div class="dim"><code>client_credentials</code><br/><code>sub</code> is the client ID</div>
+    </div>
+    <div class="subpanel">
+      <div class="text-xl mb-2">User</div>
+      <div class="dim">forward the user's token<br/><code>sub</code> is the human</div>
+    </div>
+    <div class="subpanel">
+      <div class="text-xl mb-2">Both</div>
+      <div class="dim">token exchange<br/><code>sub</code> user · <code>act</code> agent</div>
+    </div>
+  </div>
+  <div class="text-center text-lg mt-4">
+    <code>sub</code> → <span style="color: var(--slidev-theme-secondary);">principal</span>
+    <span class="dim mx-3">·</span>
+    every other claim → <span style="color: var(--slidev-theme-secondary);">principal tag</span>
+  </div>
 </div>
 </v-click>
 
-<!--
-Speaker note:
-sub becomes the principal. Tool name becomes the action.
-Claims become principal tags. Arguments become context.input.
-This separation is what makes the approval pattern work later. Plant it here.
--->
+<v-click>
+<div class="panel flex items-center justify-center gap-5 mt-5 text-xl">
+  <span style="color: var(--slidev-theme-secondary);" class="font-bold">IAM</span>
+  <span class="text-2xl text-gray-600">→</span>
+  <span>One role per agent</span>
+  <span class="dim text-base">match on <code>principal.id</code> · no claims, no tags</span>
+</div>
+</v-click>
+
+<style>
+.subpanel {
+  background: #1f1f1f;
+  border: 1px solid #3f3f3f;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+</style>
+
 
 ---
 
@@ -325,7 +304,7 @@ This separation is what makes the approval pattern work later. Plant it here.
 permit (
   principal,
   action == AgentCore::Action::"RefundTool___process_refund",
-  resource == AgentCore::Gateway::"<GATEWAY_ARN>"
+  resource,
 );
 ```
 
@@ -337,7 +316,7 @@ permit (
   <div class="panel text-center">Tool Schema Validation</div>
   </v-after>
   <v-after>
-  <div class="panel text-center">Policy Parser Warnings</div>
+    <div class="panel text-center">Automated Reasoning Checks</div>
   </v-after>
 </div>
 
@@ -347,15 +326,6 @@ permit (
 </div>
 </v-after>
 
-<!--
-Speaker note:
-Attach a policy engine to a gateway and it blocks everything by default.
-Policies selectively open the boundary.
-The engine generates a Cedar schema from your tool definitions, so a policy
-referencing a tool or parameter that doesn't exist fails at creation time,
-not at 2am.
--->
-
 ---
 
 # Fine-Grained: Which Arguments
@@ -364,7 +334,7 @@ not at 2am.
 permit (
   principal is AgentCore::OAuthUser,
   action == AgentCore::Action::"RefundTool___process_refund",
-  resource
+  resource == AgentCore::Gateway::"<GATEWAY_ARN>"
 ) when {
   principal.hasTag("department") &&
   principal.getTag("department") == "finance" &&
@@ -372,11 +342,11 @@ permit (
 };
 ```
 
-<!--
-Speaker note:
-Same tool, two outcomes, decided by a value the model chose.
-No prompt can move the 500. The 500 isn't in the prompt.
--->
+<style>
+  code {
+    font-size: 1.25rem;
+  }
+</style>
 
 ---
 
@@ -396,13 +366,6 @@ No prompt can move the 500. The 500 isn't in the prompt.
 
 <div class="text-center text-2xl mt-4">Structured. Logged. Attributable to a named rule.</div>
 
-<!--
-Speaker note:
-This is the compliance answer. Not "the model declined" but
-"rule refund-limit-500 denied this, and here is the input it saw."
-Metrics land in CloudWatch under AWS/Bedrock-AgentCore.
--->
-
 ---
 layout: center
 ---
@@ -416,20 +379,24 @@ layout: center
 
 ---
 
-# Things that go wrong over time
+# Every Call Was Allowed
 
 <div class="space-y-5 mt-12 text-xl">
     <div class="panel">
+      <div class="text-sm uppercase tracking-widest dim mb-2">hallucinated id</div>
       Fetches profile, reads account <code>8821</code>, then transfers to account <code>3347</code>.
-      <span class="dim">Hallucinated between two legal calls.</span>
+      <span style="color: var(--slidev-theme-secondary);">Invented between two legal calls.</span>
     </div>
   <v-clicks>
     <div class="panel">
-      Executes forty trades of Rs. 40,000. <span class="dim">Each one under the limit.</span>
+      <div class="text-sm uppercase tracking-widest dim mb-2">structuring</div>
+      Executes forty trades of Rs. 40,000.
+      <span style="color: var(--slidev-theme-secondary);">Each one under the limit.</span>
     </div>
     <div class="panel">
+      <div class="text-sm uppercase tracking-widest dim mb-2">contradiction</div>
       Approves a claim. Denies the same claim four seconds later.
-      <span class="dim">Both calls valid.</span>
+      <span style="color: var(--slidev-theme-secondary);">Both calls valid.</span>
     </div>
   </v-clicks>
 </div>
@@ -470,14 +437,6 @@ layout: center
   Dogwood asks: is this call allowed <em>given what already happened?</em>
 </div>
 </v-after>
-
-<!--
-Speaker note:
-Dogwood is a flowering tree. I have chosen violence. Moving on.
-The real headline is compatibility: you don't migrate anything. You add
-temporal conditions only where a rule needs more than the current request.
--->
-
 ---
 
 # Trajectories and Sessions
@@ -485,10 +444,10 @@ temporal conditions only where a rule needs more than the current request.
 ```mermaid
 graph LR
     A[tools/call] --> B[Policy Engine]
-    B --> C[Trajectory State]
+    B -->|reads| C[Trajectory State]
     C --> B
     B --> D[Tool]
-    D --> C
+    D -->|records| C
 
     classDef box fill:#262626,stroke:#3776AB,stroke-width:2px,color:#fff;
     class A,D box;
@@ -496,15 +455,18 @@ graph LR
     style C fill:#262626,stroke:#FFD43B,stroke-width:2px,color:#fff
 ```
 
-<div class="grid grid-cols-3 gap-5 mt-12 text-lg">
+<div class="grid grid-cols-4 gap-4 mt-12 text-base">
   <v-click>
-  <div class="panel">You mint the session ID and send it on every request.</div>
+    <div class="panel">You mint the session ID. Forget it and you get an empty trajectory — not an error.</div>
   </v-click>
   <v-after>
   <div class="panel">Session ID + end-user identity = the trajectory.</div>
   </v-after>
   <v-after>
-  <div class="panel">24-hour maximum look-back window.</div>
+  <div class="panel">24-hour look-back window.</div>
+  </v-after>
+  <v-after>
+  <div class="panel">Change the policies and open sessions reset.</div>
   </v-after>
 </div>
 
@@ -522,40 +484,6 @@ graph LR
     justify-content: center;
 }
 </style>
-
-<!--
-Speaker note:
-Header: x-amzn-bedrock-agentcore-policy-session-id
-The Gateway does NOT generate one for you. Omit it with a temporal policy
-attached and the request fails validation.
-You decide the session boundary — one conversation, one task, one workflow.
-Keep it narrow: one concurrent authorization per session.
--->
-
----
-
-# Four Operators
-
-<table class="clean text-xl mt-12">
-  <tbody>
-    <tr>
-      <td class="font-mono" style="color: var(--slidev-theme-secondary);">formerly within</td>
-      <td class="dim">a matching event happened earlier in the window</td>
-    </tr>
-    <tr>
-      <td class="font-mono" style="color: var(--slidev-theme-secondary);">since within</td>
-      <td class="dim">something has held true since an anchor event</td>
-    </tr>
-    <tr>
-      <td class="font-mono" style="color: var(--slidev-theme-secondary);">count</td>
-      <td class="dim">how many matching events</td>
-    </tr>
-    <tr>
-      <td class="font-mono" style="color: var(--slidev-theme-secondary);">sum</td>
-      <td class="dim">running total across matching events</td>
-    </tr>
-  </tbody>
-</table>
 
 
 ---
@@ -577,9 +505,15 @@ permit (
 };
 ```
 
-<div class="text-center text-2xl mt-12">
+<div class="text-center text-2xl mt-4">
   The ID must match what the system actually returned.
 </div>
+
+<style>
+  code {
+    font-size: 1.25rem;
+  }
+</style>
 
 ---
 layout: center
@@ -597,11 +531,11 @@ layout: center
 </div>
 </v-click>
 
-<v-click>
+<v-after>
 <div class="thesis text-2xl mt-20">
   Either way, the approval has to become something the policy can read.
 </div>
-</v-click>
+</v-after>
 
 ---
 
@@ -627,7 +561,7 @@ layout: center
     <v-click>
     <div class="dim text-lg mb-3">Now</div>
 
-```js
+```js {all|9,10}
 permit (
   principal,
   action == AgentCore::Action::"SellShares",
@@ -643,25 +577,12 @@ permit (
 };
 ```
 
-<div class="panel-yellow text-center text-xl mt-5">
-  No token. No replay list. No expiry code.
-</div>
+<div/>
     </v-click>
   </div>
 
 </div>
 
-<!--
-Speaker note:
-SPEND TIME HERE. Walk the left column slowly — every line is something
-you'd get wrong at least once. The seen-set is a distributed systems
-problem. The expiry is a clock-skew problem. And you own all of it.
-
-Then reveal the right side.
-
-The key shift: the approval is an event in the trajectory, not a credential
-the agent carries. Nothing to steal, nothing to forge, nothing to store.
--->
 
 ---
 
@@ -680,24 +601,53 @@ when {
 };
 ```
 
-<div class="mt-8 text-lg">
+<div class="mt--2 text-base" v-click>
 
-| Amount | Approval in trajectory | Decision |
-|---|---|---|
-| Rs.15,000 | none | <span class="text-green-400">ALLOW</span> — below threshold |
-| Rs.30,000 | none | <span class="text-red-400">DENY</span> |
-| Rs.30,000 | unconsumed | <span class="text-green-400">ALLOW</span> |
-| Rs.30,000 again | already consumed | <span class="text-red-400">DENY</span> |
+| Amount | Approval | Executed since it | Decision |
+|---|---|---|---|
+| Rs.15,000 | — | — | <span class="text-green-400">ALLOW</span> · below threshold |
+| Rs.30,000 | none | — | <span class="text-red-400">DENY</span> · no anchor |
+| Rs.30,000 | yes | no | <span class="text-green-400">ALLOW</span> |
+| Rs.30,000 | yes | yes | <span class="text-red-400">DENY</span> · already spent |
 
 </div>
 
-<!--
-Speaker note:
-Read the operator out loud: "no execution since the approval."
-The first execution consumes it, because after that a second execution
-can no longer satisfy "none since."
-This is the answer to "what stops the model reusing an approval twice."
--->
+---
+
+# One Word, One Bypass
+
+<div class="grid grid-cols-2 gap-6 mt-10 text-lg">
+  <div class="panel">
+    <div class="dim mb-3">sum over <code>::response</code></div>
+
+```js
+sum_within(a, 1h,
+  Action::"Transfer"::response{
+    input.amount: a }) > 5000
+```
+
+  </div>
+  <div class="panel" style="border-color: #FFD43B;">
+    <div class="dim mb-3">sum over <code>::request</code></div>
+
+```js
+sum_within(a, 1h,
+  Action::"Transfer"::request{
+    input.amount: a }) > 5000
+```
+
+  </div>
+</div>
+
+<div class="mt-8 text-lg">
+
+| Three concurrent Rs. 2,000 transfers | `::response` | `::request` |
+|---|---|---|
+| 1st | <span class="text-green-400">ALLOW</span> | <span class="text-green-400">ALLOW</span> |
+| 2nd | <span class="text-green-400">ALLOW</span> | <span class="text-green-400">ALLOW</span> |
+| 3rd | <span class="text-green-400">ALLOW</span> | <span class="text-red-400">DENY</span> |
+
+</div>
 
 
 ---
@@ -731,13 +681,6 @@ layout: center
 </div>
 </v-click>
 
-<!--
-Speaker note:
-Most important slide in the talk.
-The injection sits next to the identical denial — same verdict,
-because the prompt never had a vote.
--->
-
 
 ---
 layout: center
@@ -766,7 +709,7 @@ layout: center
 <div class="space-y-9 mt-16 text-3xl">
     <div>Tools give agents power.</div>
     <div>Prompts guide. Policies enforce.</div>
-    <div>Some rules need history, not just this call.</div>
+    <div>An approval is an event, not a credential</div>
     <div style="color: var(--slidev-theme-secondary);" class="font-bold pt-8 border-t border-gray-700">
       Enforcement belongs outside the model.
     </div>
@@ -815,11 +758,6 @@ class: text-center
   </div>
 </div>
 
-<!--
-Speaker note:
-The question is not whether your agent is intelligent.
-The question is whether it is authorized.
--->
 
 ---
 src: ./pages/qa.md
