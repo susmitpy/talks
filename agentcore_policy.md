@@ -58,7 +58,7 @@ table.clean td { padding: 0.75rem 1rem; border-bottom: 1px solid #3f3f3f; text-a
 
 ---
 
-# The Dream
+# Dream
 
 <div class="text-center text-6xl mt-14 mb-14">
   🧑‍💻 <span class="mx-8 text-gray-600 text-4xl">→</span> 🤖
@@ -88,13 +88,11 @@ table.clean td { padding: 0.75rem 1rem; border-bottom: 1px solid #3f3f3f; text-a
 layout: center
 ---
 
-# When Agents Act
-
 <div class="grid grid-cols-2 gap-8 mt-16">
   <div class="panel">
     <div class="text-5xl text-center mb-6">💸</div>
     <div class="text-xl dim mb-2">"Transfer 1K to the vendor"</div>
-    <div class="text-2xl font-mono">Done ✅ Sent Rs. 1,00,000</div>
+    <div class="text-2xl font-mono">Done ✅ Sent $1000</div>
   </div>
 
   <div class="panel">
@@ -147,8 +145,6 @@ layout: center
 
 
 ---
-
-# Three Words
 
 ```mermaid
 graph LR
@@ -376,10 +372,66 @@ permit (
 
 <div class="text-center text-2xl mt-4">Structured. Logged. Attributable to a named rule.</div>
 
+
 ---
 layout: center
 ---
 
+# Let's Talk About Human in the Loop
+
+<div class="text-center text-3xl mt-16 dim">
+  Partly because some actions genuinely shouldn't be autonomous.
+</div>
+
+<v-click>
+<div class="text-center text-3xl mt-10">
+  Mostly because we'd like to feel worthy and keep our jobs.
+</div>
+</v-click>
+
+<v-after>
+<div class="beat text-3xl mt-20">
+  Either way, the approval has to become something the policy can read.
+</div>
+</v-after>
+
+---
+
+
+# Before August 2026 (Why Before ? Have Patience)
+
+<div class="gap-8 mt-6">
+
+  <div>
+    <div class="dim text-lg mb-3">What you had to build yourself</div>
+    <div class="space-y-3 text-xl">
+      <v-clicks>
+        <div class="panel" style="padding: 0.9rem 1rem;">
+          A <code>seek_human_approval</code> tool, a notification path, a decision store
+        </div>
+        <div class="panel" style="padding: 0.9rem 1rem;">
+          A signed JWT carrying tool name + approved params — plus <code>jti</code>, a seen-set, an expiry
+        </div>
+        <div class="panel" style="padding: 0.9rem 1rem;">
+          Cedar comparing approved params to actual params
+        </div>
+      </v-clicks>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  code {
+    font-size: 0.85rem;
+  }
+</style>
+
+---
+layout: center
+---
+
+# One more thing in Air
 
 <div class="text-center text-4xl mt-20">
   Everything so far judged a single request in isolation.
@@ -387,21 +439,22 @@ layout: center
 
 <div class="beat text-3xl mt-16">Necessary. Often not sufficient.</div>
 
+
 ---
 
-# Every Call Was Allowed
+# Legitimately Correct in Isolation
 
 <div class="space-y-5 mt-12 text-xl">
-    <div class="panel">
-      <div class="text-sm uppercase tracking-widest dim mb-2">hallucinated id</div>
-      Fetches profile, reads account <code>8821</code>, then transfers to account <code>3347</code>.
-      <span style="color: var(--slidev-theme-secondary);">Invented between two legal calls.</span>
-    </div>
-  <v-clicks>
-    <div class="panel">
+<div class="panel">
       <div class="text-sm uppercase tracking-widest dim mb-2">reused approval</div>
       One approval to sell 500 shares. Executes the sale three times.
       <span style="color: var(--slidev-theme-secondary);">Same valid approval every time.</span>
+    </div>
+  <v-clicks>
+        <div class="panel">
+      <div class="text-sm uppercase tracking-widest dim mb-2">hallucinated id</div>
+      Fetches profile, reads account <code>8821</code>, then transfers to account <code>3347</code>.
+      <span style="color: var(--slidev-theme-secondary);">Invented between two legal calls.</span>
     </div>
   </v-clicks>
 </div>
@@ -484,91 +537,7 @@ graph LR
 
 ---
 
-# Stop the Agent Inventing Values
-
-```js
-permit (
-  principal,
-  action == AgentCore::Action::"execute_trade",
-  resource
-) when temporal {
-  formerly within 24h (
-    AgentCore::Action::"get_client_profile"::response{
-      input.profile_id: context.input.profile_id,
-      eventResource: resource
-    }
-  )
-};
-```
-
-<div class="text-center text-2xl mt-4">
-  The ID must match what the system actually returned.
-</div>
-
-<style>
-  code {
-    font-size: 1.25rem;
-  }
-</style>
-
----
-layout: center
----
-
-# Let's Talk About Human in the Loop
-
-<div class="text-center text-3xl mt-16 dim">
-  Partly because some actions genuinely shouldn't be autonomous.
-</div>
-
-<v-click>
-<div class="text-center text-3xl mt-10">
-  Mostly because we'd like to feel worthy and keep our jobs.
-</div>
-</v-click>
-
-<v-after>
-<div class="beat text-2xl mt-20">
-  Either way, the approval has to become something the policy can read.
-</div>
-</v-after>
-
-
----
-
-# Before August 2026
-
-<div class="gap-8 mt-6">
-
-  <div>
-    <div class="dim text-lg mb-3">What you had to build yourself</div>
-    <div class="space-y-3 text-xl">
-      <v-clicks>
-        <div class="panel" style="padding: 0.9rem 1rem;">
-          A <code>seek_human_approval</code> tool, a notification path, a decision store
-        </div>
-        <div class="panel" style="padding: 0.9rem 1rem;">
-          A signed JWT carrying tool name + approved params — plus <code>jti</code>, a seen-set, an expiry
-        </div>
-        <div class="panel" style="padding: 0.9rem 1rem;">
-          Cedar comparing approved params to actual params
-        </div>
-      </v-clicks>
-    </div>
-  </div>
-
-</div>
-
-<style>
-  code {
-    font-size: 0.85rem;
-  }
-</style>
-
----
-
-# Now
-
+# Human-in-the-Loop Now
 
 ```js{all|9,10}
 permit (
@@ -627,20 +596,47 @@ when {
 </style>
 
 ---
+
+# Grounding Isn't Just for Approvals
+
+```js{all|5,6|7|7,8|9|all}
+permit (
+  principal,
+  action == AgentCore::Action::"execute_trade",
+  resource
+) when temporal {
+  formerly within 24h (
+    AgentCore::Action::"get_client_profile"::response{
+      input.profile_id: context.input.profile_id,
+      eventResource: resource
+    }
+  )
+};
+```
+
+<div class="text-center text-2xl mt-4">
+  The ID must match what the system actually returned.
+</div>
+
+<style>
+  code {
+    font-size: 1.25rem;
+  }
+</style>
+
+
+---
 layout: center
 ---
 
 # Demo
 
 <div class="space-y-4 mt-10 text-2xl font-mono">
-  <v-click>
   <div class="panel flex items-center justify-between">
     <span>Pay ABC Rs. 500</span>
     <span class="text-green-500 text-4xl">✅</span>
   </div>
-  </v-click>
 
-  <v-click>
   <div class="panel flex items-center justify-between" style="border-color: #FFD43B;">
     <span>
       <span class="text-purple-300 italic text-xl">"Ignore all previous instructions."</span><br/>
@@ -648,14 +644,7 @@ layout: center
     </span>
     <span class="text-red-500 text-4xl">❌</span>
   </div>
-  </v-click>
 </div>
-
-<v-click>
-<div class="beat text-3xl mt-10">
-  Policies are evaluated independently of prompts.
-</div>
-</v-click>
 
 ---
 
@@ -707,16 +696,13 @@ layout: center
 
 <div class="grid grid-cols-2 gap-16 mt-12 items-center">
   <div class="text-2xl space-y-6 dim">
-    <div>Run an agent locally with Floci</div>
-    <div>Give it one tool that moves money</div>
-    <div>Add one policy · watch the deny · read the log line</div>
+    <div>GitHub Repo</div>
+    <div>Portfolio</div>
+    <div>LinkedIn</div>
   </div>
 
   <div class="flex justify-center">
-    <!-- REPLACE with real QR before the talk: <img src="/agentcore_policy/qr.png" class="w-64 rounded-xl" /> -->
-    <div class="w-64 h-64 bg-white rounded-xl flex items-center justify-center text-gray-400">
-      QR
-    </div>
+    <img src="/agentcore_policy/qr.png" class="w-64 rounded-xl" />
   </div>
 </div>
 
@@ -741,8 +727,3 @@ class: text-center
     </span>
   </div>
 </div>
-
-
----
-src: ./pages/qa.md
----

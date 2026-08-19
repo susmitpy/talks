@@ -31,6 +31,7 @@ jobs:
           - neo4j_recommender
           - api_genai
           - backend_data_science_ai
+          - agentcore_policy
 
     steps:
       - uses: actions/checkout@v4
