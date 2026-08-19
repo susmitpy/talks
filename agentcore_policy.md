@@ -696,6 +696,7 @@ layout: center
 
 <div class="grid grid-cols-2 gap-16 mt-12 items-center">
   <div class="text-2xl space-y-6 dim">
+    <div>Slides</div>
     <div>GitHub Repo</div>
     <div>Portfolio</div>
     <div>LinkedIn</div>
