@@ -681,10 +681,7 @@ layout: center
 class: text-center
 ---
 
-<div
-  class="absolute inset-0 bg-cover bg-center z-0"
-  style="background-image: url('/agentcore_policy/close_bg_image.png');"
-></div>
+<img src="/agentcore_policy/close_bg_image.png" class="absolute inset-0 w-full h-full bg-cover bg-center z-0" />
 
 <div class="relative z-10">
   <div
