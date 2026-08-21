@@ -252,7 +252,7 @@ graph LR
     <div class="text-4xl w-14 text-center">🐳</div>
     <div>
       <h3 class="m-0 text-2xl" style="color: var(--slidev-theme-secondary);">Runtime</h3>
-      <p class="m-0 text-xl dim">Your image → ECR → managed microVMs · invocations up to 8h</p>
+      <p class="m-0 text-xl dim">Your image → ECR → managed microVMs</p>
     </div>
   </div>
 
@@ -260,7 +260,7 @@ graph LR
     <div class="text-4xl w-14 text-center">⚙️</div>
     <div>
       <h3 class="m-0 text-2xl" style="color: var(--slidev-theme-secondary);">Runtime Instances</h3>
-      <p class="m-0 text-xl dim">Your EC2 · you pick the silicon · sessions up to 14 days</p>
+      <p class="m-0 text-xl dim">Your EC2 · you pick the silicon</p>
     </div>
   </div>
 </div>
@@ -667,6 +667,7 @@ layout: center
   <div class="text-4xl space-y-6 dim ml-12">
     <div>Slides</div>
     <div>GitHub Repo</div>
+    <div>Demo Videos</div>
     <div>Portfolio</div>
     <div>LinkedIn</div>
   </div>
