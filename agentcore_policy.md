@@ -619,9 +619,9 @@ layout: two-cols-header
 
 # So, Set Policy, And Chill
 
-<img v-click src="/agentcore_policy/not_policy.png" class="mx-auto mt-6 rounded-lg" style="max-width: 90%;" />
+<img v-click src="/agentcore_policy/not_policy.png" class="mx-auto mt-6 rounded-lg h-80" />
 
-
+<img v-click src="/agentcore_policy/data_destroy.png" class="mx-auto mt-2 rounded-lg h-30" />
 
 ---
 layout: center
