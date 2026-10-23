@@ -32,6 +32,7 @@ jobs:
           - api_genai
           - backend_data_science_ai
           - agentcore_policy
+          - practical_ai_engineering
 
     steps:
       - uses: actions/checkout@v4
