@@ -236,40 +236,6 @@ flowchart LR
 
 ---
 
-<div class="eyebrow">Architecture principle</div>
-
-# Keep the model useful, but keep the system in control
-
-<style>
-.mermaid {
-  transform: scale(1.05);
-  transform-origin: top center;
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-```mermaid
-%%{init: {'theme':'dark', 'themeVariables': {'fontSize':'18px'}}}%%
-flowchart LR
-  I([Input]) --> L[LLM interpretation]
-  L --> V{Code validation}
-  V -- valid & allowed --> A[Approved action]
-  A --> R([Result])
-  V -- invalid --> X[Reject · Retry · Fallback]
-  X -.-> L
-
-  classDef llm fill:#2a2340,stroke:#a78bfa,stroke-width:2px,color:#fff;
-  classDef code fill:#12302c,stroke:#2dd4bf,stroke-width:2px,color:#fff;
-  classDef red fill:#3a1717,stroke:#f87171,stroke-width:2px,color:#fff;
-  classDef io fill:#1b2028,stroke:#8d97a6,stroke-width:2px,color:#fff;
-  class L llm;
-  class V,A code;
-  class X red;
-  class I,R io;
-```
----
-
 <div class="eyebrow">Integration lesson</div>
 
 # The best integration isn't always the most elaborate one
