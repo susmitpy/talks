@@ -313,7 +313,7 @@ flowchart LR
   </div>
 
   <div class="flex justify-center">
-    <img src="/agentcore_policy/qr.png" class="w-96 rounded-xl" />
+    <img src="/practical_ai/qr.png" class="w-96 rounded-xl" />
   </div>
 </div>
 
