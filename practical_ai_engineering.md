@@ -53,23 +53,6 @@ src: ./pages/disclaimer.md
 src: ./pages/about.md
 ---
 
----
-
-<div class="eyebrow">Today</div>
-
-# From AI concepts to working software
-
-<div class="flow mt-12">
-  <div class="node">Understand<small>AI · LLMs · MCP · scale</small></div>
-  <div class="arrow">→</div>
-  <div class="node">Architect<small>SHAW</small></div>
-  <div class="arrow">→</div>
-  <div class="node">Integrate<small>tool choices · this deck</small></div>
-  <div class="arrow">→</div>
-  <div class="node">Demonstrate<small>browser tester · ForQuiz</small></div>
-  <div class="arrow">→</div>
-  <div class="node n-tool">Build<small>your own MCP tool</small></div>
-</div>
 
 ---
 
@@ -227,6 +210,32 @@ flowchart LR
 
 ---
 
+<div class="eyebrow">Case study</div>
+
+# Marto · Agentic Outbound System
+
+<div class="flow mt-10">
+  <div class="node n-llm">Research each domain<small>saved as MD · e.g. Finance</small></div>
+  <div class="arrow">→</div>
+  <div class="node n-tool">Apollo company search<small>keywords + filters</small></div>
+  <div class="arrow">→</div>
+  <div class="node n-llm">Pick one person<small>research them</small></div>
+  <div class="arrow">→</div>
+  <div class="node n-tool">Personalized email + follow-up<small>Apollo Sequence</small></div>
+  <div class="arrow">→</div>
+  <div class="node n-human">Detect "yes" reply<small>draft try-out link reply</small></div>
+</div>
+
+<!--
+1. Research each domain, store findings as MD file (e.g. Finance).
+2. Apollo keyword search with filters to fetch companies.
+3. Find one person per company, research them.
+4. Draft personalized email + follow-up, create Apollo Sequence.
+5. If they reply yes, detect it and draft reply with try-out link.
+-->
+
+---
+
 <div class="eyebrow">Architecture principle</div>
 
 # Keep the model useful, but keep the system in control
@@ -289,7 +298,7 @@ flowchart LR
 ---
 
 
-# Two practical workflows
+# Three practical workflows
 
 <div class="grid grid-cols-2 gap-6 mt-2">
   <div class="card t-tool">
@@ -301,7 +310,7 @@ flowchart LR
       <li><span class="code">Local TTS</span> (Kokoro) voices the mascot · ffmpeg makes the reel</li>
     </ul>
   </div>
-  <div class="card t-tool">
+  <div class="card t-tool" v-click>
     <h3>TEST · Browser tester</h3>
     <ul class="small">
       <li><span class="human">Requirement</span> + URL</li>
@@ -309,6 +318,18 @@ flowchart LR
       <li><span class="code">Code</span> records, trims still frames, merges clips</li>
       <li><span class="llm">LLM</span> writes narration · <span class="code">Piper TTS</span> speaks it</li>
     </ul>
+  </div>
+  <div class="card t-tool col-span-2" v-click>
+    <h3>BUILD · How not to build with AI vs how to</h3>
+    <div class="grid grid-cols-2 gap-6">
+      <ul class="small">
+        <li>❌ "Build me X" → agent guesses → rewrite loop</li>
+      </ul>
+      <ul class="small">
+        <li>✅ <span class="llm">grill-me</span>: agent grills <span class="human">you</span>, one question at a time → plan very clear</li>
+        <li>✅ <span class="code">domain-modeling</span>: glossary in CONTEXT.md → every term defined</li>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -336,6 +357,8 @@ flowchart LR
 <div class="eyebrow">Hands-on · 30–40 min</div>
 
 # Your turn: a mini support agent + one MCP tool
+
+## Best way to understand the system is to build it
 
 <div class="flow mt-12">
   <div class="node n-human">Customer question<small>"where is ORD-101?"</small></div>
